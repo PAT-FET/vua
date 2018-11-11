@@ -1,0 +1,87 @@
+@import "../var.scss";
+@import "../mixins/breakpoint.scss";
+@import "../mixins/text.scss";
+
+.text-primary {
+    color: $primary-color !important;
+}
+
+.text-secondary {
+    color: $secondary-color !important;
+}
+
+.text-success {
+    color: $success-color !important;
+}
+
+.text-info {
+    color: $info-color !important;
+}
+
+.text-warning {
+    color: $warning-color !important;
+}
+
+.text-error {
+    color: $error-color !important;
+}
+
+.text-heading {
+    color: $heading-color !important;
+}
+
+.text-base {
+    color: $text-color !important;
+}
+
+.text-secondary {
+    color: $text-color-secondary !important;
+}
+
+.text-justify {
+    text-align: justify !important; 
+}
+
+.text-nowrap { 
+    white-space: nowrap !important;
+}
+
+.text-truncate { 
+    @include text-truncate();
+}
+
+// Responsive alignment
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @include breakpoint-up($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+    .text#{$infix}-left   { text-align: left !important; }
+    .text#{$infix}-right  { text-align: right !important; }
+    .text#{$infix}-center { text-align: center !important; }
+  }
+}
+
+// Transformation
+
+.text-lowercase  { text-transform: lowercase !important; }
+.text-uppercase  { text-transform: uppercase !important; }
+.text-capitalize { text-transform: capitalize !important; }
+
+// Weight and italics
+
+.font-weight-thin   { font-weight: $font-weight-thin !important; }
+.font-weight-light { font-weight: $font-weight-light !important; }
+.font-weight-regular  { font-weight: $font-weight-regular !important; }
+.font-weight-medium    { font-weight: $font-weight-medium !important; }
+.font-weight-bold  { font-weight: $font-weight-bold !important; }
+.font-weight-black  { font-weight: $font-weight-black !important; }
+.font-italic         { font-style: italic !important; }
+
+// Contextual colors
+
+.text-decoration-none { text-decoration: none !important; }
+
+// Reset
+
+.text-reset { color: inherit !important; }
+

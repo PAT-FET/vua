@@ -1,0 +1,96 @@
+@import "../var.scss";
+
+@mixin border ($color: $border-color-base, $width: $border-width-base, $style: $border-style-base) { 
+    border: $color $width $style; 
+}
+
+@mixin border-top ($color: $border-color-base, $width: $border-width-base, $style: $border-style-base) { 
+    border-top: $color $width $style; 
+}
+
+@mixin border-right ($color: $border-color-base, $width: $border-width-base, $style: $border-style-base) { 
+    border-right: $color $width $style; 
+}
+
+@mixin border-bottom ($color: $border-color-base, $width: $border-width-base, $style: $border-style-base) { 
+    border-bottom: $color $width $style; 
+}
+
+@mixin border-left ($color: $border-color-base, $width: $border-width-base, $style: $border-style-base) { 
+    border-left: $color $width $style; 
+}
+
+@mixin border-0 () { 
+    border: 0; 
+}
+
+@mixin border-top-0 () { 
+    border-top: 0; 
+}
+
+@mixin border-bottom-0 () { 
+    border-bottom: 0; 
+}
+
+@mixin border-left-0 () { 
+    border-left: 0; 
+}
+
+@mixin border-right-0 () { 
+    border-right: 0;
+}
+
+// Single side border-radius
+
+@mixin rounded($radius: $border-radius-base) {
+    border-radius: $radius;
+}
+
+@mixin rounded-top($radius: $border-radius-base) {
+    border-top-left-radius: $radius;
+    border-top-right-radius: $radius;
+}
+
+@mixin rounded-right($radius: $border-radius-base) {
+    border-top-right-radius: $radius;
+    border-bottom-right-radius: $radius;
+}
+
+@mixin rounded-bottom($radius: $border-radius-base) {
+    border-bottom-right-radius: $radius;
+    border-bottom-left-radius: $radius;
+}
+
+@mixin rounded-left($radius: $border-radius-base) {
+    border-top-left-radius: $radius;
+    border-bottom-left-radius: $radius;
+}
+
+@mixin circle($radius: 50%) {
+    border-radius: $radius;
+}
+
+@mixin rounded-0() {
+    border-radius: 0;
+}
+
+@mixin rounded-top-0() {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+@mixin rounded-bottom-0() {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+@mixin rounded-left-0() {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+@mixin rounded-right-0() {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+

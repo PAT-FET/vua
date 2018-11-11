@@ -1,0 +1,59 @@
+{
+  "name": "vua",
+  "version": "0.1.0",
+  "main": "dist/vua.common.js",
+  "types": "types/index.d.ts",
+  "scripts": {
+    "serve": "vue-cli-service serve dev/main.ts",
+    "build": "node ./scripts/build.js",
+    "build:dev": "vue-cli-service build --dest doc dev/main.ts",
+    "lint": "vue-cli-service lint",
+    "lint:dev": "vue-cli-service lint ./dev",
+    "test:unit": "vue-cli-service test:unit"
+  },
+  "dependencies": {
+    "vue": "^2.5.17",
+    "vue-class-component": "^6.0.0",
+    "vue-property-decorator": "^7.0.0",
+    "vue-router": "^3.0.1"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.1.0",
+    "@types/mocha": "^5.2.4",
+    "@vue/cli-plugin-babel": "^3.1.1",
+    "@vue/cli-plugin-eslint": "^3.1.1",
+    "@vue/cli-plugin-typescript": "^3.1.1",
+    "@vue/cli-plugin-unit-mocha": "^3.1.1",
+    "@vue/cli-service": "^3.1.1",
+    "@vue/eslint-config-standard": "^4.0.0",
+    "@vue/eslint-config-typescript": "^3.1.0",
+    "@vue/test-utils": "^1.0.0-beta.20",
+    "babel-eslint": "^10.0.1",
+    "chai": "^4.1.2",
+    "eslint": "^5.8.0",
+    "eslint-plugin-vue": "^5.0.0-0",
+    "highlight.js": "^9.13.1",
+    "html-loader": "^0.5.5",
+    "lint-staged": "^7.2.2",
+    "markdown-loader": "^4.0.0",
+    "node-sass": "^4.9.0",
+    "raw-loader": "^0.5.1",
+    "sass-loader": "^7.0.1",
+    "shelljs": "^0.8.2",
+    "typescript": "^3.0.0",
+    "vue-template-compiler": "^2.5.17"
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.js": [
+      "vue-cli-service lint",
+      "git add"
+    ],
+    "*.vue": [
+      "vue-cli-service lint",
+      "git add"
+    ]
+  }
+}

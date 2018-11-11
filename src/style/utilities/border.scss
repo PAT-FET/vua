@@ -1,0 +1,125 @@
+@import "../var.scss";
+
+
+
+$border-width: 1px;
+
+.border { 
+    border: $border-width solid $border-color-base !important; 
+}
+.border-top { 
+    border-top: $border-width solid $border-color-base !important; 
+}
+.border-right { 
+    border-right: $border-width solid $border-color-base !important; 
+}
+.border-bottom { 
+    border-bottom: $border-width solid $border-color-base !important; 
+}
+.border-left { 
+    border-left: $border-width solid $border-color-base !important; 
+}
+
+.border-0 { 
+    border: 0 !important; 
+}
+.border-top-0 { 
+    border-top: 0 !important; 
+}
+.border-right-0 {
+     border-right: 0 !important; 
+}
+.border-bottom-0 { 
+    border-bottom: 0 !important;
+}
+.border-left-0 { 
+    border-left: 0 !important; 
+}
+
+
+
+.rounded{
+    border-radius: $border-radius-base !important;
+}
+
+.rounded-top{
+    border-top-left-radius: $border-radius-base !important;
+    border-top-right-radius: $border-radius-base !important;
+}
+
+.rounded-right {
+    border-top-right-radius: $border-radius-base !important;
+    border-bottom-right-radius: $border-radius-base !important;
+}
+
+.rounded-bottom{
+    border-bottom-right-radius: $border-radius-base !important;
+    border-bottom-left-radius: $border-radius-base !important;
+}
+
+.rounded-left{
+    border-top-left-radius: $border-radius-base !important;
+    border-bottom-left-radius: $border-radius-base !important;
+}
+
+.circle{
+    border-radius: 50% !important;
+}
+
+.rounded-0{
+    border-radius: 0 !important;
+}
+
+.rounded-top-0 {
+    border-top-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+}
+
+.rounded-bottom-0 {
+    border-bottom-right-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+}
+
+.rounded-left-0 {
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+}
+
+.rounded-right-0 {
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+}
+
+// in order to cover .borbder
+
+.border-primary {
+    border-color: $primary-color !important;
+}
+
+.border-secondary {
+    border-color: $secondary-color !important;
+}
+
+.border-success {
+    border-color: $success-color !important;
+}
+
+.border-info {
+    border-color: $info-color !important;
+}
+
+.border-warning {
+    border-color: $warning-color !important;
+}
+
+.border-error {
+    border-color: $error-color !important;
+}
+
+.border-base {
+    border-color: $border-color-base !important;
+}
+
+.border-split {
+    border-color: $border-color-split !important;
+}

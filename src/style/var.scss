@@ -1,0 +1,190 @@
+// 
+$icon-url               : "https://at.alicdn.com/t/font_148784_v4ggb6wrjmkotj4i" !default;
+
+// primary color
+$primary-color:     var(--primary-base);
+
+$primary-colors: (
+    base: var(--primary-base),
+    lighten-1:   var(--primary-lighten-1),
+    lighten-2:   var(--primary-lighten-2),
+    lighten-3:   var(--primary-lighten-3),
+    lighten-4:   var(--primary-lighten-4),
+    lighten-5:   var(--primary-lighten-5),
+    darken-1:    var(--primary-darken-1),
+    darken-2:    var(--primary-darken-2),
+    darken-3:    var(--primary-darken-3),
+    darken-4:    var(--primary-darken-4)
+);
+
+// secondary
+
+$secondary-color:     var(--secondary-base);
+
+$secondary-colors: (
+    base: var(--secondary-base),
+    lighten-1:   var(--secondary-lighten-1),
+    lighten-2:   var(--secondary-lighten-2),
+    lighten-3:   var(--secondary-lighten-3),
+    lighten-4:   var(--secondary-lighten-4),
+    lighten-5:   var(--secondary-lighten-5),
+    darken-1:    var(--secondary-darken-1),
+    darken-2:    var(--secondary-darken-2),
+    darken-3:    var(--secondary-darken-3),
+    darken-4:    var(--secondary-darken-4)
+);
+
+// success color
+$success-color:     var(--success-base);
+
+$successe-colors: (
+    base: var(--success-base),
+    lighten-1:   var(--success-lighten-1),
+    lighten-2:   var(--success-lighten-2),
+    lighten-3:   var(--success-lighten-3),
+    lighten-4:   var(--success-lighten-4),
+    lighten-5:   var(--success-lighten-5),
+    darken-1:    var(--success-darken-1),
+    darken-2:    var(--success-darken-2),
+    darken-3:    var(--success-darken-3),
+    darken-4:    var(--success-darken-4)
+);
+// info color
+$info-color:     var(--info-base);
+
+$info-colors: (
+    base: var(--info-base),
+    lighten-1:   var(--info-lighten-1),
+    lighten-2:   var(--info-lighten-2),
+    lighten-3:   var(--info-lighten-3),
+    lighten-4:   var(--info-lighten-4),
+    lighten-5:   var(--info-lighten-5),
+    darken-1:    var(--info-darken-1),
+    darken-2:    var(--info-darken-2),
+    darken-3:    var(--info-darken-3),
+    darken-4:    var(--info-darken-4)
+);
+
+// warning color
+$warning-color:     var(--warning-base);
+
+$warning-colors: (
+    base: var(--warning-base),
+    lighten-1:   var(--warning-lighten-1),
+    lighten-2:   var(--warning-lighten-2),
+    lighten-3:   var(--warning-lighten-3),
+    lighten-4:   var(--warning-lighten-4),
+    lighten-5:   var(--warning-lighten-5),
+    darken-1:    var(--warning-darken-1),
+    darken-2:    var(--warning-darken-2),
+    darken-3:    var(--warning-darken-3),
+    darken-4:    var(--warning-darken-4)
+);
+
+// error color
+$error-color:     var(--error-base);
+
+$error-colors: (
+    base: var(--error-base),
+    lighten-1:   var(--error-lighten-1),
+    lighten-2:   var(--error-lighten-2),
+    lighten-3:   var(--error-lighten-3),
+    lighten-4:   var(--error-lighten-4),
+    lighten-5:   var(--error-lighten-5),
+    darken-1:    var(--error-darken-1),
+    darken-2:    var(--error-darken-2),
+    darken-3:    var(--error-darken-3),
+    darken-4:    var(--error-darken-4)
+);
+
+// theme related
+$heading-color: var(--heading-color);
+$text-color: var(--text-color);
+$text-color-secondary: var(--text-color-secondary);
+$disabled-color: var(--disabled-color);
+$bg-color: var(--bg-color);
+$bg-color-1: var(--bg-color-1); // selected item, header
+$bg-color-2: var(--bg-color-2); // grey disabled
+$border-color-base: var(--border-color-base);
+$border-color-split: var(--border-color-split);
+
+
+// font
+$font-family  : "Chinese Quote", -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif,
+"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+$code-family            : "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+$font-size-base         : 1rem;
+$font-size-lg           : $font-size-base * 1.14;
+$font-size-sm           : $font-size-base * 0.86;
+$line-height-base       : 1.5;
+
+// border
+$border-radius-base     : 4px;
+$border-radius-sm       : 2px;
+$border-width-base      : 1px;            // width of the border for a component
+$border-style-base      : solid;          // style of a components border
+
+// link
+$link-color             : $primary-color;
+$link-hover-color       : map-get($primary-colors, lighten-1);
+$link-active-color      : map-get($primary-colors, darken-1);
+$link-decoration        : none;
+$link-hover-decoration  : none;
+
+// disabled
+$disabled-bg            : $bg-color-2;
+
+// Grid
+$grid-breakpoints: (
+    xs: 0,
+    sm: 600px,
+    md: 960px,
+    lg: 1280px - 16px,
+    xl: 1920px - 16px
+);
+
+// Spacing
+$spacer     : $font-size-base;
+$spacers : (
+    0: 0,
+    1: ($spacer * .25),
+    2: ($spacer * .5),
+    3: $spacer,
+    4: ($spacer * 1.5),
+    5: ($spacer * 3)
+);
+
+// Font Weight
+$font-weight-thin:     100;
+$font-weight-light:    300;
+$font-weight-regular:  400;
+$font-weight-medium:   500;
+$font-weight-bold:     700;
+$font-weight-black:    900;
+
+// z-index
+$zindex-dropdown:                   1000 !default;
+$zindex-sticky:                     1020 !default;
+$zindex-fixed:                      1030 !default;
+$zindex-modal-backdrop:             1040 !default;
+$zindex-modal:                      1050 !default;
+$zindex-popover:                    1060 !default;
+$zindex-tooltip:                    1070 !default;
+
+// Animation
+$animation-duration-slow: .3s; // Modal
+$animation-duration-base: .2s;
+$animation-duration-fast: .1s; // Tooltip
+
+$ease-out            : cubic-bezier(0.215, 0.61, 0.355, 1);
+$ease-in             : cubic-bezier(0.55, 0.055, 0.675, 0.19);
+$ease-in-out         : cubic-bezier(0.645, 0.045, 0.355, 1);
+$ease-out-back       : cubic-bezier(0.12, 0.4, 0.29, 1.46);
+$ease-in-back        : cubic-bezier(0.71, -0.46, 0.88, 0.6);
+$ease-in-out-back    : cubic-bezier(0.71, -0.46, 0.29, 1.46);
+$ease-out-circ       : cubic-bezier(0.08, 0.82, 0.17, 1);
+$ease-in-circ        : cubic-bezier(0.6, 0.04, 0.98, 0.34);
+$ease-in-out-circ    : cubic-bezier(0.78, 0.14, 0.15, 0.86);
+$ease-out-quint      : cubic-bezier(0.23, 1, 0.32, 1);
+$ease-in-quint       : cubic-bezier(0.755, 0.05, 0.855, 0.06);
+$ease-in-out-quint   : cubic-bezier(0.86, 0, 0.07, 1);

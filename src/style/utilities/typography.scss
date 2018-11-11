@@ -1,0 +1,74 @@
+@import "../mixins/typography.scss";
+
+.display-1{
+    @include display-1();
+}
+
+.display-2{
+    @include display-2();
+}
+
+.display-3{
+    @include display-3();
+}
+
+.display-4{
+    @include display-4();
+}
+
+.headline{
+    @include headline();
+}
+
+.title{
+    @include title();
+}
+
+.subheading{
+    @include subheading();
+}
+
+.body-regular {
+    @include body-regular();
+}
+
+.body-secondary {
+    @include body-secondary();
+}
+
+.caption{
+    @include caption();
+}
+
+p{
+    margin-bottom: map-get($spacers, 3);
+}
+  
+ul, ol{
+    padding-left: map-get($spacers, 4);
+}
+
+code, kbd {
+    display: inline-block;
+    border-radius: $border-radius-sm;
+    white-space: pre-wrap;
+    font-size: 85%;
+    font-weight: $font-weight-black;
+    &:after,
+    &:before{
+        content: "\00a0";
+        letter-spacing: -1px;
+    }
+}
+  
+code {
+    background-color: map-get($secondary-colors, lighten-4);
+    color: $error-color;
+    // elevation(1)  TODO
+}
+  
+
+kbd{
+    background: map-get($secondary-colors, darken-3);
+    color: map-get($secondary-colors, lighten-5);
+}

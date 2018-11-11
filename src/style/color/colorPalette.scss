@@ -1,0 +1,144 @@
+$hue-step : 2;
+$saturation-step : 16;
+$saturation-step2 : 5;
+$brightness-step1 : 5;
+$brightness-step2 : 15;
+$light-color-count : 5;
+$dark-color-count : 4;
+
+@function bound($value, $max) {
+  @if($value >= $max) {
+    @return 1;
+  }
+  @return $value / $max;
+}
+
+@function hsv($color) {
+  $r : red($color)/255;
+  $g : green($color)/255;
+  $b : blue($color)/255;
+
+  $max :  max($r, $g, $b);
+  $min : min($r, $g, $b);
+  $h : $max;
+  $s : $max;
+  $v : $max;
+
+  $d : $max - $min;
+  $s : $d / $max;
+  @if($max == 0) {
+    $s : 0;
+  }
+
+  @if($max == $min){
+    $h: 0;
+  } @else{
+    @if($max == $r) {
+      $t : 0;
+      @if($g < $b) {
+        $t : 6;
+      }
+      $h : ($g - $b) / $d + $t;
+    }
+    @if($max == $g){
+      $h : ($b -$r) / $d + 2;
+    }
+    @if($max == $b){
+      $h : ($r - $g) / $d + 4;
+    }
+    $h : $h / 6;
+  }
+  @return (h: $h * 360, s: $s, v: $v);
+}
+
+
+@function toRGB ($h, $s, $v){
+  $h : bound($h, 360) * 6;
+  $s : bound($s, 100);
+  $v : bound($v,  100);
+
+  $i : floor($h);
+  $f : $h - $i;
+  $p : $v * (1 - $s);
+  $q : $v * (1 - $f * $s);
+  $t : $v * (1- (1 - $f) * $s);
+  $mod : $i % 6 + 1;
+  $r :  nth($v $q $p $p $t $v, $mod);
+  $g :  nth($t $v $v $q $p $p, $mod);
+  $b :  nth($p $p $t $v $v $q, $mod);
+
+  @return rgb($r * 255, $g * 255, $b * 255)
+}
+
+
+
+@function getHue($color, $i, $is-light){
+  $hue : 0;
+  $h : map_get(hsv($color), h);
+  @if($h >= 60 and $h <= 240) {
+    @if($is-light){
+      $hue : $h - $hue-step * $i;
+    } @else {
+      $hue : $h + $hue-step * $i;
+    }
+  } @else {
+    @if($is-light){
+      $hue : $h + $hue-step * $i;
+    } @else {
+      $hue : $h - $hue-step * $i;
+    }
+  }
+  @if($hue < 0) {
+    $hue : $hue + 360;
+  } @else if($hue >= 360) {
+    $hue : $hue - 360;
+  }
+  @return round($hue);
+}
+
+@function getSaturation($color, $i, $is-light){
+  $sat : 0;
+  $s : map_get(hsv($color), s);
+  @if($is-light){
+    $sat: round($s * 100) - $saturation-step * $i;
+  } @else if($i == $dark-color-count){
+    $sat : round($s * 100) + $saturation-step;
+  } @else{
+    $sat : round($s * 100) + $saturation-step2 * $i;
+  }
+  @if($sat > 100){
+    $sat : 100;
+  }
+  @if($is-light and $i == $light-color-count and $sat > 10) {
+    $sat : 10;
+  }
+  @if($sat < 6){
+    $sat : 6;
+  }
+  @return round($sat);
+}
+
+@function getValue($color, $i, $is-light){
+  $l: map_get(hsv($color), v);
+  @if($is-light){
+    @return round($l * 100) + $brightness-step1 * $i;
+  }
+  @return round($l * 100) - $brightness-step2 * $i;
+}
+
+@function colorPalette($color, $index){
+  @if ($index == 6){
+    @return $color
+  }
+  $is-light: $index <= 6;
+  $i : $index - $light-color-count - 1;
+  @if($is-light) {
+    $i : $light-color-count + 1 - $index;
+  }
+
+  $h : getHue($color, $i, $is-light);
+  $s : getSaturation($color, $i, $is-light);
+  $v : getValue($color, $i, $is-light);
+
+  @return toRGB($h, $s, $v);
+}

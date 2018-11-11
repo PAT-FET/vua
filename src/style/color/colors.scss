@@ -1,0 +1,230 @@
+@import 'colorPalette';
+
+$blue-base: #1890ff;
+$blue: (
+    base: $blue-base,
+    lighten-5: colorPalette($blue-base, 1),
+    lighten-4: colorPalette($blue-base, 2),
+    lighten-3: colorPalette($blue-base, 3),
+    lighten-2: colorPalette($blue-base, 4),
+    lighten-1: colorPalette($blue-base, 5),
+    darken-1: colorPalette($blue-base, 7),
+    darken-2: colorPalette($blue-base, 8),
+    darken-3: colorPalette($blue-base, 9),
+    darken-4: colorPalette($blue-base, 10),
+  
+);
+
+$purple-base: #722ed1;
+$purple: (
+    base: $purple-base,
+    lighten-5: colorPalette($purple-base, 1),
+    lighten-4: colorPalette($purple-base, 2),
+    lighten-3: colorPalette($purple-base, 3),
+    lighten-2: colorPalette($purple-base, 4),
+    lighten-1: colorPalette($purple-base, 5),
+    darken-1: colorPalette($purple-base, 7),
+    darken-2: colorPalette($purple-base, 8),
+    darken-3: colorPalette($purple-base, 9),
+    darken-4: colorPalette($purple-base, 10),
+  
+);
+
+$cyan-base: #13c2c2;
+$cyan: (
+    base: $cyan-base,
+    lighten-5: colorPalette($cyan-base, 1),
+    lighten-4: colorPalette($cyan-base, 2),
+    lighten-3: colorPalette($cyan-base, 3),
+    lighten-2: colorPalette($cyan-base, 4),
+    lighten-1: colorPalette($cyan-base, 5),
+    darken-1: colorPalette($cyan-base, 7),
+    darken-2: colorPalette($cyan-base, 8),
+    darken-3: colorPalette($cyan-base, 9),
+    darken-4: colorPalette($cyan-base, 10),
+  
+);
+
+
+$green-base: #52c41a;
+$green: (
+    base: $green-base,
+    lighten-5: colorPalette($green-base, 1),
+    lighten-4: colorPalette($green-base, 2),
+    lighten-3: colorPalette($green-base, 3),
+    lighten-2: colorPalette($green-base, 4),
+    lighten-1: colorPalette($green-base, 5),
+    darken-1: colorPalette($green-base, 7),
+    darken-2: colorPalette($green-base, 8),
+    darken-3: colorPalette($green-base, 9),
+    darken-4: colorPalette($green-base, 10),
+  
+);
+
+$magenta-base: #eb2f96;
+$magenta: (
+    base: $magenta-base,
+    lighten-5: colorPalette($magenta-base, 1),
+    lighten-4: colorPalette($magenta-base, 2),
+    lighten-3: colorPalette($magenta-base, 3),
+    lighten-2: colorPalette($magenta-base, 4),
+    lighten-1: colorPalette($magenta-base, 5),
+    darken-1: colorPalette($magenta-base, 7),
+    darken-2: colorPalette($magenta-base, 8),
+    darken-3: colorPalette($magenta-base, 9),
+    darken-4: colorPalette($magenta-base, 10),
+  
+);
+
+// alias of magenta
+$pink-base: #eb2f96;
+$pink: (
+    base: $pink-base,
+    lighten-5: colorPalette($pink-base, 1),
+    lighten-4: colorPalette($pink-base, 2),
+    lighten-3: colorPalette($pink-base, 3),
+    lighten-2: colorPalette($pink-base, 4),
+    lighten-1: colorPalette($pink-base, 5),
+    darken-1: colorPalette($pink-base, 7),
+    darken-2: colorPalette($pink-base, 8),
+    darken-3: colorPalette($pink-base, 9),
+    darken-4: colorPalette($pink-base, 10),
+  
+);
+
+$red-base: #f5222d;
+$red: (
+    base: $red-base,
+    lighten-5: colorPalette($red-base, 1),
+    lighten-4: colorPalette($red-base, 2),
+    lighten-3: colorPalette($red-base, 3),
+    lighten-2: colorPalette($red-base, 4),
+    lighten-1: colorPalette($red-base, 5),
+    darken-1: colorPalette($red-base, 7),
+    darken-2: colorPalette($red-base, 8),
+    darken-3: colorPalette($red-base, 9),
+    darken-4: colorPalette($red-base, 10),
+  
+);
+
+$orange-base: #fa8c16;
+$orange: (
+    base: $orange-base,
+    lighten-5: colorPalette($orange-base, 1),
+    lighten-4: colorPalette($orange-base, 2),
+    lighten-3: colorPalette($orange-base, 3),
+    lighten-2: colorPalette($orange-base, 4),
+    lighten-1: colorPalette($orange-base, 5),
+    darken-1: colorPalette($orange-base, 7),
+    darken-2: colorPalette($orange-base, 8),
+    darken-3: colorPalette($orange-base, 9),
+    darken-4: colorPalette($orange-base, 10),
+  
+);
+
+$yellow-base: #fadb14;
+$yellow: (
+    base: $yellow-base,
+    lighten-5: colorPalette($yellow-base, 1),
+    lighten-4: colorPalette($yellow-base, 2),
+    lighten-3: colorPalette($yellow-base, 3),
+    lighten-2: colorPalette($yellow-base, 4),
+    lighten-1: colorPalette($yellow-base, 5),
+    darken-1: colorPalette($yellow-base, 7),
+    darken-2: colorPalette($yellow-base, 8),
+    darken-3: colorPalette($yellow-base, 9),
+    darken-4: colorPalette($yellow-base, 10),
+  
+);
+
+$volcano-base: #fa541c;
+$volcano: (
+    base: $volcano-base,
+    lighten-5: colorPalette($volcano-base, 1),
+    lighten-4: colorPalette($volcano-base, 2),
+    lighten-3: colorPalette($volcano-base, 3),
+    lighten-2: colorPalette($volcano-base, 4),
+    lighten-1: colorPalette($volcano-base, 5),
+    darken-1: colorPalette($volcano-base, 7),
+    darken-2: colorPalette($volcano-base, 8),
+    darken-3: colorPalette($volcano-base, 9),
+    darken-4: colorPalette($volcano-base, 10),
+  
+);
+
+$geekblue-base: #2f54eb;
+$geekblue: (
+    base: $geekblue-base,
+    lighten-5: colorPalette($geekblue-base, 1),
+    lighten-4: colorPalette($geekblue-base, 2),
+    lighten-3: colorPalette($geekblue-base, 3),
+    lighten-2: colorPalette($geekblue-base, 4),
+    lighten-1: colorPalette($geekblue-base, 5),
+    darken-1: colorPalette($geekblue-base, 7),
+    darken-2: colorPalette($geekblue-base, 8),
+    darken-3: colorPalette($geekblue-base, 9),
+    darken-4: colorPalette($geekblue-base, 10),
+  
+);
+
+$lime-base: #a0d911;
+$lime: (
+    base: $lime-base,
+    lighten-5: colorPalette($lime-base, 1),
+    lighten-4: colorPalette($lime-base, 2),
+    lighten-3: colorPalette($lime-base, 3),
+    lighten-2: colorPalette($lime-base, 4),
+    lighten-1: colorPalette($lime-base, 5),
+    darken-1: colorPalette($lime-base, 7),
+    darken-2: colorPalette($lime-base, 8),
+    darken-3: colorPalette($lime-base, 9),
+    darken-4: colorPalette($lime-base, 10),
+  
+);
+
+$gold-base: #faad14;
+$gold: (
+    base: $gold-base,
+    lighten-5: colorPalette($gold-base, 1),
+    lighten-4: colorPalette($gold-base, 2),
+    lighten-3: colorPalette($gold-base, 3),
+    lighten-2: colorPalette($gold-base, 4),
+    lighten-1: colorPalette($gold-base, 5),
+    darken-1: colorPalette($gold-base, 7),
+    darken-2: colorPalette($gold-base, 8),
+    darken-3: colorPalette($gold-base, 9),
+    darken-4: colorPalette($gold-base, 10),
+  
+);
+
+$grey: (
+    base: #9e9e9e,
+    lighten-5: #fafafa,
+    lighten-4: #f5f5f5,
+    lighten-3: #eeeeee,
+    lighten-2: #e0e0e0,
+    lighten-1: #bdbdbd,
+    darken-1: #757575,
+    darken-2: #616161,
+    darken-3: #424242,
+    darken-4: #212121,
+  
+);
+
+$colors: (
+    blue: $blue,
+    purple: $purple,
+    cyan: $cyan,
+    green: $green,
+    magenta: $magenta,
+    pink: $pink,
+    red: $red,
+    orange: $orange,
+    yellow: $yellow,
+    volcano: $volcano,
+    geekblue: $geekblue,
+    lime: $lime,
+    gold: $gold,
+    grey: $grey
+);
+

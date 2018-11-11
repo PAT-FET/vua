@@ -1,0 +1,37 @@
+@import "../var.scss";
+
+.bg-primary {
+    background-color: $primary-color !important;
+}
+
+.bg-secondary {
+    background-color: $secondary-color !important;
+}
+
+.bg-success {
+    background-color: $success-color !important;
+}
+
+.bg-info {
+    background-color: $info-color !important;
+}
+
+.bg-warning {
+    background-color: $warning-color !important;
+}
+
+.bg-error {
+    background-color: $error-color !important;
+}
+
+.bg-base {
+    background-color: $bg-color !important;
+}
+
+.bg-1 {
+    background-color: $bg-color-1 !important;
+}
+
+.bg-2 {
+    background-color: $bg-color-2 !important;
+}

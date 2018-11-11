@@ -1,0 +1,101 @@
+$element-separator: '__';
+$modifier-separator: '--';
+
+
+
+/* BEM support Func
+ -------------------------- */
+@function selectorToString($selector) {
+  $selector: inspect($selector);
+  $selector: str-slice($selector, 2, -2);
+  @return $selector;
+}
+
+@function containsModifier($selector) {
+  $selector: selectorToString($selector);
+
+  @if str-index($selector, $modifier-separator) {
+    @return true;
+  } @else {
+    @return false;
+  }
+}
+
+@function containPseudoClass($selector) {
+  $selector: selectorToString($selector);
+
+  @if str-index($selector, ':') {
+    @return true
+  } @else {
+    @return false
+  }
+}
+
+@function hitAllSpecialNestRule($selector) {
+
+  @return containsModifier($selector) or containPseudoClass($selector);
+}
+
+
+$B: null !global;
+
+/* BEM
+ -------------------------- */
+@mixin b($block) {
+  $oldB: $B;
+  $B: $block !global;
+  
+  .#{$B} {
+    @content;
+  }
+  
+  $B: $oldB !global;
+}
+
+@mixin e($element, $nested: false) {
+  $E: $element !global;
+  $selector: &;
+  $currentSelector: "";
+  @each $unit in $element {
+    $currentSelector: #{$currentSelector + "." + $B + $element-separator + $unit + ","};
+  }
+
+  @if hitAllSpecialNestRule($selector) or $nested {
+    @at-root {
+      #{$selector} {
+        #{$currentSelector} {
+          @content;
+        }
+      }
+    }
+  } @else {
+    @at-root {
+      #{$currentSelector} {
+        @content;
+      }
+    }
+  }
+}
+
+@mixin m($modifier, $comboModifier: null) {
+  $selector: &;
+  $currentSelector: "";
+  @each $unit in $modifier {
+    $currentSelector: #{$currentSelector + & + $modifier-separator + $unit};
+    @each $cm in $comboModifier {
+      @if $cm {
+        $currentSelector: #{$currentSelector + & + $modifier-separator + $cm};
+      }
+    }
+    $currentSelector: #{$currentSelector + ','};
+  }
+
+  @at-root {
+    #{$currentSelector} {
+      @content;
+    }
+  }
+}
+
+
+

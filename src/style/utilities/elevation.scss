@@ -1,0 +1,7 @@
+@import "../mixins/elevation.scss";
+
+@for $z from 0 through 24 {
+  .elevation-#{$z}{
+      @include elevation($z+1, true);
+  }
+}

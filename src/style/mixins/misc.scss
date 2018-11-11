@@ -1,0 +1,20 @@
+@function important ($important) {
+    @return if($important, !important, null);
+}
+
+@mixin control () {
+    display: inline-block;
+    vertical-align: middle;
+
+    &:hover{
+        z-index: 1;
+    }
+
+    &:active, &.active{
+        z-index: 2;
+    }
+
+    &:focus{
+        z-index: 3;
+    }
+}

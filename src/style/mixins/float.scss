@@ -1,0 +1,19 @@
+@import "./misc.scss";
+
+@mixin float-left ($important: false) {
+  float: left #{important($important)};
+}
+@mixin float-right ($important: false) {
+  float: right #{important($important)};
+}
+@mixin float-none ($important: false) {
+  float: none #{important($important)};
+}
+
+@mixin clearfix() {
+  &::after {
+    display: block;
+    clear: both;
+    content: "";
+  }
+}

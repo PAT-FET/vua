@@ -1,0 +1,19 @@
+内置过渡组件: \
+    目前提供17种过渡效果: \
+    `VFadeTransition`   \
+    `VSwingition`   \
+    `VMoveUpTransition`   \
+    `VMoveDownTransition`   \
+    `VMoveRightTransition`   \
+    `VMoveLeftTransition`   \
+    `VSlideUpTransition`   \
+    `VSlideDownTransition`   \
+    `VSlideRightTransition`   \
+    `VSlideLeftTransition`   \
+    `VZoomTransition`   \
+    `VZoomBigTransition`   \
+    `VZoomUpTransition`   \
+    `VZoomDownTransition`   \
+    `VZoomRightTransition`   \
+    `VZoomSlideLeftTransition`   \
+    `VExpandTransition`
