@@ -3,7 +3,7 @@
    <div :class="[$style.header]">
       <ul :class="$style.listGroup">
          <li :class="[$style.listGroupItem, activeCls('props')]" @click="changePanel('props')" v-if="props">PROPS</li>
-         <li :class="[$style.listGroupItem, activeCls('events')]" @click="changePanel('events')" v-if="evnets">EVENTS</li>
+         <li :class="[$style.listGroupItem, activeCls('events')]" @click="changePanel('events')" v-if="events">EVENTS</li>
          <li :class="[$style.listGroupItem, activeCls('slots')]" @click="changePanel('slots')" v-if="slots">SLOTS</li>
          <li :class="[$style.listGroupItem, activeCls('scopedSlots')]" @click="changePanel('scopedSlots')" v-if="scopedSlots">SCOPED SLOTS</li>
          <li :class="[$style.listGroupItem, activeCls('methods')]" @click="changePanel('methods')" v-if="methods">METHODS</li>
