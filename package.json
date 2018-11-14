@@ -9,7 +9,8 @@
     "build:dev": "vue-cli-service build --dest docs dev/main.ts",
     "lint": "vue-cli-service lint",
     "lint:dev": "vue-cli-service lint ./dev",
-    "test:unit": "vue-cli-service test:unit"
+    "test:unit": "vue-cli-service test:unit",
+    "prepublish": "npm run build"
   },
   "dependencies": {
     "vue": "^2.5.17",
@@ -55,5 +56,10 @@
       "vue-cli-service lint",
       "git add"
     ]
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PAT-FET/vua.git"
   }
 }
