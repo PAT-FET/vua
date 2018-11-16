@@ -200,6 +200,10 @@ $header-height: 48px;
 
 .table {
   width: 100%;
+
+  td {
+    min-width: 180px;
+  }
 }
 
 .tr0 {

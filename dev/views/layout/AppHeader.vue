@@ -25,6 +25,7 @@ export default class AppHeader extends Vue {
     position: sticky;
     top: 0;
     display: flex;
+    z-index: 5000;
     justify-content: space-between;
 }
 
