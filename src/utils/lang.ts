@@ -1,4 +1,5 @@
 /**
+import function from '../components/transitions/expandTransition'
  * Camelize a hyphen-delimited string.
  */
 const camelizeRE = /-(\w)/g
@@ -21,3 +22,5 @@ const hyphenateRE = /\B([A-Z])/g
 export const hyphenate = (str: string): string => {
   return str.replace(hyphenateRE, '-$1').toLowerCase()
 }
+
+export function noop (...args: any[]) {}
