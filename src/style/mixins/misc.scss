@@ -5,6 +5,7 @@
 @mixin control () {
     display: inline-block;
     vertical-align: middle;
+    position: relative;
 
     &:hover{
         z-index: 1;
@@ -17,4 +18,9 @@
     &:focus{
         z-index: 3;
     }
+}
+
+@mixin square ($size) {
+    height: $size;
+    width: $size;
 }

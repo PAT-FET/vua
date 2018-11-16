@@ -2,8 +2,11 @@
 <div :class="[$style.box]">
    <anchored-heading :level="3">{{titleText}}</anchored-heading>
    <p v-html="descText"></p>
-   <div :class="[$style.exampleBox]">
-      <div :class="[$style.boxHeader]"><a title="显示源码" @click="showSource=!showSource"> &lt; &gt; </a></div>
+   <div :class="[$style.exampleBox]" ref="body">
+      <div :class="[$style.boxHeader]">
+        <i class="anticon anticon-bulb" :class="[$style.themeBtn]" @click="toggleTheme"></i> &nbsp;
+        <a title="显示源码" @click="showSource=!showSource"> &lt; &gt; </a>
+      </div>
       <div :class="[$style.boxBody]">
          <div v-show="showSource">
             <pre><code class="html" ref="source">{{source}}</code></pre>
@@ -15,13 +18,15 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from 'vue-property-decorator'
+import { Component, Vue, Prop, Emit } from 'vue-property-decorator'
+import { mixins } from 'vue-class-component'
+import Themeable from '@/mixins/Themeable'
 import hljs from 'highlight.js/lib'
 
 @Component({
   components: {}
   })
-export default class ComponentExample extends Vue {
+export default class ComponentExample extends mixins(Themeable) {
   @Prop(String)
   title!: string;
 
@@ -36,6 +41,8 @@ export default class ComponentExample extends Vue {
 
   showSource: boolean = false;
 
+  localDark: boolean| null = null
+
   get titleText (): string {
     if (this.title) return this.title
     if (!this.source) return ''
@@ -48,8 +55,26 @@ export default class ComponentExample extends Vue {
     return ((this.source.match(/@desc.*/) || [])[0] || '').substr(6)
   }
 
+  get isDark (): boolean | null {
+    return this.localDark
+  }
+
+  toggleTheme () {
+    if (this.localDark === null) this.localDark = !this.$vua.dark
+    else this.localDark = null
+  }
+
+  getCssVarEles (): HTMLElement[] {
+    return [this.$refs.body]
+  }
+
   mounted () {
     hljs.highlightBlock(this.$refs.source)
+  }
+
+  $refs!: {
+    body: HTMLElement,
+    source: HTMLElement
   }
 }
 </script>
@@ -65,10 +90,12 @@ export default class ComponentExample extends Vue {
   border: $border-color-base 1px solid;
   border-radius: 4px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  color: $text-color;
 }
 
 .boxHeader {
   height: 48px;
+  line-height: 48px;
   border-bottom: $border-color-base solid 1px;
   background-color: $bg-color-1;
   text-align: right;
@@ -78,5 +105,12 @@ export default class ComponentExample extends Vue {
 .boxBody {
   padding: 16px;
   background-color: $bg-color;
+}
+
+.themeBtn{
+    cursor: pointer;
+    &:hover{
+        transform: scale(1.2);
+    }
 }
 </style>

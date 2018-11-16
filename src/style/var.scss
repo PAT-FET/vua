@@ -37,7 +37,7 @@ $secondary-colors: (
 // success color
 $success-color:     var(--success-base);
 
-$successe-colors: (
+$success-colors: (
     base: var(--success-base),
     lighten-1:   var(--success-lighten-1),
     lighten-2:   var(--success-lighten-2),
@@ -113,9 +113,9 @@ $border-color-split: var(--border-color-split);
 $font-family  : "Chinese Quote", -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif,
 "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 $code-family            : "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
-$font-size-base         : 1rem;
-$font-size-lg           : $font-size-base * 1.14;
-$font-size-sm           : $font-size-base * 0.86;
+$font-size-base         : 0.875rem;
+$font-size-lg           : 1rem;
+$font-size-sm           : 0.75rem;
 $line-height-base       : 1.5;
 
 // border
@@ -144,7 +144,7 @@ $grid-breakpoints: (
 );
 
 // Spacing
-$spacer     : $font-size-base;
+$spacer     : 1rem;
 $spacers : (
     0: 0,
     1: ($spacer * .25),
@@ -153,6 +153,12 @@ $spacers : (
     4: ($spacer * 1.5),
     5: ($spacer * 3)
 );
+
+// Padding
+$padding-lg    : 1.5rem !default; // containers
+$padding-md    : 1rem !default; // small containers and buttons
+$padding-sm    : 0.75rem !default; // Form controls and items
+$padding-xs    : 0.5rem !default;  // small items
 
 // Font Weight
 $font-weight-thin:     100;
