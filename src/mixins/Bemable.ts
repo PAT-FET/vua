@@ -5,7 +5,9 @@ import Component from 'vue-class-component'
 @Component
 export default class Bemable extends Vue {
   b (block?: string): string {
-    return hyphenate((block || this.constructor.name))
+    if (block) return hyphenate(block)
+    if (this.$options.name) return hyphenate(this.$options.name)
+    throw new Error('bem: component name required')
   }
 
   e (ele: string, block?: string): string {

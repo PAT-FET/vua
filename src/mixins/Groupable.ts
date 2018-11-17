@@ -5,7 +5,7 @@ import { noop } from '@/utils/lang'
 
 @Component
 export default class Groupable extends Vue {
-  groupName: string = 'group'
+  groupName: string = this.$options.name || ''
 
   @Inject({ default: () => noop }) register!: (item: Groupable) => void
 

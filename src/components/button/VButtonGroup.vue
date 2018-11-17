@@ -13,9 +13,10 @@ import Group from '@/mixins/Group'
 @Component({
   components: {
   },
+  name: 'v-button-group'
   })
 export default class VButtonGroup extends mixins(Themeable, Bemable, Group) {
-  groupNames: string[] = ['button']
+  groupNames: string[] = ['v-button']
 }
 </script>
 

@@ -25,6 +25,7 @@ import { debounce } from '@/utils/perf'
 @Component({
   components: {
   },
+  name: 'v-button' // it's required for production version
   })
 export default class VButton extends mixins(Themeable, Bemable, Rippleable, Groupable) {
     @Prop({type: String, default: 'bulge'}) type!: ButtonType
@@ -46,8 +47,6 @@ export default class VButton extends mixins(Themeable, Bemable, Rippleable, Grou
     @Prop(Number) debounce!: number
 
     @Emit() click () {}
-
-    groupName: string = 'button'
 
     debounceClickFn = this.debounce ? debounce(this.click, this.debounce, null) : null
 
