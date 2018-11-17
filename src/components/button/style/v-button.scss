@@ -142,4 +142,9 @@ $btn-height-lg: 2.5rem;
         margin-left: -1px;
     }
 
+    //Slim
+    @include m(slim) {
+        padding: 0 0.25rem;
+        font-size: $font-size-sm;
+    }
 }
