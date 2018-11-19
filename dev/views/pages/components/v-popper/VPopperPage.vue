@@ -38,8 +38,8 @@ importSourceAll(require.context('!raw-loader!./examples/', true, /\.vue$/))
   components: {
   },
   })
-export default class VButtonPage extends Vue {
-    title: string = 'VButton 按钮'
+export default class VPopperPage extends Vue {
+    title: string = 'VPopper 悬浮层'
 
     summary: any = summary
 
