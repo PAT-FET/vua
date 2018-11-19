@@ -15,7 +15,7 @@
          <table :class="[$style.table]">
             <tbody>
             <template v-for="(prop, i) in props">
-               <tr :key="'title' + i" :class="[$style.tr0]">
+               <tr :key="'_title' + i" :class="[$style.tr0]">
                   <td>名称</td>
                   <td>默认值</td>
                   <td>类型</td>
@@ -41,7 +41,7 @@
          <table :class="[$style.table]">
             <tbody>
             <template v-for="(event, i) in events">
-               <tr :key="'title' + i" :class="[$style.tr0]">
+               <tr :key="'_title' + i" :class="[$style.tr0]">
                   <td>名称</td>
                   <td>值</td>
                </tr>
@@ -65,7 +65,7 @@
          <table :class="[$style.table]">
             <tbody>
             <template v-for="(slot, i) in slots">
-               <tr :key="'title' + i" :class="[$style.tr0]">
+               <tr :key="'_title' + i" :class="[$style.tr0]">
                   <td>名称</td>
                </tr>
                <tr :key="slot.name + i" :class="[$style.tr1]">
@@ -87,7 +87,7 @@
          <table :class="[$style.table]">
             <tbody>
             <template v-for="(scopedSlot, i) in scopedSlots">
-               <tr :key="'title' + i" :class="[$style.tr0]">
+               <tr :key="'_title' + i" :class="[$style.tr0]">
                   <td>名称</td>
                   <td>属性</td>
                </tr>
@@ -111,7 +111,7 @@
          <table :class="[$style.table]">
             <tbody>
             <template v-for="(method, i) in methods">
-               <tr :key="'title' + i" :class="[$style.tr0]">
+               <tr :key="'_title' + i" :class="[$style.tr0]">
                   <td>名称</td>
                   <td>参数</td>
                   <td>返回值</td>
@@ -196,6 +196,7 @@ $header-height: 48px;
 .body {
   background-color: $bg-color;
   padding: 10px;
+  min-height: 60px;
 }
 
 .table {
