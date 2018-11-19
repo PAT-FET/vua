@@ -1,5 +1,5 @@
 <template>
-    <button :class="[b(), typeCls, sizeCls, colorCls, shapeCls, loadingCls, blockls, groupedCls]"
+    <button :class="[b(), typeCls, sizeCls, colorCls, shapeCls, loadingCls, blockls, groupedCls, slimCls]"
      v-ripple="ripple"
      @click="onClick"
      :disabled="disabled">
@@ -46,6 +46,8 @@ export default class VButton extends mixins(Themeable, Bemable, Rippleable, Grou
 
     @Prop(Number) debounce!: number
 
+    @Prop(Boolean) slim!: boolean
+
     @Emit() click () {}
 
     debounceClickFn = this.debounce ? debounce(this.click, this.debounce, null) : null
@@ -76,6 +78,10 @@ export default class VButton extends mixins(Themeable, Bemable, Rippleable, Grou
 
     get groupedCls () {
       return this.grouped ? this.m(`grouped`) : ''
+    }
+
+    get slimCls () {
+      return this.slim ? this.m(`slim`) : ''
     }
 
     onClick () {

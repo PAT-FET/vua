@@ -1,0 +1,58 @@
+@import "../../../style/var.scss";
+@import "./var.scss";
+@mixin vertical-item () {
+    &:hover {
+        color: map-get($primary-colors, lighten-1);
+    }
+
+    &.selected, &:active {
+        background-color: map-get($primary-colors, lighten-5);
+        color: map-get($primary-colors, darken-1);
+    }
+
+    &:after {
+      content: "";
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      border-right: 3px solid $primary-color;
+      transform: scaleY(.0001);
+      opacity: 0;
+      transition: transform .15s $ease-out, opacity .15s $ease-out;
+    }
+    &.selected:after{
+        opacity: 1;
+        transform: scaleY(1);
+    }
+}
+
+@mixin vertical-sub-title {
+    line-height: $menu-item-height;
+
+    &:hover{
+        color: map-get($primary-colors, lighten-1);
+    }
+
+    &:active{
+        color: map-get($primary-colors, darken-1);
+        background-color: map-get($primary-colors, lighten-5);
+    }
+    &.active{
+        color: map-get($primary-colors, darken-1);
+    }
+}
+
+@mixin horizontal-top-item {
+    border-bottom: 2px solid transparent;
+
+    &.active, &.selected{
+        border-bottom-color: map-get($primary-colors, darken-1);
+        color: map-get($primary-colors, darken-1);
+    }
+
+    &:hover {
+        border-bottom-color: map-get($primary-colors, lighten-1);
+        color: map-get($primary-colors, lighten-1);
+    }
+}

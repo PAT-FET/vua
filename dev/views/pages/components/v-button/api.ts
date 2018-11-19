@@ -53,6 +53,12 @@ export default {
       default: '',
       type: 'number',
       desc: '点击去抖'
+    },
+    {
+      name: 'slim',
+      default: '',
+      type: 'boolean',
+      desc: '紧凑模式， 该模式没有水平内部， 主要用于分裂按钮'
     }
   ],
   events: [

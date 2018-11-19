@@ -1,6 +1,6 @@
 <template>
-<div :class="$style.container" class="border-right">
-    <nav-menu :data="pages"></nav-menu>
+<div :class="$style.container">
+    <nav-menu :data="pages" style="height: 100%; width: 256px;"></nav-menu>
 </div>
 </template>
 <script lang="ts">
@@ -22,7 +22,6 @@ export default class AppAside extends Vue {
 
 <style lang="scss" module>
 .container{
-    width: 240px;
     height: 100vh;
     overflow: auto;
 }
