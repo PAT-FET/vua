@@ -1,4 +1,4 @@
-import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
+import { Component, Vue, Prop, Watch, Provide, Inject } from 'vue-property-decorator'
 import { getThemeDark, getThemeLight } from '@/utils/theme'
 
 @Component
@@ -15,14 +15,19 @@ export default class Themeable extends Vue {
     }
 
     // TODO 对于 appendToBody 之类的组件， 需要提供 (Provide/ Inject) 来实现
+    @Provide('isDark') provideIsDark () {
+      return this.isDark
+    }
+
+    @Inject({from: 'isDark', default: () => () => null}) injectIsDark!: () => boolean| null
 
     get isDark (): boolean | undefined | null{
+      if (this.dark === null || this.dark === undefined) return this.injectIsDark()
       return this.dark
     }
 
     handleThemeChange (first: boolean = false) {
       const $eles = this.getCssVarEles()
-
       if (this.isDark === undefined || this.isDark === null) {
         if (first) return
         return setOrUnsetVar(true)

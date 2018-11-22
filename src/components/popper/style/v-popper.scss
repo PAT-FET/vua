@@ -12,6 +12,7 @@
     @include e(popper) {
         position: absolute;
         background-color: $bg-color;
+        color: $text-color;
         border-radius: $border-radius-base;
         @include elevation(8);
     }

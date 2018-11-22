@@ -12,5 +12,8 @@ Vue.use(Vua)
 
 new Vue({
   router,
+  data: {
+    collapse: false
+  },
   render: h => h(App)
 }).$mount('#app')

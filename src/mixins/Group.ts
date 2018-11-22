@@ -9,18 +9,44 @@ export default class Group extends Vue {
 
   groupItems: Groupable[] = []
 
-  @Provide() register (item: Groupable) {
-    if (!this.groupNames.includes(item.groupName)) return
+  activeGroupItems: Groupable[] = []
+
+  multipleActiveItem: boolean = true
+
+  groupNestedLevel: number = 0
+
+  @Provide('addGroupItem') provideAddGroupItem (item: Groupable) {
+    if (this.groupNames.length > 0 && !this.groupNames.includes(item.groupName)) return
     if (this.groupItems.includes(item)) return
     this.groupItems.push(item)
   }
 
-  @Provide() unregister (item: Groupable) {
+  @Provide('removeGroupItem') provideRemoveGroupItem (item: Groupable) {
     let idx = this.groupItems.findIndex(v => v === item)
     if (idx >= 0) this.groupItems.splice(idx, 1)
   }
 
-  @Provide() inGroup (item: Groupable): boolean {
+  @Provide('inGroup') provideInGroup (item: Groupable): boolean {
     return this.groupItems.includes(item)
+  }
+
+  @Provide('activateGroupItem') provideActivateGroupItem (item: Groupable, multiple?: boolean): void {
+    if (!this.groupItems.includes(item)) return
+    if (this.activeGroupItems.includes(item)) return
+    if (multiple || this.multipleActiveItem) this.activeGroupItems.push(item)
+    else this.activeGroupItems = [item]
+  }
+
+  @Provide('unactivateGroupItem') provideUnactivateGroupItem (item: Groupable): void {
+    let idx = this.activeGroupItems.findIndex(v => v === item)
+    if (idx >= 0) this.activeGroupItems.splice(idx, 1)
+  }
+
+  @Provide('inActiveGroup') provideInActiveGroup (item: Groupable): boolean {
+    return this.activeGroupItems.includes(item)
+  }
+
+  @Provide('groupNestedLevel') provideGroupNestedLevel (): number {
+    return this.groupNestedLevel
   }
 }

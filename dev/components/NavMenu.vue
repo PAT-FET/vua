@@ -10,29 +10,39 @@ export default class NavMenu extends Vue {
     @Prop(Array) data!: any[]
 
     render (h: CreateElement) {
-      return this.generateList(h, this.data)
+      return h('v-menu', { props: { mode: 'inline', uniqueOpened: true, collapse: (this.$root as any).collapse } }, this.generateList(h, this.data))
     }
 
-    generateList (h: CreateElement, list: any[], level: number = 1): VNode {
+    generateList (h: CreateElement, list: any[]): VNode[] {
       let children = list.map(v => {
         let childNodes = null
         if (v.children) {
-          childNodes = [h('div', { 'class': [this.$style.item, this.$style.title, `pl-${this.computePadding(level)}`] }, v.name), this.generateList(h, v.children, level + 1)]
+          childNodes = h('v-sub-menu', {}, [h('span', { slot: 'title' }, v.name), ...this.icon(h, v.name), this.generateList(h, v.children)])
         } else {
-          childNodes = [h('div', { 'class': [this.$style.item, `pl-${this.computePadding(level)}`], 'on': { click: () => this.link(v.path) } }, v.name)]
+          childNodes = h('v-menu-item', { 'nativeOn': { click: () => this.link(v.path) } }, v.name)
         }
-        let item = h('li', {}, childNodes)
-        return item
+        // let item = h('li', {}, childNodes)
+        return childNodes
       })
-      return h('ul', { 'class': [this.$style.listGroup] }, children)
+      return children
     }
 
     link (path: string) {
       this.$router.push(path)
     }
 
-    computePadding (level: number) {
-      return level * 2 > 5 ? 5 : level * 2
+    icon (h: CreateElement, name: string) {
+      let arr = []
+      if (name === 'components') {
+        arr.push(h('i', { 'class': ['anticon', 'anticon-compass'], slot: 'icon' }))
+      } else if (name === 'directives') {
+        arr.push(h('i', { 'class': ['anticon', 'anticon-key'], slot: 'icon' }))
+      } else if (name === 'framework') {
+        arr.push(h('i', { 'class': ['anticon', 'anticon-desktop'], slot: 'icon' }))
+      } else if (name === 'styles') {
+        arr.push(h('i', { 'class': ['anticon', 'anticon-smile'], slot: 'icon' }))
+      }
+      return arr
     }
 
   // $style: any = {}
