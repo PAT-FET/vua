@@ -10,7 +10,13 @@
         <component-example v-for="(example, i) in examples" v-bind="example" :key="i"></component-example>
       </template>
       <anchored-heading :level="2" v-if="api">API</anchored-heading>
-      <api-table v-bind="api" v-if="api"></api-table>
+      <api-table v-bind="api" v-if="api && !api.length"></api-table>
+      <template v-if="api && api.length">
+         <div v-for="i in api" :key="i.name">
+            <anchored-heading :level="3">{{i.name}}</anchored-heading>
+            <api-table v-bind="i.content"></api-table>
+         </div>
+      </template>
    </div>
    <div :class="[$style.sticker]">
       <component-catalog :anchors="anchors"></component-catalog>
@@ -30,7 +36,7 @@ export default class ComponentView extends Vue {
 
   @Prop(Array) examples!: any[]
 
-  @Prop(Object) api: any
+  @Prop([Object, Array]) api: any
 
   anchors: AnchoredHeading[] = []
 

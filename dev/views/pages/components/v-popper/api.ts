@@ -55,8 +55,8 @@ export default {
       desc: '是否显示箭头'
     },
     {
-      name: 'appendedToBody',
-      default: '',
+      name: 'appendToBody',
+      default: 'true',
       type: 'boolean',
       desc: '是否将popper元素添加到body下'
     },

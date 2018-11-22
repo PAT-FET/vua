@@ -15,13 +15,14 @@ import { mixins } from 'vue-class-component'
 import { VNode } from 'vue'
 import Popper, { PopperOptions, Data } from './popper.js'
 import Bemable from '@/mixins/Bemable'
+import Themeable from '@/mixins/Themeable'
 
 @Component({
   components: {
   },
   name: 'v-popper'
   })
-export default class VPopper extends mixins(Bemable) {
+export default class VPopper extends mixins(Bemable, Themeable) {
   @Prop({type: String, default: 'hover'}) trigger!: 'hover' | 'click'
 
   @Prop(Boolean) visible!: boolean
@@ -40,7 +41,7 @@ export default class VPopper extends mixins(Bemable) {
 
   @Prop({type: Boolean, default: true}) arrow!: boolean
 
-  @Prop(Boolean) appendedToBody!: boolean
+  @Prop({type: Boolean, default: true}) appendToBody!: boolean
 
   @Prop(String) reference!: string
 
@@ -56,9 +57,12 @@ export default class VPopper extends mixins(Bemable) {
     modifiers: {
       computeStyle: {
         gpuAcceleration: false
+      },
+      preventOverflow: {
+        boundariesElement: 'viewport' // fix the aside menu issue
       }
     },
-    positionFixed: true,
+    // positionFixed: true,
     onUpdate: this.onUpdate,
     onCreate: this.onCreate
   }
@@ -133,6 +137,11 @@ export default class VPopper extends mixins(Bemable) {
     }
   }
 
+  // overwrite
+  getCssVarEles (): HTMLElement[] {
+    return [this.$el, this.$refs.popper]
+  }
+
   @Watch('visible') visibleChange (visible: boolean) {
     if (visible) {
       let display = this.$refs.popper.style.display
@@ -156,7 +165,7 @@ export default class VPopper extends mixins(Bemable) {
   mounted () {
     let refEle = this.refEle
     if (!refEle) return
-    if (this.appendedToBody) {
+    if (this.appendToBody) {
       document.body.appendChild(this.$refs.popper)
     }
     let option = Object.assign(this.defaultOptions, this.options || {})

@@ -15,11 +15,11 @@ const req = (require as any).context('../views/pages', true, /Page\.vue$/)
 const requireAll = (requireContext: any) => requireContext.keys().map((key: string) => {
   let path = key.split('/')
   let compName = path[path.length - 1].replace('.vue', '')
-  path = path.slice(1, path.length - 2)
+  path = path.slice(1, path.length - 1)
   let context = pages
   path.forEach((v, i) => {
     let item = context.find(w => w.name === v)
-    if (!item) {
+    if (!item && i !== path.length - 1) {
       item = {
         name: v,
         children: []
@@ -37,7 +37,7 @@ const requireAll = (requireContext: any) => requireContext.keys().map((key: stri
         component: requireContext(key).default
       })
     } else {
-      context = item.children || []
+      context = (item && item.children) || []
     }
   })
 
