@@ -4,8 +4,13 @@
    <p v-html="descText"></p>
    <div :class="[$style.exampleBox]" ref="body">
       <div :class="[$style.boxHeader]">
-        <i class="anticon anticon-bulb" :class="[$style.themeBtn]" @click="toggleTheme"></i> &nbsp;
-        <a title="显示源码" @click="showSource=!showSource"> &lt; &gt; </a>
+        <v-tooltip content="切换主题">
+          <i class="anticon anticon-bulb" :class="[$style.themeBtn]" @click="toggleTheme"></i>
+        </v-tooltip>
+        &nbsp;
+        <v-tooltip content="显示源码">
+          <a @click="showSource=!showSource"> &lt; &gt; </a>
+        </v-tooltip>
       </div>
       <div :class="[$style.boxBody]">
          <div v-show="showSource">

@@ -19,10 +19,10 @@ export default {
       desc: '位置'
     },
     {
-      name: 'content',
+      name: 'title',
       default: '',
       type: 'string',
-      desc: '内容'
+      desc: '标题'
     },
     {
       name: 'disabled',
@@ -34,13 +34,17 @@ export default {
       name: 'value',
       default: '',
       type: 'boolean',
-      desc: '使用双向绑定控制tooltip的显隐'
+      desc: '使用双向绑定控制popover的显隐'
     }
   ],
   slots: [
     {
       name: 'default',
       desc: '默认卡槽'
+    },
+    {
+      name: 'reference',
+      desc: '参考元素'
     }
   ]
 }
