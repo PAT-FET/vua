@@ -2,7 +2,7 @@
 <div :class="[b()]">
     <slot name="reference" @click="onClick"><a>&nbsp;</a></slot>
     <transition :name="transitionName">
-      <div :class="[e('popper')]" :style="[gutterStyle, zIndexStyle]" ref="popper" v-show="actualVisible && !disabled">
+      <div :class="[e('popper'), popperClass]" :style="[gutterStyle, zIndexStyle]" ref="popper" v-show="actualVisible && !disabled">
         <slot></slot>
         <div :class="[e('arrow'), arrowPlacementCls]" v-if="arrow"></div>
       </div>
@@ -44,6 +44,8 @@ export default class VPopper extends mixins(Bemable, Themeable) {
   @Prop({type: Boolean, default: true}) appendToBody!: boolean
 
   @Prop(String) reference!: string
+
+  @Prop(String) popperClass!: string
 
   popper: Popper | null = null
 
@@ -128,7 +130,7 @@ export default class VPopper extends mixins(Bemable, Themeable) {
     const $popper = this.$refs.popper
     let placement = this.state && this.state.placement
     if (!$popper || !placement) return {}
-    return this.m(placement, 'arrow')
+    return this.m(placement.split('-')[0], 'arrow')
   }
 
   get zIndexStyle () {
@@ -234,7 +236,7 @@ export default class VPopper extends mixins(Bemable, Themeable) {
         $popperEle.removeEventListener('mouseout', hide)
         $popperEle.removeEventListener('focus', show)
       }
-    } else {
+    } else if (this.trigger === 'click') {
       $refEle.addEventListener('click', toggle)
       document.addEventListener('click', clickOutSide)
       this.unRegisterEvents = () => {
@@ -242,6 +244,7 @@ export default class VPopper extends mixins(Bemable, Themeable) {
         document.removeEventListener('click', clickOutSide)
       }
     }
+    // TODO focus support
   }
 
   $refs!: {

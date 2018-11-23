@@ -12,6 +12,7 @@
     @include e(popper) {
         position: absolute;
         background-color: $bg-color;
+        border-color: $bg-color;
         color: $text-color;
         border-radius: $border-radius-base;
         @include elevation(8);
@@ -26,7 +27,8 @@
 
         @include m(top) {
             border-width: 5px 5px 0 5px;
-            border-color: $bg-color transparent transparent transparent;
+            border-color: transparent;
+            border-top-color: inherit;
             bottom: -5px;
             left: calc(50% - 5px);
             margin-top: 0;
@@ -35,7 +37,8 @@
 
         @include m(bottom) {
             border-width: 0 5px 5px 5px;
-            border-color: transparent transparent $bg-color transparent;
+            border-color: transparent;
+            border-bottom-color: inherit;
             top: -5px;
             left: calc(50% - 5px);
             margin-top: 0;
@@ -44,7 +47,8 @@
 
         @include m(left) {
             border-width: 5px 0 5px 5px;
-            border-color: transparent transparent transparent $bg-color;
+            border-color: transparent;
+            border-left-color: inherit;
             right: -5px;
             top: calc(50% - 5px);
             margin-left: 0;
@@ -53,7 +57,8 @@
 
         @include m(right) {
             border-width: 5px 5px 5px 0;
-            border-color: transparent $bg-color transparent transparent;
+            border-color: transparent;
+            border-right-color: inherit;
             left: -5px;
             top: calc(50% - 5px);
             margin-left: 0;

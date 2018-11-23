@@ -1,0 +1,23 @@
+@import "../../../style/mixins/bem.scss";
+@import "../../../style/mixins/elevation.scss";
+@import "../../../style/mixins/misc.scss";
+@import "../../../style/mixins/float.scss";
+@import "../../../style/var.scss";
+@import "./mixins.scss";
+
+@include b(v-tooltip) {
+    color: currentColor;
+
+    @include e(content) {
+        min-height: 2rem;
+        word-break: break-all;
+        text-align: left;
+        padding: .25rem .5rem;
+    }
+
+    @include e(popper) {
+        background-color: map-get($secondary-colors, darken-4);
+        border-color: map-get($secondary-colors, darken-4);
+        color: map-get($secondary-colors, lighten-5);
+    }
+}

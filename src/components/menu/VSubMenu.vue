@@ -14,6 +14,7 @@
      </v-expand-transition>
   </template>
   <v-popper :visible.sync="visible" :arrow="false" :append-to-body="appendToBody"
+   :delay="200"
    :trigger="trigger" :options="options" style="display: block;" v-else>
     <div slot="reference" :class="[e('title'), activeCls, collapseCls, topCls, disabledCls]" :style="[paddingStyle]">
       <span v-if="$slots.icon" :class="[e('icon')]"><slot name="icon"></slot></span>
