@@ -24,6 +24,9 @@ export default class Group extends Vue {
   @Provide('removeGroupItem') provideRemoveGroupItem (item: Groupable) {
     let idx = this.groupItems.findIndex(v => v === item)
     if (idx >= 0) this.groupItems.splice(idx, 1)
+    // remove from activeGroup
+    idx = this.activeGroupItems.findIndex(v => v === item)
+    if (idx >= 0) this.activeGroupItems.splice(idx, 1)
   }
 
   @Provide('inGroup') provideInGroup (item: Groupable): boolean {

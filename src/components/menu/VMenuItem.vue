@@ -67,26 +67,21 @@ export default class VMenuItem extends mixins(Themeable, Bemable, MenuInjector, 
     if (this.parsedMode !== 'inline' && this.groupNestedLevel > 0) this.injectClose()
   }
 
-  handleDefaultActive () {
-    if (!this.defaultActive || !this.index) return
-    if (this.defaultActive === this.index) this.select()
+  @Watch('selected') selectedChange (selected: boolean) {
+    this.handleSelected()
   }
 
-  @Watch('selected') selectedChange (selected: boolean) {
-    if (selected) this.joinActiveGroup()
+  created () {
+    this.handleSelected()
+  }
+
+  handleSelected () {
+    if (this.selected) this.joinActiveGroup()
     else {
       this.$nextTick().then(() => {
         this.exitActiveGroup()
       })
     }
-  }
-
-  @Watch('defaultActive') defaultActiveChange () {
-    this.handleDefaultActive()
-  }
-
-  created () {
-    this.handleDefaultActive()
   }
 }
 </script>
