@@ -37,8 +37,6 @@ const menu = {
       desc: '是否只能同时打开一个子菜单， 只在inline模式下生效， 目前只在第一级子菜单有效'
     }
   ],
-  events: [
-  ],
   slots: [
     {
       name: 'default',
@@ -61,8 +59,6 @@ const subMenu = {
       type: 'string',
       desc: '唯一标识符'
     }
-  ],
-  events: [
   ],
   slots: [
     {
@@ -95,8 +91,6 @@ const menuItem = {
       desc: '唯一标识符'
     }
   ],
-  events: [
-  ],
   slots: [
     {
       name: 'default',
@@ -110,10 +104,6 @@ const menuItem = {
 }
 
 const menuGroup = {
-  props: [
-  ],
-  events: [
-  ],
   slots: [
     {
       name: 'default',

@@ -26,6 +26,12 @@ export default class Themeable extends Vue {
       return this.dark
     }
 
+    // the actual dark, if not set will take the $vua
+    get isActualDark (): boolean {
+      if (this.isDark === undefined || this.isDark === null) return this.$vua.dark
+      return this.isDark
+    }
+
     handleThemeChange (first: boolean = false) {
       const $eles = this.getCssVarEles()
       if (this.isDark === undefined || this.isDark === null) {
