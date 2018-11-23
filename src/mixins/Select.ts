@@ -8,28 +8,36 @@ export default class Select extends Vue {
   @Prop(Boolean) multiple!: boolean
 
   // in the future, maybe provide a Set instead of Array to improve performance
-  selectedItems: Selectable[] = []
+  selectedItems: any[] = []
+
+  // over write this under specific circumstance
+  resolveSelectedKey (item: Selectable): any {
+    return item
+  }
 
   @Provide('toggleSelect') provideToggleSelect (item: Selectable) {
-    let exist = this.selectedItems.includes(item)
+    let exist = this.provideIsSelected(item)
     if (exist) this.provideUnselect(item)
     else this.provideSelect(item)
   }
 
-  @Provide('select') provideSelect (item: Selectable) {
-    if (!this.multiple) this.selectedItems = [item]
+  @Provide('select') provideSelect (item: Selectable| any, isKey?: boolean) {
+    let key = isKey ? item : this.resolveSelectedKey(item)
+    if (!this.multiple) this.selectedItems = [key]
     else {
-      let exist = this.selectedItems.includes(item)
-      if (!exist) this.selectedItems.push(item)
+      let exist = this.selectedItems.includes(key)
+      if (!exist) this.selectedItems.push(key)
     }
   }
 
   @Provide('unselect') provideUnselect (item: Selectable) {
-    let idx = this.selectedItems.findIndex(v => v === item)
+    let key = this.resolveSelectedKey(item)
+    let idx = this.selectedItems.findIndex(v => v === key)
     if (idx >= 0) this.selectedItems.splice(idx, 1)
   }
 
   @Provide('isSelected') provideIsSelected (item: Selectable): boolean {
-    return this.selectedItems.includes(item)
+    let key = this.resolveSelectedKey(item)
+    return this.selectedItems.includes(key)
   }
 }

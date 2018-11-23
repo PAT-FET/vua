@@ -4,7 +4,7 @@ export default {
       name: 'trigger',
       default: 'hover',
       type: `'hover' | 'click'`,
-      desc: '触发popper方式'
+      desc: '触发popper方式，可置为空'
     },
     {
       name: 'visible',
@@ -65,6 +65,12 @@ export default {
       default: '',
       type: 'string',
       desc: '指定触发元素， 默认 reference 作为触发元素, 如果指定了该值, 将其作为css选择器在reference元素下查找'
+    },
+    {
+      name: 'popperClass',
+      default: '',
+      type: 'string',
+      desc: 'popper自定义样式， 可以通过指定border-color改变箭头颜色'
     }
   ],
   events: [

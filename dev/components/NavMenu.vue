@@ -10,7 +10,7 @@ export default class NavMenu extends Vue {
     @Prop(Array) data!: any[]
 
     render (h: CreateElement) {
-      return h('v-menu', { props: { mode: 'inline', uniqueOpened: true, collapse: (this.$root as any).collapse } }, this.generateList(h, this.data))
+      return h('v-menu', { props: { mode: 'inline', defaultActive: this.$route.path, uniqueOpened: true, collapse: (this.$root as any).collapse } }, this.generateList(h, this.data))
     }
 
     generateList (h: CreateElement, list: any[]): VNode[] {
@@ -19,7 +19,7 @@ export default class NavMenu extends Vue {
         if (v.children) {
           childNodes = h('v-sub-menu', {}, [h('span', { slot: 'title' }, v.name), ...this.icon(h, v.name), this.generateList(h, v.children)])
         } else {
-          childNodes = h('v-menu-item', { 'nativeOn': { click: () => this.link(v.path) } }, v.name)
+          childNodes = h('v-menu-item', { props: { index: v.path }, 'nativeOn': { click: () => this.link(v.path) } }, v.name)
         }
         // let item = h('li', {}, childNodes)
         return childNodes
