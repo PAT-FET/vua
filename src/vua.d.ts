@@ -1,5 +1,8 @@
 import Vue, { VueConstructor, DirectiveOptions, Component } from 'vue'
 
+// service
+import './services/service.d'
+
 export interface VuaPlugin {
     install(Vue: VueConstructor, args?: VuaOptions): void
     version: string
@@ -8,6 +11,7 @@ export interface VuaPlugin {
 export interface VuaOptions {
     directives?: Record<string, DirectiveOptions>
     components?: Record<string, Component>
+    services?: Record<string, any>
     dark?: boolean
     theme?: VuaTheme
     lang?: Partial<VuaLanguage>

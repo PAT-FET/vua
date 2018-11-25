@@ -25,7 +25,7 @@ import { VPopper } from '../index'
   },
   name: 'v-popover'
   })
-export default class Vpopover extends mixins(Themeable, Bemable) {
+export default class VPopover extends mixins(Themeable, Bemable) {
   @Prop({type: Boolean, default: true}) appendToBody!: boolean
 
   @Prop({type: String, default: 'top'}) placement!: string

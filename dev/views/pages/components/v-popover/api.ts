@@ -9,7 +9,7 @@ export default {
     {
       name: 'trigger',
       default: 'hover',
-      type: `'hover' | 'focus' | 'click`,
+      type: `'hover' | 'focus' | 'click'`,
       desc: '触发方式'
     },
     {

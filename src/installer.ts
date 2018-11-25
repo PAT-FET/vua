@@ -43,6 +43,9 @@ const installer: PluginFunction<VuaOptions> = function (Vue: VueConstructor, arg
   }
 
   // TODO service
+  if (args && args.services) {
+    Object.assign(Vue.prototype, args.services)
+  }
 }
 
 export default installer
