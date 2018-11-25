@@ -24,6 +24,5 @@ import { Component, Vue, Watch } from 'vue-property-decorator'
   },
   })
 export default class BasicExample extends Vue {
-   collapse: boolean = false
 }
 </script>
