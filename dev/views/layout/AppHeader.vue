@@ -5,17 +5,28 @@
         &nbsp;
         Vua
     </div>
-    <div :class="[$style.themeBtn]" @click="toggleTheme"><i class="anticon anticon-bulb"></i></div>
+    <div>
+        <select v-model="lang">
+            <option value="zh-Hans">中文</option>
+            <option value="en">English</option>
+        </select>
+
+        &nbsp;
+
+        <span :class="[$style.themeBtn]" @click="toggleTheme"><i class="anticon anticon-bulb"></i></span>
+    </div>
 </div>
 </template>
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
+import { Component, Vue, Watch } from 'vue-property-decorator'
 
 @Component({
   components: {
   },
   })
 export default class AppHeader extends Vue {
+  lang: string = "en"
+
   toggleTheme () {
     this.$vua.dark = !this.$vua.dark
   }
@@ -23,6 +34,10 @@ export default class AppHeader extends Vue {
   toggleAside () {
     let root = this.$root as any
     root.collapse = !root.collapse
+  }
+
+  @Watch('lang') langChange (lang: string) {
+    this.$vua.lang.current = lang
   }
 }
 </script>

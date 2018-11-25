@@ -3,12 +3,17 @@ import App from './App.vue'
 import router from './router'
 import Vua from '@/index'
 import './components'
+import zhHans from '@/locale/zh-Hans'
 
 import 'highlight.js/styles/darcula.css'
 
 Vue.config.productionTip = false
 
-Vue.use(Vua)
+Vue.use(Vua, {
+  lang: {
+    locales: { 'zh-Hans': zhHans }
+  }
+})
 
 new Vue({
   router,
