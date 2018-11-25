@@ -2,7 +2,7 @@
 @import "../../../style/mixins/elevation.scss";
 @import "../../../style/mixins/misc.scss";
 @import "../../../style/var.scss";
-// @import "./mixins.scss";
+@import "./mixins.scss";
 
 @include b(v-popper) {
     display: inline-block;
@@ -26,43 +26,55 @@
         margin: 5px;
 
         @include m(top) {
-            border-width: 5px 5px 0 5px;
-            border-color: transparent;
-            border-top-color: inherit;
-            bottom: -5px;
+            @include top-arrow();
             left: calc(50% - 5px);
-            margin-top: 0;
-            margin-bottom: 0;
+        }
+        @include m(top-start) {
+            @include top-arrow();
+            left: 5px;
+        }
+         @include m(top-end) {
+            @include top-arrow();
+            left: calc(100% - 25px);
         }
 
         @include m(bottom) {
-            border-width: 0 5px 5px 5px;
-            border-color: transparent;
-            border-bottom-color: inherit;
-            top: -5px;
+            @include bottom-arrow();
             left: calc(50% - 5px);
-            margin-top: 0;
-            margin-bottom: 0;
+        }
+        @include m(bottom-start) {
+            @include bottom-arrow();
+            left: 5px;
+        }
+        @include m(bottom-end) {
+            @include bottom-arrow();
+            left: calc(100% - 25px);
         }
 
         @include m(left) {
-            border-width: 5px 0 5px 5px;
-            border-color: transparent;
-            border-left-color: inherit;
-            right: -5px;
+            @include left-arrow();
             top: calc(50% - 5px);
-            margin-left: 0;
-            margin-right: 0;
+        }
+        @include m(left-start) {
+            @include left-arrow();
+            top: 5px;
+        }
+        @include m(left-end) {
+            @include left-arrow();
+            top: calc(100% - 25px);
         }
 
         @include m(right) {
-            border-width: 5px 5px 5px 0;
-            border-color: transparent;
-            border-right-color: inherit;
-            left: -5px;
+            @include right-arrow();
             top: calc(50% - 5px);
-            margin-left: 0;
-            margin-right: 0;
+        }
+        @include m(right-start) {
+            @include right-arrow();
+            top: 5px;
+        }
+        @include m(right-end) {
+            @include right-arrow();
+            top: calc(100% - 25px);
         }
     }
 }
