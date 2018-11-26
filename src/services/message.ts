@@ -1,6 +1,6 @@
 import { VMessage } from '@/components'
 import Vue from 'vue'
-import { MessageConfigOption } from '@/components/message/message'
+import { MessageConfigOption, MessageOption } from '@/components/message/message'
 
 let instance: VMessage| null = null
 
@@ -13,6 +13,10 @@ function getInstance (): VMessage {
 }
 
 const $message = {
+  open (option: Partial<MessageOption>) {
+    let inst = getInstance() as any
+    return inst.appendMessage(option.message, option.type, option.duration)
+  },
   success (message: string, duration?: number) {
     let inst = getInstance() as any
     return inst.appendMessage(message, 'success', duration)

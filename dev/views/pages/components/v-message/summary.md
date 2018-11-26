@@ -1,6 +1,12 @@
 全局展示操作反馈信息。该组件作为一个单例组件，请使用 $message 服务调用
 
 提供以下方法：
+- $message.open ({
+    message: string
+    type: string
+    duration: number
+})
+
 - $message.success(content, [duration])
 
 - $message.error(content, [duration])

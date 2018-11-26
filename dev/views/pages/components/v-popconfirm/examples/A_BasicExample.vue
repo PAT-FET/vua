@@ -26,11 +26,11 @@ import { Component, Vue, Watch } from 'vue-property-decorator'
   })
 export default class BasicExample extends Vue {
   onConfirm () {
-    alert('confirm')
+    this.$message.info('confirm')
   }
 
   onCancel () {
-    alert('cancel')
+    this.$message.error('cancel')
   }
 }
 </script>
