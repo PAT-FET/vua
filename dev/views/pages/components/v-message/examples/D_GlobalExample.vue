@@ -1,4 +1,4 @@
-syn<template>
+<template>
 <div>
    <div class="my-3">
       <p>
