@@ -21,14 +21,7 @@ import Themeable from '@/mixins/Themeable'
 import Localeable from '@/mixins/Localeable'
 import { VPopover } from '../index'
 import { PopconfirmType } from './popconfirm'
-
-const iconMap: Record<string, string> = {
-  primary: 'question-circle',
-  success: 'check-circle',
-  info: 'info-circle',
-  warning: 'exclamation-circle',
-  error: 'close-circle'
-}
+import { statusIconMap } from '@/utils/constant'
 
 @Component({
   components: {
@@ -53,7 +46,7 @@ export default class VPopconfirm extends mixins(Themeable, Bemable, Localeable) 
 
   get iconName () {
     if (this.icon) return this.icon
-    if (this.type) return iconMap[this.type]
+    if (this.type) return statusIconMap[this.type]
   }
 
   get okText () {
