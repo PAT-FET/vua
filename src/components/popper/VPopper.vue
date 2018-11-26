@@ -178,6 +178,7 @@ export default class VPopper extends mixins(Bemable, Themeable) {
   beforeDestroy () {
     this.unRegisterEvents()
     if (this.popper) this.popper.destroy()
+    if (document.body.contains(this.$refs.popper)) document.body.removeChild(this.$refs.popper)
   }
 
   scheduleCallback () {
