@@ -1,13 +1,11 @@
 <template>
 <div :class="[b()]">
-  <ul :class="[e('list')]">
-    <transition-group name="move-up-transition">
+    <transition-group name="move-up-transition" tag="ul" :class="[e('list')]">
       <li :class="[e('item')]" v-for="(item, i) in messageList" :key="i">
           <i class="anticon mr-2" :class="[`anticon-${iconName(item.type)}`, spin(item.type), `text-${item.type}`]"></i>
           <span>{{item.message}}</span>
       </li>
     </transition-group>
-  </ul>
 </div>
 </template>
 <script lang="ts">

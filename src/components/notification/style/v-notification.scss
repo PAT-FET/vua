@@ -1,0 +1,96 @@
+@import "../../../style/mixins/bem.scss";
+@import "../../../style/mixins/elevation.scss";
+@import "../../../style/mixins/misc.scss";
+@import "../../../style/mixins/float.scss";
+@import "../../../style/var.scss";
+@import "../../../style/mixins/elevation.scss";
+@import "./mixins.scss";
+
+@include b(v-notification) {
+    @include e(container) {
+        position: fixed;
+        z-index: $zindex-notification;
+        width: 100vw;
+        height: 0;
+        overflow: visible;
+
+        @include m(top-left) {
+            top: 1rem;
+            text-align: left;
+        }
+        @include m(top-right) {
+            top: 1rem;
+            right: 1rem;
+            text-align: right;
+        }
+        @include m(bottom-left) {
+            bottom: 1rem;
+            text-align: left;
+        }
+        @include m(bottom-right) {
+            bottom: 1rem;
+            right: 1rem;
+            text-align: right;
+        }
+    }
+
+    @include e(list) {
+        display: inline-block;
+        list-style: none;
+        @include m(bottom-left) {
+            transform: translateY(-100%);
+        }
+        @include m(bottom-right) {
+            transform: translateY(-100%);
+        }
+    }
+
+    @include e(item) {
+        @include elevation(8);
+        position: relative;
+        border-radius: $border-radius-base;
+        padding: 1rem 2rem;
+        margin: .5rem 0;
+        width: 24rem;
+        background-color: $bg-color;
+        color: $text-color;
+        text-align: left;
+    }
+
+    @include e(icon) {
+        display: inline-block;
+        vertical-align: top;
+        width: 3rem;
+        font-size: 1.5rem;
+    }
+
+    @include e(content) {
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    @include e(title) {
+        margin:  0 1.5rem 0.5rem 0;
+        color: $heading-color;
+        font-size: $font-size-lg;
+        text-align: left;
+    }
+
+    @include e(body) {
+        word-break: break-all;
+        padding-right: 1rem;
+        text-align: left;
+    }
+
+    @include e(close) {
+        position: absolute;
+        top: .5rem;
+        right: 1rem;
+        cursor: pointer;
+        color: $text-color-secondary;
+        transition: color .3s $ease-in;
+        &:hover{
+            color: $text-color;
+        }
+    }
+}
