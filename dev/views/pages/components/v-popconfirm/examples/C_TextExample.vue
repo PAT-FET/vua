@@ -25,11 +25,11 @@ export default class TextExample extends Vue {
    }
 
    onConfirm () {
-     alert('confirm')
+     this.$message.info('confirm')
    }
 
    onCancel () {
-     alert('cancel')
+     this.$message.error('cancel')
    }
 }
 </script>
