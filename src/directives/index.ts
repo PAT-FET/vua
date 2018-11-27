@@ -1,10 +1,13 @@
 
 import Ripple from './ripple'
+import Loading from './loading'
 
 export {
-  Ripple
+  Ripple,
+  Loading
 }
 
 export default {
-  Ripple
+  Ripple,
+  Loading
 }

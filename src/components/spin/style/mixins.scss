@@ -1,0 +1,10 @@
+@import "../../../style/var.scss";
+@import "./var.scss";
+
+@mixin spin-dot () {
+    width: 35%;
+    height: 35%;
+    border-radius: 100%;
+    position: absolute;
+    background-color: $primary-color;
+}
