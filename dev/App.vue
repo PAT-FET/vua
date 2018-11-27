@@ -2,9 +2,11 @@
   <div id="app">
    <div :class="[$style.container]">
      <app-aside :class="[$style.aside]"></app-aside>
-     <div :class="[$style.content]">
+     <div :class="[$style.content]" v-loading="loading">
        <app-header></app-header>
-       <div class="p-4"><router-view/></div>
+       <div class="p-4">
+         <transition name="fade-transition" mode="out-in"><router-view/></transition>
+       </div>
      </div>
    </div>
   </div>
@@ -14,6 +16,7 @@
 import { Component, Vue } from 'vue-property-decorator'
 import AppAside from './views/layout/AppAside.vue'
 import AppHeader from './views/layout/AppHeader.vue'
+import store from './store'
 
 @Component({
   components: {
@@ -22,6 +25,9 @@ import AppHeader from './views/layout/AppHeader.vue'
   },
   })
 export default class App extends Vue {
+  get loading () {
+    return store.loading
+  }
 }
 </script>
 

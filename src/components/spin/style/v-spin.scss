@@ -1,0 +1,101 @@
+@import "../../../style/mixins/bem.scss";
+@import "../../../style/mixins/elevation.scss";
+@import "../../../style/mixins/misc.scss";
+@import "../../../style/mixins/float.scss";
+@import "../../../style/var.scss";
+@import "../../../style/mixins/elevation.scss";
+@import "./mixins.scss";
+@import "./var.scss";
+
+@include b(v-spin) {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: $spin-zindex;
+  background-color: rgba(255, 255, 255, .7);
+  color: $primary-color;
+  pointer-events: none;
+  text-align: center;
+  pointer-events: none;
+
+  @include e(parent) {
+      position: relative !important;
+      @include m(loading) {
+          pointer-events: none !important;
+          user-select: none !important;
+      }
+  }
+
+  @include e(body) {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      max-height: 100vh;
+  }
+
+  @include e(content) {
+      position: relative;
+      margin: 0 auto;
+      top: 50%;
+      transform: translateY(-50%);
+  }
+
+  @include e(icon) {
+      display: inline-block;
+      animation: amRotate 1.2s infinite linear;
+      user-select: none;
+  }
+
+  @include e(text) {
+      margin-top: 1rem;
+  }
+
+  @include e(icon-dot) {
+      width: 1.5rem;
+      height: 1.5rem;
+      position: relative;
+  }
+
+  @include e(dot-1) {
+      @include spin-dot();
+      top: 0;
+      left: 0;
+      opacity: .3;
+  }
+
+  @include e(dot-2) {
+      @include spin-dot();
+      top: 0;
+      right: 0;
+      opacity: .6;
+  }
+
+  @include e(dot-3) {
+      @include spin-dot();
+      bottom: 0;
+      left: 0;
+      opacity: .8;
+  }
+
+  @include e(dot-4) {
+      @include spin-dot();
+      bottom: 0;
+      right: 0;
+  }
+
+  @include m(size-sm) {
+    @include e(icon-dot) {
+        width: 1rem;
+        height: 1rem;
+    }
+  }
+
+  @include m(size-lg) {
+    @include e(icon-dot) {
+        width: 2rem;
+        height: 2rem;
+    }
+  }
+}
