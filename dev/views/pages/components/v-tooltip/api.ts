@@ -7,6 +7,12 @@ export default {
       desc: '是否添加到body'
     },
     {
+      name: 'trigger',
+      default: 'hover',
+      type: `'hover' | 'focus' | 'click`,
+      desc: '触发方式'
+    },
+    {
       name: 'placement',
       default: 'top',
       type: `'top' | 'bottom' | 'left' | 'right' 可加后缀 'start' 与 'end'`,

@@ -23,7 +23,7 @@ import Themeable from '@/mixins/Themeable'
   name: 'v-popper'
   })
 export default class VPopper extends mixins(Bemable, Themeable) {
-  @Prop({type: String, default: 'hover'}) trigger!: 'hover' | 'click'
+  @Prop({type: String, default: 'hover'}) trigger!: 'hover' | 'click' | 'focus'
 
   @Prop(Boolean) visible!: boolean
 
@@ -130,7 +130,7 @@ export default class VPopper extends mixins(Bemable, Themeable) {
     const $popper = this.$refs.popper
     let placement = this.state && this.state.placement
     if (!$popper || !placement) return {}
-    return this.m(placement.split('-')[0], 'arrow')
+    return this.m(placement, 'arrow')
   }
 
   get zIndexStyle () {
@@ -178,6 +178,7 @@ export default class VPopper extends mixins(Bemable, Themeable) {
   beforeDestroy () {
     this.unRegisterEvents()
     if (this.popper) this.popper.destroy()
+    if (document.body.contains(this.$refs.popper)) document.body.removeChild(this.$refs.popper)
   }
 
   scheduleCallback () {
@@ -243,8 +244,16 @@ export default class VPopper extends mixins(Bemable, Themeable) {
         $refEle.removeEventListener('click', toggle)
         document.removeEventListener('click', clickOutSide)
       }
+    } else if (this.trigger === 'focus') {
+      $refEle.addEventListener('focus', show)
+      $refEle.addEventListener('blur', hide)
+      document.addEventListener('click', clickOutSide)
+      this.unRegisterEvents = () => {
+        $refEle.removeEventListener('focus', show)
+        $refEle.addEventListener('blur', hide)
+        document.removeEventListener('click', clickOutSide)
+      }
     }
-    // TODO focus support
   }
 
   $refs!: {

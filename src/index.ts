@@ -1,5 +1,6 @@
 import * as components from './components'
 import * as directives from './directives'
+import * as services from './services'
 import { VueConstructor } from 'vue'
 import { getVersion } from '@/utils/env'
 import { VuaPlugin, VuaOptions } from './vua'
@@ -13,6 +14,7 @@ const Vua: VuaPlugin = {
     installer(Vue, {
       components,
       directives,
+      services,
       ...args
     })
   },

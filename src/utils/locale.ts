@@ -5,7 +5,7 @@ import { logError, logWarn } from './log'
 
 const fallback = Symbol('Lang fallback')
 
-function getTranslation (locale: VuaLocale, key: string, usingFallback = false): string {
+export function getTranslation (locale: VuaLocale, key: string, usingFallback = false): string {
   let translation = getObjectValueByPath(locale, key, fallback) as string | typeof fallback
 
   if (translation === fallback) {

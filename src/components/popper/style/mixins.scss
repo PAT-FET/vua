@@ -1,0 +1,35 @@
+@mixin top-arrow {
+    border-width: 5px 5px 0 5px;
+    border-color: transparent;
+    border-top-color: inherit;
+    bottom: -5px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+@mixin bottom-arrow {
+    border-width: 0 5px 5px 5px;
+    border-color: transparent;
+    border-bottom-color: inherit;
+    top: -5px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+@mixin left-arrow {
+    border-width: 5px 0 5px 5px;
+    border-color: transparent;
+    border-left-color: inherit;
+    right: -5px;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+@mixin right-arrow {
+    border-width: 5px 5px 5px 0;
+    border-color: transparent;
+    border-right-color: inherit;
+    left: -5px;
+    margin-left: 0;
+    margin-right: 0;
+}

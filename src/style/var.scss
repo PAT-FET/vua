@@ -176,6 +176,8 @@ $zindex-modal-backdrop:             1040 !default;
 $zindex-modal:                      1050 !default;
 $zindex-popover:                    1060 !default;
 $zindex-tooltip:                    1070 !default;
+$zindex-message:                    2000 !default;
+$zindex-notification:               2100 !default;
 
 // Animation
 $animation-duration-slow: .3s; // Modal
