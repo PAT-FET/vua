@@ -1,0 +1,85 @@
+@import "../../../style/mixins/bem.scss";
+@import "../../../style/mixins/elevation.scss";
+@import "../../../style/mixins/misc.scss";
+@import "../../../style/mixins/float.scss";
+@import "../../../style/var.scss";
+@import "../../../style/mixins/elevation.scss";
+@import "./mixins.scss";
+@import "./var.scss";
+
+@include b(v-alert) {
+    color: $text-color;
+    // @include elevation(8);
+    border-width: 1px;
+    border-style: solid;
+    border-radius: $border-radius-base;
+    padding: .5rem 4rem .5rem 1rem;
+    display: flex;
+    position: relative;
+
+    @include e(icon) {
+        width: 2rem;
+        flex-grow: 0;
+        flex-shrink: 0;
+    }
+
+    @include e(content) {
+        flex-grow: 1;
+        flex-shrink: 1;
+    }
+
+    @include e(title) {
+        margin: .25rem 0 .5rem 0;
+        font-size: $font-size-lg;
+        color: $heading-color;
+    }
+
+    @include e(close) {
+        position: absolute;
+        top: 50%;
+        right: 1rem;
+        cursor: pointer;
+        transform: translateY(-50%);
+        color: $text-color;
+        transition: color .3s $ease-in;
+        &:hover{
+            color: $heading-color;
+        }
+    }
+
+    @include m(type-info) {
+        border-color: map-get($info-colors, lighten-3);
+        background-color: map-get($info-colors, lighten-5);
+        &.is-dark{
+            border-color: map-get($info-colors, darken-2);
+            background-color: map-get($info-colors, darken-4);
+        }
+    }
+
+    @include m(type-success) {
+        border-color: map-get($success-colors, lighten-3);
+        background-color: map-get($success-colors, lighten-5);
+        &.is-dark{
+            border-color: map-get($success-colors, darken-2);
+            background-color: map-get($success-colors, darken-4);
+        }
+    }
+
+    @include m(type-warning) {
+        border-color: map-get($warning-colors, lighten-3);
+        background-color: map-get($warning-colors, lighten-5);
+        &.is-dark{
+            border-color: map-get($warning-colors, darken-2);
+            background-color: map-get($warning-colors, darken-4);
+        }
+    }
+
+    @include m(type-error) {
+        border-color: map-get($error-colors, lighten-3);
+        background-color: map-get($error-colors, lighten-5);
+        &.is-dark{
+            border-color: map-get($error-colors, darken-2);
+            background-color: map-get($error-colors, darken-4);
+        }
+    }
+}

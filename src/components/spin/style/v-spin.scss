@@ -3,7 +3,6 @@
 @import "../../../style/mixins/misc.scss";
 @import "../../../style/mixins/float.scss";
 @import "../../../style/var.scss";
-@import "../../../style/mixins/elevation.scss";
 @import "./mixins.scss";
 @import "./var.scss";
 
@@ -14,7 +13,6 @@
   left: 0;
   right: 0;
   z-index: $spin-zindex;
-  background-color: rgba(255, 255, 255, .7);
   color: $primary-color;
   pointer-events: none;
   text-align: center;
@@ -30,9 +28,13 @@
 
   @include e(body) {
       position: relative;
+      background-color: rgba(255, 255, 255, .7);
       width: 100%;
       height: 100%;
       max-height: 100vh;
+      @include when-dark() {
+          background-color: rgba(48, 48, 48, .7);
+      }
   }
 
   @include e(content) {
