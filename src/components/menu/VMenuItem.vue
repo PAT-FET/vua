@@ -1,5 +1,5 @@
 <template>
-<li :class="[b(), modeCls, selectedCls, collapseCls, topCls, disabledCls]" :style="[paddingStyle]" @click="onClick">
+<li :class="[b(), modeCls, selectedCls, collapseCls, topCls, disabledCls, darkCls]" :style="[paddingStyle]" @click="onClick">
     <span v-if="$slots.icon" :class="[e('icon')]"><slot name="icon"></slot></span>
     <span :class="[e('text'), collapseCls]"><slot></slot></span>
 </li>

@@ -50,14 +50,13 @@ export function createSimpleTransition (
 
       ourBeforeEnter.push((el: HTMLElement) => {
         el.style.transformOrigin = context.props.origin
-        el.style.webkitTransformOrigin = context.props.origin
       })
 
       const { beforeEnter, leave } = context.data.on
 
       // Type says Function | Function[] but
       // will only work if provided a function
-      context.data.on.beforeEnter = () => mergeTransitions(beforeEnter, ourBeforeEnter)
+      context.data.on.beforeEnter = mergeTransitions(beforeEnter, ourBeforeEnter)
       return h(tag, context.data, context.children)
     }
   }

@@ -8,6 +8,10 @@
     &.selected, &:active {
         background-color: map-get($primary-colors, lighten-5);
         color: map-get($primary-colors, darken-1);
+        &.is-dark{
+            background-color: $primary-color;
+            color: #fff;
+        }
     }
 
     &:after {

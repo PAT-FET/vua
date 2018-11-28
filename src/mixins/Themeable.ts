@@ -32,6 +32,10 @@ export default class Themeable extends Vue {
       return this.isDark
     }
 
+    get darkCls () {
+      return this.isActualDark ? 'is-dark' : ''
+    }
+
     handleThemeChange (first: boolean = false) {
       const $eles = this.getCssVarEles()
       if (this.isDark === undefined || this.isDark === null) {
