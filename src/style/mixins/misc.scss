@@ -71,3 +71,9 @@
         transform: rotate(45deg) translateX(0.125rem);
     }
 }
+
+@mixin when-dark () {
+    &.is-dark {
+        @content;
+    }
+}

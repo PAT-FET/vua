@@ -1,7 +1,7 @@
 <template>
 <transition name="fade-transition">
   <div :class="[b(), sizeCls]" v-show="value">
-    <div :class="[e('body')]" :style="[offsetTopStyle]">
+    <div :class="[e('body'), darkCls]" :style="[offsetTopStyle]">
       <div :class="[e('content')]">
         <div :class="[e('icon')]">
           <slot name="icon">
