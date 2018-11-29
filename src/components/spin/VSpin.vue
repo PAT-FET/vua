@@ -1,7 +1,7 @@
 <template>
 <transition name="fade-transition">
   <div :class="[b(), sizeCls]" v-show="value">
-    <div :class="[e('body')]">
+    <div :class="[e('body'), darkCls]" :style="[offsetTopStyle]">
       <div :class="[e('content')]">
         <div :class="[e('icon')]">
           <slot name="icon">
@@ -40,8 +40,16 @@ export default class VSpin extends mixins(Themeable, Bemable) {
 
   @Emit() input (value: boolean) {}
 
+  offsetTop: number = 0
+
   get sizeCls () {
     return this.m(`size-${this.size}`)
+  }
+
+  get offsetTopStyle () {
+    return {
+      top: this.offsetTop + 'px'
+    }
   }
 
   mounted () {
@@ -53,8 +61,12 @@ export default class VSpin extends mixins(Themeable, Bemable) {
   setParentLoading (loading: boolean) {
     const $parent = this.$el.parentNode as HTMLElement
     if ($parent) {
-      if (loading) $parent.classList.add(this.m('loading', 'parent'))
-      else $parent.classList.remove(this.m('loading', 'parent'))
+      if (loading) {
+        this.offsetTop = $parent.scrollTop
+        $parent.classList.add(this.m('loading', 'parent'))
+      } else {
+        $parent.classList.remove(this.m('loading', 'parent'))
+      }
     }
   }
 

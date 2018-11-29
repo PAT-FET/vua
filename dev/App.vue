@@ -2,9 +2,9 @@
   <div id="app">
    <div :class="[$style.container]">
      <app-aside :class="[$style.aside]"></app-aside>
-     <div :class="[$style.content]">
+     <div :class="[$style.content]" v-loading="loading">
        <app-header></app-header>
-       <div class="p-4" v-loading="loading">
+       <div class="p-4">
          <transition name="fade-transition" mode="out-in"><router-view/></transition>
        </div>
      </div>
