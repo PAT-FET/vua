@@ -1,14 +1,20 @@
 <template>
   <div id="app">
-   <div :class="[$style.container]">
-     <app-aside :class="[$style.aside]"></app-aside>
-     <div :class="[$style.content]" v-loading="loading">
-       <app-header></app-header>
-       <div class="p-4">
+   <v-layout>
+     <v-sider>
+       <app-aside></app-aside>
+     </v-sider>
+     <v-layout>
+       <v-header class="bg-primary">
+         <app-header></app-header>
+       </v-header>
+       <v-content style="max-height: calc(100vh - 64px); overflow: auto;" v-loading="loading">
+        <div class="p-4">
          <transition name="fade-transition" mode="out-in"><router-view/></transition>
-       </div>
-     </div>
-   </div>
+        </div>
+       </v-content>
+     </v-layout>
+   </v-layout>
   </div>
 </template>
 

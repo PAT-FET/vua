@@ -1,5 +1,5 @@
 <template>
-<div :class="[$style.container]" class="bg-primary px-4">
+<div :class="[$style.container]">
     <div :class="[$style.toggle]">
         <i class="anticon anticon-bars" :class="[$style.icon]" @click="toggleAside"></i>
         &nbsp;
@@ -44,17 +44,11 @@ export default class AppHeader extends Vue {
 
 <style lang="scss" module>
 .container{
-    height: 60px;
-    line-height: 60px;
-    position: sticky;
-    top: 0;
     display: flex;
-    z-index: 10;
     justify-content: space-between;
 }
 
 .toggle{
-    line-height: 60px;
     font-size: 1.5rem;
     color: #fff;
 }

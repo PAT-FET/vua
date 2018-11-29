@@ -38,13 +38,13 @@ importSourceAll(require.context('!raw-loader!./examples/', true, /\.vue$/))
   components: {
   },
   })
-export default class VModalPage extends Vue {
-    title: string = 'Modal 对话框'
+export default class VGridPage extends Vue {
+    title: string = 'Grid 栅格'
 
     summary: any = summary
 
     examples: any[] = examples
 
-    api: any = api
+  api: any = api
 }
 </script>

@@ -17,7 +17,6 @@ import { mixins } from 'vue-class-component'
 import Themeable from '@/mixins/Themeable'
 import Bemable from '@/mixins/Bemable'
 import Rippleable from '@/mixins/Rippleable'
-import Groupable from '@/mixins/Groupable'
 import { ButtonType, ButtonSize, ButtonShape } from './button'
 import { VuaTheme } from '@/vua'
 import { debounce } from '@/utils/perf'
@@ -27,7 +26,7 @@ import { debounce } from '@/utils/perf'
   },
   name: 'v-button' // it's required for production version
   })
-export default class VButton extends mixins(Themeable, Bemable, Rippleable, Groupable) {
+export default class VButton extends mixins(Themeable, Bemable, Rippleable) {
     @Prop({type: String, default: 'bulge'}) type!: ButtonType
 
     @Prop({type: String, default: 'md'}) size !: ButtonSize
@@ -49,6 +48,9 @@ export default class VButton extends mixins(Themeable, Bemable, Rippleable, Grou
     @Prop(Boolean) slim!: boolean
 
     @Emit() click () {}
+
+    // access by button-group and so on.
+    grouped: boolean = false
 
     debounceClickFn = this.debounce ? debounce(this.click, this.debounce, null) : null
 
