@@ -1,6 +1,6 @@
 <template>
 <div>
-    <component-view :title="title" :examples="examples" :api="api">
+    <component-view :title="title" :examples="examples">
         <div v-html="summary"></div>
    </component-view>
 </div>
@@ -8,7 +8,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import summary from './summary.md'
-import api from './api'
+// import api from './api'
 
 const examples: any[] = []
 
@@ -38,13 +38,13 @@ importSourceAll(require.context('!raw-loader!./examples/', true, /\.vue$/))
   components: {
   },
   })
-export default class VModalPage extends Vue {
-    title: string = 'Modal 对话框'
+export default class VLayoutPage extends Vue {
+    title: string = 'Layout 布局'
 
     summary: any = summary
 
     examples: any[] = examples
 
-    api: any = api
+  // api: any = api
 }
 </script>
