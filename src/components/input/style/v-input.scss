@@ -1,0 +1,157 @@
+@import "../../../style/mixins/bem.scss";
+@import "../../../style/mixins/elevation.scss";
+@import "../../../style/mixins/misc.scss";
+@import "../../../style/var.scss";
+@import "./mixins.scss";
+
+@include b(v-input) {
+    display: inline-block;
+    position: relative;
+
+     // Input Group
+    @include input-grouped(){
+        margin-left: -1px;
+    };
+
+    @include e(inner) {
+        position: relative;
+        display: table;
+        border-collapse: separate;
+        border-spacing: 0;
+        width: 100%;
+    }
+
+    @include e(prepend) {
+        @include input-addon();
+        border-top-left-radius: $input-border-radius;
+        border-bottom-left-radius: $input-border-radius;
+        border-right: none;
+    }
+
+    @include e(append) {
+        @include input-addon();
+        border-top-right-radius: $input-border-radius;
+        border-bottom-right-radius: $input-border-radius;
+        border-left: none;
+    }
+
+    @include e(input-wrap) {
+        position: relative;
+        width: 100%;
+    }
+
+    @include e(input) {
+        @include input();
+         // Input Group
+        @include input-grouped(){
+            border-radius: 0;
+        };
+        &.separator{
+            pointer-events: none;
+            border-radius: 0;
+            border-right: transparent;
+            border-left: transparent;
+            z-index: 1;
+        }
+    }
+
+    @include e(clear) {
+        @include input-icon();
+        z-index: 6;
+    }
+
+    @include e(prefix) {
+        @include input-icon(true);
+        z-index: 5;
+    }
+
+    @include e(suffix) {
+        @include input-icon();
+        z-index: 5;
+    }
+
+    // Size
+    @include m(size-lg) {
+
+        @include e(input) {
+            @include input-lg();
+        }
+        @include e(prepend) {
+           @include input-lg(false);
+        }
+        @include e(append) {
+           @include input-lg(false);
+        }
+    }
+
+    @include m(size-md) {
+
+        @include e(input) {
+            @include input-md();
+        }
+        @include e(prepend) {
+           @include input-md(false);
+        }
+        @include e(append) {
+           @include input-md(false);
+        }
+    }
+
+    @include m(size-sm) {
+
+        @include e(input) {
+            @include input-sm();
+        }
+        @include e(prepend) {
+           @include input-sm(false);
+        }
+        @include e(append) {
+           @include input-sm(false);
+        }
+    }
+
+    // Block
+    @include m(block) {
+        width: 100%;
+    }
+
+    // Has Preppend
+    @include m(has-prepend) {
+        @include e(input) {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+    }
+
+    // Has Append
+    @include m(has-append) {
+        @include e(input) {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+    }
+
+    // Grouped
+    @include m(grouped) {
+        border-radius: 0;
+        margin-left: -1px;
+    }
+
+    // Status
+    @include m(valid) {
+        @include e(input) {
+            &:not(.disabled) {
+                border-color: $success-color !important;
+            }
+        }
+    }
+
+    @include m(invalid) {
+
+        @include e(input) {
+            &:not(.disabled) {
+                border-color: $error-color !important;
+            }
+        }
+    }
+}

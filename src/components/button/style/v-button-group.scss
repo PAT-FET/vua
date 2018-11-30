@@ -3,6 +3,7 @@
 @import "../../../style/mixins/misc.scss";
 @import "../../../style/var.scss";
 @import "./mixins.scss";
+@import "./var.scss";
 
 @include b(v-button-group) {
     display: inline-block;
@@ -11,6 +12,6 @@
     color: $text-color;
 
     padding-left: 1px;
-    border-radius: $border-radius-sm;
+    border-radius: $btn-border-radius;
     overflow: hidden;
 }

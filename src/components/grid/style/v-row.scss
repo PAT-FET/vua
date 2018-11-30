@@ -6,6 +6,8 @@
 @import "./mixins.scss";
 @import "./var.scss";
 
-@include b(v-content) {
-    flex: auto;
+@include b(v-row) {
+    display: flex;
+    flex-flow: row wrap;
+    box-sizing: border-box;  // make sure
 }

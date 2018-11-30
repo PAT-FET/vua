@@ -1,0 +1,48 @@
+@import "../../../style/mixins/bem.scss";
+@import "../../../style/var.scss";
+@import "./var.scss";
+
+@mixin grid-span ($name: xs) {
+    @for $i from 0 through $grid-columns {
+        $m: if($name, #{$name}-span-#{$i}, span-#{$i});
+        @include m(#{$m}) {
+            width: 100% / $grid-columns * $i;
+        }
+    }
+}
+
+@mixin grid-offset ($name: xs) {
+    @for $i from 0 through $grid-columns {
+        $m: if($name, #{$name}-offset-#{$i}, offset-#{$i});
+        @include m(#{$m}) {
+            margin-left: 100% / $grid-columns * $i;
+        }
+    }
+}
+
+@mixin grid-pull ($name: xs) {
+    @for $i from 0 through $grid-columns {
+        $m: if($name, #{$name}-pull-#{$i}, pull-#{$i});
+        @include m(#{$m}) {
+            right: 100% / $grid-columns * $i;
+        }
+    }
+}
+
+@mixin grid-push ($name: xs) {
+    @for $i from 0 through $grid-columns {
+        $m: if($name, #{$name}-push-#{$i}, push-#{$i});
+        @include m(#{$m}) {
+            left: 100% / $grid-columns * $i;
+        }
+    }
+}
+
+@mixin grid-order ($name: xs) {
+    @for $i from 0 through $grid-columns {
+        $m: if($name, #{$name}-order-#{$i}, order-#{$i});
+        @include m(#{$m}) {
+            order: $i;
+        }
+    }
+}

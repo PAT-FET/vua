@@ -1,11 +1,13 @@
 @import "../../../style/mixins/bem.scss";
 @import "../../../style/mixins/elevation.scss";
 @import "../../../style/mixins/misc.scss";
-@import "../../../style/mixins/float.scss";
 @import "../../../style/var.scss";
 @import "./mixins.scss";
-@import "./var.scss";
 
-@include b(v-content) {
-    flex: auto;
+@include b(v-input-group) {
+    display: inline-flex;
+    flex-flow: row wrap;
+    padding-left: 1px;
+    border-radius: $input-border-radius;
+    overflow: hidden;
 }

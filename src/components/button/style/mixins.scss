@@ -1,5 +1,6 @@
 @import "../../../style/var.scss";
 @import "../../../style/mixins/misc.scss";
+@import "./var.scss";
 
 @mixin btn(){
     @include control();
@@ -13,7 +14,7 @@
     transition: all .3s $ease-in-out;
     background-color: $bg-color;
     color: $text-color;
-    border-radius: $border-radius-sm;
+    border-radius: $btn-border-radius;
 
     &,
     &:active,
