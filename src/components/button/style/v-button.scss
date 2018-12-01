@@ -3,13 +3,17 @@
 @import "../../../style/mixins/misc.scss";
 @import "../../../style/var.scss";
 @import "./mixins.scss";
+@import "./var.scss";
 
-$btn-height-sm: 1.5rem;
-$btn-height-md: 2rem;
-$btn-height-lg: 2.5rem;
 
 @include b(v-button) {
     @include btn();
+
+    // Input Group
+    @include input-grouped(){
+        border-radius: 0;
+        margin-left: -1px;
+    };
 
     @include e(loader) {
         position: absolute;
@@ -40,7 +44,7 @@ $btn-height-lg: 2.5rem;
     }
 
     @include m(type-depressed) {
-        border-radius: $border-radius-sm;
+        border-radius: $btn-border-radius;
     }
 
     @include m(type-outline) {
@@ -52,6 +56,10 @@ $btn-height-lg: 2.5rem;
     @include m(size-lg) {
         line-height: $btn-height-lg;
         padding: 0 $padding-lg;
+
+        &.v-button--type-outline {
+            line-height: calc(#{$btn-height-lg} - 2px);
+        }
 
         &.v-button--shape-round{
             border-radius: $btn-height-lg/2;
@@ -66,6 +74,10 @@ $btn-height-lg: 2.5rem;
         line-height: $btn-height-md;
         padding: 0 $padding-md;
 
+        &.v-button--type-outline {
+            line-height: calc(#{$btn-height-md} - 2px);
+        }
+
         &.v-button--shape-round{
             border-radius: $btn-height-md/2;
         }
@@ -79,6 +91,10 @@ $btn-height-lg: 2.5rem;
         line-height: $btn-height-sm;
         padding: 0 $padding-sm;
         font-size: $font-size-sm;
+
+        &.v-button--type-outline {
+            line-height: calc(#{$btn-height-sm} - 2px);
+        }
 
         &.v-button--shape-round{
             border-radius: $btn-height-sm/2;
@@ -134,12 +150,6 @@ $btn-height-lg: 2.5rem;
     // Block
     @include m(block) {
         width: 100%;
-    }
-
-    // Grouped
-    @include m(grouped) {
-        border-radius: 0;
-        margin-left: -1px;
     }
 
     //Slim

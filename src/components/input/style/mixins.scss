@@ -1,0 +1,85 @@
+@import "../../../style/var.scss";
+@import "../../../style/mixins/misc.scss";
+@import "../../../style/mixins/elevation.scss";
+@import "./var.scss";
+
+@mixin input (){
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    color: $text-color;
+    border: $border-width-base $border-style-base $border-color-base;
+    border-radius: $input-border-radius;
+    transition: all .3s;
+    @include placeholder();
+    @include control();
+
+    &:hover{
+        &:not(.disabled) {
+            border-color: map-get($primary-colors, lighten-1);
+        }
+    }
+
+    &:focus{
+        border-color: map-get($primary-colors, darken-1);
+        outline: 0;
+        @include elevation(2);
+    }
+
+    &.disabled{
+        background-color: $disabled-bg;
+        cursor: not-allowed;
+        color: $disabled-color;
+    }
+}
+
+@mixin input-lg ($input: true){
+    $height: if($input, $input-height-lg, calc(#{$input-height-lg} - 2px));
+    height: $height;
+    line-height: $height;
+    padding: if($input, $input-padding-v-lg, 0) $input-padding-h-lg;
+    font-size: $font-size-base;
+}
+
+@mixin input-md ($input: true){
+    $height: if($input, $input-height-md, calc(#{$input-height-md} - 2px));
+    height: $height;
+    line-height: $height;
+    padding: if($input, $input-padding-v-md, 0) $input-padding-h-md;
+    font-size: $font-size-base;
+}
+
+@mixin input-sm ($input: true){
+    $height: if($input, $input-height-sm, calc(#{$input-height-sm} - 2px));
+    height: $height;
+    line-height: $height;
+    padding: if($input, $input-padding-v-sm, 0) $input-padding-h-sm;
+    font-size: $font-size-sm;
+}
+
+@mixin input-icon ($left: false) {
+    position: absolute;
+    @if $left {
+        left: .5rem;
+    } @else {
+        right: .5rem;
+    }
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: $secondary-color;
+    transition: color .3s $ease-in;
+    &:hover{
+        color: $text-color-secondary;
+    }
+}
+
+@mixin input-addon () {
+    display: table-cell;
+    text-align: center;
+    background-color: $bg-color-1;
+    position: relative;
+    transition: all .3s;
+    white-space: nowrap;
+    border: $border-width-base $border-style-base $border-color-base;
+}

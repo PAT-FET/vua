@@ -20,7 +20,7 @@ export default class VButtonGroup extends mixins(Themeable, Bemable) {
     this.$children.forEach(v => {
       if (v.$options.name === 'v-button') {
         let $btn = v as VButton
-        $btn.grouped = true
+        $btn.inputGrouped = true
       }
     })
   }

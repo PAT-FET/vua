@@ -3,15 +3,11 @@
 @import "../../../style/mixins/misc.scss";
 @import "../../../style/var.scss";
 @import "./mixins.scss";
-@import "./var.scss";
 
-@include b(v-button-group) {
-    display: inline-block;
-    vertical-align: middle;
-    position: relative;
-    color: $text-color;
-
+@include b(v-input-group) {
+    display: inline-flex;
+    flex-flow: row wrap;
     padding-left: 1px;
-    border-radius: $btn-border-radius;
+    border-radius: $input-border-radius;
     overflow: hidden;
 }
