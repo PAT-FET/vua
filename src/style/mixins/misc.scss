@@ -4,19 +4,18 @@
 
 @mixin control () {
     display: inline-block;
-    vertical-align: middle;
     position: relative;
 
     &:hover{
-        z-index: 1;
-    }
-
-    &:active, &.active{
         z-index: 2;
     }
 
-    &:focus{
+    &:active, &.active{
         z-index: 3;
+    }
+
+    &:focus{
+        z-index: 4;
     }
 }
 
@@ -75,5 +74,51 @@
 @mixin when-dark () {
     &.is-dark {
         @content;
+    }
+}
+
+@mixin placeholder($color: $secondary-color) {
+  // Firefox
+  &::-moz-placeholder {
+    color: $color;
+    opacity: 1; // Override Firefox's unusual default opacity; see https://github.com/twbs/bootstrap/pull/11526
+  }
+  // Internet Explorer 10+
+  &:-ms-input-placeholder {
+    color: $color;
+  }
+  // Safari and Chrome
+  &::-webkit-input-placeholder {
+    color: $color;
+  }
+}
+
+// for input button group
+@mixin group-children () {
+    &:not(:first-child) {
+        &.v-button {
+            margin-left: -1px;
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+        &.v-input {
+            margin-left: -1px;
+            .v-input__input {
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
+            }
+        }
+    }
+    &:not(:last-child) {
+        &.v-button {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+        &.v-input {
+            .v-input__input {
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
+            }
+        }
     }
 }

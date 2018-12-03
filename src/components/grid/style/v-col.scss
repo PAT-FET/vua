@@ -1,0 +1,22 @@
+@import "../../../style/mixins/bem.scss";
+@import "../../../style/mixins/breakpoint.scss";
+@import "../../../style/mixins/misc.scss";
+@import "../../../style/mixins/float.scss";
+@import "../../../style/var.scss";
+@import "./mixins.scss";
+@import "./var.scss";
+
+@include b(v-col) {
+    box-sizing: border-box;
+    position: relative;
+
+    @each $name in (null xs sm md lg xl) {
+        @include breakpoint-up($name) {
+            @include grid-span($name);
+            @include grid-offset($name);
+            @include grid-push($name);
+            @include grid-pull($name);
+            @include grid-order($name);
+        }
+    }
+}

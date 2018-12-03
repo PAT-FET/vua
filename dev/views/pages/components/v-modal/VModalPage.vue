@@ -39,7 +39,7 @@ importSourceAll(require.context('!raw-loader!./examples/', true, /\.vue$/))
   },
   })
 export default class VModalPage extends Vue {
-    title: string = 'Modal对话框'
+    title: string = 'Modal 对话框'
 
     summary: any = summary
 

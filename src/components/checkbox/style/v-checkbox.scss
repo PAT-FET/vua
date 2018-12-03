@@ -1,0 +1,124 @@
+@import "../../../style/mixins/bem.scss";
+@import "../../../style/mixins/elevation.scss";
+@import "../../../style/mixins/misc.scss";
+@import "../../../style/var.scss";
+@import "./mixins.scss";
+
+@include b(v-checkbox) {
+    display: inline-block;
+    position: relative;
+    white-space: nowrap;
+    margin-left: .5rem;
+    outline: 0;
+    cursor: pointer;
+
+    &:hover, &:focus{
+        &:not(.v-checkbox--disabled) {
+             @include e(dot) {
+                border-color: $checkbox-color;
+            }
+        }
+    }
+
+    @include e(inner) {
+        white-space: nowrap;
+        outline: none;
+        display: inline-block;
+        position: relative;
+        line-height: 1;
+        vertical-align: text-bottom;
+        cursor: pointer;
+    }
+
+    @include e(checkbox) {
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        z-index: 1;
+        cursor: pointer;
+        opacity: 0;
+    }
+
+    @include e(dot) {
+        position: relative;
+        top: 0;
+        left: 0;
+        display: block;
+        width: $checkbox-size;
+        height: $checkbox-size;
+        border-radius: $border-radius-sm;
+        border: solid 1px $border-color-base;
+
+        &:after { // dot
+            $check-width: ($checkbox-size / 14) * 5;
+            $check-height: ($checkbox-size / 14) * 8;
+            transform: rotate(45deg) scale(0);
+            position: absolute;
+            left: ($checkbox-size - $check-width) / 2 - 0.5 * ($checkbox-size / 14);
+            top: ($checkbox-size - $check-height) / 2 - 2 * ($checkbox-size / 14);
+            display: table;
+            width: $check-width;
+            height: $check-height;
+            border: 2px solid $checkbox-check-color;
+            border-top: 0;
+            border-left: 0;
+            content: ' ';
+            transition: all .2s $ease-in-back;
+        }
+    }
+
+    @include e(text) {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    // Checked
+    @include m(checked) {
+        @include e(dot){
+            border-color: $checkbox-color;
+            background-color: $checkbox-color;
+            &:after {
+                transform: rotate(45deg) scale(1);
+            }
+        }
+    }
+
+    // Disabled
+    @include m(disabled) {
+        cursor: not-allowed;
+        color: $disabled-color;
+        @include e(inner) {
+            pointer-events: none;
+        }
+        @include e(dot) {
+            &:hover, &:focus {
+                border-color: $disabled-color;
+            }
+            border-color: $disabled-color;
+            background-color: $disabled-bg;
+            &::after {
+                border-color: $disabled-color;
+            }
+        }
+    }
+
+    @include m(indeterminate) {
+        @include e(dot) {
+            &:after{
+                $indeterminate-width: 8px;
+                $indeterminate-height: 8px;
+                content: ' ';
+                transform: scale(1);
+                top: 3px;
+                left: 3px;
+                position: absolute;
+                width: $indeterminate-width;
+                height: $indeterminate-height;
+                background-color: $checkbox-color;
+                border: none;
+            }
+        }
+    }
+}
