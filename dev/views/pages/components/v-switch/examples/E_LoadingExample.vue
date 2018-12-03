@@ -22,6 +22,10 @@ import { Component, Vue, Watch } from 'vue-property-decorator'
   },
   })
 export default class LoadingExample extends Vue {
+  value1: boolean = false
+
+  value2: boolean = false
+
   loading: boolean = false
 
   load (value: boolean) {

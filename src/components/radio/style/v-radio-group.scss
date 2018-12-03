@@ -6,4 +6,8 @@
 
 @include b(v-radio-group) {
     display: inline-block;
+
+    .v-button {
+        @include group-children();
+    }
 }

@@ -9,12 +9,6 @@
 @include b(v-button) {
     @include btn();
 
-    // Input Group
-    @include input-grouped(){
-        border-radius: 0;
-        margin-left: -1px;
-    };
-
     @include e(loader) {
         position: absolute;
         top: 0;
