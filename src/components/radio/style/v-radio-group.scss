@@ -3,13 +3,9 @@
 @import "../../../style/mixins/misc.scss";
 @import "../../../style/var.scss";
 @import "./mixins.scss";
-@import "./var.scss";
 
-@include b(v-button-group) {
+@include b(v-radio-group) {
     display: inline-block;
-    vertical-align: middle;
-    position: relative;
-    color: $text-color;
 
     .v-button {
         @include group-children();

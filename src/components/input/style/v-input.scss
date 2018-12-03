@@ -8,11 +8,6 @@
     display: inline-block;
     position: relative;
 
-     // Input Group
-    @include input-grouped(){
-        margin-left: -1px;
-    };
-
     @include e(inner) {
         position: relative;
         display: table;
@@ -42,10 +37,6 @@
 
     @include e(input) {
         @include input();
-         // Input Group
-        @include input-grouped(){
-            border-radius: 0;
-        };
         &.separator{
             pointer-events: none;
             border-radius: 0;
@@ -129,12 +120,6 @@
             border-top-right-radius: 0;
             border-bottom-right-radius: 0;
         }
-    }
-
-    // Grouped
-    @include m(grouped) {
-        border-radius: 0;
-        margin-left: -1px;
     }
 
     // Status

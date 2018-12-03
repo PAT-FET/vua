@@ -1,5 +1,5 @@
 <template>
-    <button :class="[b(), typeCls, sizeCls, colorCls, shapeCls, loadingCls, blockls, slimCls, inputGroupedCls]"
+    <button :class="[b(), typeCls, sizeCls, colorCls, shapeCls, loadingCls, blockls, slimCls]"
      v-ripple="ripple"
      @click="onClick"
      :disabled="disabled">
@@ -17,7 +17,6 @@ import { mixins } from 'vue-class-component'
 import Themeable from '@/mixins/Themeable'
 import Bemable from '@/mixins/Bemable'
 import Rippleable from '@/mixins/Rippleable'
-import InputGroupable from '@/mixins/InputGroupable'
 import { ButtonType, ButtonSize, ButtonShape } from './button'
 import { VuaTheme } from '@/vua'
 import { debounce } from '@/utils/perf'
@@ -27,7 +26,7 @@ import { debounce } from '@/utils/perf'
   },
   name: 'v-button' // it's required for production version
   })
-export default class VButton extends mixins(Themeable, Bemable, Rippleable, InputGroupable) {
+export default class VButton extends mixins(Themeable, Bemable, Rippleable) {
     @Prop({type: String, default: 'bulge'}) type!: ButtonType
 
     @Prop({type: String, default: 'md'}) size !: ButtonSize

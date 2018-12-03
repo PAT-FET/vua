@@ -16,14 +16,7 @@ import { VButton } from '../..'
   name: 'v-button-group'
   })
 export default class VButtonGroup extends mixins(Themeable, Bemable) {
-  mounted () {
-    this.$children.forEach(v => {
-      if (v.$options.name === 'v-button') {
-        let $btn = v as VButton
-        $btn.inputGrouped = true
-      }
-    })
-  }
+
 }
 </script>
 

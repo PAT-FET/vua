@@ -1,10 +1,10 @@
 <template>
-    <div :class="[b(), sizeCls, disabledCls, blockCls, hasPrependCls, hasApppendCls, inputGroupedCls]">
+    <div :class="[b(), sizeCls, disabledCls, blockCls, hasPrependCls, hasApppendCls]">
       <div :class="[e('inner')]">
         <div :class="[e('prepend')]" v-if="hasPrepend">{{prepend}}</div>
         <div :class="[e('input-wrap')]">
           <input v-model="model"
-          :class="[e('input'), disabledCls, inputGroupedCls, separatorCls]"
+          :class="[e('input'), disabledCls, separatorCls]"
           :style="[inputPaddingStyle]"
           :disabled="disabled"
           @change="onChange"
@@ -24,14 +24,13 @@ import { mixins } from 'vue-class-component'
 import Themeable from '@/mixins/Themeable'
 import Bemable from '@/mixins/Bemable'
 import { InputSize } from './input'
-import InputGroupable from '@/mixins/InputGroupable'
 
 @Component({
   components: {
   },
   name: 'v-input'
   })
-export default class VInput extends mixins(Themeable, Bemable, InputGroupable) {
+export default class VInput extends mixins(Themeable, Bemable) {
   @Prop([String, Number]) value!: string | number
 
   @Prop({type: String, default: 'md'}) size!: InputSize
