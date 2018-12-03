@@ -1,5 +1,13 @@
 <template>
-<v-button :color="color" :type="type" :disabled="disabled" @click="onClick" :class="[activeCls]"><slot></slot></v-button>
+<v-button
+:class="[activeCls]"
+:style="[activeColorStyle, activeFillStyle]"
+:color="color"
+:type="type"
+:disabled="disabled"
+@click="onClick" >
+  <slot></slot>
+</v-button>
 </template>
 <script lang="ts">
 import { Component, Vue, Prop, Emit, Watch, Model } from 'vue-property-decorator'
@@ -7,6 +15,7 @@ import { mixins } from 'vue-class-component'
 import Themeable from '@/mixins/Themeable'
 import Bemable from '@/mixins/Bemable'
 import { VRadioGroup } from './index'
+import { getDefaultColor } from '@/utils/theme'
 
 @Component({
   components: {
@@ -20,7 +29,9 @@ export default class VRadioButton extends mixins(Themeable, Bemable) {
 
   @Prop(Boolean) disabled!: boolean
 
-  @Prop(String) activeType!: string
+  @Prop(String) activeFill!: string
+
+  @Prop(String) activeColor!: string
 
   @Emit()input (value: string | number | boolean) {}
 
@@ -39,8 +50,22 @@ export default class VRadioButton extends mixins(Themeable, Bemable) {
   }
 
   get type () {
-    if (this.checked) return this.activeType || 'outline'
+    // if (this.checked) return  'outline'
     return 'outline'
+  }
+
+  get activeFillStyle () {
+    if (!this.activeFill || !this.checked) return {}
+    return {
+      backgroundColor: (getDefaultColor() as any)[this.activeFill] || this.activeFill
+    }
+  }
+
+  get activeColorStyle () {
+    if (!this.activeColor || !this.checked) return {}
+    return {
+      color: (getDefaultColor() as any)[this.activeColor] || this.activeColor
+    }
   }
 
   get activeCls () {

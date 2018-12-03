@@ -11,10 +11,10 @@
 
   <div class="my-3">
     <v-radio-group v-model="value1">
-      <v-radio-button label="Jack" active-type="depressed">Jack</v-radio-button>
-      <v-radio-button label="Alex" active-type="depressed">Alex</v-radio-button>
-      <v-radio-button label="Molly" active-type="depressed">Molly</v-radio-button>
-      <v-radio-button label="Anna" active-type="depressed">Anna</v-radio-button>
+      <v-radio-button label="Jack" active-fill="primary" active-color="#fff">Jack</v-radio-button>
+      <v-radio-button label="Alex" active-fill="primary" active-color="#fff">Alex</v-radio-button>
+      <v-radio-button label="Molly" active-fill="primary" active-color="#fff">Molly</v-radio-button>
+      <v-radio-button label="Anna" active-fill="primary" active-color="#fff">Anna</v-radio-button>
     </v-radio-group>
   </div>
 </div>

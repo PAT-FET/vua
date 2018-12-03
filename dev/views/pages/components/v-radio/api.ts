@@ -42,10 +42,16 @@ const radioButton = {
       desc: '禁用'
     },
     {
-      name: 'activeType',
+      name: 'activeFill',
       default: '',
-      type: `'outline' | 'depressed' | ''`,
-      desc: '激活时按钮类型'
+      type: `string`,
+      desc: '激活时按钮填充色'
+    },
+    {
+      name: 'activeColor',
+      default: '',
+      type: `string`,
+      desc: '激活时按钮文字色'
     }
   ]
 }
