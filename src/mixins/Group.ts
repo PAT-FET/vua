@@ -3,6 +3,9 @@ import Component from 'vue-class-component'
 import { Provide } from 'vue-property-decorator'
 import Groupable from './Groupable'
 
+/**
+ * note: 活跃组可能需要重新设计， 不要再使用活跃组的功能
+ */
 @Component
 export default class Group extends Vue {
   groupNames: string[] = []
