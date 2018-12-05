@@ -1,0 +1,27 @@
+@import "../../../style/var.scss";
+@import "../../../style/mixins/misc.scss";
+@import "../../../style/mixins/elevation.scss";
+@import "./var.scss";
+
+
+@mixin select-menu-item () {
+    position: relative;
+    padding: .25rem 1rem;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all .3s;
+
+    &.selected {
+        background-color: $disabled-bg;
+        font-weight: $font-weight-medium;
+    }
+
+    &:hover:not(.disabled) {
+        background-color: map-get($primary-colors, lighten-5);
+    }
+
+    &.disabled {
+      color: $disabled-color;
+      cursor: not-allowed;
+    }
+}
