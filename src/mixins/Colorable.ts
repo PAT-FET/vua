@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Component from 'vue-class-component'
-import { colorPalette, buildinColor, greyGradation } from '@/utils/color';
+import { colorPalette, buildinColor, greyGradation } from '@/utils/color'
 /**
  * 1. theme color: primary  primary-lighten-1
  * 2. buildin color: pink pink-lighten-1
@@ -8,15 +8,15 @@ import { colorPalette, buildinColor, greyGradation } from '@/utils/color';
  */
 
 const gradationMap: Record<string, number> = {
-    'lighten-5': 1,
-    'lighten-4': 2,
-    'lighten-3': 3,
-    'lighten-2': 4,
-    'lighten-1': 5,
-    'darken-1': 7,
-    'darken-2': 8,
-    'darken-3': 9,
-    'darken-4': 10
+  'lighten-5': 1,
+  'lighten-4': 2,
+  'lighten-3': 3,
+  'lighten-2': 4,
+  'lighten-1': 5,
+  'darken-1': 7,
+  'darken-2': 8,
+  'darken-3': 9,
+  'darken-4': 10
 }
 @Component
 export default class Colorable extends Vue {
@@ -28,7 +28,7 @@ export default class Colorable extends Vue {
     }
     if (prefix === 'grey') {
       return suffix ? (greyGradation as any)[prefix] : greyGradation['base']
-    } 
+    }
     let bc = (buildinColor as any)[prefix] || ''
     if (bc) {
       return parse(bc, suffix)

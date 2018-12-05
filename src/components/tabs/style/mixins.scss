@@ -7,7 +7,6 @@
 @mixin line-tab-position ($pos: top) {
     $border-width: .125rem;
     $border-color: $primary-color;
-    padding: .75rem 1rem;
     @if $pos == top {
         border-bottom: solid transparent $border-width;
         &.active {
@@ -35,6 +34,10 @@
     margin-right: .125rem;
     border: solid 1px $border-color-base;
     padding: .5rem 1rem;
+    background-color: $bg-color-1;
+    &.active {
+        background-color: $bg-color;
+    }
     @if $pos == top {
         border-top-left-radius: $border-radius-base;
         border-top-right-radius: $border-radius-base;
@@ -53,5 +56,16 @@
 @mixin content-horizontal {
     will-change: margin-left;
     transition: margin-left 0.3s $ease-in-out;
+}
+
+@mixin tab-arrow () {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    &.disabled{
+        pointer-events: none;
+        opacity: .6;
+    }
 }
 

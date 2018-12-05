@@ -9,16 +9,46 @@
 
     @include e(bar) {
         border-color: $primary-color;
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+    }
+
+    @include e(extra) {
+        flex: 0 auto auto;
+    }
+
+    @include e(nav-scroll) {
+        flex-grow: 1;
+        overflow: hidden;
+        position: relative;
+        &.has-arrow {
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+    }
+
+    @include e(arrow-left) {
+        @include tab-arrow();
+        left: .25rem;
+    }
+
+    @include e(arrow-right) {
+        @include tab-arrow();
+        right: .25rem;
     }
 
      @include e(nav) {
          display: flex;
          position: relative;
+         overflow: hidden;
      }
 
      @include e(tab) {
          transition: all .3s $ease-in-out;
          cursor: pointer;
+         position: relative;
+         flex-shrink: 0;
          &:hover{
              color: map-get($primary-colors, lighten-1);
          }
@@ -30,6 +60,16 @@
              color: $disabled-color;
              pointer-events: none;
              opacity: .8;
+         }
+     }
+
+     @include e(close) {
+         display: inline-block;
+         margin-left: .25rem;
+         margin-right: -0.25rem;
+         transition:  all .2s $ease-in-out;
+         &:hover {
+             transform: scale(1.1);
          }
      }
 
@@ -125,6 +165,9 @@
     // Position
     @include m (top) {
         flex-direction: column;
+        @include e(extra) {
+            padding-left: .5rem;
+        }
         @include e(content) {
             padding-top: 1.5rem;
         }
@@ -133,6 +176,9 @@
     @include m (bottom) {
         flex-direction: column;
         flex-direction: column-reverse;
+        @include e(extra) {
+            padding-left: .5rem;
+        }
         @include e(content) {
             padding-bottom: 1.5rem;
         }
@@ -161,6 +207,26 @@
         }
         @include e(nav) {
             flex-direction: column;
+        }
+    }
+    
+    // Size
+    @include m(size-sm) {
+        @include e(tab) {
+             padding: .5rem 1rem;
+        }
+    }
+
+    @include m(size-md) {
+        @include e(tab) {
+            padding: .75rem 1rem;
+        }
+    }
+
+    @include m(size-lg) {
+        @include e(tab) {
+            padding: 1rem 1rem;
+            font-size: $font-size-lg;
         }
     }
 }

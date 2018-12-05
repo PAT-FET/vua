@@ -8,7 +8,7 @@
   </v-radio-group>
 
   <div class="my-3">
-    <v-tabs background-color="info" border-color="warning" text-color="#fff" v-model="value" :position="position">
+    <v-tabs type="card" v-model="value" :position="position">
       <v-tab-pane name="1" label="Tab 1" icon="apple">Content of Tab Pane 1</v-tab-pane>
       <v-tab-pane name="2" label="Tab 2" icon="windows">Content of Tab Pane 2</v-tab-pane>
       <v-tab-pane name="3" label="Tab 3" icon="github" disabled>Content of Tab Pane 3</v-tab-pane>
@@ -20,14 +20,14 @@
 import { Component, Vue, Watch } from 'vue-property-decorator'
 
 /**
- * @title  自定义主题
- * @desc 可使用 background-color border-color text-color 设置主题样式。
+ * @title  卡片式页签
+ * @desc 另一种样式的页签，不提供对应的垂直样式。
  */
 @Component({
   components: {
   },
   })
-export default class PositionExample extends Vue {
+export default class CardExample extends Vue {
   value: string = '1'
 
   position: string = 'top'
