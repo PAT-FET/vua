@@ -46,7 +46,7 @@ export default class VRadioButton extends mixins(Themeable, Bemable) {
 
   get color () {
     if (this.checked) return 'primary'
-    return 'secondary'
+    return ''
   }
 
   get type () {
