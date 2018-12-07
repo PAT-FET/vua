@@ -17,6 +17,7 @@
    @include e(input-container) {
        position: relative;
        width: 100%;
+       line-height: 0; // fix the height overflow issue ???
    }
 
    @include e(input) {
@@ -49,6 +50,7 @@
        margin-right: .25rem;
        padding: 0 .25rem;
        background-color: $bg-color-1;
+       line-height: 1.5;
    }
 
    @include e(tag-close) {

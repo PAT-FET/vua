@@ -9,8 +9,14 @@
    :disabled="disabled"
    :options="options"
    :trigger="trigger">
-    <div :class="[e('input-container')]" slot="reference">
+    <div :class="[e('input-container')]"
+      @keyup.down.stop.prevent="onPressDown"
+      @keyup.up.stop.prevent="onPressUp"
+      @keyup.enter.stop.prevent="onPressEnter"
+      slot="reference">
+      <input style="position: absolute; height:0; width: 0; border: none; outline: 0; overflow: hidden;" ref="tab"/>
       <v-input
+        ref="input"
         :class="[e('input'), searchableCls]"
         :size="size"
         :placeholder="phText"
@@ -28,13 +34,13 @@
           <span>{{item.label}}</span>
           <span :class="[e('tag-close')]" @click.stop="toggle(item.value)"><i class="anticon anticon-close"></i></span>
         </span>
-        <input :value="inputValue" :class="[e('tag-input')]" type="text" v-if="searchable" ref="tagInput" @input="onTagInput" @keyup.enter="onTagInputEnter">
+        <input :value="inputValue" :class="[e('tag-input')]" type="text" v-if="searchable" ref="tagInput" @input="onTagInput">
       </div>
     </div>
     <div :class="[e('menu')]">
       <div :class="[e('menu-group')]" v-for="(group, i) in groupedRenderedSelectItem" :key="i">
         <div :class="[e('menu-group-title')]" v-if="group.group">{{group.group}}</div>
-        <div :class="[e('menu-item'), itemDisabledCls(item), selectedCls(item)]"
+        <div :class="[e('menu-item'), itemDisabledCls(item), selectedCls(item), itemActiveCls(item)]"
         v-for="item in group.items"
         :key="item.value"
         @click="onItemClick(item)">
@@ -43,7 +49,7 @@
         </div>
       </div>
       <div :class="[e('menu-item')]" class="disabled" v-if="message">{{message}}</div>
-      <div :class="[e('menu-item')]" v-if="showAddableItem" @click="onAddableItemClick">{{inputValue}}</div>
+      <div :class="[e('menu-item'), 'active']" v-if="showAddableItem" @click="onAddableItemClick">{{inputValue}}</div>
     </div>
   </v-popper>
 
@@ -105,6 +111,8 @@ export default class VSelect extends mixins(Themeable, Bemable, Group, Localeabl
 
   loading: boolean = false
 
+  activeValue: string = ''
+
   @Emit() input (value: SelectValue) {}
 
   get options () {
@@ -144,6 +152,10 @@ export default class VSelect extends mixins(Themeable, Bemable, Group, Localeabl
 
   itemDisabledCls (item: SelectItem) {
     return item.disabled ? 'disabled' : ''
+  }
+
+  itemActiveCls (item: SelectItem) {
+    return this.activeValue === item.value ? 'active' : ''
   }
 
   get arrowOpenCls () {
@@ -275,34 +287,27 @@ export default class VSelect extends mixins(Themeable, Bemable, Group, Localeabl
     }
   }
 
-  onTagInputEnter () {
-    // if (this.addable && this.inputValue) {
-    //   let value = this.inputValue
-    //   let target = this.newSelectItems.find(v => v.value === value)
-    //   if (target) return
-    //   this.newSelectItems.push({
-    //     value,
-    //     label: value,
-    //     disabled: false
-    //   })
-    //   this.toggle(value)
-    //   this.inputValue = ''
-    // }
+  onPressEnter () {
+    if (this.visible && this.activeValue) {
+      if (this.showAddableItem) {
+        this.addNewItem()
+      } else {
+        this.toggle(this.activeValue)
+      }
+      if (!this.multiple) this.visible = false
+    }
   }
 
   onAddableItemClick () {
-    if (this.addable && this.inputValue) {
-      let value = this.inputValue
-      let target = this.newSelectItems.find(v => v.value === value)
-      if (target) return
-      this.newSelectItems.push({
-        value,
-        label: value,
-        disabled: false
-      })
-      this.toggle(value)
-      this.inputValue = ''
-    }
+    this.addNewItem()
+  }
+
+  onPressDown () {
+    this.navigateItem(false)
+  }
+
+  onPressUp () {
+    this.navigateItem(true)
   }
 
   toggle (value: string) {
@@ -352,6 +357,48 @@ export default class VSelect extends mixins(Themeable, Bemable, Group, Localeabl
     $tagInput.style.width = width + 'px'
   }
 
+  navigateItem (up: boolean) {
+    if (this.showAddableItem) {
+      this.addNewItem()
+      return
+    }
+    let items = this.renderedSelectItems.filter(v => !v.disabled)
+    if (items.length < 1 || !this.visible) return
+    if (!this.activeValue) {
+      this.activeValue = items[0].value
+      return
+    }
+    let idx = items.findIndex(v => v.value === this.activeValue)
+    if (up) {
+      if (idx > 0) {
+        this.activeValue = items[idx - 1].value
+      } else {
+        this.activeValue = items[items.length - 1].value
+      }
+    } else {
+      if (idx >= 0 && idx < items.length - 1) {
+        this.activeValue = items[idx + 1].value
+      } else {
+        this.activeValue = items[0].value
+      }
+    }
+  }
+
+  addNewItem () {
+    if (this.addable && this.inputValue) {
+      let value = this.inputValue
+      let target = this.newSelectItems.find(v => v.value === value)
+      if (target) return
+      this.newSelectItems.push({
+        value,
+        label: value,
+        disabled: false
+      })
+      this.toggle(value)
+      this.inputValue = ''
+    }
+  }
+
   @Watch ('visible') visibleChange (visible: boolean) {
     if (!visible) {
       setTimeout(() => {
@@ -362,10 +409,16 @@ export default class VSelect extends mixins(Themeable, Bemable, Group, Localeabl
         // consider fisrt time
         if (this.romoteSelectItems.length < 1) this.doSearch()
       }
-      if (this.multiple && this.searchable) {
-        this.$nextTick().then(() => {
-          this.$refs.tagInput.focus()
-        })
+      if (this.searchable || this.addable) {
+        if (this.multiple) {
+          this.$nextTick().then(() => {
+            this.$refs.tagInput.focus()
+          })
+        } else {
+          this.$refs.input.focus()
+        }
+      } else {
+        this.$refs.tab.focus()
       }
     }
   }
@@ -374,6 +427,9 @@ export default class VSelect extends mixins(Themeable, Bemable, Group, Localeabl
     if (this.multiple && this.searchable) {
       this.resizeTagInputWidth()
     }
+    if (this.showAddableItem) {
+      this.activeValue = this.inputValue
+    }
   }
 
   updated () {
@@ -381,8 +437,10 @@ export default class VSelect extends mixins(Themeable, Bemable, Group, Localeabl
   }
 
   $refs!: {
-    tagWrap: HTMLElement
-    tagInput: HTMLElement
+    tagWrap: HTMLElement,
+    tagInput: HTMLElement,
+    input: HTMLElement,
+    tab: HTMLElement
   }
 }
 </script>
