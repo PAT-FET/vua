@@ -15,7 +15,7 @@ router.beforeEach((to, from, next) => {
   store.loading = true
   setTimeout(() => [
     next()
-  ], 2000)
+  ], 1000)
 })
 
 router.afterEach((to, from) => {

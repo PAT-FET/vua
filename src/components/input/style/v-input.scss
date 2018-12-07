@@ -33,6 +33,16 @@
     @include e(input-wrap) {
         position: relative;
         width: 100%;
+        &:focus, &:hover {
+            @include e(clear) {
+                display: block;
+            }
+            &.has-clear{
+                @include e(suffix) {
+                    display: none;
+                }
+            }
+        }
     }
 
     @include e(input) {
@@ -49,6 +59,8 @@
     @include e(clear) {
         @include input-icon();
         z-index: 6;
+        transition: all .3s;
+        display: none;
     }
 
     @include e(prefix) {

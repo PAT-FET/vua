@@ -2,16 +2,18 @@
     <div :class="[b(), sizeCls, disabledCls, blockCls, hasPrependCls, hasApppendCls]">
       <div :class="[e('inner')]">
         <div :class="[e('prepend')]" v-if="hasPrepend">{{prepend}}</div>
-        <div :class="[e('input-wrap')]">
+        <div :class="[e('input-wrap'), hasClearCls]">
           <input v-model="model"
           :class="[e('input'), disabledCls, separatorCls]"
           :style="[inputPaddingStyle]"
           :disabled="disabled"
           @change="onChange"
+          @focus="focus()"
+          @blur="blur()"
           v-bind="$attrs"
           type="text">
-          <div :class="[e('prefix')]" v-if="hasPrefix"><i class="anticon" :class="[`anticon-${prefix}`]"></i></div>
-          <div :class="[e('suffix')]" v-if="hasSuffix"><i class="anticon" :class="[`anticon-${suffix}`]"></i></div>
+          <div :class="[e('prefix')]" v-if="hasPrefix"><slot name="prefix"><i class="anticon" :class="[`anticon-${prefix}`]"></i></slot></div>
+          <div :class="[e('suffix')]" v-if="hasSuffix"><slot name="suffix"><i class="anticon" :class="[`anticon-${suffix}`]"></i></slot></div>
           <div :class="[e('clear')]" v-if="hasClear" @click="onClear"><i class="anticon anticon-close-circle"></i></div>
         </div>
         <div :class="[e('append')]" v-if="hasAppend">{{append}}</div>
@@ -24,6 +26,8 @@ import { mixins } from 'vue-class-component'
 import Themeable from '@/mixins/Themeable'
 import Bemable from '@/mixins/Bemable'
 import { InputSize } from './input'
+import { VNode } from 'vue'
+import { debounce } from '@/utils/perf'
 
 @Component({
   components: {
@@ -51,16 +55,30 @@ export default class VInput extends mixins(Themeable, Bemable) {
 
   @Prop(Boolean) separator!: boolean
 
+  @Prop(Number) debounce!: number
+
   @Emit() input (value: string | number) {}
 
   @Emit() change (value: string | number) {}
+
+  @Emit() focus () {}
+
+  @Emit() blur () {}
+
+  @Emit() clear () {}
+
+  debounceFn = this.debounce ? debounce(this.input, this.debounce, null) : null
 
   get model (): string | number {
     return this.value
   }
 
   set model (model: string | number) {
-    this.input(model)
+    if (this.debounceFn) {
+      this.debounceFn(model)
+    } else {
+      this.input(model)
+    }
   }
 
   get hasPrepend (): boolean {
@@ -72,11 +90,11 @@ export default class VInput extends mixins(Themeable, Bemable) {
   }
 
   get hasPrefix (): boolean {
-    return !!this.prefix
+    return !!this.prefix || !!this.$slots.prefix
   }
 
   get hasSuffix (): boolean {
-    return !!this.suffix && (!this.hasClear)
+    return (!!this.suffix || !!this.$slots.suffix)
   }
 
   get hasClear (): boolean {
@@ -117,12 +135,28 @@ export default class VInput extends mixins(Themeable, Bemable) {
     return this.separator ? 'separator' : ''
   }
 
+  get hasClearCls () {
+    return this.hasClear ? 'has-clear' : ''
+  }
+
   onChange () {
     this.change(this.model)
   }
 
   onClear () {
     this.model = ''
+    this.clear()
+  }
+
+  @Watch('debounce') debounceChange (newVal: number) {
+    if (this.debounceFn) this.debounceFn.cancel()
+    if (!newVal) this.debounceFn = null
+    else this.debounceFn = debounce(this.input, this.debounce, null)
+  }
+
+  $slots!: {
+    suffix: VNode[],
+    prefix: VNode[]
   }
 }
 </script>
