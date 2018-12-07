@@ -1,0 +1,124 @@
+@import "../../../style/mixins/bem.scss";
+@import "../../../style/mixins/elevation.scss";
+@import "../../../style/mixins/misc.scss";
+@import "../../../style/var.scss";
+@import "./mixins.scss";
+
+@include b(v-select) {
+   display: inline-block;
+   position: relative;
+
+   @include e(popper) {
+        display: inline-block;
+        position: relative;
+        width: 100%;
+   }
+
+   @include e(input-container) {
+       position: relative;
+       width: 100%;
+       line-height: 0; // fix the height overflow issue ???
+   }
+
+   @include e(input) {
+     width: 100%;  
+     .v-input__input {
+        cursor: pointer;
+     }
+     &.is-searchable {
+        .v-input__input {
+            cursor: initial;
+        }
+     }
+   }
+
+   @include e(tag-wrap) {
+        position: absolute;
+        left: .5rem;
+        right: 1.5rem;
+        top: 1px;
+        padding: .25rem 0;
+        z-index: 8;
+        background-color: $bg-color;
+   }
+
+   @include e(tag) {
+       display: inline-block;
+       border-radius: $border-radius-sm;
+       border: solid 1px $border-color-base;
+       font-size: $font-size-sm;
+       margin-right: .25rem;
+       padding: 0 .25rem;
+       background-color: $bg-color-1;
+       line-height: 1.5;
+   }
+
+   @include e(tag-close) {
+       color: $text-color-secondary;
+       display: inline-block;
+       cursor: pointer;
+       margin-left: .125rem;
+       &:hover {
+           color: $text-color;
+       }
+   }
+
+   @include e(tag-input) {
+       border: none;
+       outline: 0;
+       min-width: 0.75rem; 
+       width: .75rem;
+       max-width: 100%;
+       &:focus{
+           outline: 0;
+       }
+   }
+
+   @include e(menu) {
+    max-height: 16rem;
+    min-width: 8rem;
+    overflow: auto;
+    border-radius: $border-radius-base;
+   }
+
+   @include e(menu-group) {
+       &>.v-select__menu-item{
+           padding-left: 1.5rem;
+       }
+   }
+
+   @include e(menu-group-title) {
+        color: $text-color-secondary;
+        padding: 0 1rem;
+        line-height: 2rem;
+        font-size: $font-size-sm;
+   }
+
+   @include e(menu-item) {
+       @include select-menu-item();
+   }
+
+   @include e(selected-icon) {
+       position: absolute;
+       top: 50%;
+       right: .5rem;
+       transform: translateY(-50%);
+       color: $primary-color;
+   }
+
+   @include e(arrow) {
+       transition: all .3s;
+       &.open {
+           transform: rotate(180deg);
+       }
+   }
+
+   // Disabled
+   @include m(disabled) {
+       cursor: not-allowed;
+       @include e(popper) {
+           pointer-events: none;
+       }
+   }
+
+}

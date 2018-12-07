@@ -25,6 +25,14 @@
        </v-col>
      </v-row>
    </div>
+
+   <div class="my-3">
+      <v-alert description="使用卡槽" class="my-2"></v-alert>
+      <v-input placeholder="请输入内容" v-model="value6" clearable>
+        <i slot="suffix" class="anticon anticon-calendar"></i>
+        <i slot="prefix" class="anticon anticon-search"></i>
+      </v-input>
+   </div>
 </div>
 </template>
 <script lang="ts">
@@ -50,5 +58,7 @@ export default class IconExample extends Vue {
   value4: string = ''
 
   value5: string = ''
+
+  value6: string = ''
 }
 </script>
