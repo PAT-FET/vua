@@ -2,7 +2,9 @@ import Vue, { VNodeDirective, VNode } from 'vue'
 
 function scroll (el: HTMLElement, value: boolean, oldValue: boolean) {
   if (value && value !== oldValue) {
-    el.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' })
+    // not support scroll simultaneously， see TimePicker
+    // let opt = { behavior: 'smooth', block: 'start', inline: 'nearest' }
+    el.scrollIntoView()
   }
 }
 

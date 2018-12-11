@@ -10,8 +10,8 @@ export {
 
 export function trimDate (date: Date) {
   let newDate = new Date(date)
-  date.setHours(0)
-  date.setMinutes(0)
-  date.setSeconds(0)
+  newDate.setHours(0)
+  newDate.setMinutes(0)
+  newDate.setSeconds(0)
   return newDate
 }

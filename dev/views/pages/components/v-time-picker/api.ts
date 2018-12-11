@@ -3,38 +3,50 @@ export default {
     {
       name: 'value',
       default: '',
-      type: `number`,
-      desc: '数值，可使用 v-model'
+      type: `string`,
+      desc: '与format格式一致，可使用 v-model'
+    },
+    {
+      name: 'disabled',
+      default: '',
+      type: `boolean`,
+      desc: '禁用'
     },
     {
       name: 'clearable',
       default: '',
       type: `boolean`,
-      desc: '是否可清空'
+      desc: '可清空'
     },
     {
-      name: 'allowHalf',
-      default: '',
-      type: `boolean`,
-      desc: '是否允许半星'
+      name: 'size',
+      default: `'md'`,
+      type: `'sm' | 'md' | 'lg'`,
+      desc: '尺寸'
     },
     {
-      name: 'readonly',
-      default: '',
-      type: `boolean`,
-      desc: '是否只读'
-    },
-    {
-      name: 'icon',
-      default: `'star'`,
+      name: 'placeholder',
+      default: ``,
       type: `string`,
-      desc: '自定义图标'
+      desc: 'placeholder占位符'
     },
     {
-      name: 'char',
+      name: 'hourStep',
       default: '',
-      type: `string`,
-      desc: '自定义文字代替图标，将忽略 icon 属性定义'
+      type: `number`,
+      desc: '小时间隔'
+    },
+    {
+      name: 'minStep',
+      default: '',
+      type: `number`,
+      desc: '分间隔'
+    },
+    {
+      name: 'secStep',
+      default: '',
+      type: `number`,
+      desc: '秒间隔'
     }
   ]
 }

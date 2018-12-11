@@ -30,7 +30,7 @@
                      {{prop.desc}}
                   </td>
                </tr>
-               <tr :key="'placeholder' + i" :class="[$style.tr3]">
+               <tr :key="'_placeholder' + i" :class="[$style.tr3]">
                   <td colspan="3"></td>
                </tr>
             </template>

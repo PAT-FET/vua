@@ -27,10 +27,14 @@ export function noop (...args: any[]) {}
 
 /**
  * generate a order array from a specific start and end point.
- * @param {number} start
- * @param {number} end
- * @returns {number[]}
+ * @param start
+ * @param end
+ * @param step
  */
-export function range (start: number, end: number): number[] {
-  return Array(end - start + 1).fill(0).map((v, i) => i + start)
+export function range (start: number, end: number, step: number = 1): number[] {
+  let arr = Array(end - start + 1).fill(0).map((v, i) => i + start)
+  if (step && step > 1) {
+    return arr.filter((v, i) => i%step === 0)
+  }
+  return arr
 }

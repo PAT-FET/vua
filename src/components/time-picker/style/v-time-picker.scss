@@ -7,6 +7,7 @@
 @include b(v-time-picker) {
     display: inline-block;
     position: relative;
+    width: 10.5rem;
 
     @include e(popper) {
         display: inline-block;
@@ -20,8 +21,9 @@
 
     @include e(panel-input-wrap){
         height: 2rem;
-        padding: .375rem .75rem;
+        padding: .375rem .625rem;
         border-bottom: solid 1px $border-color-split;
+        position: relative;
     }
 
     @include e(panel-input){
@@ -33,6 +35,20 @@
         color: $text-color;
         background: $bg-color;
         @include placeholder();
+    }
+
+    @include e(clear) {
+        position: absolute;
+        top: 50%;
+        right: .5rem;
+        transform: translateY(-50%);
+        color: $text-color-secondary;
+        transition: all .3s;
+        cursor: pointer;
+        &:hover{
+            color: $text-color;
+        }
+
     }
 
     @include e(select){

@@ -1,8 +1,8 @@
 <template>
 <div>
    <div class="m-3">
-     <v-alert class="my-2" :description="value"></v-alert>
-     <v-time-picker v-model="value"></v-time-picker>
+     <v-alert class="my-2" :description="value || '>'"></v-alert>
+     <v-time-picker v-model="value" placeholder="请选择时间" clearable></v-time-picker>
    </div>
 </div>
 </template>

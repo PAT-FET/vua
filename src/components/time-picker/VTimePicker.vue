@@ -8,6 +8,7 @@
    :delay="50"
    :disabled="disabled"
    :options="options"
+   :gutter="gutter"
    :trigger="trigger">
     <v-input
         slot="reference"
@@ -16,29 +17,29 @@
         :class="[e('input')]"
         :size="size"
         :placeholder="placeholder"
-        :clearable="clearable"
         :disabled="disabled">
         <i slot="suffix" class="anticon anticon-clock-circle-o"></i>
       </v-input>
     <div :class="[e('content')]">
         <div :class="[e('panel-input-wrap')]">
             <input :class="[e('panel-input')]" v-model.lazy="model">
+            <div :class="[e('clear')]" v-if="clearable" @click="onClear"><i class="anticon anticon-close-circle"></i></div>
         </div>
 
         <div :class="[e('combobox')]">
             <div :class="[e('select')]">
                 <ul>
-                    <li v-for="hour in hours" :key="hour" v-scroll-into-view="selectedHour(hour)" @click="onSelectHour(hour)" :class="[selectedHourCls(hour)]">{{hour}}</li>
+                    <li v-for="hour in hours" :key="hour" v-scroll-into-view="selectedHour(hour) && actualVisible" @click="onSelectHour(hour)" :class="[selectedHourCls(hour)]">{{hour}}</li>
                 </ul>
             </div>
             <div :class="[e('select')]">
                 <ul>
-                    <li v-for="min in minutes" :key="min" v-scroll-into-view="selectedMin(min)" @click="onSelectMin(min)" :class="[selectedMinCls(min)]">{{min}}</li>
+                    <li v-for="min in minutes" :key="min" v-scroll-into-view="selectedMin(min) && actualVisible" @click="onSelectMin(min)" :class="[selectedMinCls(min)]">{{min}}</li>
                 </ul>
             </div>
             <div :class="[e('select')]">
                 <ul>
-                    <li v-for="sec in seconds" :key="sec" v-scroll-into-view="selectedSec(sec)" @click="onSelectSec(sec)" :class="[selectedSecCls(sec)]">{{sec}}</li>
+                    <li v-for="sec in seconds" :key="sec" v-scroll-into-view="selectedSec(sec) && actualVisible" @click="onSelectSec(sec)" :class="[selectedSecCls(sec)]">{{sec}}</li>
                 </ul>
             </div>
         </div>
@@ -74,7 +75,15 @@ export default class VTimePicker extends mixins(Themeable, Bemable, DateHelper) 
 
   @Prop(String) placeholder!: string
 
+  @Prop(Number) hourStep!: number
+
+  @Prop(Number) minStep!: number
+
+  @Prop(Number) secStep!: number
+
   visible: boolean = false
+
+  actualVisible: boolean = false
 
   appendToBody: boolean = true
 
@@ -93,20 +102,35 @@ export default class VTimePicker extends mixins(Themeable, Bemable, DateHelper) 
   }
 
   set model (model: string) {
-    let ret = this.parseDate(model)
-    if (ret) this.input(this.formatDate(ret as Date))
+    if (!model) {
+      this.input('')
+    } else {
+      let ret = this.parseDate(model)
+      if (ret) this.input(this.formatDate(ret as Date))
+    }
+  }
+
+  get gutter () {
+    if (this.size === 'md') {
+      return -32
+    } else if (this.size === 'sm') {
+      return -24
+    } else if (this.size === 'lg') {
+      return -40
+    }
+    return 5
   }
 
   get hours (): number[] {
-    return range(0, 23)
+    return range(0, 23, this.hourStep || 1)
   }
 
   get minutes (): number[] {
-    return range(0, 59)
+    return range(0, 59, this.minStep || 1)
   }
 
   get seconds (): number[] {
-    return range(0, 59)
+    return range(0, 59, this.secStep || 1)
   }
 
   get date (): Date| null {
@@ -157,6 +181,21 @@ export default class VTimePicker extends mixins(Themeable, Bemable, DateHelper) 
     let date: Date = this.date || trimDate(new Date())
     date.setSeconds(sec)
     this.input(this.formatDate(date))
+  }
+
+  onClear () {
+    this.model = ''
+  }
+
+  @Watch('visible') visibleChange (visible: boolean) {
+    if (visible) {
+      // it should be listen the popper event to confirm the actucalVisible, here simplify it
+      setTimeout(() => {
+        this.actualVisible = true
+      }, 200)
+    } else {
+      this.actualVisible = false
+    }
   }
 }
 </script>
