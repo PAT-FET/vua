@@ -20,12 +20,12 @@
                   <td>默认值</td>
                   <td>类型</td>
                </tr>
-               <tr :key="prop.name + i" :class="[$style.tr1]">
+               <tr :key="prop.name + 'name' + i" :class="[$style.tr1]">
                   <td><code style="color: red;">{{prop.name}}</code></td>
                   <td>{{prop.default}}</td>
                   <td>{{prop.type}}</td>
                </tr>
-               <tr :key="prop.desc + i" :class="[$style.tr2]">
+               <tr :key="prop.desc + 'desc' + i" :class="[$style.tr2]">
                   <td colspan="3">
                      {{prop.desc}}
                   </td>
@@ -54,7 +54,7 @@
                      {{event.desc}}
                   </td>
                </tr>
-               <tr :key="'placeholder' + i" :class="[$style.tr3]">
+               <tr :key="'_placeholder' + i" :class="[$style.tr3]">
                   <td colspan="2"></td>
                </tr>
             </template>
@@ -76,7 +76,7 @@
                      {{slot.desc}}
                   </td>
                </tr>
-               <tr :key="'placeholder' + i" :class="[$style.tr3]">
+               <tr :key="'_placeholder' + i" :class="[$style.tr3]">
                   <td></td>
                </tr>
             </template>
@@ -100,7 +100,7 @@
                      {{scopedSlot.desc}}
                   </td>
                </tr>
-               <tr :key="'placeholder' + i" :class="[$style.tr3]">
+               <tr :key="'_placeholder' + i" :class="[$style.tr3]">
                   <td colspan="2"></td>
                </tr>
             </template>
@@ -126,7 +126,7 @@
                      {{method.desc}}
                   </td>
                </tr>
-               <tr :key="'placeholder' + i" :class="[$style.tr3]">
+               <tr :key="'_placeholder' + i" :class="[$style.tr3]">
                   <td colspan="3"></td>
                </tr>
             </template>
