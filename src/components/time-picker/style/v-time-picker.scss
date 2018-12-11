@@ -1,0 +1,102 @@
+@import "../../../style/mixins/bem.scss";
+@import "../../../style/mixins/elevation.scss";
+@import "../../../style/mixins/misc.scss";
+@import "../../../style/var.scss";
+@import "./mixins.scss";
+
+@include b(v-time-picker) {
+    display: inline-block;
+    position: relative;
+    width: 10.5rem;
+
+    @include e(popper) {
+        display: inline-block;
+        position: relative;
+        width: 100%;
+    }
+
+    @include e(input) {
+        width: 100%;  
+    }
+
+    @include e(panel-input-wrap){
+        height: 2rem;
+        padding: .375rem .625rem;
+        border-bottom: solid 1px $border-color-split;
+        position: relative;
+    }
+
+    @include e(panel-input){
+        border: 0;
+        width: 100%;
+        cursor: auto;
+        outline: 0;
+        height: 1.375rem;
+        color: $text-color;
+        background: $bg-color;
+        @include placeholder();
+    }
+
+    @include e(clear) {
+        position: absolute;
+        top: 50%;
+        right: .5rem;
+        transform: translateY(-50%);
+        color: $text-color-secondary;
+        transition: all .3s;
+        cursor: pointer;
+        &:hover{
+            color: $text-color;
+        }
+
+    }
+
+    @include e(select){
+        float: left;
+        font-size: $font-size-base;
+        border-left: 1px solid $border-color-split;
+        width: $time-picker-panel-column-width;
+        overflow: hidden;
+        max-height: $timepicker-item-height * 6;
+
+        &:hover {
+            overflow-y: auto;
+        }
+
+        ul {
+            list-style: none;
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0 0 $timepicker-item-height * 5;
+            width: 100%;
+        }
+
+        li {
+            list-style: none;
+            box-sizing: content-box;
+            margin: 0;
+            padding: 0 0 0 .75rem;
+            width: 100%;
+            height: $timepicker-item-height;
+            line-height: $timepicker-item-height;
+            text-align: left;
+            cursor: pointer;
+            user-select: none;
+            transition: background 0.3s;
+        }
+
+        li:hover {
+            background-color: map-get($primary-colors, lighten-5);
+        }
+
+        li.selected {
+            background: $time-picker-selected-bg;
+            font-weight: $font-weight-bold;
+            &:hover {
+            background: $time-picker-selected-bg;
+            }
+        }
+    }
+}
+
+

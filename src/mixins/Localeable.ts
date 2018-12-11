@@ -18,4 +18,8 @@ export default class Localeable extends Vue {
       return this.$vua.lang.t(key, ...params)
     }
   }
+
+  get currentLocale () {
+    return this.locale || this.$vua.lang.locales[this.$vua.lang.current]
+  }
 }
