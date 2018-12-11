@@ -1,5 +1,6 @@
 export default {
-  ok: 'Yes',
+  yes: 'Yes',
+  ok: 'Ok',
   cancel: 'No',
   noMatchData: 'No Match Data',
   loading: 'Loading',
@@ -11,5 +12,9 @@ export default {
     monthNames: 'January,February,March,April,May,June,July,August,September,October,November,December',
     monthNamesShort: 'Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec'
     // DoFn(D: number): string;
-  }
+  },
+  today: 'Today',
+  now: 'Now',
+  selectDate: 'Select Date',
+  selectTime: 'Select Time'
 }

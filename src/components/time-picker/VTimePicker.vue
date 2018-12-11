@@ -15,9 +15,11 @@
         readonly
         :value="model"
         :class="[e('input')]"
+        :clearable="clearable"
         :size="size"
         :placeholder="placeholder"
-        :disabled="disabled">
+        :disabled="disabled"
+        @clear="onClear">
         <i slot="suffix" class="anticon anticon-clock-circle-o"></i>
       </v-input>
     <div :class="[e('content')]">
@@ -29,17 +31,26 @@
         <div :class="[e('combobox')]">
             <div :class="[e('select')]">
                 <ul>
-                    <li v-for="hour in hours" :key="hour" v-scroll-into-view="selectedHour(hour) && actualVisible" @click="onSelectHour(hour)" :class="[selectedHourCls(hour)]">{{hour}}</li>
+                    <li v-for="hour in hours" :key="hour"
+                      v-scroll-into-view="selectedHour(hour) && actualVisible"
+                      @click="onSelectHour(hour)"
+                      :class="[selectedHourCls(hour), disabledHourCls(hour)]">{{hour}}</li>
                 </ul>
             </div>
             <div :class="[e('select')]">
                 <ul>
-                    <li v-for="min in minutes" :key="min" v-scroll-into-view="selectedMin(min) && actualVisible" @click="onSelectMin(min)" :class="[selectedMinCls(min)]">{{min}}</li>
+                    <li v-for="min in minutes" :key="min"
+                     v-scroll-into-view="selectedMin(min) && actualVisible"
+                     @click="onSelectMin(min)"
+                     :class="[selectedMinCls(min), disabledMinCls(min)]">{{min}}</li>
                 </ul>
             </div>
             <div :class="[e('select')]">
                 <ul>
-                    <li v-for="sec in seconds" :key="sec" v-scroll-into-view="selectedSec(sec) && actualVisible" @click="onSelectSec(sec)" :class="[selectedSecCls(sec)]">{{sec}}</li>
+                    <li v-for="sec in seconds" :key="sec"
+                     v-scroll-into-view="selectedSec(sec) && actualVisible"
+                     @click="onSelectSec(sec)"
+                     :class="[selectedSecCls(sec), disabledSecCls(sec)]">{{sec}}</li>
                 </ul>
             </div>
         </div>
@@ -52,7 +63,7 @@ import { Component, Vue, Prop, Emit, Watch, Model, Provide } from 'vue-property-
 import { mixins } from 'vue-class-component'
 import Themeable from '@/mixins/Themeable'
 import Bemable from '@/mixins/Bemable'
-import { TimePickerSize } from './time-picker'
+import { TimePickerSize, TimePickerDisabledTimeFunc } from './time-picker'
 import DateHelper from '@/mixins/DateHelper'
 import { range } from '@/utils/lang'
 import { trimDate } from '@/utils/date'
@@ -80,6 +91,8 @@ export default class VTimePicker extends mixins(Themeable, Bemable, DateHelper) 
   @Prop(Number) minStep!: number
 
   @Prop(Number) secStep!: number
+
+  @Prop(Function) disabledTime!: TimePickerDisabledTimeFunc
 
   visible: boolean = false
 
@@ -138,6 +151,18 @@ export default class VTimePicker extends mixins(Themeable, Bemable, DateHelper) 
     return ret ? (ret as Date) : null
   }
 
+  get hour () {
+    return (this.date && this.date.getHours()) || 0
+  }
+
+  get min () {
+    return (this.date && this.date.getMinutes()) || 0
+  }
+
+  get sec () {
+    return (this.date && this.date.getSeconds()) || 0
+  }
+
   selectedHour (hour: number): boolean {
     if (!this.date) return false
     return this.date.getHours() === hour
@@ -185,6 +210,23 @@ export default class VTimePicker extends mixins(Themeable, Bemable, DateHelper) 
 
   onClear () {
     this.model = ''
+  }
+
+  isDisabledTime (hour: number, min: number, sec: number): boolean {
+    if (!this.disabledTime) return false
+    return this.disabledTime(hour, min, sec)
+  }
+
+  disabledHourCls (hour: number) {
+    return this.isDisabledTime(hour, this.min, this.sec) ? 'disabled': ''
+  }
+
+  disabledMinCls (min: number) {
+    return this.isDisabledTime(this.hour, min, this.sec) ? 'disabled': ''
+  }
+
+  disabledSecCls (sec: number) {
+    return this.isDisabledTime(this.hour, this.min, sec) ? 'disabled': ''
   }
 
   @Watch('visible') visibleChange (visible: boolean) {

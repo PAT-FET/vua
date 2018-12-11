@@ -1,5 +1,9 @@
 /* eslint-disable */
 
+/**
+ * Add Week Flag (W, WW)
+ */
+
 'use strict';
 
 /**
@@ -7,7 +11,7 @@
  * @class fecha
  */
 var fecha = {};
-var token = /d{1,4}|M{1,4}|YY(?:YY)?|S{1,3}|Do|ZZ|([HhMsDm])\1?|[aA]|"[^"]*"|'[^']*'/g;
+var token = /W{1,2}|d{1,4}|M{1,4}|YY(?:YY)?|S{1,3}|Do|ZZ|([HhMsDm])\1?|[aA]|"[^"]*"|'[^']*'/g;
 var twoDigits = /\d\d?/;
 var threeDigits = /\d{3}/;
 var fourDigits = /\d{4}/;
@@ -58,6 +62,12 @@ fecha.i18n = {
 };
 
 var formatFlags = {
+    W: function (dateObj) {
+        return getWeekOfYear(dateObj);
+    },
+    WW: function (dateObj) {
+        return pad(getWeekOfYear(dateObj));
+    },
     D: function (dateObj) {
         return dateObj.getDate();
     },
@@ -143,6 +153,9 @@ var formatFlags = {
 };
 
 var parseFlags = {
+    W: [twoDigits, function (d, v) {
+        d.day = getDaysByWeekOfYear(+v, +d.year) + 1;
+    }],
     D: [twoDigits, function (d, v) {
         d.day = v;
     }],
@@ -202,6 +215,7 @@ var parseFlags = {
 parseFlags.dd = parseFlags.d;
 parseFlags.dddd = parseFlags.ddd;
 parseFlags.DD = parseFlags.D;
+parseFlags.WW = parseFlags.W;
 parseFlags.mm = parseFlags.m;
 parseFlags.hh = parseFlags.H = parseFlags.HH = parseFlags.h;
 parseFlags.MM = parseFlags.M;
@@ -323,3 +337,21 @@ fecha.parse = function (dateStr, format, i18nSettings) {
 };
 
 export default fecha
+
+export function getWeekOfYear(date) {
+    let firstDay = new Date(date.getFullYear(), 0, 1)
+    let dayOfWeek = firstDay.getDay()
+    let spendDay = 1
+    if (dayOfWeek < 4) {
+        spendDay = 7 - dayOfWeek + 1
+    }
+    firstDay = new Date(date.getFullYear(), 0, 1 + spendDay)
+    let d = Math.ceil((date.valueOf() - firstDay.valueOf()) / 86400000)
+    let result = Math.ceil(d / 7)
+    return result + 1
+}
+
+export function getDaysByWeekOfYear(week, year) {
+    let offset = getWeekOfYear(new Date(year, 0, 1)) > 1 ? 0 : -1
+    return (week + offset) * 7 + 1
+}

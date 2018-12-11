@@ -45,3 +45,5 @@ export function format(dateObj: Date | number, mask: string, i18nSettings?: i18n
 export function parse(dateStr: string, format: string, i18nSettings?: i18nSettings): Date | boolean;
 
 export as namespace Fecha;
+
+export function getWeekOfYear (date: Date) : number

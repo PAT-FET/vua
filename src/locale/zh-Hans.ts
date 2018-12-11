@@ -1,4 +1,5 @@
 export default {
+  yes: '是',
   ok: '确认',
   cancel: '取消',
   noMatchData: '无匹配结果',
@@ -7,9 +8,13 @@ export default {
   date: {
     amPm: '上午,下午',
     dayNames: '星期日,星期一,星期二,星期三,星期四,星期五,星期六',
-    dayNamesShort: '周日,周一,周二,周三,周四,周五,周六',
+    dayNamesShort: '日,一,二,三,四,五,六',
     monthNames: '一月,二月,三月,四月,五月,六月,七月,八月,九月,十月,十一月,十二月',
-    monthNamesShort: '01,02,03,04,05,06,07,08,09,10,11,12'
+    monthNamesShort: '一月,二月,三月,四月,五月,六月,七月,八月,九月,十月,十一月,十二月'
     // DoFn(D: number): string;
-  }
+  },
+  today: '今天',
+  now: '此刻',
+  selectDate: '选择日期',
+  selectTime: '选择时间'
 }
