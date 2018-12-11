@@ -29,6 +29,7 @@
     @include e(panel-input){
         border: 0;
         width: 100%;
+        max-width: 7rem;
         cursor: auto;
         outline: 0;
         height: 1.375rem;
