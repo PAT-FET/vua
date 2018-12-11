@@ -139,8 +139,8 @@ export default class VInput extends mixins(Themeable, Bemable) {
     return this.hasClear ? 'has-clear' : ''
   }
 
-  onChange () {
-    this.change(this.model)
+  onChange (e: Event) {
+    this.change((e.target as any).value)
   }
 
   onClear () {

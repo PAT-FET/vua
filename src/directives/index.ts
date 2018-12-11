@@ -1,13 +1,16 @@
 
 import Ripple from './ripple'
 import Loading from './loading'
+import ScrollIntoView from './scroll-into-view'
 
 export {
   Ripple,
-  Loading
+  Loading,
+  ScrollIntoView
 }
 
 export default {
   Ripple,
-  Loading
+  Loading,
+  ScrollIntoView
 }
