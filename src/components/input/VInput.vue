@@ -14,7 +14,7 @@
           type="text">
           <div :class="[e('prefix')]" v-if="hasPrefix"><slot name="prefix"><i class="anticon" :class="[`anticon-${prefix}`]"></i></slot></div>
           <div :class="[e('suffix')]" v-if="hasSuffix"><slot name="suffix"><i class="anticon" :class="[`anticon-${suffix}`]"></i></slot></div>
-          <div :class="[e('clear')]" v-if="hasClear" @click="onClear"><i class="anticon anticon-close-circle"></i></div>
+          <div :class="[e('clear')]" v-if="hasClear" @click.stop="onClear"><i class="anticon anticon-close-circle"></i></div>
         </div>
         <div :class="[e('append')]" v-if="hasAppend">{{append}}</div>
       </div>
