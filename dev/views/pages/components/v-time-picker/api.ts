@@ -47,6 +47,12 @@ export default {
       default: '',
       type: `number`,
       desc: '秒间隔'
+    },
+    {
+      name: 'disabledTime',
+      default: '',
+      type: `(hour, min, sec) => boolean`,
+      desc: '禁用时间函数'
     }
   ]
 }
