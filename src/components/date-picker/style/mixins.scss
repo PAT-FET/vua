@@ -1,0 +1,149 @@
+@import "../../../style/var.scss";
+@import "../../../style/mixins/misc.scss";
+@import "../../../style/mixins/elevation.scss";
+@import "./var.scss";
+
+
+@mixin picker-panel () {
+    width: 17.375rem;
+
+    @include e(header) {
+        height: 2.5rem;
+        line-height: 2.5rem;
+        text-align: center;
+        user-select: none;
+        position: relative;
+        border-bottom: solid 1px $border-color-split;
+    }
+
+    @include e(body){
+        padding: .5rem .75rem;
+    }
+
+    @include e(table){
+        border-collapse: collapse;
+        max-width: 100%;
+        background-color: transparent;
+        width: 100%;
+        table-layout: fixed;
+        border: 0;
+        padding: 0;
+        height: 13.125rem;
+    }
+
+    @include e(cell) {
+      padding: .1875rem 0;
+      height: 1.875rem;
+      text-align: center;
+
+      &.disabled {
+        cursor: not-allowed;
+        color: $disabled-color;
+        & > * {
+            pointer-events: none;
+        }
+        & * {
+          color: $disabled-color !important;
+        }
+      }
+    }
+
+    // doesn't need it for now
+    // @include e(footer){
+    //     border-top: solid 1px $border-color-split;
+    //     line-height: 2.375rem;
+    //     padding: 0 .75rem;
+    // }
+}
+
+@mixin double-backward-arrow () {
+  @include panel-arrow();
+  left: 7px;
+  &:after {
+    content: '«';
+  }
+}
+
+@mixin backward-arrow () {
+  @include panel-arrow();
+  left: 29px;
+
+  &:after {
+    content: '‹';
+  }
+}
+
+@mixin double-forward-arrow () {
+  @include panel-arrow();
+  right: 7px;
+  &:after {
+    content: '»';
+  }
+}
+
+@mixin forward-arrow () {
+  @include panel-arrow();
+  right: 29px;
+
+  &:after {
+    content: '›';
+  }
+}
+
+@mixin panel-arrow () {
+  position: absolute;
+  top: 0;
+  color: $text-color-secondary;
+  font-family: Arial, "Hiragino Sans GB", "Microsoft Yahei", "Microsoft Sans Serif", sans-serif;
+  padding: 0 .3125rem;
+  font-size: $font-size-lg;
+  display: inline-block;
+  line-height: 2.5rem;
+}
+
+@mixin panel-select-text () {
+  padding: 0 .125rem;
+  font-weight: $font-weight-medium;
+  display: inline-block;
+  color: $heading-color;
+  line-height: 2.5rem;
+}
+
+@mixin picker () {
+  display: inline-block;
+  position: relative;
+  width: 10.5rem;
+
+  @include e(popper) {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+  }
+
+  @include e(input) {
+    width: 100%;  
+  }
+
+  @include e(footer) {
+    border-top: 1px solid $border-color-split;
+    line-height: 2.375rem;
+    padding: 0 .75rem;
+  }
+
+  @include e(footer-btn) {
+    text-align: center;
+    display: block;
+  }
+}
+
+@mixin picker-header-input () {
+  border: 0;
+  width: 100%;
+  max-width: 12rem;
+  cursor: auto;
+  outline: 0;
+  height: 1.375rem;
+  color: $text-color;
+  background: $bg-color;
+  @include placeholder();
+}
