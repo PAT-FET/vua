@@ -16,5 +16,10 @@ export default {
   today: '今天',
   now: '此刻',
   selectDate: '选择日期',
-  selectTime: '选择时间'
+  selectTime: '选择时间',
+  pagination: {
+    goto: '跳至',
+    page: '页',
+    totalText: '总共 {0} 条'
+  }
 }

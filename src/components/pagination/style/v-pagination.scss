@@ -1,0 +1,115 @@
+@import "../../../style/mixins/bem.scss";
+@import "../../../style/mixins/elevation.scss";
+@import "../../../style/mixins/misc.scss";
+@import "../../../style/var.scss";
+@import "./mixins.scss";
+
+@include b(v-pagination) {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+
+    @include e(total) {
+        margin-right: .5rem;
+    }
+
+    @include e(options) {
+        width: 6rem;
+        margin-right: .5rem;
+    }
+
+    @include e(jumper) {
+        margin-left: .5rem;
+        display: flex;
+    }
+
+    @include e(jumper-input) {
+        width: 2.75rem;
+        margin: 0 .5rem;
+    }
+
+    @include e(prev) {
+         &>i {
+            transform: scale(0.83);
+        }
+    }
+
+    @include e(jump-prev) {
+        @include pagination-jump-btn();
+    }
+
+    @include e(jump-next) {
+        @include pagination-jump-btn();
+    }
+
+    @include e(next) {
+        &>i {
+            transform: scale(0.83);
+        }
+    }
+
+    // @include e(item) {
+    
+    // }
+
+    @include m(size-md) {
+        @include e(total) {
+            line-height: $pagination-item-size;
+        }
+
+        @include e(jumper) {
+            line-height: $pagination-item-size;
+        }
+
+        @include e(prev) {
+            @include pagination-item();
+        }
+
+        @include e(jump-prev) {
+            @include pagination-item(false, false);
+        }
+
+        @include e(jump-next) {
+            @include pagination-item(false, false);
+        }
+
+        @include e(next) {
+            @include pagination-item();
+        }
+
+        @include e(item) {
+            @include pagination-item();
+        }
+    }
+
+    @include m(size-sm) {
+        @include e(total) {
+            line-height: $pagination-item-size-sm;
+        }
+
+        @include e(jumper) {
+            line-height: $pagination-item-size-sm;
+        }
+
+        @include e(prev) {
+            @include pagination-item(true);
+        }
+
+        @include e(jump-prev) {
+            @include pagination-item(true, false);
+        }
+
+        @include e(jump-next) {
+            @include pagination-item(true, false);
+        }
+
+        @include e(next) {
+            @include pagination-item(true);
+        }
+
+        @include e(item) {
+            @include pagination-item(true);
+        }
+    }
+}
