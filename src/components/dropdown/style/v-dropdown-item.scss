@@ -1,0 +1,33 @@
+@import "../../../style/mixins/bem.scss";
+@import "../../../style/mixins/elevation.scss";
+@import "../../../style/mixins/misc.scss";
+@import "../../../style/var.scss";
+@import "./mixins.scss";
+
+@include b(v-dropdown-item) {
+    padding:.3125rem .75rem;
+    margin: 0;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all .3s;
+
+    &:hover {
+        &:not(.disabled) {
+            background-color: map-get($primary-colors, lighten-5);
+        }
+    }
+
+    &.disabled {
+        color: $disabled-color;
+        cursor: not-allowed;
+    }
+
+    @include m(divider){
+        height: 1px;
+        padding: 0;
+        overflow: hidden;
+        background-color: $border-color-split;
+        line-height: 0;
+        margin: 4px 0;
+    }
+}

@@ -149,6 +149,8 @@
     //Slim
     @include m(slim) {
         padding: 0 0.25rem;
-        font-size: $font-size-sm;
+        &>i{
+            transform: scale(.83);
+        }
     }
 }
