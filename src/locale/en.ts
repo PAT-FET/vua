@@ -16,5 +16,10 @@ export default {
   today: 'Today',
   now: 'Now',
   selectDate: 'Select Date',
-  selectTime: 'Select Time'
+  selectTime: 'Select Time',
+  pagination: {
+    goto: 'Goto',
+    page: 'page',
+    totalText: 'Total {0} items'
+  }
 }

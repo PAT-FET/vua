@@ -15,9 +15,9 @@ import Groupable from '@/mixins/Groupable'
   name: 'v-option'
   })
 export default class VOption extends mixins(Themeable, Bemable, Groupable) {
-  @Prop(String) label!: string
+  @Prop() label!: string
 
-  @Prop(String) value!: string
+  @Prop() value!: string
 
   @Prop(Boolean) disabled!: boolean
 }
