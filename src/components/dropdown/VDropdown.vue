@@ -30,18 +30,29 @@ import { DropdownTrigger } from './dropdown'
 export default class VDropdown extends mixins(Themeable, Bemable, Localeable) {
   @Prop({type: String, default: 'hover'}) trigger!: DropdownTrigger
 
+  @Prop({type: String, default: 'bottom-start'}) placement!: string
+
   appendToBody: boolean = true
 
   visible: boolean = false
 
+  @Emit('open') emitOpen () {}
+
+  @Emit('close') emitClose () {}
+
   get options () {
     return {
-      placement: 'bottom-start'
+      placement: this.placement
     }
   }
 
   @Provide() close () {
     this.visible = false
+  }
+
+  @Watch('visible') visibleChange (visible: boolean) {
+    if (visible) this.emitOpen()
+    else this.emitClose()
   }
 }
 </script>

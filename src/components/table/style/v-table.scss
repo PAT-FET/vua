@@ -1,0 +1,119 @@
+@import "../../../style/mixins/bem.scss";
+@import "../../../style/mixins/elevation.scss";
+@import "../../../style/mixins/misc.scss";
+@import "../../../style/var.scss";
+@import "./mixins.scss";
+
+@include b(v-table) {
+    position: relative;
+    
+    @include e(body) {
+        overflow: auto;
+        position: relative;
+    }
+
+    @include e(table) {
+        border-collapse: separate;
+        border-spacing: 0;
+        text-align: left;
+        border-radius: $border-radius-base $border-radius-base 0 0;
+        table-layout: auto;
+        width: max-content;
+        min-width: 100%;
+
+        &>thead>tr>th {
+            background-color: $table-header-bg;
+            text-align: left;
+            color: $heading-color;
+            font-weight: $font-weight-medium;
+            border-bottom: $border-width-base $border-style-base $border-color-split;
+            &[colspan] {
+                text-align: center;
+            }
+            position: sticky;
+            top: 0;
+        }
+
+        &>thead>tr>th, &>tbody>tr>td {
+            word-break: break-word;
+            border-bottom: $border-width-base $border-style-base $border-color-split;
+
+            // fix column
+            @include table-column-fixed();
+        }
+
+        &>tbody>tr>td {
+            background-color: $bg-color; // for fix column, bg is required
+        }
+
+        &>tbody>tr{
+            transition: all .3s;
+            &:hover {
+                background: map-get($primary-colors, lighten-5);
+                &>td {
+                    background: map-get($primary-colors, lighten-5);
+                }
+            }
+            &.selected {
+                background-color: $table-selected-row-bg;
+                &>td {
+                    background-color: $table-selected-row-bg;
+                }
+            }
+        }
+    }
+
+    @include e(footer) {
+        padding: 1rem 0;
+        text-align: right;
+    }
+
+    // Size
+    @include m(size-lg) {
+        @include e(table) {
+            &>thead>tr>th, &>tbody>tr>td {
+                padding: 1rem;
+            }
+        }
+    }
+
+    @include m(size-md) {
+        @include e(table) {
+            &>thead>tr>th, &>tbody>tr>td {
+                padding: .75rem .5rem;
+            }
+        }
+    }
+
+    @include m(size-sm) {
+        @include e(table) {
+            &>thead>tr>th, &>tbody>tr>td {
+                padding: .5rem .5rem;
+            }
+        }
+    }
+
+    // Bordered
+    @include m(bordered) {
+        @include e(table) {
+            border: $border-width-base $border-style-base $border-color-split;
+            border-right: 0;
+            border-bottom: 0;
+            border-top: 0;
+
+            &>thead>tr:first-child>th { // not to table, fix header has problem
+                border-top: $border-width-base $border-style-base $border-color-split;
+                &:first-child {
+                    border-top-left-radius: $border-radius-base;
+                }
+                &:last-child {
+                    border-top-right-radius: $border-radius-base;
+                }
+            }
+
+            &>thead>tr>th,&>tbody>tr>td{
+                border-right: $border-width-base $border-style-base $border-color-split;
+            }
+        }
+    }
+}

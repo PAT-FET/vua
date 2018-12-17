@@ -1,0 +1,47 @@
+@import "../../../style/mixins/bem.scss";
+@import "../../../style/mixins/elevation.scss";
+@import "../../../style/mixins/misc.scss";
+@import "../../../style/var.scss";
+@import "./mixins.scss";
+
+@include b(v-table-cell) {
+
+    @include e(expand-row-icon) {
+        width: 1rem;
+        height: 1rem;
+        border: .0625rem solid $border-color-base;
+        display: inline-block;
+        position: relative;
+        &:hover {
+            cursor: pointer;
+        }
+        &:after {
+            content: "+";
+            display: block;
+            width: .825rem;
+            line-height: .825rem;
+            position: absolute;
+            text-align: center;
+        }
+        &.expand::after{
+            content: "-";
+        }
+    }
+    
+    @include m(overflow-ellipsis) {
+        display: flex;
+        @include e(content) {
+            flex: auto;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            width: 0;
+        }
+    }
+
+    @include m(overflow-nowrap) {
+        @include e(content) {
+            white-space: nowrap;
+        }
+    }
+}

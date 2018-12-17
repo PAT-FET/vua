@@ -183,6 +183,7 @@
         <v-expand-transition>
             <div class="bg-primary" v-show="expandVisible">
                 <p>不能设定高度，因为使用的是vuetify的源码， 暂时不作改动</p>
+                <p>不要再含有内外补的元素上应用，因为内外补没有过渡处理，会使过渡出现卡顿效果，应该用div包裹后再应用该过渡</p>
                 <div style="height: 180px;"></div>
             </div>
         </v-expand-transition>

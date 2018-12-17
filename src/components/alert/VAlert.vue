@@ -6,7 +6,7 @@
     </div>
     <div :class="[e('content')]">
       <div :class="[e('title')]" v-if="title">{{title}}</div>
-      <div :class="[e('description')]" v-if="description">{{description}}</div>
+      <div :class="[e('description')]" v-if="description+''">{{description}}</div>
     </div>
     <div :class="[e('close')]" v-if="closable" @click="onClose">
       <slot name="close"><i class="anticon anticon-close"></i></slot>
@@ -36,7 +36,7 @@ export default class VAlert extends mixins(Themeable, Bemable) {
 
   @Prop(String) title!: string
 
-  @Prop(String) description!: string
+  @Prop() description!: any
 
   @Prop(Boolean) showIcon!: boolean
 

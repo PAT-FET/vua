@@ -21,7 +21,7 @@ export default {
     {
       name: 'description',
       default: '',
-      type: `string`,
+      type: `any`,
       desc: '描述'
     },
     {

@@ -26,7 +26,7 @@ export default {
     },
     {
       name: 'pageSizeOptions',
-      default: `[10, 20, 30, 40, 50]`,
+      default: `[5, 10, 20, 30, 40, 50]`,
       type: `number[]`,
       desc: '每页条数选项'
     },

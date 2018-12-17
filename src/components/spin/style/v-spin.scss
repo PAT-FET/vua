@@ -31,7 +31,7 @@
       background-color: rgba(255, 255, 255, .7);
       width: 100%;
       height: 100%;
-      max-height: 100vh;
+    //   max-height: 100vh; may have problem in some case
       @include when-dark() {
           background-color: rgba(48, 48, 48, .7);
       }

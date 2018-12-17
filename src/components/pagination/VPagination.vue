@@ -52,7 +52,7 @@ export default class VPagination extends mixins(Themeable, Bemable, Localeable) 
 
   @Prop({type: Number, default: 0}) total!: number
 
-  @Prop({type: Array, default: () => [10, 20, 30, 40, 50]}) pageSizeOptions!: number[]
+  @Prop({type: Array, default: () => [5, 10, 20, 30, 40, 50]}) pageSizeOptions!: number[]
 
   @Prop(Boolean) showTotal!: boolean
 

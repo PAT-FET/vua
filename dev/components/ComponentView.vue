@@ -59,7 +59,7 @@ export default class ComponentView extends Vue {
    }
 
    .content{
-      flex-grow: 1;
-      flex-shrink: 1;
+      flex: auto;
+      width: 0; // 防止子元素撑开父级， 原理尚不清楚
    }
 </style>
