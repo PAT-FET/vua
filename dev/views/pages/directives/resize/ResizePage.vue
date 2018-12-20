@@ -37,7 +37,7 @@ importSourceAll(require.context('!raw-loader!./examples/', true, /\.vue$/))
   components: {
   },
   })
-export default class RipplePage extends Vue {
+export default class ResizePage extends Vue {
     title: string = 'Resize 监听尺寸变化事件'
 
     summary: any = summary

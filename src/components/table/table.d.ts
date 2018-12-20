@@ -37,3 +37,15 @@ export interface TableHeaderColumn {
 }
 
 export type TableColumnOverflow = 'ellipsis' | 'nowrap' | 'wrap'
+
+export interface TableCellCbParam {
+    row: any
+    rowIndex: number
+    column: VTableColumn
+    columnIndex: number
+    [key: string]: any
+}
+
+export interface TableSpanFn {
+    (param: TableCellCbParam): { rowspan: number, colspan: number } | undefined
+}

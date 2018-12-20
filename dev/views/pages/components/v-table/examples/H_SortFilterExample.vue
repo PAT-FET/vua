@@ -140,8 +140,8 @@ export default class SortFilterExample extends Vue {
       value: 42
     },
      {
-      text: '58',
-      value: 58
+      text: '200',
+      value: 200
     }
   ]
 }

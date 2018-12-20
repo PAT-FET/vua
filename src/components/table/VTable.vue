@@ -11,27 +11,35 @@
       <tbody>
         <template v-for="(row, i) in renderedData">
         <tr :key="i" :class="[selectedRowCls(row)]">
-          <td v-for="column in renderedColumns" :key="column.columnIndex" :class="[fixedColumnCls(column)]">
+          <template v-for="(column, j) in renderedColumns">
+          <td :key="column.columnIndex"
+           v-bind="span({row, column, rowIndex: i, columnIndex: j})"
+           v-if="hasSpan({row, column, rowIndex: i, columnIndex: j})"
+           :class="[fixedColumnCls(column)]">
             <v-table-cell v-bind="cellProps(row, column, i)" v-on="cellEvents"></v-table-cell>
           </td>
+          </template>
         </tr>
         <v-table-expand-row v-bind="expandRowProps(row, i)" :key="`expand${i}`" v-if="hasExpandRow"></v-table-expand-row>
         </template>
       </tbody>
       <thead>
          <tr v-for="(row, i) in renderedHeaderColumns" :key="i">
-            <th v-for="col in row" :key="col.column.columnIndex"
+            <template  v-for="col in row">
+            <th :key="col.column.columnIndex"
                 :class="[fixedColumnCls(col.column)]"
                 :style="[resizableHeaderStyle(col.column)]"
-                :colspan="normalSpan(col.col)"
-                :rowspan="normalSpan(col.row)">
+                v-bind="span({undefined, column: col.column, rowIndex: -1, columnIndex: -1, headerColumn: col})"
+                v-if="hasSpan({undefined, column: col.column, rowIndex: -1, columnIndex: -1, headerColumn: col})">
                 <v-table-header-cell v-bind="headerCellProps(col)" v-on="headerCellEvents"></v-table-header-cell>
             </th>
+            </template>
          </tr>
       </thead>
     </table>
+    <div :class="[e('placeholder')]" v-show="!total">{{t('noData')}}</div>
   </div>
-  <div :class="[e('footer')]">
+  <div :class="[e('footer')]" v-if="pageable" v-show="total > 0">
     <v-pagination v-bind="actualPaginationOption" v-if="pageable" :total="total" :current-page.sync="actualCurrentPage" :page-size.sync="actualPageSize"></v-pagination>
   </div>
   <!-- slot -->
@@ -52,7 +60,7 @@ import { VTableColumn } from './index'
 import VTableCell from './widget/VTableCell.vue'
 import VTableHeaderCell from './widget/VTableHeaderCell.vue'
 import VTableExpandRow from './widget/VTableExpandRow.vue'
-import { TableSize, TableHeaderColumn, TableColumnSelectionCb } from '@/components/table/table'
+import { TableSize, TableHeaderColumn, TableColumnSelectionCb, TableSpanFn, TableCellCbParam } from '@/components/table/table'
 import { VPagination } from '../pagination'
 import { Loading } from '@/directives'
 import { ReactiveSet } from '@/utils/collection'
@@ -81,6 +89,8 @@ export default class VTable extends mixins(Themeable, Bemable, Localeable, Group
   @Prop() paginationOption!: any
 
   @Prop(Boolean) loading!: boolean
+
+  @Prop([Function]) spanFn!: TableSpanFn
 
   // overwrite
   groupNames: string[] = ['v-table-column']
@@ -246,6 +256,36 @@ export default class VTable extends mixins(Themeable, Bemable, Localeable, Group
 
   normalSpan (span: number) {
     return span > 1 ? span : undefined
+  }
+
+  span ({ row, column, columnIndex, rowIndex, headerColumn }: TableCellCbParam) {
+    if (!this.spanFn) {
+      if (rowIndex === -1) {
+        return {
+          rowspan: this.normalSpan(headerColumn.row),
+          colspan: this.normalSpan(headerColumn.col)
+        }
+      }
+      return undefined
+    }
+    let rowspan = 1
+    let colspan = 1
+    let ret = this.spanFn({ row, column, columnIndex, rowIndex })
+    if (!ret) {
+      if (rowIndex === -1) {
+        return {
+          rowspan: this.normalSpan(headerColumn.row),
+          colspan: this.normalSpan(headerColumn.col)
+        }
+      }
+      return undefined
+    }
+    return ret
+  }
+
+  hasSpan (param: TableCellCbParam): boolean {
+    let ret = this.span(param) as any
+    return !ret || (ret.rowspan !== 0 && ret.colspan !== 0)
   }
 
   fixedColumnCls (column: VTableColumn) {

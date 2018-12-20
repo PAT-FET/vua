@@ -68,6 +68,14 @@
         text-align: right;
     }
 
+    @include e(placeholder) {
+        padding: 1rem;
+        border-bottom: 1px solid $border-color-base;
+        text-align: center;
+        color: $text-color-secondary;
+        font-size: 14px;
+    }
+
     // Size
     @include m(size-lg) {
         @include e(table) {

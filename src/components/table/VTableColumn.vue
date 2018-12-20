@@ -37,8 +37,6 @@ export default class VTableColumn extends mixins(Themeable, Bemable, Localeable,
 
     @Prop([Boolean]) sortable!: boolean
 
-    @Prop([Boolean]) singleLine!: boolean
-
     @Prop(Array) filters!: TableColumnFilter[]
 
     @Prop({type: String, default: 'wrap'}) overflow!: TableColumnOverflow
