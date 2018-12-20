@@ -1,0 +1,20 @@
+@import "../../../style/var.scss";
+@import "../../../style/mixins/misc.scss";
+@import "../../../style/mixins/elevation.scss";
+@import "../../../style/mixins/icon.scss";
+@import "./var.scss";
+
+@mixin table-column-fixed () {
+    &.fixed-left {
+        position: sticky;
+        z-index: 1;
+        left: 0;
+        box-shadow: 2px 0 8px $border-color-split;
+    }
+    &.fixed-right {
+        position: sticky;
+        z-index: 1;
+        right: 0;
+        box-shadow: -2px 0 8px $border-color-split;
+    }
+}
