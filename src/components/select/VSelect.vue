@@ -68,6 +68,7 @@ import Select from '@/mixins/Select'
 import { SelectSize, SelectValue, SelectFilterFn, SelectSearchFn, SelectItem, GroupedSelectItem } from './select'
 import { VInput, VPopper, VOption, VOptionGroup } from '../index'
 import Localeable from '@/mixins/Localeable'
+import { fireEvent } from '@/utils/dom'
 
 @Component({
   components: {
@@ -113,7 +114,13 @@ export default class VSelect extends mixins(Themeable, Bemable, Group, Localeabl
 
   activeValue: string = ''
 
-  @Emit() input (value: SelectValue) {}
+  @Emit() input (value: SelectValue) {
+    this.change(value)
+  }
+
+  @Emit() change (value: SelectValue) {
+    fireEvent(this.$el, 'change') // for form to listen
+  }
 
   get options () {
     return {
