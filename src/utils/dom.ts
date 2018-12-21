@@ -14,7 +14,7 @@ export function getUnitRem (): number {
 }
 
 export function fireEvent (el: HTMLElement, event: string) {
-  var evt = document.createEvent("HTMLEvents");
-  evt.initEvent(event, true, true);
-  el.dispatchEvent(evt);
+  var evt = document.createEvent('HTMLEvents')
+  evt.initEvent(event, true, true)
+  el.dispatchEvent(evt)
 }

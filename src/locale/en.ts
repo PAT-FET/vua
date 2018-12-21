@@ -27,7 +27,7 @@ export default {
       required: '{0} is required',
       isNumber: '{0} must be a number',
       betweenNumber: '{0} must between {1} and {2}',
-      length: '{0} length must between {1} and {2}',
+      length: '{0} length must between {1} and {2}'
     }
   }
 }

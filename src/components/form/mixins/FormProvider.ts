@@ -63,19 +63,18 @@ export default class FormProvider extends mixins(Group) {
     let all = this.fields.map(v => {
       return v.validate()
     })
-    const data = await Promise.all(all);
+    const data = await Promise.all(all)
     let ret: FormValidateResult = {
       valid: false,
       errors: {}
-    };
+    }
     data.forEach(v => {
       if (!v.valid) {
-        ret.valid = false;
-        if (v.prop)
-          ret.errors[v.prop] = v.errors;
+        ret.valid = false
+        if (v.prop) { ret.errors[v.prop] = v.errors }
       }
-    });
-    return Promise.resolve(ret);
+    })
+    return Promise.resolve(ret)
   }
 
   clearValidate () {

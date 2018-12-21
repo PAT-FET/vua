@@ -8,8 +8,10 @@
       <slot></slot>
     </div>
     <div :class="[e('message'), messageStatusCls]" >
-      <i class="anticon mr-2" :class="[iconCls]" v-show="iconCls"></i>
-      <span v-show="actualShowMessage">{{actualMessage}}</span>
+      <span v-show="actualShowMessage">
+        <i class="anticon mr-2" :class="[iconCls]" v-show="iconCls"></i>
+        <span>{{actualMessage}}</span>
+      </span>
     </div>
   </div>
 </div>

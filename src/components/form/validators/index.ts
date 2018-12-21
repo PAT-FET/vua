@@ -1,12 +1,12 @@
 import { FormRuleValidator } from '../form'
-import Vue from 'vue';
+import Vue from 'vue'
 
 function emptyValue (value: any): boolean {
   return value === undefined || value === null || value === ''
 }
 
-function getMessage(path: string, ...params: Array<string | number>): string {
-    return Vue.prototype.$vua.lang.t(path, ...params)
+function getMessage (path: string, ...params: Array<string | number>): string {
+  return Vue.prototype.$vua.lang.t(path, ...params)
 }
 
 const requiredValidator: FormRuleValidator = ({ prop, message }, value) => {

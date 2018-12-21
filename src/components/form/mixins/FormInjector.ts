@@ -23,7 +23,7 @@ export default class FormInjector extends mixins(Groupable) {
 
   @Prop(String) message!: string
 
-  @Prop() feedback!: boolean
+  // @Prop() feedback!: boolean
 
   @Inject() getModel!: () => any
 
@@ -74,8 +74,8 @@ export default class FormInjector extends mixins(Groupable) {
   }
 
   get actualMessage (): string {
-    return this.message || (this.errors[0] && this.errors[0].message) || 
-      (this.actualValidateStatus === 'validating' && this.validatingMessage || '')
+    return this.message || (this.errors[0] && this.errors[0].message) ||
+      ((this.actualValidateStatus === 'validating' && this.validatingMessage) || '')
   }
 
   get actualValidateStatus (): FormValidateStatus {
@@ -114,7 +114,7 @@ export default class FormInjector extends mixins(Groupable) {
       let rule = Object.assign({ prop: this.prop }, v)
       return this.normalizeValidatorResult(this.resolveValidator(v.validator)(rule, this.value))
     })
-    const errors = await Promise.all(all);
+    const errors = await Promise.all(all)
     result.errors = (errors.filter(v => !!v) as FormValidateError[])
     if (result.errors.length < 1) result.valid = true
     this.setValidate(result)
@@ -139,7 +139,7 @@ export default class FormInjector extends mixins(Groupable) {
   }
 
   // convert error to FormValidateError, success to null
-  normalizeValidatorResult(ret: Promise<any>): Promise<FormValidateError | null> {
+  normalizeValidatorResult (ret: Promise<any>): Promise<FormValidateError | null> {
     return ret.then(() => {
       return Promise.resolve(null)
     }).catch((err: Error) => {

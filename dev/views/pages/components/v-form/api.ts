@@ -1,88 +1,137 @@
-const checkbox = {
+const form = {
   props: [
     {
-      name: 'value',
+      name: 'model',
       default: '',
-      type: `number | string | booean`,
-      desc: '单选框值， 可使用v-model'
+      type: `object`,
+      desc: '表单数据对象'
     },
     {
-      name: 'label',
+      name: 'labelPosition',
+      default: `'right'`,
+      type: `'top' | 'left' | 'right'`,
+      desc: '表单域标签的位置'
+    },
+    {
+      name: 'labelWidth',
+      default: '',
+      type: 'string',
+      desc: '表单域标签的宽度'
+    },
+    {
+      name: 'layout',
+      default: `'vertical'`,
+      type: `'horizontal' | 'vertical'`,
+      desc: '表单布局'
+    },
+    {
+      name: 'showMessage',
       default: ``,
-      type: `number | string | boolean`,
-      desc: '单选框绑定值'
+      type: `boolean`,
+      desc: '是否显示提示消息'
     },
     {
-      name: 'disabled',
-      default: '',
-      type: 'boolean',
-      desc: '禁用'
+      name: 'rules',
+      default: ``,
+      type: `object`,
+      desc: '表单校验规则'
+    }
+  ],
+  methods: [
+    {
+      name: 'validate',
+      params: ``,
+      returnVal: `Promise<FormValidateResult>`,
+      desc: '表单校验方法'
     },
     {
-      name: 'indeterminate',
-      default: '',
-      type: 'boolean',
-      desc: '半选状态'
+      name: 'clearValidate',
+      params: ``,
+      returnVal: ``,
+      desc: '清除校验'
+    },
+    {
+      name: 'resetFields',
+      params: ``,
+      returnVal: ``,
+      desc: '重置表单'
     }
   ]
 }
 
-const checkboxButton = {
+const formItem = {
   props: [
-    {
-      name: 'value',
-      default: '',
-      type: `number | string | booean`,
-      desc: '复选按钮值， 可使用v-model'
-    },
     {
       name: 'label',
       default: ``,
-      type: `number | string | boolean`,
-      desc: '复选按钮绑定值'
-    },
-    {
-      name: 'disabled',
-      default: '',
-      type: 'boolean',
-      desc: '禁用'
-    },
-    {
-      name: 'activeFill',
-      default: '',
       type: `string`,
-      desc: '激活时按钮填充色'
+      desc: '表单域标签'
     },
     {
-      name: 'activeColor',
+      name: 'labelPosition',
+      default: `'right'`,
+      type: `'top' | 'left' | 'right'`,
+      desc: '表单域标签的位置'
+    },
+    {
+      name: 'labelWidth',
       default: '',
-      type: `string`,
-      desc: '激活时按钮文字色'
+      type: 'string',
+      desc: '表单域标签的宽度'
+    },
+    {
+      name: 'showMessage',
+      default: ``,
+      type: `boolean`,
+      desc: '是否显示提示消息'
+    },
+    {
+      name: 'rules',
+      default: ``,
+      type: `object`,
+      desc: '表单域校验规则'
+    },
+    {
+      name: 'validateStatus',
+      default: `'unvalid'`,
+      type: `'valid' | 'invalid' | 'warning' | 'validating' | 'unvalid'`,
+      desc: '表单域校验状态， 主要用于自定义状态'
+    },
+    {
+      name: 'message',
+      default: ``,
+      type: `object`,
+      desc: '表单域校验提示消息，主要用于自定义消息'
     }
-  ]
-}
-
-const checkboxGroup = {
-  props: [
+  ],
+  methods: [
     {
-      name: 'value',
-      default: '',
-      type: `number[] | string[] | booean[]`,
-      desc: '复选组值， 可使用v-model'
+      name: 'validate',
+      params: ``,
+      returnVal: `Promise<FormFieldValidateResult>`,
+      desc: '表单域校验方法'
+    },
+    {
+      name: 'clearValidate',
+      params: ``,
+      returnVal: ``,
+      desc: '清除表单域校验'
+    },
+    {
+      name: 'resetField',
+      params: ``,
+      returnVal: ``,
+      desc: '重置表单域'
     }
   ]
 }
 
 export default [
   {
-    name: 'Checkbox API',
-    content: checkbox
+    name: 'Form API',
+    content: form
   },
   {
-    name: 'CheckboxButton API',
-    content: checkboxButton
-  },
-  {
-    name: 'CheckboxGroup API',
-    content: checkboxGroup
+    name: 'FormItem API',
+    content: formItem
   }]
