@@ -10,8 +10,7 @@
           @change="onChange"
           @focus="focus()"
           @blur="blur()"
-          v-bind="$attrs"
-          type="text">
+          v-bind="$attrs">
           <div :class="[e('prefix')]" v-if="hasPrefix"><slot name="prefix"><i class="anticon" :class="[`anticon-${prefix}`]"></i></slot></div>
           <div :class="[e('suffix')]" v-if="hasSuffix"><slot name="suffix"><i class="anticon" :class="[`anticon-${suffix}`]"></i></slot></div>
           <div :class="[e('clear')]" v-if="hasClear" @click.stop="onClear"><i class="anticon anticon-close-circle"></i></div>

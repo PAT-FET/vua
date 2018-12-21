@@ -21,5 +21,13 @@ export default {
     goto: '跳至',
     page: '页',
     totalText: '总共 {0} 条'
+  },
+  form: {
+    validator: {
+      required: '{0} 为必填项',
+      isNumber: '{0} 必须是一个数字',
+      betweenNumber: '{0} 必须在 {1} 与 {2} 之间',
+      length: '{0} 的长度必须在 {1} 与 {2} 之间'
+    }
   }
 }

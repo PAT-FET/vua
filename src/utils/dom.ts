@@ -12,3 +12,9 @@ export function getUnitRem (): number {
   }
   return 0
 }
+
+export function fireEvent (el: HTMLElement, event: string) {
+  var evt = document.createEvent('HTMLEvents')
+  evt.initEvent(event, true, true)
+  el.dispatchEvent(evt)
+}

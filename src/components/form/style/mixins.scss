@@ -1,0 +1,23 @@
+@import "../../../style/var.scss";
+@import "../../../style/mixins/misc.scss";
+@import "../../../style/mixins/elevation.scss";
+@import "./var.scss";
+
+
+@mixin label-horizontal ($left: false) {
+    @include e(label) {
+        display: inline-block;
+        vertical-align: top;
+
+        @if $left {
+            text-align: left;
+        } @else {
+            text-align: right;
+        }
+    }
+
+    @include e(content) {
+        display: inline-block;
+        vertical-align: top;
+    }
+}

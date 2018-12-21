@@ -6,6 +6,7 @@
 
 @include b(v-radio-group) {
     display: inline-block;
+    line-height: 2rem;
 
     .v-button {
         @include group-children();
