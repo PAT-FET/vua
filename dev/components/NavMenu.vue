@@ -1,6 +1,7 @@
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator'
 import { CreateElement, VNodeData, VNode } from 'vue'
+import { generateGroups } from './menu-info'
 
 @Component({
   components: {
@@ -17,7 +18,21 @@ export default class NavMenu extends Vue {
       let children = list.map(v => {
         let childNodes = null
         if (v.children) {
-          childNodes = h('v-sub-menu', {}, [h('span', { slot: 'title' }, v.name), ...this.icon(h, v.name), this.generateList(h, v.children)])
+          if (v.name === 'components') {
+            let groups: any[] = generateGroups(v.children)
+            let menuGroups = groups.map(group => {
+              let items = group.children.map((item: any) => {
+                return h('v-menu-item', { props: { index: item.path }, 'nativeOn': { click: () => this.link(item.path) } }, item.title)
+              })
+              return h('v-menu-group', {}, [
+                h('span', { slot: 'title' }, group.title),
+                ...items
+              ])
+            })
+            childNodes = h('v-sub-menu', {}, [h('span', { slot: 'title' }, v.name), ...this.icon(h, v.name), ...menuGroups])
+          } else {
+            childNodes = h('v-sub-menu', {}, [h('span', { slot: 'title' }, v.name), ...this.icon(h, v.name), this.generateList(h, v.children)])
+          }
         } else {
           childNodes = h('v-menu-item', { props: { index: v.path }, 'nativeOn': { click: () => this.link(v.path) } }, v.name)
         }
