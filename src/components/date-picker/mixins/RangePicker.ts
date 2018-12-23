@@ -2,6 +2,7 @@ import { Component, Vue, Prop, Emit, Watch, Model, Provide } from 'vue-property-
 import { mixins } from 'vue-class-component'
 import Picker from './Picker'
 import { PickerDisabledTimeFunc } from '../date-picker'
+import { fireEvent } from '@/utils/dom'
 
 @Component
 export default class DatePicker extends mixins(Picker) {
@@ -11,7 +12,13 @@ export default class DatePicker extends mixins(Picker) {
 
   @Prop(Function) disabledTime!: PickerDisabledTimeFunc
 
-  @Emit() input (input: string[]) { }
+  @Emit() input (input: string[]) {
+    this.change(input)
+  }
+
+  @Emit() change (input: string[]) {
+    fireEvent(this.$el, 'change')
+  }
 
   localModel: string[] = []
 

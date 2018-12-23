@@ -38,8 +38,8 @@ importSourceAll(require.context('!raw-loader!./examples/', true, /\.vue$/))
   components: {
   },
   })
-export default class VButtonPage extends Vue {
-    title: string = 'Button 按钮'
+export default class VFormPage extends Vue {
+    title: string = 'Form 表单'
 
     summary: any = summary
 

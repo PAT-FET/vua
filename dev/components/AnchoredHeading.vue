@@ -15,8 +15,8 @@ export default class AnchoredHeading extends Vue {
   id: string = generateAnchorId()
 
   render (h: any) {
-    const anchor = h('a', { on: { click: this.link } }, '# ')
-    return h(`h${this.level}`, { attrs: { id: this.id } }, [anchor, this.$slots.default])
+    const anchor = h('a', { class: [this.$style.anchor], on: { click: this.link } }, '# ')
+    return h(`h${this.level}`, { attrs: { id: this.id } }, [this.$slots.default, anchor])
   }
 
   link () {
@@ -33,4 +33,13 @@ export default class AnchoredHeading extends Vue {
 </script>
 
 <style lang="scss" module>
+.anchor {
+  margin-left: 5px;
+  opacity: 0;
+  transition: all .3s;
+  &:hover {
+    opacity: 1;
+  }
+}
+
 </style>

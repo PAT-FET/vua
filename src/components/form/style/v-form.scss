@@ -4,11 +4,6 @@
 @import "../../../style/var.scss";
 @import "./mixins.scss";
 
-@include b(v-checkbox-group) {
-    display: inline-block;
-    line-height: 2rem;
-
-    .v-button {
-        @include group-children();
-    }
+@include b(v-form) {
+    
 }
