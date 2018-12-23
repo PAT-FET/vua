@@ -39,7 +39,7 @@ importSourceAll(require.context('!raw-loader!./examples/', true, /\.vue$/))
   },
   })
 export default class VButtonPage extends Vue {
-    title: string = 'VButton 按钮'
+    title: string = 'Button 按钮'
 
     summary: any = summary
 
