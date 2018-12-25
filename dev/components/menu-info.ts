@@ -141,6 +141,10 @@ const components: any = {
   VTable: {
     title: 'Table 表格',
     group: 'dataDisplay'
+  },
+  VTree: {
+    title: 'Tree 树形控件',
+    group: 'dataDisplay'
   }
 }
 
