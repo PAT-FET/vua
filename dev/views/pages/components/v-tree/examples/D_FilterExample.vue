@@ -1,35 +1,28 @@
 <template>
 <div>
   <div class="my-3">
-    <v-checkbox v-model="accordion">手风琴模式</v-checkbox>
-
-    <v-checkbox v-model="checkable">可选择</v-checkbox>
-
-    <v-button class="ml-2" color="primary" @click="expandAll">展开/收起全部</v-button>
+    <v-input v-model="value" placeholder="search"></v-input>
   </div>
   <div class="my-3">
-    <v-tree node-key="key" :data-source="dataSource" :accordion="accordion" :checkable="checkable" ref="tree"></v-tree>
+    <v-tree node-key="key" default-expand-all :data-source="dataSource" :filter-fn="filterFn" ref="tree"></v-tree>
   </div>
 </div>
 </template>
 <script lang="ts">
 import { Component, Vue, Watch } from 'vue-property-decorator'
 import { VForm, VTree } from 'src'
+import { TreeNodeFilterFn } from '@/mixins/tree-iterable/type'
 
 /**
- * @title   基本示例
- * @desc 基本示例。
+ * @title 可搜索
+ * @desc 可搜索的树。
  */
 @Component({
   components: {
   },
   })
-export default class BasicExample extends Vue {
-  accordion: boolean = false
-
-  checkable: boolean = false
-
-  expand: boolean = false
+export default class FilterExample extends Vue {
+  value: string = ''
 
   dataSource = [{
     key: '1',
@@ -82,9 +75,13 @@ export default class BasicExample extends Vue {
     }]
   }]
 
-  expandAll () {
-    this.expand = !this.expand
-    this.$refs.tree.expandAll(this.expand)
+  filterFn: TreeNodeFilterFn = ({node, value}) => {
+    if (!value) return true
+    return node.data.label.indexOf(value) !== -1
+  }
+
+  @Watch('value') valueChange (value: any) {
+    this.$refs.tree.filter(value)
   }
 
   $refs!: {

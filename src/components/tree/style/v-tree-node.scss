@@ -15,16 +15,22 @@
         cursor: pointer;
         font-size: $font-size-sm;
         color: $text-color-secondary;
+        padding: .25rem 0;
         &>i{
             transition: all .3s;
             transform: scale(.83);
         }
-        &.is-expand>i {
+        &.is-expand>i.is-dedault {
             transform: scale(.83) rotate(90deg);
         }
-        &.is-leaf {
+        &.is-leaf>i.is-dedault {
             opacity: 0;
         }
+    }
+
+    @include e(checkbox) {
+        display: inline-block;
+        margin-left:  -0.5rem;
     }
 
     @include e(text) {
@@ -37,6 +43,9 @@
         cursor: pointer;
         &:hover {
             background-color: map-get($primary-colors, lighten-5);  
+        }
+        &.is-current {
+            background-color: map-get($primary-colors, lighten-5);
         }
     }
 

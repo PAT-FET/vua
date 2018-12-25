@@ -1,14 +1,10 @@
 <template>
 <div>
   <div class="my-3">
-    <v-checkbox v-model="accordion">手风琴模式</v-checkbox>
-
-    <v-checkbox v-model="checkable">可选择</v-checkbox>
-
-    <v-button class="ml-2" color="primary" @click="expandAll">展开/收起全部</v-button>
+    <v-button color="primary" @click="select">选中 1-1、2-1</v-button>
   </div>
   <div class="my-3">
-    <v-tree node-key="key" :data-source="dataSource" :accordion="accordion" :checkable="checkable" ref="tree"></v-tree>
+    <v-tree node-key="key" checkable :data-source="dataSource" ref="tree"></v-tree>
   </div>
 </div>
 </template>
@@ -17,20 +13,14 @@ import { Component, Vue, Watch } from 'vue-property-decorator'
 import { VForm, VTree } from 'src'
 
 /**
- * @title   基本示例
- * @desc 基本示例。
+ * @title  可选择
+ * @desc 树节点的选择。
  */
 @Component({
   components: {
   },
   })
 export default class BasicExample extends Vue {
-  accordion: boolean = false
-
-  checkable: boolean = false
-
-  expand: boolean = false
-
   dataSource = [{
     key: '1',
     label: '一级 1',
@@ -82,9 +72,8 @@ export default class BasicExample extends Vue {
     }]
   }]
 
-  expandAll () {
-    this.expand = !this.expand
-    this.$refs.tree.expandAll(this.expand)
+  select () {
+    this.$refs.tree.setCheckedKeys(['1-1', '2-1'])
   }
 
   $refs!: {

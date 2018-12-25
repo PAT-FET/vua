@@ -1,137 +1,119 @@
-const form = {
+const treeIterable = {
   props: [
     {
-      name: 'model',
+      name: 'dataSource',
       default: '',
-      type: `object`,
-      desc: '表单数据对象'
+      type: `any[]`,
+      desc: '数据源'
     },
     {
-      name: 'labelPosition',
-      default: `'right'`,
-      type: `'top' | 'left' | 'right'`,
-      desc: '表单域标签的位置'
+      name: 'props',
+      default: ``,
+      type: `{label, children, disabled, isLeaf}`,
+      desc: '用于指定数据相应的属性'
     },
     {
-      name: 'labelWidth',
+      name: 'nodeKey',
       default: '',
       type: 'string',
-      desc: '表单域标签的宽度'
+      desc: '用于指定标识符字段， 数据都应该指定该属性， 并保持唯一'
     },
     {
-      name: 'layout',
-      default: `'vertical'`,
-      type: `'horizontal' | 'vertical'`,
-      desc: '表单布局'
-    },
-    {
-      name: 'showMessage',
+      name: 'accordion',
       default: ``,
       type: `boolean`,
-      desc: '是否显示提示消息'
+      desc: '手风琴模式，是否同级同时只能打开一个'
     },
     {
-      name: 'rules',
+      name: 'checkable',
       default: ``,
-      type: `object`,
-      desc: '表单校验规则'
+      type: `boolean`,
+      desc: '是否可选择'
+    },
+    {
+      name: 'lazy',
+      default: ``,
+      type: `boolean`,
+      desc: '是否是懒加载，需要配合 loadFn 使用'
+    },
+    {
+      name: 'loadFn',
+      default: ``,
+      type: `TreeNodeLoadFn`,
+      desc: '懒加载函数'
+    },
+    {
+      name: 'filterFn',
+      default: ``,
+      type: `TreeNodeFilterFn`,
+      desc: '过滤函数， 调用组件的filter方法时将调用该函数'
     }
   ],
   methods: [
     {
-      name: 'validate',
-      params: ``,
-      returnVal: `Promise<FormValidateResult>`,
-      desc: '表单校验方法'
+      name: 'expandAll',
+      params: `expand: boolean`,
+      returnVal: ``,
+      desc: '展开/收起'
     },
     {
-      name: 'clearValidate',
+      name: 'getCheckedNodes',
       params: ``,
-      returnVal: ``,
-      desc: '清除校验'
+      returnVal: `Node[]`,
+      desc: '获取选择的节点'
     },
     {
-      name: 'resetFields',
+      name: 'getCheckedKeys',
       params: ``,
+      returnVal: `Array<string | number>`,
+      desc: '获取选择的key值'
+    },
+    {
+      name: 'setCheckedNodes',
+      params: `nodes: Node[]`,
       returnVal: ``,
-      desc: '重置表单'
+      desc: '设置选择的节点'
+    },
+    {
+      name: 'setCheckedKeys',
+      params: `keys: Array<string | number>`,
+      returnVal: ``,
+      desc: '获取选择的key值'
+    },
+    {
+      name: 'filter',
+      params: `value: any`,
+      returnVal: `boolean`,
+      desc: '过滤函数'
     }
   ]
 }
 
-const formItem = {
+const tree = {
   props: [
     {
-      name: 'label',
-      default: ``,
-      type: `string`,
-      desc: '表单域标签'
-    },
-    {
-      name: 'labelPosition',
-      default: `'right'`,
-      type: `'top' | 'left' | 'right'`,
-      desc: '表单域标签的位置'
-    },
-    {
-      name: 'labelWidth',
-      default: '',
-      type: 'string',
-      desc: '表单域标签的宽度'
-    },
-    {
-      name: 'showMessage',
+      name: 'defaultExpandAll',
       default: ``,
       type: `boolean`,
-      desc: '是否显示提示消息'
+      desc: '是否默认展开'
     },
-    {
-      name: 'rules',
-      default: ``,
-      type: `object`,
-      desc: '表单域校验规则'
-    },
-    {
-      name: 'validateStatus',
-      default: `'unvalid'`,
-      type: `'valid' | 'invalid' | 'warning' | 'validating' | 'unvalid'`,
-      desc: '表单域校验状态， 主要用于自定义状态'
-    },
-    {
-      name: 'message',
-      default: ``,
-      type: `object`,
-      desc: '表单域校验提示消息，主要用于自定义消息'
-    }
+    ...treeIterable.props
   ],
   methods: [
+    ...treeIterable.methods
+  ],
+  scopedSlots: [
     {
-      name: 'validate',
-      params: ``,
-      returnVal: `Promise<FormFieldValidateResult>`,
-      desc: '表单域校验方法'
+      name: 'indicator',
+      value: `{node: Node}}`,
+      desc: '自定义指示器内容'
     },
     {
-      name: 'clearValidate',
-      params: ``,
-      returnVal: ``,
-      desc: '清除表单域校验'
-    },
-    {
-      name: 'resetField',
-      params: ``,
-      returnVal: ``,
-      desc: '重置表单域'
+      name: 'content',
+      value: `{node: Node}}`,
+      desc: '自定义文字内容'
     }
   ]
 }
 
-export default [
-  {
-    name: 'Form API',
-    content: form
-  },
-  {
-    name: 'FormItem API',
-    content: formItem
-  }]
+export default tree

@@ -4,14 +4,17 @@ import { mixins } from 'vue-class-component'
 import Themeable from '@/mixins/Themeable'
 import Bemable from '@/mixins/Bemable'
 import TreeIterable from '@/mixins/tree-iterable'
+import { TreeNodeLoadFn } from '@/mixins/tree-iterable/type'
 import { CreateElement, VNode } from 'vue'
 import Node from '@/mixins/tree-iterable/Node'
 import { VExpandTransition } from '../../transitions/index'
 import { VCheckbox } from '../../checkbox/index'
+import { VTree } from '../index'
 
 @Component({
   components: {
-  VExpandTransition
+  VExpandTransition,
+  VCheckbox
   },
   name: 'v-tree-node'
   })
@@ -26,30 +29,53 @@ export default class VTreeNode extends mixins(Themeable, Bemable) {
 
   @Inject() resolveDataDisabled!: (data: any) => boolean
 
-  @Inject() isNodeExpand!: (node: Node) => boolean
-
-  @Inject() expandNode!: (node: Node, expand?: boolean) => void
-
-  @Inject() isNodeSelected!: (node: Node) => boolean
-
-  @Inject() isNodeHalfSelected!: (node: Node) => boolean
-
-  @Inject() selectNode!: (node: Node, selected?: boolean) => void
-
-  @Inject() isLeafNode!: (node: Node) => boolean
-
   @Inject() getCheckable!: () => boolean
+
+  @Inject() getlazy!: () => boolean
+
+  @Inject() getLoadFn!: () => TreeNodeLoadFn
+
+  @Inject() getTree!: () => VTree
+
+  loading: boolean = false
+
+  loaded: boolean = false
 
   get checkable (): boolean {
     return this.getCheckable()
   }
 
   get expand (): boolean {
-    return this.isNodeExpand(this.node)
+    return this.node.expand
   }
 
   get isLeaf (): boolean {
-    return this.isLeafNode(this.node)
+    let a = this.loaded // just dependence
+    return this.node.isLeaf
+  }
+
+  get selected (): boolean {
+    return this.node.checked
+  }
+
+  get indeterminate (): boolean {
+    return this.node.indeterminate
+  }
+
+  get lazy (): boolean {
+    return this.getlazy()
+  }
+
+  get loadFn (): TreeNodeLoadFn {
+    return this.getLoadFn()
+  }
+
+  get isCurrent (): boolean {
+    return this.node.store.currentNodeKey === this.node.key
+  }
+
+  get visible (): boolean {
+    return this.node.visible
   }
 
   get expandCls () {
@@ -60,11 +86,45 @@ export default class VTreeNode extends mixins(Themeable, Bemable) {
     return this.isLeaf ? 'is-leaf': ''
   }
 
-  onExpand () {
-    this.expandNode(this.node)
+  get isCurrentCls () {
+    return this.isCurrent ? 'is-current' : ''
   }
 
-  render (h: CreateElement): VNode {
+  onExpand () {
+    if (this.lazy && !this.node.loaded && this.loadFn && !this.loading && !this.isLeaf) {
+      this.loading = true
+      this.node.loading = true
+      this.loadFn({ node: this.node }, (data: any[] | Error) => {
+        if (data instanceof Error) {
+          // nothing
+        } else {
+          this.node.loaded = true
+          this.loaded = true
+          this.node.insertChild(data as any[], 0)
+          this.$nextTick().then(() => {
+            this.node.expandNode()
+          })
+        }
+        this.loading = false
+        this.node.loading = false
+      })
+    } else {
+      this.node.expandNode()
+    }
+  }
+
+  onSelect (selected: boolean) {
+    this.node.selectNode(selected)
+  }
+
+  onTextClick () {
+    this.node.store.currentNodeKey = this.node.key
+  }
+
+  render (h: CreateElement): VNode| null {
+    if (!this.visible) {
+      return null
+    }
     let children = this.node.children.map(v => {
       let data = {
         props: {
@@ -92,7 +152,7 @@ export default class VTreeNode extends mixins(Themeable, Bemable) {
         h('ul', wrapData, children)
       ])
     }
-    return h('li', { class: [this.b()] }, [this.renderIndicator(h), this.renderText(h), wrap as VNode])
+    return h('li', { class: [this.b()] }, [this.renderIndicator(h), this.renderCheckbox(h), this.renderText(h), wrap as VNode])
   }
 
   renderIndicator (h: CreateElement) {
@@ -102,21 +162,51 @@ export default class VTreeNode extends mixins(Themeable, Bemable) {
         click: this.onExpand
       }
     }
-    return h('span', data, [h('i', { class: ['anticon', 'anticon-caret-right'] })])
+    let icon = this.loading ? 'anticon-loading anticon-spin' : 'anticon-caret-right'
+    let iconNode = null
+    let indicatorSlot = this.getTree().$scopedSlots.indicator
+    if (indicatorSlot) {
+      iconNode = indicatorSlot({
+        node: this.node
+      })
+    } else {
+      iconNode = [h('i', { class: ['anticon', 'is-dedault', icon] })]
+    }
+    return h('span', data, [iconNode])
   }
 
-  renderCheckbox (h: CreateElement) {
+  renderCheckbox (h: CreateElement): VNode {
+    if (!this.checkable) return h('span')
     let data = {
-      class: [this.e('checkbox'), this.expandCls, this.isLeafCls],
+      props: {
+        value: this.selected,
+        indeterminate: this.indeterminate,
+        disabled: this.node.disabled
+      },
       on: {
-        click: this.onExpand
+        input: this.onSelect
       }
     }
-    return h('span', data, [h('i', { class: ['anticon', 'anticon-caret-right'] })])
+    return h('span', { class: [this.e('checkbox')] }, [h('v-checkbox', data)])
   }
 
   renderText (h: CreateElement) {
-    return h('span', { class: [this.e('text')] }, this.resolveDataLabel(this.node.data))
+    let data = {
+      class: [this.e('text'), this.isCurrentCls],
+      on: {
+        click: this.onTextClick
+      }
+    }
+    let contentSlot = this.getTree().$scopedSlots.content
+    let contentNode
+    if (contentSlot) {
+      contentNode = contentSlot({
+        node: this.node
+      })
+    } else {
+      contentNode = h('span', this.resolveDataLabel(this.node.data))
+    }
+    return h('span', data, [contentNode])
   }
 }
 </script>

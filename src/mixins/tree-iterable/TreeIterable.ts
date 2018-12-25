@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Component from 'vue-class-component'
 import { Prop, Emit, Watch, Provide } from 'vue-property-decorator'
-import { TreeProps } from './type'
+import { TreeProps, TreeNodeLoadFn, TreeNodeFilterFn } from './type'
 import Node from './Node'
 import ReactiveSet from '../../utils/collection/ReactiveSet'
 
@@ -24,11 +24,21 @@ export default class TreeIterable extends Vue {
 
   @Prop(Boolean) checkable!: boolean
 
+  @Prop(Boolean) lazy!: boolean
+
+  @Prop(Function) loadFn!: TreeNodeLoadFn
+
+  @Prop(Function) filterFn!: TreeNodeFilterFn
+
   currentNodeKey: number | string = ''
+
+  nodeMap = new Map<string | number, Node>()
 
   expandNodeKeySet = new ReactiveSet < string | number >()
 
   selectedNodeKeySet = new ReactiveSet<string | number>()
+
+  filterNodeKeySet = new ReactiveSet<string | number>()
 
   // root node
   get root (): Node {
@@ -43,11 +53,8 @@ export default class TreeIterable extends Vue {
   }
 
   get randeredData (): any[] {
-    // TODO
     return this.dataSource || []
   }
-
-  nodeMap = new Map<string| number, Node> ()
 
   addNode (node: Node) {
     this.nodeMap.set(this.resolveNodeKey(node), node)
@@ -56,8 +63,6 @@ export default class TreeIterable extends Vue {
   removeNode (node: Node) {
     this.nodeMap.delete(this.resolveNodeKey(node))
   }
-
-  // @Provide
 
   @Provide() resolveNodeKey (node: any): number | string {
     return node.data[this.nodeKey] || node.id
@@ -68,70 +73,74 @@ export default class TreeIterable extends Vue {
   }
 
   @Provide() resolveDataLabel (data: any): any {
-    return data[this.actualProps.label]
+    let label = this.actualProps.label
+    if (!label) return ''
+    if (typeof label === 'string') return data[label]
+    if (typeof label === 'function') return label({ data })
+    return ''
   }
 
   @Provide() resolveDataDisabled (data: any): boolean {
-    return !!data[this.actualProps.disabled]
+    let disabled = this.actualProps.disabled
+    if (!disabled) return false
+    if (typeof disabled === 'string') return !!data[disabled]
+    if (typeof disabled === 'function') return !!disabled({ data })
+    return false
   }
 
-  @Provide() isNodeExpand (node: Node): boolean {
-    return this.expandNodeKeySet.has(this.resolveNodeKey(node))
+  @Provide() resolveDataIsLeaf (data: any): boolean| undefined {
+    let isLeaf = this.actualProps.isLeaf
+    if (!isLeaf) return undefined
+    if (typeof isLeaf === 'string') return data[isLeaf]
+    if (typeof isLeaf === 'function') return isLeaf({ data })
+    return undefined
   }
 
-  @Provide() expandNode (node: Node, expand?: boolean) {
-    let key = this.resolveNodeKey(node)
-    let has = this.expandNodeKeySet.has(key)
-    let addAction = expand === true || (expand === undefined && !has)
-    if (addAction) {
-      if (this.accordion) {
-        node.getSiblings().forEach(v => {
-          this.expandNodeKeySet.delete(this.resolveNodeKey(v))
-        })
-      }
-      this.expandNodeKeySet.add(key)
-    } else {
-      this.expandNodeKeySet.delete(key)
-    }
-  }
-
-  @Provide() isNodeSelected (node: Node): boolean {
-    if (this.isLeafNode(node)) {
-      return this.selectedNodeKeySet.has(this.resolveNodeKey(node))
-    } else {
-      return node.children.every(v => this.isNodeSelected(v))
-    }
-  }
-
-  @Provide() isNodeHalfSelected (node: Node): boolean {
-    if (this.isLeafNode(node)) return false
-    if (this.isNodeSelected(node)) return false
-    return node.children.some(v => this.isNodeSelected(v) || this.isNodeHalfSelected(v))
-  }
-
-  @Provide() selectNode (node: Node, selected?: boolean) {
-    let key = this.resolveNodeKey(node)
-    let has = this.selectedNodeKeySet.has(key)
-    let addAction = selected === true || (selected === undefined && !has)
-    if (addAction) {
-      this.selectedNodeKeySet.add(key)
-    } else {
-      this.selectedNodeKeySet.delete(key)
-    }
-  } 
-
-  @Provide() isLeafNode (node: Node) {
-    // TODO
-    return node.children.length < 1
-  }
-
-  @Provide() getCheckable(): boolean {
+  @Provide() getCheckable (): boolean {
     return this.checkable
   }
 
-  expandAll () {
+  @Provide() getlazy (): boolean {
+    return this.lazy
+  }
+
+  @Provide() getLoadFn (): TreeNodeLoadFn {
+    return this.loadFn
+  }
+
+  expandAll (expand: boolean = true) {
     let keys = Array.from(this.nodeMap.values()).filter(v => v.children.length > 0).map(v => this.resolveNodeKey(v))
     this.expandNodeKeySet.clear()
-    keys.forEach(v => this.expandNodeKeySet.add(v))
+    if (expand) {
+      keys.forEach(v => this.expandNodeKeySet.add(v))
+    }
+  }
+
+  getCheckedNodes (): Node[] {
+    return Array.from(this.selectedNodeKeySet.values()).map(v => {
+      return this.nodeMap.get(v)
+    }).filter(v => !!v) as Node[]
+  }
+
+  getCheckedKeys (): (string | number)[] {
+    return Array.from(this.selectedNodeKeySet.values())
+  }
+
+  setCheckedNodes (nodes: Node[]) {
+    this.selectedNodeKeySet.clear() // clear first
+    if (!nodes || nodes.length < 1) return
+    nodes.forEach(v => {
+      v.selectNode(true)
+    })
+  }
+
+  setCheckedKeys (keys: (string | number)[]) {
+    if (!keys || keys.length < 1) return
+    this.setCheckedNodes(keys.map(v => this.nodeMap.get(v)).filter(v => !!v) as Node[])
+  }
+
+  filter (value: any) {
+    // this.filterNodeKeySet.clear()
+    this.root.children.forEach(v => v.filter(value))
   }
 }
