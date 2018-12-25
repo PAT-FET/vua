@@ -4,7 +4,7 @@
     <input v-model="model" type="checkbox" :class="[e('checkbox')]" :disabled="disabled" :value="label">
     <div :class="[e('dot')]" v-ripple="ripple"></div>
   </span>
-  <span :class="[e('text')]"><slot></slot></span>
+  <span :class="[e('text')]" v-if="$slots.default"><slot></slot></span>
 </label>
 </template>
 <script lang="ts">

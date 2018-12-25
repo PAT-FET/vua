@@ -2,8 +2,8 @@
 <div :class="[b(), sizeCls]">
   <div v-if="column.type === 'selection'">
    <v-checkbox v-model="selected" :indeterminate="hasSelected && !selected"></v-checkbox>
-   <v-dropdown style="display: inline-block;">
-      <a><i class="anticon anticon-down"></i></a>
+   <v-dropdown :class="[e('selection-menu')]">
+      <span :class="[e('selection-menu-icon')]"><i class="anticon anticon-down"></i></span>
       <v-dropdown-menu slot="dropdown">
         <v-dropdown-item v-for="sel in column.selections" :key="sel.key"
         @click.native="select(sel.onSelect)">{{sel.label}}</v-dropdown-item>

@@ -12,6 +12,18 @@
         
     }
 
+     @include e(selection-menu) {
+        display: inline-block;
+        margin-left: .25rem;
+    }
+    @include e(selection-menu-icon) {
+        color: $text-color-secondary;
+        font-size: $font-size-sm;
+        &:hover{
+            color: $text-color;
+        }
+    }
+
     @include e(sorter) {
         flex: auto;
         display: flex;

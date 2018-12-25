@@ -1,77 +1,105 @@
 <template>
 <div>
+   <div class="my-3">
+        <v-radio-group v-model="size">
+          <v-radio-button label="lg">大</v-radio-button>
+          <v-radio-button label="md">中</v-radio-button>
+          <v-radio-button label="sm">小</v-radio-button>
+        </v-radio-group>
+    </div>
    <div class="my-4">
-     <div class="my-3">
+     <div>
+      <p>输入框组合</p>
+       <div class="my-3">
         <v-input-group>
-          <v-input size="sm" v-model="value1" placeholder="区号" clearable></v-input>
-          <v-input size="sm" v-model="value2" placeholder="电话号码" clearable></v-input>
+          <v-input :size="size" placeholder="区号" clearable></v-input>
+          <v-input :size="size" placeholder="电话号码" clearable></v-input>
         </v-input-group>
+      </div>
+      <div class="my-3">
+          <v-input-group>
+            <v-input :size="size" placeholder="最小值" style="width: 120px;"></v-input>
+            <v-input :size="size" separator placeholder="~" style="width: 40px;"></v-input>
+            <v-input :size="size" placeholder="最大值" clearable style="width: 120px;"></v-input>
+          </v-input-group>
+      </div>
      </div>
-     <div class="my-3">
-        <v-input-group>
-          <v-input v-model="value3" placeholder="区号" clearable style="width: 240px;"></v-input>
-          <v-input v-model="value4" placeholder="电话号码" clearable style="width: 240px;"></v-input>
-        </v-input-group>
-     </div>
-     <div class="my-3">
-         <v-input-group>
-          <v-input size="lg" v-model="value5" placeholder="区号" clearable></v-input>
-          <v-input size="lg" v-model="value6" placeholder="电话号码" clearable></v-input>
-        </v-input-group>
-     </div>
+
+      <div>
+        <p>与按钮组合</p>
+        <div class="my-3">
+          <v-input-group>
+            <v-input :size="size" placeholder="Search..." clearable></v-input>
+            <v-button :size="size" color="primary" icon="search"></v-button>
+          </v-input-group>
+        </div>
+        <div class="my-3">
+            <v-input-group>
+              <v-input :size="size" placeholder="Search..." clearable></v-input>
+              <v-button :size="size" color="primary" type="outline" icon="search"></v-button>
+            </v-input-group>
+        </div>
+      </div>
+
+      <div>
+        <p>与下拉框组合</p>
+        <div class="my-3">
+          <v-input-group>
+            <v-input :size="size" placeholder="Search..." clearable></v-input>
+            <v-select :size="size" v-model="value1" placeholder="请选择城市">
+                <v-option label="上海" value="shanghai"></v-option>
+                <v-option label="北京" value="bejing"></v-option>
+                <v-option label="武汉" value="wuhan"></v-option>
+            </v-select>
+          </v-input-group>
+        </div>
+        <div class="my-3">
+            <v-input-group>
+              <v-select :size="size" v-model="value2" placeholder="请选择城市">
+                <v-option label="上海" value="shanghai"></v-option>
+                <v-option label="北京" value="bejing"></v-option>
+                <v-option label="武汉" value="wuhan"></v-option>
+              </v-select>
+               <v-input :size="size" placeholder="Search..." clearable></v-input>
+            </v-input-group>
+        </div>
+      </div>
+
+      <div>
+        <p>与日期输入框框组合</p>
+        <div class="my-3">
+          <v-input-group>
+            <v-input :size="size" placeholder="Search..." clearable></v-input>
+            <v-date-picker v-model="date1" :size="size" placeholder="选择日期"></v-date-picker>
+          </v-input-group>
+        </div>
+        <div class="my-3">
+          <v-input-group>
+            <v-input :size="size" placeholder="Search..." clearable></v-input>
+            <v-month-picker v-model="date2" :size="size" placeholder="选择月份"></v-month-picker>
+          </v-input-group>
+        </div>
+        <div class="my-3">
+          <v-input-group>
+            <v-input :size="size" placeholder="Search..." clearable></v-input>
+            <v-year-picker v-model="date3" :size="size" placeholder="选择年份"></v-year-picker>
+          </v-input-group>
+        </div>
+        <div class="my-3">
+          <v-input-group>
+            <v-input :size="size" placeholder="Search..." clearable></v-input>
+            <v-week-picker v-model="date4" :size="size" placeholder="选择周数"></v-week-picker>
+          </v-input-group>
+        </div>
+        <div class="my-3">
+            <v-input-group>
+               <v-input :size="size" placeholder="Search..." clearable></v-input>
+               <v-range-picker v-model="range" :size="size" start-placeholder="开始日期" end-placeholder="结束日期"></v-range-picker>
+            </v-input-group>
+        </div>
+      </div>
+
    </div>
-
-   <div class="my-4">
-    <div class="my-3">
-      <v-input-group>
-        <v-input size="sm" v-model="value7" placeholder="Search..." clearable></v-input>
-        <v-button size="sm" color="primary" icon="search"></v-button>
-      </v-input-group>
-    </div>
-     <div class="my-3">
-      <v-input-group>
-        <v-input v-model="value8" placeholder="Search..." clearable></v-input>
-        <v-button color="primary" icon="search"></v-button>
-      </v-input-group>
-    </div>
-     <div class="my-3">
-      <v-input-group>
-        <v-input size="lg" v-model="value9" placeholder="Search..."></v-input>
-        <v-button size="lg" color="primary" icon="search"></v-button>
-      </v-input-group>
-    </div>
-   </div>
-
-    <div class="my-4">
-      <div class="my-3">
-        <v-input-group>
-          <v-input size="sm" v-model="value10" placeholder="Search..."></v-input>
-          <v-button size="sm" color="primary" type="outline" icon="search"></v-button>
-        </v-input-group>
-      </div>
-
-      <div class="my-3">
-        <v-input-group>
-          <v-input v-model="value11" placeholder="Search..."></v-input>
-          <v-button color="primary" type="outline" icon="search"></v-button>
-        </v-input-group>
-      </div>
-
-      <div class="my-3">
-        <v-input-group>
-          <v-input size="lg" v-model="value12" placeholder="Search..."></v-input>
-          <v-button size="lg" color="primary" type="outline" icon="search"></v-button>
-        </v-input-group>
-      </div>
-    </div>
-
-    <div class="my-3">
-        <v-input-group>
-          <v-input v-model="value13" placeholder="最小值" style="width: 120px;"></v-input>
-          <v-input separator placeholder="~" style="width: 40px;"></v-input>
-          <v-input v-model="value14" placeholder="最大值" clearable style="width: 120px;"></v-input>
-        </v-input-group>
-     </div>
 </div>
 </template>
 <script lang="ts">
@@ -86,32 +114,20 @@ import { Component, Vue, Watch } from 'vue-property-decorator'
   },
   })
 export default class InputGroupExample extends Vue {
+  size: string = 'md'
+
   value1: string = ''
 
   value2: string = ''
 
-  value3: string = ''
+  date1: string = ''
 
-  value4: string = ''
+  date2: string = ''
 
-  value5: string = ''
+  date3: string = ''
 
-  value6: string = ''
+  date4: string = ''
 
-  value7: string = ''
-
-  value8: string = ''
-
-  value9: string = ''
-
-  value10: string = ''
-
-  value11: string = ''
-
-  value12: string = ''
-
-  value13: string = ''
-
-  value14: string = ''
+  range: string[] = ['', '']
 }
 </script>
