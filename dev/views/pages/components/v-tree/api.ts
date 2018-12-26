@@ -31,6 +31,12 @@ const treeIterable = {
       desc: '是否可选择'
     },
     {
+      name: 'checkStrictly',
+      default: ``,
+      type: `boolean`,
+      desc: '是否严格值选中指定的节点，默认关联选中， 即选择父节点， 其子节点也相应选上；所有子节点选中， 父节点也相应选中'
+    },
+    {
       name: 'lazy',
       default: ``,
       type: `boolean`,

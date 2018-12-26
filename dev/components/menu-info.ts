@@ -83,7 +83,7 @@ const components: any = {
     group: 'navigate'
   },
   VPagination: {
-    title: 'Pagination 导航菜单',
+    title: 'Pagination 分页',
     group: 'navigate'
   },
   VCheckbox: {
@@ -121,6 +121,10 @@ const components: any = {
   VTimePicker: {
     title: 'TimePicker 时间选择框',
     group: 'dataEntry'
+  },
+  VCascader: {
+    title: 'Cascader 级联选择',
+    group: 'dataDisplay'
   },
   VCollapse: {
     title: 'Collapse 折叠面板',

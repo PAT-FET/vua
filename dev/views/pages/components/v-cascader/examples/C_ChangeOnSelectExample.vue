@@ -1,12 +1,21 @@
 <template>
 <div>
   <div class="my-3">
-    <v-alert class="mb-3" type="warning" description="默认关联选中， 即选择父节点， 其子节点也相应选上；所有子节点选中， 父节点也相应选中"></v-alert>
-    <v-checkbox v-model="checkStrictly" class="mr-2">是否取消关联选中</v-checkbox>
-    <v-button color="primary" @click="select">选中 1-1、2-1</v-button>
+    <v-radio-group v-model="size" class="mr-3">
+      <v-radio-button label="sm">小</v-radio-button>
+      <v-radio-button label="md">中</v-radio-button>
+      <v-radio-button label="lg">大</v-radio-button>
+    </v-radio-group>
+
+    <v-checkbox v-model="changeOnSelect">选择即改变</v-checkbox>
   </div>
   <div class="my-3">
-    <v-tree node-key="key" :checkStrictly="checkStrictly" checkable :data-source="dataSource" ref="tree"></v-tree>
+    <v-cascader :size="size"
+      node-key="key"
+      :data-source="dataSource"
+      :change-on-select="changeOnSelect"
+      v-model="value"
+      clearable placeholder="请选择"></v-cascader>
   </div>
 </div>
 </template>
@@ -15,15 +24,19 @@ import { Component, Vue, Watch } from 'vue-property-decorator'
 import { VForm, VTree } from 'src'
 
 /**
- * @title  可选择
- * @desc 树节点的选择。
+ * @title 选择即改变
+ * @desc 这种交互允许只选中父级选项。
  */
 @Component({
   components: {
   },
   })
-export default class BasicExample extends Vue {
-  checkStrictly: boolean = false
+export default class SizeExample extends Vue {
+  size: string = 'md'
+
+  value: Array<string | number> = []
+
+  changeOnSelect: boolean = true
 
   dataSource = [{
     key: '1',
@@ -75,13 +88,5 @@ export default class BasicExample extends Vue {
       }]
     }]
   }]
-
-  select () {
-    this.$refs.tree.setCheckedKeys(['1-1', '2-1'])
-  }
-
-  $refs!: {
-    tree: VTree
-  }
 }
 </script>

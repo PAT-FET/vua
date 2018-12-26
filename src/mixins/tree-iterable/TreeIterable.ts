@@ -24,6 +24,8 @@ export default class TreeIterable extends Vue {
 
   @Prop(Boolean) checkable!: boolean
 
+  @Prop(Boolean) checkStrictly!: boolean
+
   @Prop(Boolean) lazy!: boolean
 
   @Prop(Function) loadFn!: TreeNodeLoadFn
@@ -44,7 +46,7 @@ export default class TreeIterable extends Vue {
   get root (): Node {
     return new Node({
       store: this,
-      data: this.randeredData
+      data: this.renderedData
     })
   }
 
@@ -52,8 +54,12 @@ export default class TreeIterable extends Vue {
     return Object.assign({}, defaultProps, this.props || {})
   }
 
-  get randeredData (): any[] {
+  get renderedData (): any[] {
     return this.dataSource || []
+  }
+
+  get currentNode (): Node | null {
+    return this.currentNodeKey ? (this.nodeMap.get(this.currentNodeKey) || null) : null
   }
 
   addNode (node: Node) {
