@@ -31,7 +31,7 @@
 </template>
 <script lang="ts">
 import { Component, Vue, Watch } from 'vue-property-decorator'
-import { TableColumnSelectionCbParam } from '@/components/table/table'
+import { TableColumnSelectionCbParam } from '../../../../../../src/components/type'
 
 /**
  * @title  可选择

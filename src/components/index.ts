@@ -1,4 +1,5 @@
 export * from './transitions'
+export * from './icon'
 export * from './button'
 export * from './popper'
 export * from './menu'

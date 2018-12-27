@@ -56,7 +56,7 @@
         &.is-in-range:before {
             content: "";
             display: block;
-            background-color: map-get($primary-colors, lighten-5);
+            background-color: $picker-hover-color;
             border-radius: 0;
             border: 0;
             position: absolute;
@@ -83,7 +83,7 @@
         color: $disabled-color;
 
         &:hover{
-            background-color: map-get($primary-colors, lighten-5);
+            background-color: $picker-hover-color;
             cursor: pointer;
         }
 
@@ -124,7 +124,7 @@
         width: 17.75rem;
         @include e(row) {
             &:hover {
-                background-color: map-get($primary-colors, lighten-5);
+                background-color: $picker-hover-color;
                 cursor: pointer;
             }
         }

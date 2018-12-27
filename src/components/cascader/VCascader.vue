@@ -52,16 +52,10 @@
 <script lang="ts">
 import { Component, Vue, Prop, Emit, Watch, Model, Provide } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
-import Themeable from '@/mixins/Themeable'
-import Bemable from '@/mixins/Bemable'
-import TreeIterable from '@/mixins/tree-iterable'
+import { Bemable, Themeable, TreeIterable, Node, Localeable, TreeNodeFilterFn } from '../../mixins'
 import { CreateElement, VNode } from 'vue'
-import Node from '@/mixins/tree-iterable/Node'
-import { TreeNodeFilterFn } from '@/mixins/tree-iterable/type'
-import { CascaderSize } from './cascader'
-import Localeable from '@/mixins/Localeable'
-import { ReactiveSet } from '@/utils/collection'
-import { fireEvent } from '@/utils/dom'
+import { CascaderSize } from './type'
+import { ReactiveSet, fireEvent } from '../../utils'
 
 const defaultFilterFn: TreeNodeFilterFn = ({ node, value }) => {
   if (!value) return true

@@ -2,7 +2,7 @@
 <div :class="[b()]">
   <div :class="[e('container'), m(placement, 'container')]" v-for="placement in placements" :key="placement">
       <transition-group :class="[e('list'), m(placement, 'list')]" tag="ul" :name="getPlacementTransition(placement)">
-        <li :class="[e('item')]" v-for="(item, i) in getPlacementList(placement)" :key="i" @mouseover="onMouseOver(item)" @mouseout="onMouseOut(item)">
+        <li :class="[e('item')]" v-for="(item) in getPlacementList(placement)" :key="item.title" @mouseover="onMouseOver(item)" @mouseout="onMouseOut(item)">
             <div :class="[e('icon')]" v-if="item.type">
                 <i class="anticon" :class="[`anticon-${iconName(item.type)}`, `text-${item.type}`]"></i>
             </div>
@@ -19,10 +19,9 @@
 <script lang="ts">
 import { Component, Vue, Prop, Provide, Watch, Model, Emit } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
-import Bemable from '@/mixins/Bemable'
-import Themeable from '@/mixins/Themeable'
-import { statusIconMap } from '@/utils/constant'
-import { NotificationOption, NotificationConfigOption, NotificationPlacement, NotificationItem } from './notification'
+import { Bemable, Themeable } from '../../mixins'
+import { statusIconMap } from '../../utils'
+import { NotificationOption, NotificationConfigOption, NotificationPlacement, NotificationItem } from './type'
 
 let index = 1
 

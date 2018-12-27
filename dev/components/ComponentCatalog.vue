@@ -14,10 +14,10 @@ export default class ComponentCatalog extends Vue {
     if (!anchors || anchors.length < 1) return null
     const list: any[] = []
     anchors.forEach(anchor => {
-      let item = h('li', {}, [h('a', { 'class': [`pl-${anchor.level}`], on: { click: () => { this.link(anchor.id) } } }, [anchor.$slots.default])])
+      let item = h('li', {}, [h('a', { 'class': [`pl-${anchor.level}`, this.$style.anchor], on: { click: () => { this.link(anchor.id) } } }, [anchor.$slots.default])])
       list.push(item)
     })
-    let current = h('ul', { 'class': this.$style.box }, list)
+    let current = h('ul', { 'class': [this.$style.box] }, list)
     return current
   }
 
@@ -35,5 +35,10 @@ export default class ComponentCatalog extends Vue {
         margin: 0;
         padding: 0;
         list-style: none;
+        font-size: .75rem;
+    }
+
+    .anchor {
+      color: var(--text-color);
     }
 </style>

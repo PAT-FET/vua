@@ -22,9 +22,8 @@
 <script lang="ts">
 import { Component, Vue, Prop, Provide, Watch, Model, Emit } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
-import Bemable from '@/mixins/Bemable'
-import Themeable from '@/mixins/Themeable'
-import { SpinSize } from './spin'
+import { Bemable, Themeable } from '../../mixins'
+import { SpinSize } from './type'
 
 @Component({
   components: {

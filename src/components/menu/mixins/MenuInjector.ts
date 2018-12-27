@@ -1,8 +1,10 @@
 import { Vue, Prop, Inject, Component } from 'vue-property-decorator'
-import { MenuMode } from '../menu'
+import { MenuMode, MenuCssVariable } from '../type'
 
 @Component
 export default class MenuInjector extends Vue {
+    @Prop(String) index!: string
+
     @Inject() menuMode!: () => string
 
     @Inject() menuCollapse!: () => boolean
@@ -14,6 +16,8 @@ export default class MenuInjector extends Vue {
     @Inject() menuUniqueOpened!: () => boolean
 
     @Inject() menuTrigger!: () => boolean
+
+    @Inject() getMenuCssVariable!: () => MenuCssVariable
 
     get mode (): string {
       return this.menuMode()
@@ -42,5 +46,17 @@ export default class MenuInjector extends Vue {
 
     get trigger (): boolean {
       return this.menuTrigger()
+    }
+
+    get key () {
+      return this.resolveKey(this)
+    }
+
+    get menuCssVariable (): MenuCssVariable {
+      return this.getMenuCssVariable()
+    }
+
+    resolveKey (item: MenuInjector): any {
+      return item.index || item
     }
 }

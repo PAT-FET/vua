@@ -1,4 +1,4 @@
-import { FormRuleValidator } from '../form'
+import { FormRuleValidator } from '../type'
 import Vue from 'vue'
 
 function emptyValue (value: any): boolean {

@@ -1,17 +1,22 @@
 @import "../../../style/var.scss";
 @import "./var.scss";
 @mixin vertical-item () {
-    &:hover {
-        color: map-get($primary-colors, lighten-1);
+    color: $menu-item-text-color;
+    &:not(.disabled) {
+        &:hover {
+            color: $menu-item-hover-text-color;
+        }
+
+        &.selected, &:active {
+            background-color: $menu-item-active-bg-color;
+            color: $menu-item-active-text-color;
+        }
     }
 
-    &.selected, &:active {
-        background-color: map-get($primary-colors, lighten-5);
-        color: map-get($primary-colors, darken-1);
-        &.is-dark{
-            background-color: $primary-color;
-            color: #fff;
-        }
+    &.disabled {
+        cursor: not-allowed;
+        color: $menu-item-disabled-text-color;
+        border-color: $menu-item-disabled-text-color;
     }
 
     &:after {
@@ -20,7 +25,7 @@
       right: 0;
       top: 0;
       bottom: 0;
-      border-right: 3px solid $primary-color;
+      border-right: 3px solid $menu-item-active-border-color;
       transform: scaleY(.0001);
       opacity: 0;
       transition: transform .15s $ease-out, opacity .15s $ease-out;
@@ -34,29 +39,45 @@
 @mixin vertical-sub-title {
     line-height: $menu-item-height;
 
-    &:hover{
-        color: map-get($primary-colors, lighten-1);
+    &:not(.disabled) {
+        &:hover{
+            color: $menu-item-hover-text-color;
+        }
+
+        &:active{
+            color: $menu-item-active-text-color;
+            background-color: $menu-item-active-bg-color;
+        }
+        &.active{
+            color: $menu-item-active-text-color;
+        }
     }
 
-    &:active{
-        color: map-get($primary-colors, darken-1);
-        background-color: map-get($primary-colors, lighten-5);
-    }
-    &.active{
-        color: map-get($primary-colors, darken-1);
+    &.disabled {
+        cursor: not-allowed;
+        color: $menu-item-disabled-text-color;
+        border-color: $menu-item-disabled-text-color;
     }
 }
 
 @mixin horizontal-top-item {
     border-bottom: 2px solid transparent;
 
-    &.active, &.selected{
-        border-bottom-color: map-get($primary-colors, darken-1);
-        color: map-get($primary-colors, darken-1);
-    }
+     &:not(.disabled) {
+        &.active, &.selected{
+            border-bottom-color: $menu-item-active-border-color;
+            color: $menu-item-active-text-color;
+        }
 
-    &:hover {
-        border-bottom-color: map-get($primary-colors, lighten-1);
-        color: map-get($primary-colors, lighten-1);
+        &:hover {
+            // border-bottom-color: $menu-item-active-border-color;
+            color: $menu-item-hover-text-color;
+        }
+     }
+
+     &.disabled {
+        cursor: not-allowed;
+        color: $menu-item-disabled-text-color;
+        border-color: $menu-item-disabled-text-color;
     }
 }

@@ -1,6 +1,6 @@
-import { VNotification } from '@/components'
 import Vue from 'vue'
-import { NotificationConfigOption, NotificationOption } from '@/components/notification/notification'
+import { NotificationConfigOption, NotificationOption } from '../components/type'
+import { VNotification } from '../components'
 
 let instance: VNotification | null = null
 

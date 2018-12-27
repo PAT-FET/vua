@@ -50,14 +50,12 @@
 <script lang="ts">
 import { Component, Vue, Prop, Emit, Watch, Model, Provide } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
-import Themeable from '@/mixins/Themeable'
-import Bemable from '@/mixins/Bemable'
-import DateHelper from '@/mixins/DateHelper'
+import { Bemable, Themeable, DateHelper } from '../../mixins'
 import DatePicker from './mixins/DatePicker'
 import VMonthPanel from './widgets/VMonthPanel.vue'
 import VYearPanel from './widgets/VYearPanel.vue'
 import VDecadePanel from './widgets/VDecadePanel.vue'
-import { PickerPanelType } from '@/components/date-picker/date-picker'
+import { PickerPanelType } from './type'
 
 @Component({
   components: {

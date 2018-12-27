@@ -1,8 +1,6 @@
 import { Component, Vue, Prop, Emit, Watch, Model, Provide } from 'vue-property-decorator'
-import { mixins } from 'vue-class-component'
-import DateLocale from '@/mixins/DateLocale'
-import { PickerPanelType, PickerDisabledDateFunc } from '../date-picker'
-import { addYear, addMonth, addDay, addWeek } from '@/utils/date'
+import { PickerPanelType, PickerDisabledDateFunc } from '../type'
+import { addYear, addMonth, addDay, addWeek } from '../../../utils/date'
 
 @Component
 export default class Panel extends Vue {

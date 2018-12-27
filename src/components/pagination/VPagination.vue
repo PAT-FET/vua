@@ -27,13 +27,10 @@
 <script lang="ts">
 import { Component, Vue, Prop, Emit, Watch, Model, Provide } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
-import Themeable from '@/mixins/Themeable'
-import Bemable from '@/mixins/Bemable'
-import { PaginationSize } from './pagination'
-import { VSelect, VOption } from '../select'
-import { VInput } from '../input'
-import { range } from '@/utils/lang'
-import Localeable from '@/mixins/Localeable'
+import { Bemable, Themeable, Localeable } from '../../mixins'
+import { PaginationSize } from './type'
+import { VSelect, VOption, VInput } from '../../components'
+import { range } from '../../utils'
 
 @Component({
   components: {

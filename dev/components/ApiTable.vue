@@ -167,7 +167,7 @@ export default class ApiTable extends Vue {
 </script>
 
 <style lang="scss" module>
-@import "~@/style/var.scss";
+@import "../../src/style/var.scss";
 
 $header-height: 48px;
 

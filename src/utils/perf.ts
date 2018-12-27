@@ -8,7 +8,7 @@ export function debounce<T extends (...args: any[]) => any>(fn: T, delta: number
     clearTimeout(timerId)
     let args = arguments
     timerId = setTimeout(function () {
-      fn.apply(context, args)
+      fn.apply(context, args as any)
     }, delta)
   } as (T & Cancelable)
   ret.cancel = function () {

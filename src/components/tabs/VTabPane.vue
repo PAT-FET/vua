@@ -6,10 +6,8 @@
 <script lang="ts">
 import { Component, Vue, Prop, Emit, Watch, Model, Inject } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
-import Themeable from '@/mixins/Themeable'
-import Bemable from '@/mixins/Bemable'
-import Groupable from '@/mixins/Groupable'
-import { TabsPosition } from '@/components/tabs/tabs'
+import { Bemable, Themeable, Groupable } from '../../mixins'
+import { TabsPosition } from './type'
 
 @Component({
   components: {

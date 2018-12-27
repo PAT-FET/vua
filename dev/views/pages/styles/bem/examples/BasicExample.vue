@@ -5,16 +5,16 @@
         <div class="d-flex">
                 <div class="border-right" style="width: 50%;">
                     <pre>
-                        @include b(v-button){
-                            color: #fff;
-                        }
+@include b(v-button){
+    color: #fff;
+}
                     </pre>
                 </div>
                 <div>
                     <pre>
-                        .v-button {
-                            color: #fff;
-                        }
+    .v-button {
+        color: #fff;
+    }
                     </pre>
                 </div>
         </div>
@@ -25,22 +25,22 @@
         <div class="d-flex">
                 <div class="border-right" style="width: 50%;">
                     <pre>
-                        @include b(v-button){
-                            color: #fff;
-                            @include e(text){
-                                color: #000;
-                            }
-                        }
+@include b(v-button){
+    color: #fff;
+    @include e(text){
+        color: #000;
+    }
+}
                     </pre>
                 </div>
                 <div>
                     <pre>
-                        .v-button {
-                            color: #fff;
-                        }
-                        .v-button__text {
-                            color: #000;
-                        }
+    .v-button {
+        color: #fff;
+    }
+    .v-button__text {
+        color: #000;
+    }
                     </pre>
                 </div>
         </div>
@@ -51,37 +51,37 @@
         <div class="d-flex">
                 <div class="border-right" style="width: 50%;">
                     <pre>
-                        @include b(v-button){
-                            @include m(dark){
-                                color: black;
-                                @include e(text){
-                                    color: white;
-                                }
-                            }
-                            @include e(text){
-                                color: #000;
-                                @include m(primary){
-                                    color: red;
-                                }
-                            }
-                        }
+@include b(v-button){
+    @include m(dark){
+        color: black;
+        @include e(text){
+            color: white;
+        }
+    }
+    @include e(text){
+        color: #000;
+        @include m(primary){
+            color: red;
+        }
+    }
+}
                     </pre>
                 </div>
                 <div>
                     <pre>
-                        .v-button--dark {
-                            color: black;
-                        }
-                        .v-button--dark .v-button__text {
-                            color: white;
-                        }
+    .v-button--dark {
+        color: black;
+    }
+    .v-button--dark .v-button__text {
+        color: white;
+    }
 
-                        .v-button__text {
-                            color: #000;
-                        }
-                        .v-button__text--primary {
-                            color: red;
-                        }
+    .v-button__text {
+        color: #000;
+    }
+    .v-button__text--primary {
+        color: red;
+    }
                     </pre>
                 </div>
         </div>
@@ -92,43 +92,43 @@
         <div class="d-flex">
                 <div class="border-right" style="width: 50%;">
                     <pre>
-                        @include b(v-button){
-                            @include m(dark){
-                                &.active{
-                                color: #fff;
-                                }
-                            }
+@include b(v-button){
+    @include m(dark){
+        &.active{
+        color: #fff;
+        }
+    }
 
-                            @include m(dark, lg){
-                                &.hover{
-                                color: black;
-                                }
-                            }
+    @include m(dark, lg){
+        &.hover{
+        color: black;
+        }
+    }
 
-                            @include e(text){
-                                @include m(lg, sm){
-                                    &.active{
-                                        color: #000;
-                                    }
-                                }
-                            }
-                        }
+    @include e(text){
+        @include m(lg, sm){
+            &.active{
+                color: #000;
+            }
+        }
+    }
+}
 
                     </pre>
                 </div>
                 <div>
                     <pre>
-                        .v-button--dark.active {
-                            color: #fff;
-                        }
+    .v-button--dark.active {
+        color: #fff;
+    }
 
-                        .v-button--dark.v-button--lg.hover {
-                            color: black;
-                        }
+    .v-button--dark.v-button--lg.hover {
+        color: black;
+    }
 
-                        .v-button__text--lg.v-button__text--sm.active {
-                            color: #000;
-                        }
+    .v-button__text--lg.v-button__text--sm.active {
+        color: #000;
+    }
                     </pre>
                 </div>
         </div>
@@ -139,49 +139,49 @@
         <div class="d-flex">
                 <div class="border-right" style="width: 50%;">
                     <pre>
-                        @include b(v-button){
-                            &>{
-                                @include e(text, true){
-                                color: #fff;
-                                }
-                            }
+@include b(v-button){
+    &>{
+        @include e(text, true){
+        color: #fff;
+        }
+    }
 
-                            @include b(menu){
-                                color: black;
-                                @include e(item, true){
-                                    color: #fff;
-                                    @include m(dark){
-                                        color: #fff;
-                                    }
-                                }
-                            }
+    @include b(menu){
+        color: black;
+        @include e(item, true){
+            color: #fff;
+            @include m(dark){
+                color: #fff;
+            }
+        }
+    }
 
-                            @include e(addon){
-                                color: green;
-                            }
-                        }
+    @include e(addon){
+        color: green;
+    }
+}
 
                     </pre>
                 </div>
                 <div>
                     <pre>
-                        .v-button > .v-button__text {
-                            color: #fff;
-                        }
+    .v-button > .v-button__text {
+        color: #fff;
+    }
 
-                        .v-button .menu {
-                            color: black;
-                        }
-                        .v-button .menu .menu__item {
-                            color: #fff;
-                        }
-                        .v-button .menu .menu__item--dark {
-                            color: #fff;
-                        }
+    .v-button .menu {
+        color: black;
+    }
+    .v-button .menu .menu__item {
+        color: #fff;
+    }
+    .v-button .menu .menu__item--dark {
+        color: #fff;
+    }
 
-                        .v-button__addon {
-                            color: green;
-                        }
+    .v-button__addon {
+        color: green;
+    }
                     </pre>
                 </div>
         </div>

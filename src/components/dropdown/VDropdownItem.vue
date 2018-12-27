@@ -6,10 +6,8 @@
 <script lang="ts">
 import { Component, Vue, Prop, Emit, Watch, Model, Provide, Inject } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
-import Themeable from '@/mixins/Themeable'
-import Bemable from '@/mixins/Bemable'
-import Localeable from '@/mixins/Localeable'
-import { DropdownTrigger } from './dropdown'
+import { Bemable, Themeable, Localeable } from '../../mixins'
+import { DropdownTrigger } from './type'
 
 @Component({
   components: {

@@ -43,15 +43,11 @@
 <script lang="ts">
 import { Component, Vue, Prop, Emit, Watch, Model, Provide } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
-import Themeable from '@/mixins/Themeable'
-import Bemable from '@/mixins/Bemable'
-import Localeable from '@/mixins/Localeable'
-import { TableHeaderColumn, TableColumnSelectionCb } from '@/components/table/table'
+import { Bemable, Themeable, Localeable, DataSorter } from '@/mixins'
+import { TableHeaderColumn, TableColumnSelectionCb, TableSize } from '../type'
 import { VCheckbox } from '../../checkbox'
 import { VDropdown, VDropdownMenu, VDropdownItem } from '../../dropdown'
-import { ReactiveSet } from '@/utils/collection'
-import { TabsSize } from '@/components/tabs/tabs'
-import { DataSorter } from '@/mixins/data-iterable/type'
+import { ReactiveSet } from '../../../utils'
 
 @Component({
   components: {
@@ -69,7 +65,7 @@ export default class VTableHeaderCell extends mixins(Themeable, Bemable, Localea
 
   @Prop(Boolean) hasSelected!: boolean
 
-  @Prop(String) size!: TabsSize
+  @Prop(String) size!: TableSize
 
   @Prop() sorter!: DataSorter
 

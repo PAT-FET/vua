@@ -1,4 +1,4 @@
-Loading<template>
+<template>
 <div>
   <div class="my-3">
     <v-radio-group v-model="size" class="mr-3">
@@ -24,8 +24,8 @@ Loading<template>
 </template>
 <script lang="ts">
 import { Component, Vue, Watch } from 'vue-property-decorator'
-import { VForm, VTree } from 'src'
-import { TreeNodeLoadFn } from '@/mixins/tree-iterable/type'
+import { VForm, VTree } from '@/components'
+import { TreeNodeLoadFn } from '@/mixins'
 
 let index = 1000
 

@@ -26,13 +26,9 @@
 <script lang="ts">
 import { Component, Vue, Prop, Emit, Watch, Model, Provide } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
-import Themeable from '@/mixins/Themeable'
-import Bemable from '@/mixins/Bemable'
-import Rippleable from '@/mixins/Rippleable'
-import Colorable from '@/mixins/Colorable'
-import Group from '@/mixins/Group'
-import VTabPane from '@/components/tabs/VTabPane.vue'
-import { TabsSize, TabsPosition, TabsType } from './tabs'
+import { Bemable, Themeable, Rippleable, Colorable, Group } from '../../mixins'
+import { VTabPane } from './index'
+import { TabsSize, TabsPosition, TabsType } from './type'
 import { VNode } from 'vue'
 
 @Component({

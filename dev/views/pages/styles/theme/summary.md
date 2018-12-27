@@ -9,4 +9,4 @@
     `$bg-color-1` - 选择项、头部背景色 \
     `$bg-color-2` - 禁用、灰色背景 \
     `$border-color-base` - 常规边框色 \
-    `$border-color-split`- 分割边框色 \
+    `$border-color-split`- 分割边框色 

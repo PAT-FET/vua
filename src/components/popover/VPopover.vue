@@ -15,8 +15,7 @@
 <script lang="ts">
 import { Component, Vue, Prop, Provide, Watch, Model, Emit } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
-import Bemable from '@/mixins/Bemable'
-import Themeable from '@/mixins/Themeable'
+import { Bemable, Themeable } from '../../mixins'
 import { VPopper } from '../index'
 
 @Component({

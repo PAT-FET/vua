@@ -6,10 +6,11 @@
 @import "./var.scss";
 
 @include b(v-menu-group) {
+    color: $menu-group-text-color;
     @include e(title) {
         line-height: $menu-item-height;
         padding-left: 0.75rem;
-        color: $text-color-secondary;
+        color: $menu-group-text-color;
 
         &.is-collapse{
             display: none;

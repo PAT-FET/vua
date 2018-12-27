@@ -7,3 +7,9 @@ export {
   $notification,
   $modal
 }
+
+export default {
+  $message,
+  $notification,
+  $modal
+}

@@ -1,4 +1,4 @@
-import { $message } from './index'
+import $message from './message'
 import $notification from './notification'
 import $modal from './modal'
 declare module 'vue/types/vue' {

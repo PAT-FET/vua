@@ -101,10 +101,12 @@ $error-colors: (
 $heading-color: var(--heading-color);
 $text-color: var(--text-color);
 $text-color-secondary: var(--text-color-secondary);
+$text-color-active: var(--text-color-active); // text active
 $disabled-color: var(--disabled-color);
 $bg-color: var(--bg-color);
 $bg-color-1: var(--bg-color-1); // selected item, header
 $bg-color-2: var(--bg-color-2); // grey disabled
+$bg-color-active: var(--bg-color-active); // bg active
 $border-color-base: var(--border-color-base);
 $border-color-split: var(--border-color-split);
 

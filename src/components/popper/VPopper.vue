@@ -14,8 +14,7 @@ import { Component, Prop, Emit, Watch, Vue } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
 import { VNode } from 'vue'
 import Popper, { PopperOptions, Data } from './popper.js'
-import Bemable from '@/mixins/Bemable'
-import Themeable from '@/mixins/Themeable'
+import { Bemable, Themeable } from '../../mixins'
 
 @Component({
   components: {
@@ -141,7 +140,7 @@ export default class VPopper extends mixins(Bemable, Themeable) {
 
   // overwrite
   getCssVarEles (): HTMLElement[] {
-    return [this.$el, this.$refs.popper]
+    return [this.$el as HTMLElement, this.$refs.popper]
   }
 
   @Watch('visible') visibleChange (visible: boolean) {
@@ -162,6 +161,17 @@ export default class VPopper extends mixins(Bemable, Themeable) {
     } else {
       this.actualVisible = false
     }
+  }
+
+  @Watch('options', {deep: true}) optionsChange (options: PopperOptions) {
+    // only change placement dynamically, because replace all have problem
+    if (this.popper && options.placement) {
+      this.popper.options.placement = options.placement
+    }
+  }
+
+  @Watch('trigger') triggerChange (trigger: string) {
+    this.registerEvents()
   }
 
   mounted () {

@@ -3,7 +3,7 @@ import Component from 'vue-class-component'
 import { Prop, Emit, Watch, Provide } from 'vue-property-decorator'
 import { TreeProps, TreeNodeLoadFn, TreeNodeFilterFn } from './type'
 import Node from './Node'
-import ReactiveSet from '../../utils/collection/ReactiveSet'
+import { ReactiveSet } from '../../utils/collection'
 
 const defaultProps = {
   label: 'label',

@@ -1,4 +1,4 @@
-export type AlertType = 'success' | 'info' | 'warning' | 'error'
+export type ModelType = 'success' | 'info' | 'warning' | 'error'
 
 export interface ModalOption {
     content: string

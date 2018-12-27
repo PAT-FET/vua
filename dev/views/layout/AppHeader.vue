@@ -6,14 +6,35 @@
         Vua
     </div>
     <div>
-        <select v-model="lang">
-            <option value="zh-Hans">中文</option>
-            <option value="en">English</option>
-        </select>
+        <v-select class="align-middle" style="width: 80px;" v-model="lang" size="sm">
+            <v-option label="中文" value="zh-Hans"></v-option>
+            <v-option label="English" value="en"></v-option>
+        </v-select>
 
-        &nbsp;
-
-        <span :class="[$style.themeBtn]" @click="toggleTheme"><i class="anticon anticon-bulb"></i></span>
+        <v-popover trigger="click">
+            <v-button title="设置主题色" slot="reference" class="ml-3" shape="circle" size="sm" color="error" icon="setting"></v-button>
+         <div>
+             <div class="my-2">
+                <span class="text-primary">Primary  </span>  <input type="color" v-model="$vua.theme.primary">
+            </div>
+            <div class="my-2">
+                <span class="text-secondary">Secondary  </span>  <input type="color" v-model="$vua.theme.secondary">
+            </div>
+            <div class="my-2">
+                <span class="text-success">Success  </span>  <input type="color" v-model="$vua.theme.success">
+            </div>
+            <div class="my-2">
+                <span class="text-info">Info  </span>  <input type="color" v-model="$vua.theme.info">
+            </div>
+            <div class="my-2">
+                <span class="text-warning">Warning  </span>  <input type="color" v-model="$vua.theme.warning">
+            </div>
+            <div class="my-2">
+                <span class="text-error">Error  </span>  <input type="color" v-model="$vua.theme.error">
+            </div>
+         </div>
+        </v-popover>
+        <v-button title="切换主题" class="ml-3" shape="circle" size="sm" color="warning" icon="bulb" @click="toggleTheme"></v-button>
     </div>
 </div>
 </template>
@@ -58,13 +79,6 @@ export default class AppHeader extends Vue {
     transition: transform .2s ease;
     &:hover{
         transform: scale(1.1);
-    }
-}
-
-.themeBtn{
-    cursor: pointer;
-    &:hover{
-        transform: scale(1.2);
     }
 }
 </style>

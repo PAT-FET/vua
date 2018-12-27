@@ -43,8 +43,7 @@
 </template>
 <script lang="ts">
 import { Component, Vue, Watch } from 'vue-property-decorator'
-import { DataRemoteChangeParam } from '@/mixins/data-iterable/type'
-import { TableColumnSelectionCbParam } from '@/components/table/table'
+import { TableColumnSelectionCbParam, DataRemoteChangeParam } from '@/index'
 
 /**
  * @title 远程加载数据

@@ -10,10 +10,8 @@
 <script lang="ts">
 import { Component, Vue, Prop, Emit, Watch, Model } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
-import Themeable from '@/mixins/Themeable'
-import Bemable from '@/mixins/Bemable'
-import Rippleable from '@/mixins/Rippleable'
-import { CheckboxValue, CheckboxLabel } from './checkbox'
+import { Bemable, Themeable, Rippleable } from '../../mixins'
+import { CheckboxValue, CheckboxLabel } from './type'
 import { VCheckboxGroup } from '../..'
 
 @Component({

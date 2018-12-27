@@ -42,10 +42,10 @@
         padding: 0 0.3125rem;
         cursor: pointer;
         &:hover {
-            background-color: map-get($primary-colors, lighten-5);  
+            background-color: $bg-color-active; 
         }
         &.is-current {
-            background-color: map-get($primary-colors, lighten-5);
+            background-color: $bg-color-active; 
         }
     }
 

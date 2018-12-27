@@ -31,7 +31,7 @@ export default class OrderExample extends Vue {
 </script>
 
 <style lang="scss" module>
-@import '~@/style/var.scss';
+@import '../../../../../../src/style/var.scss';
   .cell {
     height: 36px;
     line-height: 36px;

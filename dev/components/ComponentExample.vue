@@ -25,7 +25,7 @@
 <script lang="ts">
 import { Component, Vue, Prop, Emit } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
-import Themeable from '@/mixins/Themeable'
+import { Themeable } from '../../src/mixins'
 import hljs from 'highlight.js/lib'
 
 @Component({
@@ -85,7 +85,7 @@ export default class ComponentExample extends mixins(Themeable) {
 </script>
 
 <style lang="scss" module>
-@import "~@/style/var.scss";
+@import "../../src/style/var.scss";
 
 .box {
   margin-bottom: 40px;

@@ -87,7 +87,7 @@ export default class ListExample extends Vue {
 </script>
 
 <style lang="scss" module>
-@import "~@/style/color/colors";
+@import "../../../../../../src/style/color/colors";
 
 @each $color in map-keys($colors) {
   @each $grad in map-keys(map-get($colors, $color)) {

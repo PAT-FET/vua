@@ -10,8 +10,7 @@
 </template>
 <script lang="ts">
 import { Component, Vue, Watch } from 'vue-property-decorator'
-import { VForm, VTree } from 'src'
-import { TreeNodeFilterFn } from '@/mixins/tree-iterable/type'
+import { VForm, VTree, TreeNodeFilterFn } from '@/index'
 
 /**
  * @title 可搜索

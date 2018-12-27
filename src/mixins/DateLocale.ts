@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import { Component, Prop } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
-import Localeable from '@/mixins/Localeable'
+import Localeable from './Localeable'
 
 @Component
 export default class DateLocale extends mixins(Localeable) {

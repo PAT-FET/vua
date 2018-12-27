@@ -1,5 +1,5 @@
 import Vue, { VNodeDirective, VNode } from 'vue'
-import { VSpin } from '@/components'
+import { VSpin } from '../components'
 
 export default {
   bind (el: HTMLElement, binding: VNodeDirective, vnode: VNode, oldVnode: VNode): void {

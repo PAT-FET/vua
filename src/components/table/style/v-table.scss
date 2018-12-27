@@ -49,9 +49,9 @@
         &>tbody>tr{
             transition: all .3s;
             &:hover {
-                background: map-get($primary-colors, lighten-5);
+                background: $bg-color-active;
                 &>td {
-                    background: map-get($primary-colors, lighten-5);
+                    background: $bg-color-active;
                 }
             }
             &.selected {

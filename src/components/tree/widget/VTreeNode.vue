@@ -1,14 +1,9 @@
 <script lang="ts">
 import { Component, Vue, Prop, Emit, Watch, Model, Inject } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
-import Themeable from '@/mixins/Themeable'
-import Bemable from '@/mixins/Bemable'
-import TreeIterable from '@/mixins/tree-iterable'
-import { TreeNodeLoadFn } from '@/mixins/tree-iterable/type'
+import { Bemable, Themeable, TreeIterable, Node, TreeNodeLoadFn } from '../../../mixins'
 import { CreateElement, VNode } from 'vue'
-import Node from '@/mixins/tree-iterable/Node'
-import { VExpandTransition } from '../../transitions/index'
-import { VCheckbox } from '../../checkbox/index'
+import { VExpandTransition, VCheckbox } from '../../../components'
 import { VTree } from '../index'
 
 @Component({

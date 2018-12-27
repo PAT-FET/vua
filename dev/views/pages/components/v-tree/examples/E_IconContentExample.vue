@@ -20,9 +20,7 @@
 </template>
 <script lang="ts">
 import { Component, Vue, Watch } from 'vue-property-decorator'
-import { VForm, VTree } from 'src'
-import { TreeNodeFilterFn } from '@/mixins/tree-iterable/type'
-import Node from '@/mixins/tree-iterable/Node'
+import { VForm, VTree, Node, TreeNodeFilterFn } from '@/index'
 
 let index = 1000
 

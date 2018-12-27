@@ -22,11 +22,10 @@
 <script lang="ts">
 import { Component, Vue, Prop, Emit, Watch, Model } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
-import Themeable from '@/mixins/Themeable'
-import Bemable from '@/mixins/Bemable'
-import { InputSize } from './input'
+import { Bemable, Themeable } from '../../mixins'
+import { InputSize } from './type'
 import { VNode } from 'vue'
-import { debounce } from '@/utils/perf'
+import { debounce } from '../../utils'
 
 @Component({
   components: {

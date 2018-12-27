@@ -1,6 +1,6 @@
 import en from '../locale/en'
 import { getObjectValueByPath } from './helpers'
-import { VuaLocale, VuaLanguage } from '@/vua'
+import { VuaLocale, VuaLanguage } from '../vua'
 import { logError, logWarn } from './log'
 
 const fallback = Symbol('Lang fallback')

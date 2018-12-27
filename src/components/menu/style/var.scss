@@ -1,3 +1,17 @@
-$menu-item-height: 2.5rem;
+@import "../../../style/var.scss";
 
+$menu-item-height: 2.5rem;
 $menu-collapse-width: 5rem;
+
+$menu-base-color: $primary-color;
+$menu-hover-color: map-get($primary-colors, lighten-1);
+
+$menu-bg-color: var(--menu-bg-color, transparent);
+$menu-border-color: var(--menu-border-color, #{$border-color-split});
+$menu-item-text-color: var(--menu-item-text-color, #{$text-color});
+$menu-item-hover-text-color: var(--menu-item-hover-text-color, #{$menu-hover-color});
+$menu-item-active-text-color: var(--menu-item-active-text-color, #{$text-color-active});
+$menu-item-active-bg-color: var(--menu-item-active-bg-color, #{$bg-color-active});
+$menu-item-active-border-color: var(--menu-item-active-border-color, #{$text-color-active});
+$menu-item-disabled-text-color: var(--menu-item-disabled-text-color, #{$disabled-color});
+$menu-group-text-color: var(--menu-group-text-color, #{$text-color-secondary});

@@ -1,10 +1,8 @@
 <script lang="ts">
 import { Component, Vue, Prop, Emit, Watch, Model, Provide } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
-import Themeable from '@/mixins/Themeable'
-import Bemable from '@/mixins/Bemable'
-import Localeable from '@/mixins/Localeable'
-import { TableColumnType } from '@/components/table/table'
+import { Bemable, Themeable, Localeable } from '../../../mixins'
+import { TableColumnType } from '../type'
 import { VTableColumn } from '../../..'
 import { VNode, CreateElement } from 'vue'
 import { VExpandTransition } from '../../transitions/index'
@@ -48,7 +46,7 @@ export default class VTableExpandRow extends mixins(Themeable, Bemable, Localeab
         h('v-expand-transition', {}, [
           h('div', expandTransitionData, [
             h('div', { class: [this.e('content')] }, [
-              this.column.$scopedSlots.default({
+              this.column.$scopedSlots.default && this.column.$scopedSlots.default({
                 row: this.row,
                 $index: this.rowNum
               })

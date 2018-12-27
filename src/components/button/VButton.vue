@@ -1,5 +1,5 @@
 <template>
-    <button :class="[b(), typeCls, sizeCls, colorCls, shapeCls, loadingCls, blockls, slimCls]"
+    <button :class="[b(), typeCls, sizeCls, colorCls, shapeCls, loadingCls, blockls, slimCls, darkCls]"
      v-ripple="ripple"
      @click="onClick"
      :disabled="disabled">
@@ -14,12 +14,10 @@
 <script lang="ts">
 import { Component, Vue, Prop, Emit, Watch } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
-import Themeable from '@/mixins/Themeable'
-import Bemable from '@/mixins/Bemable'
-import Rippleable from '@/mixins/Rippleable'
-import { ButtonType, ButtonSize, ButtonShape } from './button'
-import { VuaTheme } from '@/vua'
-import { debounce } from '@/utils/perf'
+import { Bemable, Themeable, Rippleable } from '../../mixins'
+import { ButtonType, ButtonSize, ButtonShape } from './type'
+import { VuaTheme } from '../../vua'
+import { debounce } from '../../utils'
 
 @Component({
   components: {

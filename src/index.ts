@@ -1,10 +1,10 @@
-import * as components from './components'
+import * as components from '@/components'
 import * as directives from './directives'
 import * as services from './services'
 import { VueConstructor } from 'vue'
-import { getVersion } from '@/utils/env'
+import { getVersion } from './utils'
 import { VuaPlugin, VuaOptions } from './vua'
-import installer from './installer'
+import installer from '@/installer'
 
 // common style
 import './style/index.scss'
@@ -26,5 +26,8 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 
 export * from './components'
+export * from './components/type'
+// export * from './directives'
+export * from './mixins'
 
 export default Vua

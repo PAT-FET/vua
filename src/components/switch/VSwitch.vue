@@ -16,9 +16,8 @@
 <script lang="ts">
 import { Component, Vue, Prop, Emit, Watch, Model } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
-import Themeable from '@/mixins/Themeable'
-import Bemable from '@/mixins/Bemable'
-import { SwitchSize } from './switch'
+import { Bemable, Themeable } from '../../mixins'
+import { SwitchSize } from './type'
 
 @Component({
   components: {

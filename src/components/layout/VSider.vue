@@ -5,8 +5,7 @@
 import { Component, Vue, Prop, Inject, Watch, Model, Emit } from 'vue-property-decorator'
 import { VNode } from 'vue'
 import { mixins } from 'vue-class-component'
-import Bemable from '@/mixins/Bemable'
-import Themeable from '@/mixins/Themeable'
+import { Bemable, Themeable } from '../../mixins'
 
 @Component({
   components: {

@@ -3,8 +3,8 @@
  */
 
 import Vue from 'vue'
-import { VuaBreakpoint, VuaBreakpointType } from '@/vua'
-import { debounce } from '../utils/perf'
+import { VuaBreakpoint, VuaBreakpointType } from '../vua'
+import { debounce } from '../utils'
 import Component from 'vue-class-component'
 
 // Please keep consistent with Css Breakpoint

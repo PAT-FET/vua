@@ -11,3 +11,11 @@ export {
   VFooter,
   VSider
 }
+
+export default {
+  VLayout,
+  VHeader,
+  VContent,
+  VFooter,
+  VSider
+}

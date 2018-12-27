@@ -7,11 +7,8 @@
 <script lang="ts">
 import { Component, Vue, Inject, Watch, Prop } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
-import Bemable from '@/mixins/Bemable'
-import Themeable from '@/mixins/Themeable'
-import Selectable from '@/mixins/Selectable'
+import { Bemable, Themeable, Selectable, Groupable } from '../../mixins'
 import MenuInjector from './mixins/MenuInjector'
-import Groupable from '@/mixins/Groupable'
 
 @Component({
   components: {
@@ -21,9 +18,9 @@ import Groupable from '@/mixins/Groupable'
 export default class VMenuItem extends mixins(Themeable, Bemable, MenuInjector, Selectable, Groupable) {
   @Prop(Boolean) disabled!: boolean
 
-  @Prop(String) index!: string
-
   @Inject({from: 'close', default: () => () => {}}) injectClose!: () => {}
+
+  @Inject('provideCascadeOpen') cascadeOpen!: (opened?: boolean) => void
 
   get isCollapsed (): boolean {
     return (this.mode === 'inline' && this.collapse && this.groupNestedLevel === 0)
@@ -63,25 +60,23 @@ export default class VMenuItem extends mixins(Themeable, Bemable, MenuInjector, 
   }
 
   onClick () {
+    if (this.disabled) return
     this.select()
     if (this.parsedMode !== 'inline' && this.groupNestedLevel > 0) this.injectClose()
   }
 
-  @Watch('selected') selectedChange (selected: boolean) {
-    this.handleSelected()
-  }
-
-  created () {
-    this.handleSelected()
-  }
-
-  handleSelected () {
-    if (this.selected) this.joinActiveGroup()
-    else {
-      this.$nextTick().then(() => {
-        this.exitActiveGroup()
-      })
+  handleSelected (selected: boolean) {
+    if (selected && this.parsedMode === 'inline') {
+      this.cascadeOpen(true)
     }
+  }
+
+  @Watch('selected') selectedChange (selected: boolean) {
+    this.handleSelected(selected)
+  }
+
+  mounted () {
+    this.handleSelected(this.selected)
   }
 }
 </script>

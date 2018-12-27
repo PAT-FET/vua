@@ -35,7 +35,7 @@
         }
 
         &:hover {
-            background-color: map-get($primary-colors, lighten-5);
+            background-color: $bg-color-active;
         }
 
         &.is-selected, &.is-open {

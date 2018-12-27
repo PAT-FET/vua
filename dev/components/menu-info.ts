@@ -38,6 +38,10 @@ const components: any = {
     title: 'Button 按钮',
     group: 'common'
   },
+  VIcon: {
+    title: 'Icon 图标',
+    group: 'common'
+  },
   Transitions: {
     title: 'Transitions 过渡',
     group: 'common'

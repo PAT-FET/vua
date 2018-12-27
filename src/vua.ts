@@ -1,7 +1,7 @@
 import Vue, { VueConstructor, DirectiveOptions, Component } from 'vue'
 
 // service
-import './services/service.d'
+import './services/type'
 
 export interface VuaPlugin {
     install(Vue: VueConstructor, args?: VuaOptions): void

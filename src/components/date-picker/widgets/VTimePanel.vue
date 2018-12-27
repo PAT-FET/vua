@@ -39,14 +39,10 @@
 <script lang="ts">
 import { Component, Vue, Prop, Emit, Watch, Model, Provide } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
-import Themeable from '@/mixins/Themeable'
-import Bemable from '@/mixins/Bemable'
-import DateHelper from '@/mixins/DateHelper'
-import { trimDate } from '@/utils/date'
-import { range } from '@/utils/lang'
-import { PickerPanelType, PickerDisabledTimeFunc } from '@/components/date-picker/date-picker'
-import DateLocale from '@/mixins/DateLocale'
-import { ScrollIntoView } from '@/directives'
+import { Bemable, Themeable, DateHelper, DateLocale } from '../../../mixins'
+import { trimDate, range } from '../../../utils'
+import { PickerPanelType, PickerDisabledTimeFunc } from '../type'
+import { ScrollIntoView } from '../../../directives'
 
 @Component({
   components: {

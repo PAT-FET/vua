@@ -8,20 +8,21 @@
       <i :class="[e('arrow'), openCls]"></i>
     </div>
      <v-expand-transition>
-      <ul :class="[e('content')]" v-show="visible">
+      <ul :class="[e('content')]" v-show="isOpen">
         <slot></slot>
       </ul>
      </v-expand-transition>
   </template>
   <v-popper :visible.sync="visible" :arrow="false" :append-to-body="appendToBody"
    :delay="200"
+   :disabled="disabled"
    :trigger="trigger" :options="options" style="display: block;" v-else>
     <div slot="reference" :class="[e('title'), activeCls, collapseCls, topCls, disabledCls]" :style="[paddingStyle]">
       <span v-if="$slots.icon" :class="[e('icon')]"><slot name="icon"></slot></span>
       <span v-if="$slots.title" :class="[e('text'), collapseCls]"><slot name="title"></slot></span>
       <i :class="[e('arrow'), collapseCls]"></i>
     </div>
-    <ul :class="[e('content')]">
+    <ul :class="[e('content')]" ref="popper">
       <slot></slot>
     </ul>
   </v-popper>
@@ -31,13 +32,11 @@
 <script lang="ts">
 import { Component, Watch, Vue, Provide, Inject, Prop } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
-import Bemable from '@/mixins/Bemable'
-import Themeable from '@/mixins/Themeable'
+import { Bemable, Themeable, Group, Groupable, CssVariable } from '../../mixins'
 import MenuInjector from './mixins/MenuInjector'
-import Group from '@/mixins/Group'
-import Groupable from '@/mixins/Groupable'
-import { VPopper } from '../popper/index'
-import { VExpandTransition } from '../transitions/index'
+import { VPopper, VExpandTransition, VMenuItem, VMenu } from '../../components'
+import { ReactiveSet } from '../../utils'
+import { MenuCssVariable } from '../..'
 
 @Component({
   components: {
@@ -46,14 +45,23 @@ import { VExpandTransition } from '../transitions/index'
   },
   name: 'v-sub-menu'
   })
-export default class VSubMenu extends mixins(Themeable, Bemable, MenuInjector, Group, Groupable) {
+export default class VSubMenu extends mixins(Bemable, MenuInjector, Group, Groupable, CssVariable) {
   @Prop(Boolean) disabled!: boolean
-
-  @Prop(String) index!: string
 
   groupNames: string[] = ['v-menu-item', 'v-sub-menu']
 
   visible: boolean = false
+
+  openedSubMenuSet = new ReactiveSet<any>()
+
+  @Provide() provideGetOpenedSubMenuSet (): ReactiveSet<any> {
+    return this.openedSubMenuSet
+  }
+
+  @Provide() provideCascadeOpen (opened?: boolean): void {
+    this.open(opened)
+    this.cascadeOpen(opened)
+  }
 
   @Provide('close') provideClose () {
     if (this.parsedMode !== 'inline') {
@@ -64,6 +72,10 @@ export default class VSubMenu extends mixins(Themeable, Bemable, MenuInjector, G
 
   @Inject({from: 'close', default: () => () => {}}) injectClose!: () => {}
 
+  @Inject('provideGetOpenedSubMenuSet') getOpenedSubMenuSet!: () => ReactiveSet<any>
+
+  @Inject('provideCascadeOpen') cascadeOpen!: (opened?: boolean) => void
+
   get isCollapsed (): boolean {
     return (this.mode === 'inline' && this.collapse && this.groupNestedLevel === 0)
   }
@@ -72,16 +84,28 @@ export default class VSubMenu extends mixins(Themeable, Bemable, MenuInjector, G
     return this.groupNestedLevel === 0
   }
 
+  get isActive (): boolean {
+    return this.groupItems.some(v => {
+      if (v.$options.name === 'v-menu-item') return (v as VMenuItem).selected
+      else if (v.$options.name === 'v-sub-menu') return (v as VSubMenu).isActive
+      return false
+    })
+  }
+
+  get isOpen (): boolean {
+    return this.getOpenedSubMenuSet().has(this.key)
+  }
+
   get modeCls () {
     return this.parsedMode ? this.m(`mode-${this.parsedMode}`) : ''
   }
 
   get activeCls (): string {
-    return this.activeGroupItems.length > 0 ? 'active' : ''
+    return this.isActive ? 'active' : ''
   }
 
   get openCls (): string {
-    return (this.parsedMode === 'inline' && this.visible) ? 'open' : ''
+    return this.isOpen ? 'open' : ''
   }
 
   get collapseCls () {
@@ -118,37 +142,45 @@ export default class VSubMenu extends mixins(Themeable, Bemable, MenuInjector, G
     return this.groupNestedLevel === 0
   }
 
-  get isActive (): boolean {
-    return this.activeGroupItems.length > 0
-  }
-
   onTitleClick () {
-    if (this.parsedMode === 'inline') this.visible = !this.visible
+    if (this.disabled) return
+    this.open()
   }
 
-  @Watch('isActive') isActiveChange (isActive: boolean) {
-    if (isActive) {
-      this.joinActiveGroup()
-      if (this.parsedMode === 'inline') this.visible = true
-    } else this.exitActiveGroup()
-  }
-
-  @Watch('visible') visibleChange (visible: boolean) {
-    if (this.parsedMode === 'inline' && this.groupNestedLevel === 0) {
-      if (visible) this.joinActiveGroup()
-      else this.exitActiveGroup()
+  open (opened?: boolean) {
+    if (this.parsedMode !== 'inline') return
+    let ret = opened === undefined ? !this.isOpen : opened
+    if (ret) {
+      if (this.uniqueOpened) this.getOpenedSubMenuSet().clear()
+      this.getOpenedSubMenuSet().add(this.key)
+    } else {
+      this.getOpenedSubMenuSet().delete(this.key)
     }
   }
 
-  @Watch('activeGrouped') activeGroupedChange (activeGrouped: boolean) {
-    if (this.uniqueOpened && !activeGrouped && this.groupNestedLevel ===0 && this.parsedMode === 'inline') {
-      this.visible = false
+  setMenuCssVariable () {
+    if (this.isTop && this.parsedMode !== 'inline') {
+      this.setCssVariable(this.$el, this.menuCssVariable)
+      if (this.$refs.popper) this.setCssVariable(this.$refs.popper, this.menuCssVariable)
     }
   }
 
-  handleDefaultOpeneds () {
-    if (!this.index || this.parsedMode !== 'inline') return
-    if (this.defaultOpeneds.includes(this.index)) this.visible = true
+  @Watch('menuCssVariable', {deep: true}) menuCssVariableChange (menuCssVariable: MenuCssVariable) {
+    this.setMenuCssVariable()
+  }
+
+  @Watch('parsedMode') parsedModeChange (parsedMode: string) {
+    this.$nextTick().then(() => {
+      this.setMenuCssVariable()
+    })
+  }
+
+  mounted () {
+    this.setMenuCssVariable()
+  }
+
+  $refs!: {
+    popper: HTMLElement
   }
 }
 </script>

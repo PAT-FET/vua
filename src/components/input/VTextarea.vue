@@ -14,10 +14,9 @@
 <script lang="ts">
 import { Component, Vue, Prop, Emit, Watch, Model } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
-import Themeable from '@/mixins/Themeable'
-import Bemable from '@/mixins/Bemable'
-import { TextareaAutosizeOption } from './input'
-import { getUnitRem } from '@/utils/dom'
+import { Bemable, Themeable } from '../../mixins'
+import { TextareaAutosizeOption } from './type'
+import { getUnitRem } from '../../utils'
 
 @Component({
   components: {

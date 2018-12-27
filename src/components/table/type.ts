@@ -1,6 +1,6 @@
-import { ReactiveSet } from '@/utils/collection'
+import { ReactiveSet } from '../../utils'
 import { VTableColumn } from '.'
-import { TableColumnSelection } from './table.d'
+import { TableColumnSelection } from './type'
 
 export type TableColumnFixed = 'left' | 'right'
 

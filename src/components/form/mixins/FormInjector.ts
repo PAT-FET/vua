@@ -1,7 +1,6 @@
 import { Component, Vue, Prop, Emit, Watch, Model, Provide, Inject } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
-import DateHelper from '@/mixins/DateHelper'
-import { FormLabelPosition, FormValidateStatus, FormValidateError, FormRule, FormRuleValidator, FormLayout, FormFieldValidateResult } from '../form'
+import { FormLabelPosition, FormValidateStatus, FormValidateError, FormRule, FormRuleValidator, FormLayout, FormFieldValidateResult } from '../type'
 import Groupable from '../../../mixins/Groupable'
 import { buildinValidatorMap } from '../validators'
 

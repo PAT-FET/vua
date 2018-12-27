@@ -6,12 +6,8 @@
 <script lang="ts">
 import { Component, Vue, Prop, Emit, Watch, Model, Provide } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
-import Themeable from '@/mixins/Themeable'
-import Bemable from '@/mixins/Bemable'
-import Localeable from '@/mixins/Localeable'
-import { TableColumnFixed, TableColumnType, TableColumnSelection, TableColumnFilter, TableColumnOverflow } from './table'
-import Groupable from '@/mixins/Groupable'
-import Group from '@/mixins/Group'
+import { Bemable, Themeable, Localeable, Groupable, Group } from '../../mixins'
+import { TableColumnFixed, TableColumnType, TableColumnSelection, TableColumnFilter, TableColumnOverflow } from './type'
 
 @Component({
   components: {
