@@ -161,6 +161,10 @@ const components: any = {
   VBadge: {
     title: 'Badge 徽标数',
     group: 'dataDisplay'
+  },
+  VAvatar: {
+    title: 'Avatar 头像',
+    group: 'dataDisplay'
   }
 }
 
