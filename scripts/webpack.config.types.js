@@ -36,7 +36,11 @@ module.exports = {
                 loader: "ts-loader",
                 options: { 
                     appendTsSuffixTo: [/\.vue$/],
-                    onlyCompileBundledFiles: true
+                    onlyCompileBundledFiles: true,
+                    compilerOptions: {
+                        "declaration": true,
+                        "declarationDir": "types",
+                    }
                 }
             }
         ]
