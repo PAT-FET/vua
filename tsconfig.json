@@ -11,8 +11,6 @@
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
     // "allowJs": true,
-    "declaration": true,
-    "declarationDir": "types",
     "baseUrl": ".",
     "types": [
       "webpack-env",
