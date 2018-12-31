@@ -153,6 +153,10 @@ const components: any = {
   VTree: {
     title: 'Tree 树形控件',
     group: 'dataDisplay'
+  },
+  VTag: {
+    title: 'Tag 标签',
+    group: 'dataDisplay'
   }
 }
 
