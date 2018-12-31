@@ -9,9 +9,7 @@
 <script lang="ts">
 import { Component, Vue, Prop, Emit, Watch } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
-import { Bemable, Themeable, Rippleable, Colorable } from '../../mixins'
-import { VuaTheme } from '../../vua'
-import { debounce } from '../../utils'
+import { Bemable, Themeable, Colorable } from '../../mixins'
 import { TagType, TagShape } from '../type'
 
 @Component({
@@ -19,7 +17,7 @@ import { TagType, TagShape } from '../type'
   },
   name: 'v-tag'
   })
-export default class VTag extends mixins(Themeable, Bemable, Rippleable, Colorable) {
+export default class VTag extends mixins(Themeable, Bemable, Colorable) {
   @Prop({type: String, default: 'outline'}) type!: TagType
 
   @Prop(String) color!: string

@@ -157,6 +157,10 @@ const components: any = {
   VTag: {
     title: 'Tag 标签',
     group: 'dataDisplay'
+  },
+  VBadge: {
+    title: 'Badge 徽标数',
+    group: 'dataDisplay'
   }
 }
 
