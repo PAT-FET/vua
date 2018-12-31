@@ -1,0 +1,8 @@
+@for $z from 0 through 24 {
+  .w-#{$z}{
+      width: #{$z}rem;
+  }
+  .h-#{$z}{
+      height: #{$z}rem;
+  }
+}

@@ -1,7 +1,7 @@
 <template>
 <div :class="[b()]">
     <transition-group name="move-up-transition" tag="ul" :class="[e('list')]">
-      <li :class="[e('item')]" v-for="(item, i) in messageList" :key="i">
+      <li :class="[e('item')]" v-for="(item) in messageList" :key="item.message">
           <i class="anticon mr-2" :class="[`anticon-${iconName(item.type)}`, spin(item.type), `text-${item.type}`]"></i>
           <span>{{item.message}}</span>
       </li>
@@ -11,10 +11,9 @@
 <script lang="ts">
 import { Component, Vue, Prop, Provide, Watch, Model, Emit } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
-import Bemable from '@/mixins/Bemable'
-import Themeable from '@/mixins/Themeable'
-import { MessageOption, MessageConfigOption } from '@/components/message/message'
-import { statusIconMap } from '@/utils/constant'
+import { Bemable, Themeable } from '../../mixins'
+import { MessageOption, MessageConfigOption } from './type'
+import { statusIconMap } from '../../utils'
 
 @Component({
   components: {

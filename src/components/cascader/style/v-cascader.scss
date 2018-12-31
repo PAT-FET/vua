@@ -1,0 +1,69 @@
+@import "../../../style/mixins/bem.scss";
+@import "../../../style/mixins/elevation.scss";
+@import "../../../style/mixins/misc.scss";
+@import "../../../style/var.scss";
+@import "./mixins.scss";
+
+@include b(v-cascader) {
+
+    @include e(input-container) {
+        line-height: 0; // input height overflow problem
+    }
+
+    @include e(content) {
+        border-radius: $border-radius-base;
+        display: flex;
+    }
+
+    @include e(menu) {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        min-width: 6.875rem;
+        height: 11.25rem;
+        border-right: 1px solid $border-color-split;
+    }
+   
+    @include e(menu-item) {
+        padding: 0.3125rem .75rem;
+        cursor: pointer;
+        position: relative;
+        transition: all .3s;
+
+        &.is-expand {
+            padding-right: 1.5rem;
+        }
+
+        &:hover {
+            background-color: $bg-color-active;
+        }
+
+        &.is-selected, &.is-open {
+            background-color: $bg-color-2;
+            font-weight: $font-weight-medium;
+        }
+
+        &.disabled {
+            color: $disabled-color;
+            pointer-events: none;
+        }
+    }
+
+    @include e(menu-item-expand-icon) {
+        position: absolute;
+        right: .75rem;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: $font-size-sm;
+        color: $text-color-secondary;
+
+        &>i {
+            transform: scale(0.83);
+        }
+    }
+
+    @include e(message) {
+        padding: 0.3125rem .75rem;
+        color: $disabled-color;
+    }
+}

@@ -1,8 +1,11 @@
 import { Provide, Vue, Prop, Component } from 'vue-property-decorator'
-import { MenuMode } from '../menu'
+import { MenuMode, MenuCssVariable } from '../type'
+import MenuInjector from './MenuInjector'
+import { mixins } from 'vue-class-component'
+import MenuTheme from './MenuTheme'
 
 @Component
-export default class MenuProvider extends Vue {
+export default class MenuProvider extends mixins(MenuTheme) {
     @Prop({ type: String, default: 'vertical' }) mode!: MenuMode
 
     @Prop(Boolean) collapse!: boolean
@@ -37,5 +40,9 @@ export default class MenuProvider extends Vue {
 
     @Provide() menuTrigger (): boolean {
       return this.trigger
+    }
+
+    @Provide() getMenuCssVariable (): MenuCssVariable {
+      return this.cssVariable
     }
 }

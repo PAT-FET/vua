@@ -66,7 +66,7 @@
         color: map-get($colors, base);
         &:not([disabled]){
             &:hover,&:active,&.active,&:focus{
-                background-color: map-get($colors, lighten-5);
+                background: none;
             }
             &:hover{
                 color: map-get($colors, lighten-1);
@@ -86,6 +86,9 @@
 
             &:hover,&:active,&.active,&:focus{
                 background-color: map-get($colors, lighten-5);
+                &.is-dark {
+                    background: $bg-color;
+                }
             }
             &:hover{
                 border-color: map-get($colors, lighten-1);

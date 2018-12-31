@@ -93,7 +93,7 @@ export default class BasicExample extends Vue {
 </script>
 
 <style lang="scss" module>
-@import "~@/style/var.scss";
+@import "../../../../../../../src/style/var.scss";
 
 .spacingBox{
     background-color: $primary-color;

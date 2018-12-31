@@ -6,7 +6,7 @@
 @import "./var.scss";
 
 @include b(v-button-group) {
-    display: inline-block;
+    display: inline-flex;
     vertical-align: middle;
     position: relative;
     color: $text-color;

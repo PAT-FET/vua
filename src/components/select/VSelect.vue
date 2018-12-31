@@ -14,7 +14,7 @@
       @keyup.up.stop.prevent="onPressUp"
       @keyup.enter.stop.prevent="onPressEnter"
       slot="reference">
-      <input style="position: absolute; height:0; width: 0; border: none; outline: 0; overflow: hidden;" ref="tab"/>
+      <input :class="[e('tab')]" ref="tab"/>
       <v-input
         ref="input"
         :class="[e('input'), searchableCls]"
@@ -61,14 +61,10 @@
 <script lang="ts">
 import { Component, Vue, Prop, Emit, Watch, Model, Provide } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
-import Themeable from '@/mixins/Themeable'
-import Bemable from '@/mixins/Bemable'
-import Group from '@/mixins/Group'
-import Select from '@/mixins/Select'
-import { SelectSize, SelectValue, SelectFilterFn, SelectSearchFn, SelectItem, GroupedSelectItem } from './select'
+import { Bemable, Themeable, Group, Select, Localeable } from '../../mixins'
+import { SelectSize, SelectValue, SelectFilterFn, SelectSearchFn, SelectItem, GroupedSelectItem } from './type'
 import { VInput, VPopper, VOption, VOptionGroup } from '../index'
-import Localeable from '@/mixins/Localeable'
-import { fireEvent } from '@/utils/dom'
+import { fireEvent } from '../../utils'
 
 @Component({
   components: {

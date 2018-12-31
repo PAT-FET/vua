@@ -6,6 +6,7 @@
 
 @include b(v-input-group) {
     display: inline-flex;
+    vertical-align: middle;
     flex-flow: row wrap;
 
     & > * {

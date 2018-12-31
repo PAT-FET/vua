@@ -1,11 +1,8 @@
 <script lang="ts">
 import { Component, Vue, Prop, Emit, Watch, Model, Provide } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
-import Themeable from '@/mixins/Themeable'
-import Bemable from '@/mixins/Bemable'
-import TreeIterable from '@/mixins/tree-iterable'
+import { Bemable, Themeable, TreeIterable, Node } from '../../mixins'
 import { CreateElement, VNode } from 'vue'
-import Node from '@/mixins/tree-iterable/Node'
 import VTreeNode from './widget/VTreeNode.vue'
 
 @Component({

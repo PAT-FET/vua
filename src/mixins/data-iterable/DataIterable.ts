@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Component from 'vue-class-component'
 import { Prop, Emit, Watch } from 'vue-property-decorator'
-import { DataPagination, DataSorter, DataFilter, DataRowKeyFunc, DataRemoteChangeParam } from './type.d'
-import { ReactiveSet } from '@/utils/collection'
+import { DataPagination, DataSorter, DataFilter, DataRowKeyFunc, DataRemoteChangeParam } from './type'
+import { ReactiveSet } from '../../utils/collection'
 
 @Component
 export default class DataIterable extends Vue {

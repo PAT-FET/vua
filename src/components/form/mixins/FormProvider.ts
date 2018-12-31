@@ -1,9 +1,8 @@
 import { Component, Vue, Prop, Emit, Watch, Model, Provide } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
-import DateHelper from '@/mixins/DateHelper'
 import Group from '../../../mixins/Group'
 import FormInjector from './FormInjector'
-import { FormValidateError, FormLayout, FormLabelPosition, FormValidateResult } from '../form'
+import { FormLayout, FormLabelPosition, FormValidateResult } from '../type'
 
 @Component
 export default class FormProvider extends mixins(Group) {

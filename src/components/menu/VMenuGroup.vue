@@ -9,10 +9,8 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
-import Bemable from '@/mixins/Bemable'
-import Themeable from '@/mixins/Themeable'
+import { Bemable, Themeable, Groupable } from '../../mixins'
 import MenuInjector from './mixins/MenuInjector'
-import Groupable from '@/mixins/Groupable'
 
 @Component({
   components: {

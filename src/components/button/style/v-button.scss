@@ -31,19 +31,21 @@
     }
 
     @include m(type-flat) {
-        background: none;
+        background: none !important;
         &[disabled]{
             background: none;
         }
     }
 
     @include m(type-depressed) {
+        background: $bg-color-2;
         border-radius: $btn-border-radius;
     }
 
     @include m(type-outline) {
         border-width: 1px;
         border-style: solid;
+        border-color: $border-color-base;
     }
 
     // Size

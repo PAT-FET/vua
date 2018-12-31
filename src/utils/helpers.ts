@@ -11,7 +11,7 @@ function mergeTransitions (
 
 export function createSimpleTransition (
   name: string,
-  origin = 'top center 0',
+  origin = '',
   mode?: string
 ): FunctionalComponentOptions {
   return {

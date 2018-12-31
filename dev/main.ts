@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-import Vua from '@/index'
+import Vua from '../src/index'
 import './components'
-import zhHans from '@/locale/zh-Hans'
+import zhHans from '../src/locale/zh-Hans'
 
 import 'highlight.js/styles/darcula.css'
 

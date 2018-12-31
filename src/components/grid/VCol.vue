@@ -5,9 +5,8 @@
 import { Component, Vue, Prop, Provide, Watch, Model, Emit, Inject } from 'vue-property-decorator'
 import { VNode } from 'vue'
 import { mixins } from 'vue-class-component'
-import Bemable from '@/mixins/Bemable'
-import Themeable from '@/mixins/Themeable'
-import { GridBreakpointOption } from './grid'
+import { Bemable, Themeable } from '../../mixins'
+import { GridBreakpointOption } from './type'
 
 @Component({
   components: {

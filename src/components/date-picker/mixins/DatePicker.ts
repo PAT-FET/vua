@@ -1,7 +1,7 @@
 import { Component, Vue, Prop, Emit, Watch, Model, Provide } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
 import Picker from './Picker'
-import { PickerDisabledTimeFunc } from '../date-picker'
+import { PickerDisabledTimeFunc } from '../type'
 import { fireEvent } from '../../../utils/dom'
 
 @Component

@@ -1,10 +1,12 @@
 <template>
 <div>
   <div class="my-3">
+    <v-alert class="mb-3" type="warning" description="默认关联选中， 即选择父节点， 其子节点也相应选上；所有子节点选中， 父节点也相应选中"></v-alert>
+    <v-checkbox v-model="checkStrictly" class="mr-2">是否取消关联选中</v-checkbox>
     <v-button color="primary" @click="select">选中 1-1、2-1</v-button>
   </div>
   <div class="my-3">
-    <v-tree node-key="key" checkable :data-source="dataSource" ref="tree"></v-tree>
+    <v-tree node-key="key" :checkStrictly="checkStrictly" checkable :data-source="dataSource" ref="tree"></v-tree>
   </div>
 </div>
 </template>
@@ -21,6 +23,8 @@ import { VForm, VTree } from 'src'
   },
   })
 export default class BasicExample extends Vue {
+  checkStrictly: boolean = false
+
   dataSource = [{
     key: '1',
     label: '一级 1',

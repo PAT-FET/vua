@@ -12,11 +12,10 @@
 <script lang="ts">
 import { Component, Vue, Prop, Emit, Watch, Model } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
-import Themeable from '@/mixins/Themeable'
-import Bemable from '@/mixins/Bemable'
+import { Bemable, Themeable } from '../../mixins'
 import { VCheckboxGroup } from './index'
-import { getDefaultColor } from '@/utils/theme'
-import { CheckboxValue, CheckboxLabel } from './checkbox'
+import { getDefaultColor } from '../..//utils/theme'
+import { CheckboxValue, CheckboxLabel } from './type'
 
 @Component({
   components: {

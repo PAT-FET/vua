@@ -1,6 +1,6 @@
-import { VMessage } from '@/components'
 import Vue from 'vue'
-import { MessageConfigOption, MessageOption } from '@/components/message/message'
+import { MessageConfigOption, MessageOption } from '../components/type'
+import { VMessage } from '../components'
 
 let instance: VMessage| null = null
 

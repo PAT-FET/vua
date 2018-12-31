@@ -17,7 +17,7 @@
     }
 
     &:hover:not(.disabled), &.active:not(.disabled) {
-        background-color: map-get($primary-colors, lighten-5);
+        background-color: $bg-color-active;
     }
 
     &.disabled {

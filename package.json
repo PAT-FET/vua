@@ -1,6 +1,6 @@
 {
   "name": "vua",
-  "version": "0.1.0",
+  "version": "0.2.1",
   "main": "dist/vua.common.js",
   "types": "types/index.d.ts",
   "scripts": {
@@ -42,7 +42,8 @@
     "sass-loader": "^7.0.1",
     "shelljs": "^0.8.2",
     "typescript": "^3.0.0",
-    "vue-template-compiler": "^2.5.17"
+    "vue-template-compiler": "^2.5.17",
+    "webpack-cli": "^3.1.2"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"

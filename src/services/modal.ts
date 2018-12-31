@@ -1,6 +1,6 @@
-import VModalService from '@/components/modal/VModalService.vue'
 import Vue from 'vue'
-import { ModalOption, ModalItem } from '@/components/modal/modal'
+import { ModalOption, ModalItem } from '../components/type'
+import { VModalService } from '../components'
 
 let instance: VModalService| null = null
 

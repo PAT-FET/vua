@@ -21,12 +21,10 @@
 import { Component, Vue, Prop, Provide, Watch, Model, Emit } from 'vue-property-decorator'
 import { VNode } from 'vue'
 import { mixins } from 'vue-class-component'
-import Bemable from '@/mixins/Bemable'
-import Themeable from '@/mixins/Themeable'
-import { ModalOption, ModalItem } from '@/components/modal/modal'
+import { Bemable, Themeable, Localeable } from '../../mixins'
+import { ModalOption, ModalItem } from './type'
 import { VModal } from './index'
-import { statusIconMap } from '@/utils/constant'
-import Localeable from '@/mixins/Localeable'
+import { statusIconMap } from '../../utils'
 
 @Component({
   components: {

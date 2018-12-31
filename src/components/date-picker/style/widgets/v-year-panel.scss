@@ -33,7 +33,7 @@
         color: $disabled-color;
 
         &:hover{
-            background-color: map-get($primary-colors, lighten-5);
+            background-color: $picker-hover-color;
             cursor: pointer;
         }
 
@@ -41,13 +41,13 @@
             background-color: map-get($primary-colors, lighten-4);
         }
 
+        &.is-current-decade {
+            color: $text-color;
+        }
+
         &.is-selected-year {
             background-color: $primary-color;
             color: #fff;
-        }
-
-        &.is-current-decade {
-            color: $text-color;
         }
     }
 }

@@ -16,12 +16,10 @@
 <script lang="ts">
 import { Component, Vue, Prop, Provide, Watch, Model, Emit } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
-import Bemable from '@/mixins/Bemable'
-import Themeable from '@/mixins/Themeable'
-import Localeable from '@/mixins/Localeable'
+import { Bemable, Themeable, Localeable } from '../../mixins'
 import { VPopover } from '../index'
-import { PopconfirmType } from './popconfirm'
-import { statusIconMap } from '@/utils/constant'
+import { PopconfirmType } from './type'
+import { statusIconMap } from '../../utils'
 
 @Component({
   components: {

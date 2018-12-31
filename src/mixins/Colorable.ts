@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Component from 'vue-class-component'
-import { colorPalette, buildinColor, greyGradation } from '@/utils/color'
+import { colorPalette, buildinColor, greyGradation } from '../utils'
 /**
  * 1. theme color: primary  primary-lighten-1
  * 2. buildin color: pink pink-lighten-1
@@ -27,7 +27,7 @@ export default class Colorable extends Vue {
       return parse(prefix, suffix)
     }
     if (prefix === 'grey') {
-      return suffix ? (greyGradation as any)[prefix] : greyGradation['base']
+      return suffix ? (greyGradation as any)[suffix] : greyGradation['base']
     }
     let bc = (buildinColor as any)[prefix] || ''
     if (bc) {
@@ -39,14 +39,14 @@ export default class Colorable extends Vue {
         return parse(theme, suffix)
       }
       if (theme === 'grey') {
-        return suffix ? (greyGradation as any)[theme] : greyGradation['base']
+        return suffix ? (greyGradation as any)[suffix] : greyGradation['base']
       }
       let bc = (buildinColor as any)[theme] || ''
       if (bc) {
         return parse(bc, suffix)
       }
     }
-    return ''
+    return color
 
     function sepColor (): string[] {
       let suffix = ''

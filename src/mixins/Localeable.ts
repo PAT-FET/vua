@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Component from 'vue-class-component'
 import { Prop } from 'vue-property-decorator'
-import { VuaLocale } from '@/vua'
-import { getTranslation } from '@/utils/locale'
+import { VuaLocale } from '../vua'
+import { getTranslation } from '../utils'
 
 @Component
 export default class Localeable extends Vue {

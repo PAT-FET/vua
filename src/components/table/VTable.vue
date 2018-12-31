@@ -51,19 +51,15 @@
 <script lang="ts">
 import { Component, Vue, Prop, Emit, Watch, Model, Provide } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
-import Themeable from '@/mixins/Themeable'
-import Bemable from '@/mixins/Bemable'
-import Localeable from '@/mixins/Localeable'
-import DataIterable from '@/mixins/data-iterable'
-import Group from '@/mixins/Group'
+import { Bemable, Themeable, Localeable, DataIterable, Group } from '../../mixins'
 import { VTableColumn } from './index'
 import VTableCell from './widget/VTableCell.vue'
 import VTableHeaderCell from './widget/VTableHeaderCell.vue'
 import VTableExpandRow from './widget/VTableExpandRow.vue'
-import { TableSize, TableHeaderColumn, TableColumnSelectionCb, TableSpanFn, TableCellCbParam } from '@/components/table/table'
+import { TableSize, TableHeaderColumn, TableColumnSelectionCb, TableSpanFn, TableCellCbParam } from './type'
 import { VPagination } from '../pagination'
-import { Loading } from '@/directives'
-import { ReactiveSet } from '@/utils/collection'
+import { Loading } from '../../directives'
+import { ReactiveSet } from '../../utils'
 
 @Component({
   components: {

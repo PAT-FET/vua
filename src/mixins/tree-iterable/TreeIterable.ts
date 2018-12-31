@@ -3,7 +3,7 @@ import Component from 'vue-class-component'
 import { Prop, Emit, Watch, Provide } from 'vue-property-decorator'
 import { TreeProps, TreeNodeLoadFn, TreeNodeFilterFn } from './type'
 import Node from './Node'
-import ReactiveSet from '../../utils/collection/ReactiveSet'
+import { ReactiveSet } from '../../utils/collection'
 
 const defaultProps = {
   label: 'label',
@@ -23,6 +23,8 @@ export default class TreeIterable extends Vue {
   @Prop(Boolean) accordion!: boolean
 
   @Prop(Boolean) checkable!: boolean
+
+  @Prop(Boolean) checkStrictly!: boolean
 
   @Prop(Boolean) lazy!: boolean
 
@@ -44,7 +46,7 @@ export default class TreeIterable extends Vue {
   get root (): Node {
     return new Node({
       store: this,
-      data: this.randeredData
+      data: this.renderedData
     })
   }
 
@@ -52,8 +54,12 @@ export default class TreeIterable extends Vue {
     return Object.assign({}, defaultProps, this.props || {})
   }
 
-  get randeredData (): any[] {
+  get renderedData (): any[] {
     return this.dataSource || []
+  }
+
+  get currentNode (): Node | null {
+    return this.currentNodeKey ? (this.nodeMap.get(this.currentNodeKey) || null) : null
   }
 
   addNode (node: Node) {

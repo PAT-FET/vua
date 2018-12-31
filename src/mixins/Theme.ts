@@ -1,9 +1,6 @@
 import { Component, Vue, Watch } from 'vue-property-decorator'
-import { VuaTheme } from '@/vua'
-import { buildinColor, greyGradation } from '@/utils/color'
-import { getRootElement } from '../utils/dom'
-import { getThemeDark, getDefaultColor, setCssColor } from '@/utils/theme'
-import { getThemeLight } from '../utils/theme'
+import { VuaTheme } from '../vua'
+import { getThemeDark, getDefaultColor, setCssColor, getRootElement, getThemeLight } from '../utils'
 
 @Component
 export default class Theme extends Vue {

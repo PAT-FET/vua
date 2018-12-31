@@ -335,7 +335,7 @@ export default class ListExample extends Vue {
 </script>
 
 <style lang="scss" module>
-@import "~@/style/var.scss";
+@import "../../../../../../src/style/var.scss";
 .box{
     line-height: 60px;
     display: inline-block;

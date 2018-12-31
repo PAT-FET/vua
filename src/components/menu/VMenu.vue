@@ -6,23 +6,32 @@
 <script lang="ts">
 import { Component, Vue, Prop, Provide, Watch } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
-import Bemable from '@/mixins/Bemable'
-import Themeable from '@/mixins/Themeable'
-import Select from '@/mixins/Select'
-import { MenuMode } from './menu'
+import { Bemable, Themeable, Select, Group } from '../../mixins'
+import { MenuMode } from './type'
 import MenuProvider from './mixins/MenuProvider'
-import Group from '@/mixins/Group'
+import MenuTheme from './mixins/MenuTheme'
 import { VMenuItem } from './index'
+import { ReactiveSet } from '../../utils'
 
 @Component({
   components: {
   },
   name: 'v-menu'
   })
-export default class VMenu extends mixins(Themeable, Bemable, MenuProvider, Select, Group) {
-  groupNames: string[] = ['v-sub-menu']
+export default class VMenu extends mixins(Bemable, MenuProvider, Select, Group) {
+  groupNames: string[] = ['v-sub-menu', 'v-menu-group', 'v-menu-item']
 
   groupNestedLevel: number = -1
+
+  openedSubMenuSet = new ReactiveSet<any>()
+
+  @Provide() provideGetOpenedSubMenuSet (): ReactiveSet<any> {
+    return this.openedSubMenuSet
+  }
+
+  @Provide() provideCascadeOpen (opened?: boolean): void {
+    // do nothing
+  }
 
   // overwrite
   resolveSelectedKey (item: VMenuItem) {
@@ -46,16 +55,11 @@ export default class VMenu extends mixins(Themeable, Bemable, MenuProvider, Sele
     this.provideSelect(this.defaultActive, true)
   }
 
-  @Watch('uniqueOpened') uniqueOpenedChang (uniqueOpened: boolean) {
-    this.multipleActiveItem = !uniqueOpened
-  }
-
   @Watch('defaultActive') defaultActiveChange () {
     this.handleDefaultActive()
   }
 
   created () {
-    this.multipleActiveItem = !this.uniqueOpened
     this.handleDefaultActive()
   }
 }

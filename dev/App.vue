@@ -38,7 +38,7 @@ export default class App extends Vue {
 </script>
 
 <style lang="scss" module>
-@import '~@/style/var.scss';
+@import '../src/style/var.scss';
 
 .container{
   display: flex;

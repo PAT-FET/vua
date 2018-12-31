@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { hyphenate } from '@/utils/lang'
+import { hyphenate } from '../utils'
 import Component from 'vue-class-component'
 
 @Component

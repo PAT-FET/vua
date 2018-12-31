@@ -26,7 +26,7 @@
   </div>
 
   <div class="my-3">
-    <label> <input type="checkbox" v-model="loading"> Toggle </label>
+     <v-checkbox v-model="loading">切换</v-checkbox>
   </div>
 </div>
 </template>

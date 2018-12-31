@@ -11,9 +11,9 @@ export {
   Resize
 }
 
-export default {
-  Ripple,
-  Loading,
-  ScrollIntoView,
-  Resize
-}
+// export default {
+//   Ripple,
+//   Loading,
+//   ScrollIntoView,
+//   Resize
+// }

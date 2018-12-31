@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import { Component, Prop } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
-import DateLocale from '@/mixins/DateLocale'
-import { parse, format } from '@/utils/date'
+import DateLocale from './DateLocale'
+import { parse, format } from '../utils'
 
 @Component
 export default class DateHelper extends mixins(DateLocale) {

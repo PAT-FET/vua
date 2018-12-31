@@ -1,7 +1,7 @@
-import { colorPalette } from '@/utils/color'
+// import { colorPalette } from 'src/utils/color'
 
-describe('colorPalette', () => {
-  it('should always get the latest one', () => {
-    console.log(colorPalette('#1890ff', 1))
-  })
-})
+// describe('colorPalette', () => {
+//   it('should always get the latest one', () => {
+//     console.log(colorPalette('#1890ff', 1))
+//   })
+// })

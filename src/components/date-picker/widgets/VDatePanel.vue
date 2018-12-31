@@ -37,12 +37,21 @@
 <script lang="ts">
 import { Component, Vue, Prop, Emit, Watch, Model, Provide } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
-import Themeable from '@/mixins/Themeable'
-import Bemable from '@/mixins/Bemable'
-import { getRecentDayOfWeek, addYear, addMonth, addDay, addWeek, getWeekOfYear, isToday, isSameDay, isSameMonth, isSameWeek, trimDate } from '@/utils/date'
-import { range } from '@/utils/lang'
-import { PickerPanelType } from '@/components/date-picker/date-picker'
-import DateLocale from '@/mixins/DateLocale'
+import { Bemable, Themeable, DateLocale } from '../../../mixins'
+import {
+  getRecentDayOfWeek,
+  addYear,
+  addMonth,
+  addDay,
+  addWeek,
+  getWeekOfYear,
+  isToday,
+  isSameDay,
+  isSameMonth,
+  isSameWeek,
+  trimDate,
+  range } from '../../../utils'
+import { PickerPanelType } from '../type'
 import Panel from '../mixins/Panel'
 
 @Component({

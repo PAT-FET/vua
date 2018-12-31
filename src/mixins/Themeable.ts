@@ -1,5 +1,5 @@
 import { Component, Vue, Prop, Watch, Provide, Inject } from 'vue-property-decorator'
-import { getThemeDark, getThemeLight } from '@/utils/theme'
+import { getThemeDark, getThemeLight } from '../utils/theme'
 
 @Component
 export default class Themeable extends Vue {
@@ -11,7 +11,7 @@ export default class Themeable extends Vue {
 
     // overwrite under specific circumstance
     getCssVarEles (): HTMLElement[] {
-      return [this.$el]
+      return [this.$el as HTMLElement]
     }
 
     // TODO 对于 appendToBody 之类的组件， 需要提供 (Provide/ Inject) 来实现

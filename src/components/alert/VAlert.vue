@@ -17,11 +17,10 @@
 <script lang="ts">
 import { Component, Vue, Prop, Provide, Watch, Model, Emit } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
-import Bemable from '@/mixins/Bemable'
-import Themeable from '@/mixins/Themeable'
-import { AlertType } from './alert'
-import { statusIconMap } from '@/utils/constant'
-import { VExpandTransition } from '@/components'
+import { Bemable, Themeable } from '../../mixins'
+import { AlertType } from './type'
+import { statusIconMap } from '../../utils'
+import { VExpandTransition } from '../../components'
 
 @Component({
   components: {

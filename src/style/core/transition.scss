@@ -12,6 +12,14 @@
 
 .expand-transition{
     @include transition-default();
+    @at-root{
+        #{&}-enter{
+            opacity: .3;
+        }
+        #{&}-leave-to{
+            opacity: .3;
+        }
+    }
 }
 
 .fade-transition{

@@ -1,8 +1,7 @@
 import { VueConstructor, PluginFunction } from 'vue'
 import { VuaOptions } from './vua'
 import Breakpoint from './mixins/Breakpoint'
-import { getRootElement } from './utils/dom'
-import { getDefaultColor } from './utils/theme'
+import { getDefaultColor } from './utils'
 import Theme from './mixins/Theme'
 import genLang from './utils/locale'
 

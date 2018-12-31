@@ -65,7 +65,7 @@ export default class NavMenu extends Vue {
 </script>
 
 <style lang="scss" module>
-@import "~@/style/var.scss";
+@import "../../src/style/var.scss";
 
 .item {
     line-height: 32px;

@@ -1,5 +1,5 @@
 import tinycolor from './tinycolor.js'
-import { VuaColorGradation } from '../../vua.d'
+import { VuaColorGradation } from '../../vua'
 
 /* eslint-disable */
 var hueStep = 2;

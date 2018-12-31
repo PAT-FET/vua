@@ -41,3 +41,25 @@ export {
   VZoomLeftTransition,
   VExpandTransition
 }
+
+const transitions = {
+  VFadeTransition,
+  VSwingTransition,
+  VMoveUpTransition,
+  VMoveDownTransition,
+  VMoveRightTransition,
+  VMoveLeftTransition,
+  VSlideUpTransition,
+  VSlideDownTransition,
+  VSlideRightTransition,
+  VSlideLeftTransition,
+  VZoomTransition,
+  VZoomBigTransition,
+  VZoomUpTransition,
+  VZoomDownTransition,
+  VZoomRightTransition,
+  VZoomLeftTransition,
+  VExpandTransition
+}
+
+export default transitions

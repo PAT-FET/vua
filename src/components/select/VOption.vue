@@ -4,10 +4,7 @@
 <script lang="ts">
 import { Component, Vue, Prop, Emit, Watch, Model, Provide } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
-import Themeable from '@/mixins/Themeable'
-import Bemable from '@/mixins/Bemable'
-import Group from '@/mixins/Group'
-import Groupable from '@/mixins/Groupable'
+import { Bemable, Themeable, Group, Groupable } from '../../mixins'
 
 @Component({
   components: {

@@ -1,10 +1,8 @@
 <script lang="ts">
 import { Component, Vue, Prop, Emit, Watch, Model, Provide } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
-import Themeable from '@/mixins/Themeable'
-import Bemable from '@/mixins/Bemable'
-import Localeable from '@/mixins/Localeable'
-import { TableColumnType } from '@/components/table/table'
+import { Bemable, Themeable, Localeable } from '../../../mixins'
+import { TableColumnType } from '../type'
 import { VTableColumn } from '../../..'
 import { VNode, CreateElement } from 'vue'
 import { VCheckbox } from '../../checkbox'

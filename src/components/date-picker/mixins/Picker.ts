@@ -1,7 +1,7 @@
 import { Component, Vue, Prop, Emit, Watch, Model, Provide } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
-import DateHelper from '@/mixins/DateHelper'
-import { PickerSize, PickerDisabledDateFunc } from '../date-picker'
+import { DateHelper } from '../../../mixins'
+import { PickerSize, PickerDisabledDateFunc } from '../type'
 
 @Component
 export default class Picker extends mixins(DateHelper) {

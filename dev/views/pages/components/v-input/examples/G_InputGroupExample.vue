@@ -99,6 +99,15 @@
         </div>
       </div>
 
+      <div>
+        <p>与级联选择组合</p>
+        <div class="my-3">
+          <v-input-group>
+            <v-input :size="size" placeholder="Search..." clearable></v-input>
+            <v-cascader :size="size" node-key="key" :data-source="professions" v-model="profession" placeholder="请选择行业"></v-cascader>
+          </v-input-group>
+        </div>
+      </div>
    </div>
 </div>
 </template>
@@ -129,5 +138,38 @@ export default class InputGroupExample extends Vue {
   date4: string = ''
 
   range: string[] = ['', '']
+
+  profession: string[] = []
+
+  professions = [
+    {
+      key: '1',
+      label: '工业',
+      children: [
+        {
+          key: '1-1',
+          label: '采矿业',
+        },
+        {
+          key: '1-2',
+          label: '制造业',
+        }
+      ]
+    },
+    {
+      key: '2',
+      label: '商业',
+      children: [
+        {
+          key: '2-1',
+          label: '批发零售',
+        },
+        {
+          key: '2-2',
+          label: '汽车销售',
+        }
+      ]
+    }
+  ]
 }
 </script>

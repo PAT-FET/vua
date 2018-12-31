@@ -49,8 +49,8 @@ export default class BasicExample extends Vue {
 </script>
 
 <style lang="scss" module>
-@import "~@/style/mixins/breakpoint.scss";
-@import "~@/style/var.scss";
+@import "../../../../../../src/style/mixins/breakpoint.scss";
+@import "../../../../../../src/style/var.scss";
 
 .box{
         background-color: $primary-color;

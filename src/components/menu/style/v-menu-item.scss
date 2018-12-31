@@ -6,7 +6,7 @@
 @import "./var.scss";
 
 @include b (v-menu-item) {
-    color: $text-color;
+    color: $menu-item-text-color;
     cursor: pointer;
     position: relative;
     display: block;
@@ -16,13 +16,6 @@
 
     &.is-collapse{
         text-align: center;
-    }
-
-    &.disabled {
-        pointer-events: none;
-        color: $disabled-color;
-        // background-color: $disabled-color;
-        border-color: $disabled-color;
     }
 
     @include e (icon) {
@@ -41,6 +34,9 @@
     @include m(mode-vertical) {
         @include vertical-item();
         padding: 0 1rem 0 1.5rem;
+        &:not(.is-top){
+            min-width: 10rem;
+        }
     }
 
     @include m(mode-inline) {
@@ -50,6 +46,7 @@
     @include m(mode-horizontal) {
         &:not(.is-top){
             @include vertical-item();
+            min-width: 10rem;
         }
         &.is-top{
             @include horizontal-top-item();

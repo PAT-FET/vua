@@ -54,6 +54,10 @@
          </v-input-group>
       </v-form-item>
 
+       <v-form-item label="行业" prop="profession">
+         <v-cascader v-model="form.profession" clearable :data-source="professions"></v-cascader>
+      </v-form-item>
+
       <div class="pl-5">
         <v-button class="mr-2" @click="reset">重置</v-button>
         <v-button color="primary" @click="submit">提交</v-button>
@@ -82,7 +86,8 @@ export default class BasicExample extends Vue {
     skill: ['Js'],
     city: 'shanghai',
     birthday: '1992/08/29',
-    tel: ['', '']
+    tel: ['', ''],
+    profession: []
   }
 
   rules = {
@@ -114,12 +119,46 @@ export default class BasicExample extends Vue {
            }, 2000)
          })
        }},
+    ],
+    profession: [
+      {validator: 'length', min: 1, message: '请选择行业'},
     ]
   }
 
   labelPosition: string = 'right'
 
   layout: string = 'vertical'
+
+  professions = [
+    {
+      key: '1',
+      label: '工业',
+      children: [
+        {
+          key: '1-1',
+          label: '采矿业',
+        },
+        {
+          key: '1-2',
+          label: '制造业',
+        }
+      ]
+    },
+    {
+      key: '2',
+      label: '商业',
+      children: [
+        {
+          key: '2-1',
+          label: '批发零售',
+        },
+        {
+          key: '2-2',
+          label: '汽车销售',
+        }
+      ]
+    }
+  ]
 
   submit () {
     this.$refs.form.validate().then(({ valid, errors }) => {
