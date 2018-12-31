@@ -1,7 +1,7 @@
 import { Component, Vue, Watch, Prop } from 'vue-property-decorator'
 import { hyphenate } from '@/utils'
 import { mixins } from 'vue-class-component'
-import { Themeable, Colorable } from '@/mixins'
+import { Themeable, Colorable } from '../mixins'
 
 @Component
 export default class CssVariable extends mixins(Themeable, Colorable) {

@@ -5,8 +5,9 @@
 @import "./mixins.scss";
 
 @include b(v-checkbox-group) {
-    display: inline-block;
+    display: inline-flex;
     line-height: 2rem;
+    vertical-align: middle;
 
     .v-button {
         @include group-children();
