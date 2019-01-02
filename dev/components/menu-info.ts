@@ -70,6 +70,10 @@ const components: any = {
     title: 'Spin 加载中',
     group: 'feedback'
   },
+  VProgress: {
+    title: 'Progress 进度条',
+    group: 'feedback'
+  },
   VLayout: {
     title: 'Layout 布局',
     group: 'layout'
