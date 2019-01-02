@@ -130,6 +130,10 @@ const components: any = {
     title: 'TimePicker 时间选择框',
     group: 'dataEntry'
   },
+  VInputNumber: {
+    title: 'InputNumber 数字输入框',
+    group: 'dataEntry'
+  },
   VCascader: {
     title: 'Cascader 级联选择',
     group: 'dataDisplay'
