@@ -10,7 +10,7 @@ import { Component, Vue, Watch } from 'vue-property-decorator'
 
 /**
  * @title  基本
- * @desc 数字输入框。
+ * @desc 数字输入框, 可使用键盘上下键。
  */
 @Component({
   components: {

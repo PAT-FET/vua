@@ -143,6 +143,10 @@ export default class VPopper extends mixins(Bemable, Themeable) {
     return [this.$el as HTMLElement, this.$refs.popper]
   }
 
+  scheduleUpdate () {
+    this.popper && this.popper.scheduleUpdate()
+  }
+
   @Watch('visible') visibleChange (visible: boolean) {
     if (visible) {
       let display = this.$refs.popper.style.display

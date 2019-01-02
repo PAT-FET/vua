@@ -134,6 +134,10 @@ const components: any = {
     title: 'InputNumber 数字输入框',
     group: 'dataEntry'
   },
+  VAutoComplete: {
+    title: 'AutoComplete 自动完成',
+    group: 'dataEntry'
+  },
   VCascader: {
     title: 'Cascader 级联选择',
     group: 'dataDisplay'
