@@ -70,6 +70,10 @@ const components: any = {
     title: 'Spin 加载中',
     group: 'feedback'
   },
+  VProgress: {
+    title: 'Progress 进度条',
+    group: 'feedback'
+  },
   VLayout: {
     title: 'Layout 布局',
     group: 'layout'
@@ -152,6 +156,18 @@ const components: any = {
   },
   VTree: {
     title: 'Tree 树形控件',
+    group: 'dataDisplay'
+  },
+  VTag: {
+    title: 'Tag 标签',
+    group: 'dataDisplay'
+  },
+  VBadge: {
+    title: 'Badge 徽标数',
+    group: 'dataDisplay'
+  },
+  VAvatar: {
+    title: 'Avatar 头像',
     group: 'dataDisplay'
   }
 }

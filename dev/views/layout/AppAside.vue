@@ -1,6 +1,6 @@
 <template>
 <div :class="$style.container">
-    <nav-menu :data="pages" style="height: 100%; width: 256px;"></nav-menu>
+    <nav-menu :data="pages" style="min-height: 100%; width: 256px;"></nav-menu>
 </div>
 </template>
 <script lang="ts">

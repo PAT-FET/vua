@@ -1,0 +1,91 @@
+@import "../../../style/mixins/bem.scss";
+@import "../../../style/mixins/elevation.scss";
+@import "../../../style/mixins/misc.scss";
+@import "../../../style/mixins/reset.scss";
+@import "../../../style/var.scss";
+@import "./mixins.scss";
+@import "./var.scss";
+
+
+@include b(v-progress-line) {
+    @include reset-component();
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    @include e(outer) {
+        flex: auto;
+    }
+
+    @include e(inner) {
+        background-color: $bg-color-2;
+        border-radius: 100px;
+        position: relative;
+    }
+
+    @include e(bg){
+        background-color: $primary-color;
+        transition: all .4s $ease-out-circ 0s;
+        position: relative;
+        border-radius: 100px;
+    }
+
+    @include e(text){
+        margin-left: .5rem;
+        color: $text-color-secondary;
+        line-height: 1;
+    }
+
+    // Status 
+    @include m(status-success) {
+        @include e(bg) {
+            background-color: $success-color;
+        }
+        @include e(text) {
+            color: $success-color;
+        }
+    }
+
+    @include m(status-exception) {
+        @include e(bg) {
+            background-color: $error-color;
+        }
+        @include e(text) {
+            color: $error-color;
+        }
+    }
+
+    @include m(status-active) {
+        @include e(bg) {
+            &:before{
+                content: "";
+                opacity: 0;
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: $bg-color;
+                border-radius: 100px;
+                animation: v-progress-line-active 2.4s $ease-out-quint infinite;
+            }
+        }
+    }
+
+}
+
+@keyframes v-progress-line-active {
+  0% {
+    opacity: 0.1;
+    width: 0;
+  }
+  20% {
+    opacity: 0.5;
+    width: 0;
+  }
+  100% {
+    opacity: 0;
+    width: 100%;
+  }
+}
