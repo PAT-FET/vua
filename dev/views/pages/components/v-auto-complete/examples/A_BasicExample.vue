@@ -39,7 +39,7 @@ export default class BasicExample extends Vue {
         }
       })
       cb(ret)
-    }, 2000)
+    }, 800)
   }
 }
 </script>

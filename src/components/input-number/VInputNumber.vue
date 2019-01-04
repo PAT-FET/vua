@@ -2,8 +2,9 @@
   <div :class="[b()]">
     <v-input :value="actualValue"
      :size="size"
-     :placeholder="placeholder"
      :disabled="disabled"
+     @keyup.native.up="add"
+     @keyup.native.down="subtract"
      style="width: 100%;"
      @change="onChange"></v-input>
 
