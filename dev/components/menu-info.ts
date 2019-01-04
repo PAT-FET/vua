@@ -138,6 +138,10 @@ const components: any = {
     title: 'AutoComplete 自动完成',
     group: 'dataEntry'
   },
+  VSlider: {
+    title: 'Slider 滑动输入条',
+    group: 'dataEntry'
+  },
   VCascader: {
     title: 'Cascader 级联选择',
     group: 'dataDisplay'

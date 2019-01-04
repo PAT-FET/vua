@@ -13,6 +13,10 @@
    padding: .25rem 0;
    cursor: pointer;
 
+   &.disabled {
+      cursor: not-allowed;
+   }
+
    @include e(rail) {
       position: absolute;
       width: 100%;
@@ -21,9 +25,12 @@
       transition: all .3s;
       border-radius: .125rem;
 
-      &:hover {
+      &:hover:not(.disabled) {
          background-color: $bg-color-2;
          cursor: pointer;
+      }
+      &.disabled {
+         cursor: not-allowed;
       }
    } 
 
@@ -34,9 +41,13 @@
       // transition: all .3s;
       border-radius: .125rem;
 
-      &:hover {
+      &:hover:not(.disabled) {
          background-color: map-get($primary-colors, darken-1);
          cursor: pointer;
+      }
+      &.disabled {
+         cursor: not-allowed;
+         background-color: $disabled-color;
       }
    }
 
@@ -54,11 +65,20 @@
       line-height: 0;
 
       &:hover, &:active, &:focus{
-         border-color: map-get($primary-colors, darken-1);
+         &:not(.disabled) {
+            border-color: map-get($primary-colors, darken-1);
+         }
       }
 
       &:active, &:focus {
-         @include elevation(8);
+          &:not(.disabled) {
+            @include elevation(8);
+         }
+      }
+
+      &.disabled {
+         border-color: $disabled-color;
+         cursor: not-allowed;
       }
    }
 
@@ -71,7 +91,7 @@
    @include e(step) {
       position: absolute;
       width: 100%;
-      height: 4px;
+      height: .25rem;
       background: transparent;
    }
 
@@ -90,5 +110,78 @@
       &.is-in-range {
          border-color: $primary-color;
       }
+   }
+
+   @include e(mark) {
+      position: absolute;
+      top: .875rem;
+      left: 0;
+      width: 100%;
+      font-size: $font-size-base;
+   }
+
+   @include e(mark-text) {
+      position: absolute;
+      display: inline-block;
+      vertical-align: middle;
+      text-align: center;
+      cursor: pointer;
+      color: $text-color-secondary;
+      white-space: nowrap;
+      transform: translateX(-50%);
+   }
+
+   @include m(vertical) {
+      width: .875rem;
+      height: 100%;
+      margin: .375rem .625rem;
+      padding: 0 .25rem;
+
+      @include e(rail) {
+         height: 100%;
+         width: .25rem;
+      } 
+
+      @include e(track) {
+         width: .25rem;
+         height: 100%;
+      }
+
+      @include e(handle) {
+         margin-top: -($slider-handle-size / 2);
+         margin-left: -($slider-handle-size / 2 - .125rem);
+      }
+
+      @include e(handle-ref) {
+         width: $slider-handle-size;
+         height: $slider-handle-size;
+         opacity: 0;
+      }
+
+      @include e(step) {
+         height: 100%;
+         width: .25rem;
+      }
+
+      @include e(dot) {
+         left: 0.125rem;
+         margin-top: -0.25rem;
+      }
+
+      @include e(mark) {
+         top: 0;
+         left: .875rem;
+         height: 100%;
+      }
+
+      @include e(mark-text) {
+         transform: translateY(-50%);
+      }
+   }
+
+   // Has Marks
+
+   @include m(has-marks) {
+      margin-bottom: 1.75rem;
    }
 }

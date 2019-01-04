@@ -1,3 +1,3 @@
 export interface SliderMarks {
-    [key: number]: string | {label: string, style?: any}
+    [key: number]: string | {label: string, style?: any, class?: string}
 }

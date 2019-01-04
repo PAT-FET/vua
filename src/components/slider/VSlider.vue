@@ -1,30 +1,30 @@
 <template>
-<div :class="[b()]" @click="onSliderClick">
-  <div :class="[e('rail')]"></div>
-  <div :class="[e('track')]" :style="[trackStyle]" ref="track"></div>
+<div :class="[b(), verticalCls, hasMarksCls, disabledCls]" @click="onSliderClick">
+  <div :class="[e('rail'), disabledCls]"></div>
+  <div :class="[e('track'), disabledCls]" :style="[trackStyle]" ref="track"></div>
   <div :class="[e('step')]">
     <div :class="[e('dot'), dotInRangeCls(step)]" v-for="(mark, step) in normalMarks" :key="step" :style="[dotStyle(step)]"></div>
   </div>
-  <div :class="[e('handle')]"
+  <div :class="[e('handle'), disabledCls]"
       tabindex="0"
       :style="[handleStyle2]"
       @click.stop
       @mousedown="e => onHandleDown(e, true)" v-if="range">
-         <v-tooltip placement="top" :content="tip2" ref="tip2">
+         <v-tooltip placement="top" v-bind="tipProps" :content="tip2" ref="tip2">
           <div :class="[e('handle-ref')]"></div>
         </v-tooltip>
       </div>
-  <div :class="[e('handle')]"
+  <div :class="[e('handle'), disabledCls]"
     tabindex="0"
     :style="[handleStyle]"
     @click.stop
     @mousedown="onHandleDown">
-       <v-tooltip placement="top" :content="tip" ref="tip">
+       <v-tooltip placement="top" v-bind="tipProps" :content="tip" ref="tip">
           <div :class="[e('handle-ref')]"></div>
        </v-tooltip>
     </div>
   <div :class="[e('mark')]">
-
+    <div :class="[e('mark-text'), mark.class]" v-for="(mark, step) in normalMarks" :key="step" :style="[dotStyle(step)]">{{mark.label}}</div>
   </div>
 </div>
 </template>
@@ -60,11 +60,15 @@ export default class VSlider extends mixins(Themeable, Bemable) {
 
   @Prop(Boolean) vertical!: boolean
 
+  @Prop() tooltipVisible!: boolean
+
   @Emit() input (value: number | number[]) {}
 
-  currentX: number = -1
+  startX: number = -1
 
-  currentY: number = -1
+  startY: number = -1
+
+  startValue: number = 0
 
   isStartDraging: boolean = false
 
@@ -83,22 +87,58 @@ export default class VSlider extends mixins(Themeable, Bemable) {
   }
 
   get trackStyle () {
+    if (this.vertical) {
+      return {
+        top: this.startRadio * 100 + '%',
+        height: (this.endRadio - this.startRadio) * 100 + '%'
+      }
+    }
     return {
       left: this.startRadio * 100 + '%',
       width: (this.endRadio - this.startRadio) * 100 + '%'
     }
   }
 
+  get tipProps () {
+    return {
+      disabled: this.tooltipVisible === false,
+      value: this.tooltipVisible === true ? true : undefined,
+      trigger: this.tooltipVisible === true ? '' : 'hover'
+    }
+  }
+
   get handleStyle () {
+    if (this.vertical) {
+      return {
+        top: this.endRadio * 100 + '%'
+      }
+    }
     return {
       left: this.endRadio * 100 + '%'
     }
   }
 
   get handleStyle2 () {
+    if (this.vertical) {
+      return {
+        top: this.startRadio * 100 + '%'
+      }
+    }
     return {
       left: this.startRadio * 100 + '%'
     }
+  }
+
+  get verticalCls () {
+    return this.vertical ? this.m('vertical') : ''
+  }
+
+  get hasMarksCls () {
+    return this.marks ? this.m('has-marks') : ''
+  }
+
+  get disabledCls () {
+    return this.disabled ? 'disabled' : ''
   }
 
   get tip (): string {
@@ -135,20 +175,28 @@ export default class VSlider extends mixins(Themeable, Bemable) {
   }
 
   dotStyle (value: number) {
+    if (this.vertical) {
+      return {
+        top: value / this.len * 100 + '%'
+      }
+    }
     return {
       left: value / this.len * 100 + '%'
     }
   }
 
   onSliderClick (e: any) {
-    let x
+    if (this.disabled) return
+    let offset
     if (e.srcElement !== this.$el) {
-      x = e.offsetX + e.srcElement.offsetLeft
+      if (this.vertical) offset = e.offsetY + e.srcElement.offsetTop
+      else offset = e.offsetX + e.srcElement.offsetLeft
     } else {
-      x = e.offsetX
+      if (this.vertical) offset = e.offsetY
+      else offset = e.offsetX
     }
-    let width = this.$el.offsetWidth
-    let ratio = x / width
+    let len = this.vertical ? this.$el.offsetHeight : this.$el.offsetWidth
+    let ratio = offset / len
     ratio = ratio < 0 ? 0 : (ratio > 1 ? 1 : ratio)
     let value = ratio * this.len
     let ret: number | number[]
@@ -168,40 +216,38 @@ export default class VSlider extends mixins(Themeable, Bemable) {
     this.input(this.fixRange(ret))
   }
 
-  onHandleDown (e: Event, isStart?: boolean) {
+  onHandleDown (e: any, isStart?: boolean) {
     e.preventDefault()
+    if (this.disabled) return
     if (isStart) {
       this.isStartDraging = true
+      this.startValue = this.range ? (this.value as number[])[0] : this.value as number
     } else {
       this.isStartDraging = false
+      this.startValue = this.range ? (this.value as number[])[1] : this.value as number
     }
-    this.currentX = -1
-    this.currentY = -1
+    this.startX = e.pageX
+    this.startY = e.pageY
     window.addEventListener('mousemove', this.onDragging)
     window.addEventListener('mouseup', this.onDragEnd)
   }
 
   onDragging (e: any) {
-    let delta = 0
-    if (this.currentX > 0) {
-      let diffX = e.pageX - this.currentX
-      delta = diffX / this.$el.offsetWidth * this.len
-    }
-    this.currentX = e.pageX
-    if (delta !== 0) {
+    if (this.disabled) return
+    let num = this.startValue
+    let diff = this.vertical ? e.pageY - this.startY : e.pageX - this.startX
+    let len = this.vertical ? this.$el.offsetHeight : this.$el.offsetWidth
+    num = diff / len * this.len + this.startValue
+
+    if (num !== this.startValue) {
       let ret: number | number[]
       if (this.range) {
         let start = (this.value as number[])[0]
         let end = (this.value as number[])[1]
-        let num
         if (this.isStartDraging) {
-          num = start + delta
           if (num > end) this.isStartDraging = false
-          this.$refs.tip2.scheduleUpdate()
         } else {
-          num = end + delta
           if (num < start) this.isStartDraging = true
-          this.$refs.tip.scheduleUpdate()
         }
         if (num < start) ret = [num, end]
         else if (num > end) {
@@ -211,8 +257,7 @@ export default class VSlider extends mixins(Themeable, Bemable) {
           else ret = [start, num]
         }
       } else {
-        ret = this.value as number + delta
-        this.$refs.tip.scheduleUpdate()
+        ret = num
       }
       this.input(this.fixRange(ret))
     }
@@ -221,8 +266,6 @@ export default class VSlider extends mixins(Themeable, Bemable) {
   onDragEnd (e: Event) {
     window.removeEventListener('mousemove', this.onDragging)
     window.removeEventListener('mouseup', this.onDragEnd)
-    this.currentX = -1
-    this.currentY = -1
   }
 
   fixRange (value: number | number[]): number | number[] {
@@ -242,7 +285,7 @@ export default class VSlider extends mixins(Themeable, Bemable) {
   }
 
   fixStep (value: number) {
-    if (this.step <= 0) { // only mark
+    if (this.dots) { // only dots
       let marks: number[] = Object.keys(this.marks).map(key => {
         return +key
       })
@@ -262,6 +305,15 @@ export default class VSlider extends mixins(Themeable, Bemable) {
     } else {
       let ratio = Math.round((value - this.min) / this.step)
       return this.min + ratio * this.step
+    }
+  }
+
+  @Watch('value') valueChange (value: number | number[]) {
+    if (this.range) {
+      this.$refs.tip.scheduleUpdate()
+      this.$refs.tip2.scheduleUpdate()
+    } else {
+      this.$refs.tip.scheduleUpdate()
     }
   }
 

@@ -147,7 +147,8 @@ export default class VPopper extends mixins(Bemable, Themeable) {
     this.popper && this.popper.scheduleUpdate()
   }
 
-  @Watch('visible') visibleChange (visible: boolean) {
+  updateActualVisible () {
+    let visible = this.visible
     if (visible) {
       let display = this.$refs.popper.style.display
       this.$refs.popper.style.display = 'block'
@@ -165,6 +166,10 @@ export default class VPopper extends mixins(Bemable, Themeable) {
     } else {
       this.actualVisible = false
     }
+  }
+
+  @Watch('visible') visibleChange (visible: boolean) {
+    this.updateActualVisible()
   }
 
   @Watch('options', {deep: true}) optionsChange (options: PopperOptions) {
@@ -187,6 +192,8 @@ export default class VPopper extends mixins(Bemable, Themeable) {
     let option = Object.assign(this.defaultOptions, this.options || {})
     this.popper = new Popper(refEle, this.$refs.popper, option)
     this.registerEvents()
+
+    this.updateActualVisible()
   }
 
   beforeDestroy () {
