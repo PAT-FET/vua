@@ -29,5 +29,8 @@ export default {
       betweenNumber: '{0} must between {1} and {2}',
       length: '{0} length must between {1} and {2}'
     }
+  },
+  transfer: {
+    search: 'Search here'
   }
 }

@@ -1,0 +1,20 @@
+@import "../../../style/mixins/bem.scss";
+@import "../../../style/mixins/elevation.scss";
+@import "../../../style/mixins/misc.scss";
+@import "../../../style/mixins/reset.scss";
+@import "../../../style/var.scss";
+@import "./mixins.scss";
+
+@include b(v-transfer) {
+   @include reset-component();
+   display: flex;
+   min-height: 15rem;
+   min-width: 20rem;
+
+
+   @include e(operation) {
+      flex-basis: 1;
+      align-self: center;
+      padding: 0 .75rem;
+   }
+}

@@ -29,5 +29,8 @@ export default {
       betweenNumber: '{0} 必须在 {1} 与 {2} 之间',
       length: '{0} 的长度必须在 {1} 与 {2} 之间'
     }
+  },
+  transfer: {
+    search: '请输入搜索内容'
   }
 }

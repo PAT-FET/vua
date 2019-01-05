@@ -142,6 +142,10 @@ const components: any = {
     title: 'Slider 滑动输入条',
     group: 'dataEntry'
   },
+  VTransfer: {
+    title: 'Transfer 穿梭框',
+    group: 'dataEntry'
+  },
   VCascader: {
     title: 'Cascader 级联选择',
     group: 'dataDisplay'
