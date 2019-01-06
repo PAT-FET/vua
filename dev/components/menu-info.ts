@@ -74,6 +74,10 @@ const components: any = {
     title: 'Progress 进度条',
     group: 'feedback'
   },
+  VSkeleton: {
+    title: 'Skeleton 骨架屏',
+    group: 'feedback'
+  },
   VLayout: {
     title: 'Layout 布局',
     group: 'layout'
