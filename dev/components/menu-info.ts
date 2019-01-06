@@ -190,6 +190,10 @@ const components: any = {
     title: 'Avatar 头像',
     group: 'dataDisplay'
   },
+  VCard: {
+    title: 'Card 卡片',
+    group: 'dataDisplay'
+  },
   VBackTop: {
     title: 'BackTop 回到顶部',
     group: 'other'

@@ -24,5 +24,9 @@ export default class AppAside extends Vue {
 .container{
     height: 100vh;
     overflow: auto;
+
+    &>*{
+        font-family: Avenir,"Chinese Quote",-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Helvetica Neue",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol" !important;
+    }
 }
 </style>

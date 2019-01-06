@@ -1,4 +1,5 @@
 @import "../var.scss";
+@import "../color/colors.scss";
 
 .bg-primary {
     background-color: $primary-color !important;
@@ -34,4 +35,56 @@
 
 .bg-2 {
     background-color: $bg-color-2 !important;
+}
+
+.bg-blue {
+    background-color: $blue-base !important;
+}
+
+.bg-purple {
+    background-color: $purple-base !important;
+}
+
+.bg-cyan {
+    background-color: $cyan-base !important;
+}
+
+.bg-green {
+    background-color: $green-base !important;
+}
+
+.bg-pink {
+    background-color: $pink-base !important;
+}
+
+.bg-red {
+    background-color: $red-base !important;
+}
+
+.bg-orange {
+    background-color: $orange-base !important;
+}
+
+.bg-yellow {
+    background-color: $yellow-base !important;
+}
+
+.bg-volcano {
+    background-color: $volcano-base !important;
+}
+
+.bg-geekblue {
+    background-color: $geekblue-base !important;
+}
+
+.bg-lime {
+    background-color: $lime-base !important;
+}
+
+.bg-gold {
+    background-color: $gold-base !important;
+}
+
+.bg-grey {
+    background-color: $grey-base !important;
 }
