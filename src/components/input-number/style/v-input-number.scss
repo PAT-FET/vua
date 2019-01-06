@@ -1,0 +1,61 @@
+@import "../../../style/mixins/bem.scss";
+@import "../../../style/mixins/elevation.scss";
+@import "../../../style/mixins/misc.scss";
+@import "../../../style/mixins/reset.scss";
+@import "../../../style/var.scss";
+@import "./mixins.scss";
+
+@include b(v-input-number) {
+    @include reset-component();
+    display: inline-block;
+    position: relative;
+    font-size: 0; // overflow issue
+
+    &:hover {
+        @include e(controls) {
+            opacity: 1;
+        }
+    }
+
+    @include e(controls) {
+        opacity: 0;
+        position: absolute;
+        z-index: 10;
+        font-size: .625rem;
+        top: 1px;
+        bottom: 1px;
+        right: 1px;
+        display: flex;
+        flex-direction: column;
+        border-left: 1px solid $border-color-split;
+        line-height: 0;
+        width: 1.5rem;
+        transition: all .3s;
+        &>div {
+            &:first-child {
+                border-bottom: 1px solid $border-color-split;
+            }
+            color: $text-color-secondary;
+            flex: auto;
+            transition: all .3s;
+            height: 50%;
+            &:hover:not(.disabled) {
+                color: $primary-color;
+                cursor: pointer;
+                height: 70%;
+            }
+            &.disabled {
+                cursor: not-allowed;
+                color: $disabled-color;
+            }
+            position: relative;
+
+            &>i {
+                position: absolute;
+                top: 50%;
+                left: .3rem;
+                transform: scale(0.83) translateY(-50%);
+            }
+        }
+    }
+}

@@ -1,0 +1,19 @@
+@import "../../../style/var.scss";
+@import "../../../style/mixins/misc.scss";
+@import "../../../style/mixins/elevation.scss";
+@import "./var.scss";
+
+@mixin skeleton-active-bg () {
+    background: linear-gradient(
+    to right,
+    $skeleton-color 20%,
+    $skeleton-active-color 30%,
+    $skeleton-color 40%,
+    $skeleton-color 60%,
+    $skeleton-active-color 70%,
+    $skeleton-color 80%,
+    $skeleton-color 100%,
+  );
+  background-size: 200% 100%;
+  animation: v-skeleton-loading 2.4s ease infinite;
+}

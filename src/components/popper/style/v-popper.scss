@@ -16,6 +16,10 @@
         color: $text-color;
         border-radius: $border-radius-base;
         @include elevation(8);
+
+        &[x-out-of-boundaries] {
+            display: none;
+        }
     }
 
     @include e(arrow) {

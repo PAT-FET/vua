@@ -24,7 +24,7 @@ const groups: any = {
     order: 6
   },
   other: {
-    title: 'qita',
+    title: '其他',
     order: 7
   },
   default: {
@@ -72,6 +72,10 @@ const components: any = {
   },
   VProgress: {
     title: 'Progress 进度条',
+    group: 'feedback'
+  },
+  VSkeleton: {
+    title: 'Skeleton 骨架屏',
     group: 'feedback'
   },
   VLayout: {
@@ -130,6 +134,22 @@ const components: any = {
     title: 'TimePicker 时间选择框',
     group: 'dataEntry'
   },
+  VInputNumber: {
+    title: 'InputNumber 数字输入框',
+    group: 'dataEntry'
+  },
+  VAutoComplete: {
+    title: 'AutoComplete 自动完成',
+    group: 'dataEntry'
+  },
+  VSlider: {
+    title: 'Slider 滑动输入条',
+    group: 'dataEntry'
+  },
+  VTransfer: {
+    title: 'Transfer 穿梭框',
+    group: 'dataEntry'
+  },
   VCascader: {
     title: 'Cascader 级联选择',
     group: 'dataDisplay'
@@ -169,6 +189,14 @@ const components: any = {
   VAvatar: {
     title: 'Avatar 头像',
     group: 'dataDisplay'
+  },
+  VCard: {
+    title: 'Card 卡片',
+    group: 'dataDisplay'
+  },
+  VBackTop: {
+    title: 'BackTop 回到顶部',
+    group: 'other'
   }
 }
 

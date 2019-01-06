@@ -1,0 +1,104 @@
+@import "../../../style/mixins/bem.scss";
+@import "../../../style/mixins/elevation.scss";
+@import "../../../style/mixins/misc.scss";
+@import "../../../style/mixins/reset.scss";
+@import "../../../style/var.scss";
+@import "./mixins.scss";
+
+@include b(v-transfer-panel) {
+   @include reset-component();
+   flex: auto;
+   border: 1px solid $border-color-base;
+   border-radius: $border-radius-base;
+   display: flex;
+   flex-direction: column;
+
+   @include e(header) {
+      padding: 0.375rem 0.875rem;
+      border-radius: $border-radius-base $border-radius-base 0 0;
+      border-bottom: 1px solid $border-color-split;
+      overflow: hidden;
+      flex: 0 0 auto;
+      display: flex;
+      justify-content: space-between;
+
+      &>* {
+         &:first-child {
+            flex: 0 0 auto;
+         }
+         &:last-child {
+            flex: 1 1 auto;
+         }
+      }
+   }
+
+   @include e(counter) {
+      margin: 0 .5rem;
+   }
+
+   @include e(title) {
+      overflow: hidden;
+      width: 0;
+      text-overflow: ellipsis;
+      text-align: right;
+   }
+
+   @include e(body) {
+      flex: 1 1 auto;
+      height: 0;
+      position: relative;
+   }
+
+   @include e(footer) {
+      flex: 0 0 auto;
+      padding: 0.375rem 0.875rem;
+      border-radius: 0 0 $border-radius-base $border-radius-base;
+      border-top: 1px solid $border-color-split;
+      overflow: hidden;
+   }
+
+   @include e(search) {
+      padding: .25rem;
+      &>* {
+         display: block;
+      }
+   }
+
+   @include e(list) {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      height: 100%;
+      overflow: auto;
+
+      &.disabled {
+         cursor: not-allowed;
+         background-color: $disabled-bg;
+      }
+   }
+
+   @include e(item) {
+      @include transfer-item();
+   }
+
+   @include e(checkbox-wrap) {
+      &>*{
+         margin-left: 0;
+      }
+   }
+
+   @include e(message) {
+      text-align: center;
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      color: $disabled-color;
+   }
+
+   // Has Filter
+   @include m (has-filter) {
+      @include e(list) {
+         height: calc(100% - 2rem);
+      }
+   }
+}

@@ -1,5 +1,6 @@
 <template>
 <v-popper :visible.sync="visible"
+  ref="popper"
   :options="options"
   :append-to-body="appendToBody"
   popper-class="v-tooltip__popper"
@@ -54,6 +55,14 @@ export default class VTooltip extends mixins(Themeable, Bemable) {
   set visible (visible: boolean) {
     this.localVisible = visible
     this.input(visible)
+  }
+
+  scheduleUpdate () {
+    this.$refs.popper.scheduleUpdate()
+  }
+
+  $refs!: {
+    popper: VPopper
   }
 }
 </script>

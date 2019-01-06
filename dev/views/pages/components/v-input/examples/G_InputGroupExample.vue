@@ -108,6 +108,16 @@
           </v-input-group>
         </div>
       </div>
+
+      <div>
+        <p>与数字输入框组合</p>
+        <div class="my-3">
+          <v-input-group>
+            <v-input :size="size" placeholder="Search..." clearable></v-input>
+            <v-input-number :size="size" v-model="num" ></v-input-number>
+          </v-input-group>
+        </div>
+      </div>
    </div>
 </div>
 </template>
@@ -171,5 +181,7 @@ export default class InputGroupExample extends Vue {
       ]
     }
   ]
+
+  num: number = 0
 }
 </script>

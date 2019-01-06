@@ -157,7 +157,13 @@
                 border-bottom-left-radius: 0;
             }
         }
-        
+        &.v-input-number {
+            margin-left: -1px;
+            .v-input__input {
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
+            }
+        }
     }
     &:not(:last-child) {
         &.v-button {
@@ -207,6 +213,12 @@
             }
         }
         &.v-cascader {
+            .v-input__input {
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
+            }
+        }
+        &.v-input-number {
             .v-input__input {
                 border-top-right-radius: 0;
                 border-bottom-right-radius: 0;

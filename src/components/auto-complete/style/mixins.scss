@@ -1,0 +1,28 @@
+@import "../../../style/var.scss";
+@import "../../../style/mixins/misc.scss";
+@import "../../../style/mixins/elevation.scss";
+@import "./var.scss";
+
+
+@mixin auto-complete-menu-item () {
+    position: relative;
+    padding: .25rem 1rem;
+    min-width: 8rem;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all .3s;
+
+    &.selected {
+        background-color: $disabled-bg;
+        font-weight: $font-weight-medium;
+    }
+
+    &:hover:not(.disabled), &.active:not(.disabled) {
+        background-color: $bg-color-active;
+    }
+
+    &.disabled {
+      color: $disabled-color;
+      cursor: not-allowed;
+    }
+}
