@@ -24,7 +24,7 @@ const groups: any = {
     order: 6
   },
   other: {
-    title: 'qita',
+    title: '其他',
     order: 7
   },
   default: {
@@ -72,6 +72,10 @@ const components: any = {
   },
   VProgress: {
     title: 'Progress 进度条',
+    group: 'feedback'
+  },
+  VSkeleton: {
+    title: 'Skeleton 骨架屏',
     group: 'feedback'
   },
   VLayout: {
@@ -185,6 +189,10 @@ const components: any = {
   VAvatar: {
     title: 'Avatar 头像',
     group: 'dataDisplay'
+  },
+  VBackTop: {
+    title: 'BackTop 回到顶部',
+    group: 'other'
   }
 }
 
