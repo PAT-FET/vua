@@ -9,6 +9,7 @@
          <app-header></app-header>
        </v-header>
        <v-content style="max-height: calc(100vh - 64px); overflow: auto;" v-loading="loading">
+         <v-back-top></v-back-top>
         <div class="p-4">
          <transition name="fade-transition" mode="out-in"><router-view/></transition>
         </div>

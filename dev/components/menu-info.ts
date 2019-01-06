@@ -24,7 +24,7 @@ const groups: any = {
     order: 6
   },
   other: {
-    title: 'qita',
+    title: '其他',
     order: 7
   },
   default: {
@@ -189,6 +189,10 @@ const components: any = {
   VAvatar: {
     title: 'Avatar 头像',
     group: 'dataDisplay'
+  },
+  VBackTop: {
+    title: 'BackTop 回到顶部',
+    group: 'other'
   }
 }
 
