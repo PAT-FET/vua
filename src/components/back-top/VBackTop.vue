@@ -10,10 +10,12 @@ import { Component, Vue, Prop, Emit, Watch, Model, Provide } from 'vue-property-
 import { mixins } from 'vue-class-component'
 import { Bemable, Themeable } from '../../mixins'
 import { BackTopTargetFn } from './type'
-import { debounce } from '@/utils'
+import { throttle, easeInOutCubic } from '@/utils'
+import { VButton } from '../button'
 
 @Component({
   components: {
+  VButton
   },
   name: 'v-back-top'
   })
@@ -24,7 +26,7 @@ export default class VBackTop extends mixins(Themeable, Bemable) {
 
   visible: boolean = false
 
-  onScrollDelay = debounce(this.onScroll, 200)
+  onScrollDelay = throttle(this.onScroll, 350)
 
   localTarget: HTMLElement | null = null
 
@@ -45,7 +47,20 @@ export default class VBackTop extends mixins(Themeable, Bemable) {
 
   toTop () {
     if (this.localTarget) {
-      this.localTarget.scrollTop = 0
+      const target = this.localTarget
+      const scrollTop = target.scrollTop
+      const startTime = Date.now()
+      const frameFunc = () => {
+        const timestamp = Date.now()
+        const time = timestamp - startTime
+        target.scrollTop = easeInOutCubic(time, scrollTop, 0, 450)
+        if (time < 450) {
+          requestAnimationFrame(frameFunc)
+        } else {
+          target.scrollTop = 0
+        }
+      }
+      requestAnimationFrame(frameFunc)
     }
   }
 
