@@ -1,0 +1,60 @@
+@import "../../../style/mixins/bem.scss";
+@import "../../../style/mixins/elevation.scss";
+@import "../../../style/mixins/misc.scss";
+@import "../../../style/mixins/reset.scss";
+@import "../../../style/var.scss";
+@import "./mixins.scss";
+
+@include b(v-upload-picture-item) {
+   @include reset-component();
+   margin-top: .5rem;
+   border: 1px solid $border-color-base;
+   border-radius: $border-radius-base;
+   padding: .5rem;
+   position: relative;
+   display: flex;
+
+   @include e(thumbnail) {
+      width: 3rem;
+      height: 3rem;
+      margin-right: .5rem;
+      display: block;
+      word-break: break-all;
+
+      &>img {
+         width: 100%;
+         border-radius: $border-radius-sm;
+      }
+
+      &>i {
+         font-size: 1.5rem;
+      }
+   }
+
+   @include e(info) {
+      flex: 1 1 auto;
+   }
+
+   @include e(close) {
+      position: absolute;
+      right: .5rem;
+      top: .5rem;
+      font-size: $font-size-sm;
+      &:hover {
+         cursor: pointer;
+      }
+      &>i {
+         transform: scale(.83);
+      }
+   }
+
+   // Status
+   @include m(success) {
+      color: $success-color;
+      border-color: $success-color;
+   }
+   @include m(error) {
+      color: $error-color;
+      border-color: $error-color;
+   }
+}

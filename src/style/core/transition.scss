@@ -1,11 +1,16 @@
 @import "../var.scss";
 
-@mixin transition-default($func: linear){
+@mixin transition-default($func: linear, $leave-func: null){
     @at-root{
         #{&}-enter-active,
         #{&}-leave-active{
             transition-timing-function: $func;
             transition-duration: $animation-duration-slow;
+        }
+        #{&}-leave-active{
+            @if $leave-func {
+                transition-timing-function: $leave-func;
+            }
         }
     }
 }
@@ -45,7 +50,7 @@
 // move (up down left right)
 @each $dir in (up down left right) {
     .move-#{$dir}-transition{
-        @include transition-default($ease-out-circ);
+        @include transition-default($ease-out-circ, $ease-in-circ);
         @at-root{
             #{&}-enter{
                 opacity: 0;
@@ -106,7 +111,7 @@
 // slide (up down left right)
 @each $dir in (up down left right) {
     .slide-#{$dir}-transition{
-        @include transition-default($ease-out-quint);
+        @include transition-default($ease-out-quint, $ease-in-quint);
         @at-root{
             #{&}-enter{
                 opacity: 0;
@@ -179,7 +184,7 @@
 // zoom (default big up down left right)
 @each $dir in (null big up down left right) {
     .zoom#{if($dir, '-' + $dir, null)}-transition{
-        @include transition-default($ease-in-out-circ);
+        @include transition-default($ease-out-circ, $ease-in-out-circ);
         @at-root{
             #{&}-enter{
                 opacity: 0;
