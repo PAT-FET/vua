@@ -98,6 +98,6 @@ export default [
     content: card
   },
   {
-    name: 'AcrdMeta API',
+    name: 'CarddMeta API',
     content: cardMeta
   }]

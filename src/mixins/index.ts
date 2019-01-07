@@ -12,9 +12,11 @@ import Selectable from './Selectable'
 import Theme from './Theme'
 import Themeable from './Themeable'
 import CssVariable from './CssVariable'
+import Gridable from './Gridable'
 
 export * from './data-iterable'
 export * from './tree-iterable'
+export * from './Gridable'
 
 export {
   Bemable,
@@ -30,5 +32,6 @@ export {
   Selectable,
   Theme,
   Themeable,
-  CssVariable
+  CssVariable,
+  Gridable
 }

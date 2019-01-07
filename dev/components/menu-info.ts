@@ -78,6 +78,10 @@ const components: any = {
     title: 'Skeleton 骨架屏',
     group: 'feedback'
   },
+  VDrawer: {
+    title: 'Drawer 抽屉',
+    group: 'feedback'
+  },
   VLayout: {
     title: 'Layout 布局',
     group: 'layout'
@@ -192,6 +196,10 @@ const components: any = {
   },
   VCard: {
     title: 'Card 卡片',
+    group: 'dataDisplay'
+  },
+  VList: {
+    title: 'List 列表',
     group: 'dataDisplay'
   },
   VBackTop: {

@@ -38,6 +38,10 @@
     color: $text-color-secondary !important;
 }
 
+.text-disabled {
+    color: $disabled-color !important;
+}
+
 .text-justify {
     text-align: justify !important; 
 }
