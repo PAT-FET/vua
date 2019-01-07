@@ -17,14 +17,13 @@
 import { Component, Vue, Prop, Emit, Watch, Model, Provide } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
 import { Bemable, Themeable } from '../../mixins'
-import { CardSize } from './type'
 
 @Component({
   components: {
   },
-  name: 'v-card-meta'
+  name: 'v-list-item-meta'
   })
-export default class VCardMeta extends mixins(Themeable, Bemable) {
+export default class VListItemMeta extends mixins(Themeable, Bemable) {
   @Prop(String) title!: string
 
   @Prop(String) description!: string
@@ -37,4 +36,4 @@ export default class VCardMeta extends mixins(Themeable, Bemable) {
 }
 </script>
 
-<style src="./style/v-card-meta.scss" lang="scss"></style>
+<style src="./style/v-list-item-meta.scss" lang="scss"></style>

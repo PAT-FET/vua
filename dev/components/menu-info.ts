@@ -194,6 +194,10 @@ const components: any = {
     title: 'Card 卡片',
     group: 'dataDisplay'
   },
+  VList: {
+    title: 'List 列表',
+    group: 'dataDisplay'
+  },
   VBackTop: {
     title: 'BackTop 回到顶部',
     group: 'other'
