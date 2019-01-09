@@ -28,7 +28,7 @@
       width: 100vw;
       background-color: $bg-color;
       transition: all .3s;
-      transition-timing-function: $ease-in !important;
+      // transition-timing-function: $ease-in !important;
    }
 
    @include e(header) {
