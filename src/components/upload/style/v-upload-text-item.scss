@@ -1,0 +1,44 @@
+@import "../../../style/mixins/bem.scss";
+@import "../../../style/mixins/elevation.scss";
+@import "../../../style/mixins/misc.scss";
+@import "../../../style/mixins/reset.scss";
+@import "../../../style/var.scss";
+@import "./mixins.scss";
+
+@include b(v-upload-text-item) {
+   @include reset-component();
+   margin-top: .5rem;
+
+   @include e(text-wrap) {   
+      display: flex;
+      justify-content: space-between;
+      &:hover {
+         background-color: $bg-color-active;
+      }
+   }
+
+   @include e(close) {
+      font-size: $font-size-sm;
+      transform: scale(0.83);
+   }
+
+   @include e(progress) {
+      padding-left: 1.5rem;
+      line-height: 0;
+      &>* {
+         margin: 0.25rem 0;
+      }
+   }
+
+   // Status
+   @include m(success) {
+      @include e(text-wrap) {   
+         color: $success-color;
+      }
+   }
+   @include m(error) {
+      @include e(text-wrap) {   
+         color: $error-color;
+      }
+   }
+}

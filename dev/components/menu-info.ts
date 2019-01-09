@@ -154,6 +154,10 @@ const components: any = {
     title: 'Transfer 穿梭框',
     group: 'dataEntry'
   },
+  VUpload: {
+    title: 'Upload 上传',
+    group: 'dataEntry'
+  },
   VCascader: {
     title: 'Cascader 级联选择',
     group: 'dataDisplay'
