@@ -34,10 +34,13 @@ export default class VUploadList extends mixins(Themeable, Bemable) {
   }
 
   itemEventHandle = {
-    close: this.onClose
+    close: this.onClose,
+    preview: this.preview
   }
 
   @Emit() close (file: UploadFile) {}
+
+  @Emit() preview (file: File) {}
 
   get listTypeCls () {
     return this.m(this.listType)

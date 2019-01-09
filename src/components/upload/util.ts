@@ -6,7 +6,7 @@ const imageTypes: string[] = ['image', 'webp', 'png', 'svg', 'gif', 'jpg', 'jpeg
 
 export function generateUploadFile (file: File, url?: string): UploadFile {
   let ret: UploadFile = {
-    uid: String(uid++),
+    uid: String('__upload_key__' + uid++),
     lastModified: file.lastModified,
     name: file.name,
     size: file.size,
@@ -15,7 +15,9 @@ export function generateUploadFile (file: File, url?: string): UploadFile {
     thumbUrl: '',
     status: 'ready',
     percent: 0,
-    originFileObj: file
+    originFileObj: file,
+    response: null,
+    error: null
   }
   generateDataUrl(file, (url) => { ret.thumbUrl = url })
   return ret

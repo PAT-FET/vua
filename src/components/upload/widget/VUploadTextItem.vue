@@ -1,6 +1,6 @@
 <template>
 <div :class="[b(), statusCls]">
-  <div :class="[e('text-wrap')]">
+  <div :class="[e('text-wrap')]" :title="title">
     <span>
       <span class="mr-2 text-secondary">
         <i class="anticon anticon-loading anticon-spin" v-if="file.status === 'uploading'"></i>
@@ -10,7 +10,7 @@
     </span>
     <a :class="[e('close')]" @click="onClose" class="mr-2 text-secondary"><i class="anticon anticon-close"></i> </a>
   </div>
-  <div :class="[e('progress')]">
+  <div :class="[e('progress')]" v-if="file.status === 'uploading'">
     <v-progress v-bind="progressProps"></v-progress>
   </div>
 </div>
@@ -35,6 +35,11 @@ export default class VUploadTextItem extends mixins(Themeable, Bemable, UploadIt
       percent: this.file.percent,
       status: this.file.status === 'success' ? 'success' : (this.file.status === 'error' ? 'exception' : 'active')
     }
+  }
+
+  get title (): string {
+    let errMsg = this.file.error && this.file.error.message
+    return errMsg || this.file.name
   }
 
   get statusCls () {

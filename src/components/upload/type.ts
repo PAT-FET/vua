@@ -26,7 +26,7 @@ export interface UploadRequestParam {
     filename: string
     action: string
     onProgress: (e: any) => void
-    onSuccess: (Response: any) => void
+    onSuccess: (response: any) => void
     onError: (err: Error) => void
 }
 
@@ -40,4 +40,21 @@ export interface UploadRequest {
 
 export interface UploadRequestResult {
     abort: () => void
+}
+
+export interface UploadChangeParam {
+    file: UploadFile
+    fileList: UploadFile[]
+}
+
+export interface UploadProgressFn {
+    (e: any, file: UploadFile, fileList: UploadFile[]): void
+}
+
+export interface UploadSuccessFn {
+    (response: any, file: UploadFile, fileList: UploadFile[]): void
+}
+
+export interface UploadErrorFn {
+    (err: Error, file: UploadFile, fileList: UploadFile[]): void
 }

@@ -1,10 +1,13 @@
 <template>
 <div>
   <div class="m-3">
-     <v-upload list-type="picture-card" :before-upload="beforeUpload" :show-upload-list="false">
-       <div class="text-center">
+     <v-upload list-type="picture-card" :before-upload="beforeUpload" :show-upload-list="false" :limit="1" @change="onChange">
+      <div v-loading="loading">
+        <img :src="imageUrl" alt="&times;" v-if="imageUrl" style="width: 5.5rem; height: 5.5rem; border-radius: .25rem;">
+       <div class="text-center" v-else>
         <div><i class="anticon anticon-plus"></i></div>
         <div>Upload</div>
+      </div>
       </div>
      </v-upload>
    </div>
@@ -12,7 +15,7 @@
 </template>
 <script lang="ts">
 import { Component, Vue, Watch } from 'vue-property-decorator'
-import { UploadFile } from 'src/index'
+import { UploadFile, UploadChangeParam } from 'src/index'
 
 /**
  * @title 用户头像
@@ -23,7 +26,9 @@ import { UploadFile } from 'src/index'
   },
   })
 export default class AvatarExample extends Vue {
-  fileList = []
+  loading: boolean = false
+
+  imageUrl: string = ''
 
   beforeUpload (file: UploadFile): boolean {
     const isJPG = file.type === 'image/jpeg'
@@ -35,6 +40,20 @@ export default class AvatarExample extends Vue {
       this.$message.error('Image must smaller than 2MB!')
     }
     return isJPG && isLt2M
+  }
+
+  onChange ({ file }: UploadChangeParam) {
+    if (file.status === 'uploading') {
+      this.loading = true
+    }
+    if (file.status === 'success') {
+      this.loading = false
+      // this is a mock
+      this.imageUrl = file.thumbUrl || ''
+    }
+    if (file.status === 'error') {
+      this.loading = false
+    }
   }
 }
 </script>

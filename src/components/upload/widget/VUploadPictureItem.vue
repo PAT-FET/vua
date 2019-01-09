@@ -6,7 +6,7 @@
   </a>
   <div :class="[e('info')]">
     <div :class="[e('text')]">{{file.name}}</div>
-    <div :class="[e('progress')]">
+    <div :class="[e('progress')]" v-if="file.status === 'uploading'">
       <v-progress v-bind="progressProps"></v-progress>
     </div>
   </div>

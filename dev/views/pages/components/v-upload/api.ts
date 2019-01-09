@@ -2,52 +2,106 @@
 export default {
   props: [
     {
-      name: 'visible',
+      name: 'accept',
       default: '',
-      type: `boolean`,
-      desc: '是否可见, 可使用sync'
+      type: `string`,
+      desc: '接受文件类型，原生属性'
     },
     {
-      name: 'placement',
-      default: `'right'`,
-      type: `'top' | 'bottom' | 'left' | 'right'`,
-      desc: '抽屉的方向'
+      name: 'action',
+      default: ``,
+      type: `string`,
+      desc: '上传地址， 暂不可用'
     },
     {
-      name: 'width',
-      default: '16rem',
-      type: 'string',
-      desc: '宽度'
-    },
-    {
-      name: 'height',
-      default: '16rem',
-      type: 'string',
-      desc: '高度'
-    },
-    {
-      name: 'title',
+      name: 'directory',
       default: '',
+      type: 'boolean',
+      desc: '是否支持文件夹， 原生属性'
+    },
+    {
+      name: 'beforeUpload',
+      default: '',
+      type: 'UploadBeforeFn',
+      desc: '上传文件之前的钩子'
+    },
+    {
+      name: 'customRequest',
+      default: '',
+      type: 'UploadRequest',
+      desc: '自定义请求函数， 由于现阶段尚未实现默认的请求函数， 必须指定该属性才能正常工作'
+    },
+    {
+      name: 'fileList',
+      default: '',
+      type: 'UploadFile[]',
+      desc: '可控文件列表， 如果指定， 请使用sync'
+    },
+    {
+      name: 'disabled',
+      default: '',
+      type: 'boolean',
+      desc: '禁用'
+    },
+    {
+      name: 'listType',
+      default: `'text'`,
+      type: 'UploadListType',
+      desc: '列表类型'
+    },
+    {
+      name: 'multiple',
+      default: ``,
+      type: 'boolean',
+      desc: '是否支持多选文件, 原生属性'
+    },
+    {
+      name: 'name',
+      default: `'file'`,
       type: 'string',
-      desc: '标题'
+      desc: '发到后台的文件参数名， 暂不可用'
     },
     {
-      name: 'mask',
-      default: 'true',
-      type: 'boolean',
-      desc: '是否展示遮罩'
-    },
-    {
-      name: 'maskClosable',
-      default: 'true',
-      type: 'boolean',
-      desc: '点击蒙层是否允许关闭'
-    },
-    {
-      name: 'zIndex',
-      default: '1000',
+      name: 'limit',
+      default: ``,
       type: 'number',
-      desc: '设置 Drawer 的 z-index'
+      desc: '限制列表数量， 超过将会溢出最前面的文件'
+    },
+    {
+      name: 'showUploadList',
+      default: `true`,
+      type: '是否展示文件列表',
+      desc: '列表类型'
+    },
+    {
+      name: 'progressFn',
+      default: ``,
+      type: 'UploadProgressFn',
+      desc: '上传进度钩子'
+    },
+    {
+      name: 'succcessFn',
+      default: ``,
+      type: 'UploadSuccessFn',
+      desc: '上传成功钩子'
+    },
+    {
+      name: 'errorFn',
+      default: ``,
+      type: 'UploadErrorFn',
+      desc: '上传失败钩子'
+    }
+  ],
+  events: [
+    {
+      name: 'preview',
+      value: `file: File`,
+      desc: '预览事件'
+    },
+    {
+      name: 'change',
+      value: `param: UploadChangeParam`,
+      desc: '文件状态变化'
     }
   ]
 }

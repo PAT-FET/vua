@@ -1,6 +1,7 @@
 <template>
-  <div :class="[b(), listTypeCls]" tabindex="0" @click="onControlClick" @drag="onDrop" @dragover="onDragover">
-    <input type="file" :class="[e('input'), draggingCls]" ref="file"
+  <div :class="[b(), listTypeCls, disabledCls]" tabindex="0" v-show="$slots.default"
+    @click="onControlClick" @drag="onDrop" @dragover="onDragover">
+    <input type="file" :class="[e('input'), draggingCls]" ref="file" :disabled="disabled"
     :multiple="multiple" :accept="accept" :directory="directory"
     @click.stop="onInputClick"
     @dragleave="onDragout"
@@ -30,6 +31,8 @@ export default class VUploadControl extends mixins(Themeable, Bemable) {
 
   @Prop(Boolean) multiple!: boolean
 
+  @Prop(Boolean) disabled!: boolean
+
   @Emit() change (files: UploadFile[]) {}
 
   dragging: boolean = false
@@ -40,6 +43,10 @@ export default class VUploadControl extends mixins(Themeable, Bemable) {
 
   get draggingCls () {
     return this.dragging ? 'is-drag' : ''
+  }
+
+  get disabledCls () {
+    return this.disabled ? 'disabled' : ''
   }
 
   onFileChange () {

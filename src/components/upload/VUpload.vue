@@ -11,7 +11,7 @@
 import { Component, Vue, Prop, Emit, Watch, Model, Provide } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
 import { Bemable, Themeable } from '../../mixins'
-import { UploadBeforeFn, UploadRequest, UploadFile, UploadType, UploadListType, UploadRequestParam, UploadRequestResult } from './type'
+import { UploadBeforeFn, UploadRequest, UploadFile, UploadType, UploadListType, UploadRequestParam, UploadRequestResult, UploadChangeParam, UploadProgressFn, UploadSuccessFn, UploadErrorFn } from './type'
 import { generateUploadFile } from './util'
 import { request } from './request'
 import VUploadControl from './widget/VUploadControl.vue'
@@ -49,6 +49,12 @@ export default class VUpload extends mixins(Themeable, Bemable) {
 
   @Prop({type: Boolean, default: true}) showUploadList!: boolean
 
+  @Prop(Function) progressFn!: UploadProgressFn
+
+  @Prop(Function) succcessFn!: UploadSuccessFn
+
+  @Prop(Function) errorFn!: UploadErrorFn
+
   localFileList: UploadFile[] = []
 
   requestMap: Map<string, UploadRequestResult> = new Map()
@@ -58,10 +64,9 @@ export default class VUpload extends mixins(Themeable, Bemable) {
   }
 
   listEventHandler = {
-    close: this.onRemoveFile
+    close: this.onRemoveFile,
+    preview: this.preview
   }
-
-  @Emit() preview (file: File) {}
 
   get actualFileList (): UploadFile[] {
     return this.fileList || this.localFileList
@@ -77,7 +82,8 @@ export default class VUpload extends mixins(Themeable, Bemable) {
       listType: this.listType,
       accept: this.accept,
       directory: this.directory,
-      multiple: this.multiple
+      multiple: this.multiple,
+      disabled: this.disabled
     }
   }
 
@@ -94,9 +100,22 @@ export default class VUpload extends mixins(Themeable, Bemable) {
 
   @Emit('update:fileList') updateFileList (fileList: UploadFile[]) {}
 
+  @Emit() preview (file: File) {}
+
+  @Emit() change (param: UploadChangeParam) {}
+
   onFileChange (files: UploadFile[]) {
-    this.actualFileList = [...this.actualFileList, ...files]
-    this.upload()
+    let ret = [...this.actualFileList, ...files]
+    if (this.limit > 0) {
+      let len = ret.length
+      let start = len - this.limit
+      start = start < 0 ? 0 : start
+      ret = ret.slice(start, len)
+    }
+    this.actualFileList = ret
+    this.$nextTick().then(() => {
+      this.upload()
+    })
   }
 
   onRemoveFile (file: UploadFile) {
@@ -132,6 +151,7 @@ export default class VUpload extends mixins(Themeable, Bemable) {
     let ret = request(this.getRequestParam(file))
     file.status = 'uploading'
     this.requestMap.set(file.uid, ret)
+    this.change({ file, fileList: this.actualFileList })
   }
 
   getRequestParam (file: UploadFile): UploadRequestParam {
@@ -149,17 +169,24 @@ export default class VUpload extends mixins(Themeable, Bemable) {
 
   onProgress (e: any, file: UploadFile) {
     file.percent = e.percent
+    if (this.progressFn) this.progressFn(e, file, this.actualFileList)
   }
 
   onSuccess (res: any, file: UploadFile) {
     this.requestMap.delete(file.uid)
     file.status = 'success'
+    file.response = res
+    if (this.succcessFn) this.succcessFn(res, file, this.actualFileList)
+    this.change({ file, fileList: this.actualFileList })
   }
 
   onError (err: any, file: UploadFile) {
-    console.log(err)
+    console.error(err)
     this.requestMap.delete(file.uid)
     file.status = 'error'
+    file.error = err
+    if (this.errorFn) this.errorFn(err, file, this.actualFileList)
+    this.change({ file, fileList: this.actualFileList })
   }
 }
 </script>
