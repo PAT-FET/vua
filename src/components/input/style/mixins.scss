@@ -21,9 +21,9 @@
     }
 
     &:focus{
-        border-color: map-get($primary-colors, darken-1);
+        border-color: map-get($primary-colors, lighten-1);
         outline: 0;
-        @include elevation(2);
+        box-shadow: 0 0 0 2px $bg-color-active;
     }
 
     &.disabled{

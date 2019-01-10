@@ -12,7 +12,7 @@
         </v-select>
 
         <v-popover trigger="click">
-            <v-button title="设置主题色" slot="reference" class="ml-3" shape="circle" size="sm" color="error" icon="setting"></v-button>
+        <v-button title="设置主题色" slot="reference" type="primary" class="ml-3" shape="circle" size="sm" color="error" icon="setting"></v-button>
          <div>
              <div class="my-2">
                 <span class="text-primary">Primary  </span>  <input type="color" v-model="$vua.theme.primary">
@@ -34,7 +34,7 @@
             </div>
          </div>
         </v-popover>
-        <v-button title="切换主题" class="ml-3" shape="circle" size="sm" color="warning" icon="bulb" @click="toggleTheme"></v-button>
+        <v-button title="切换主题" class="ml-3" shape="circle" type="primary" size="sm" color="warning" icon="bulb" @click="toggleTheme"></v-button>
     </div>
 </div>
 </template>
