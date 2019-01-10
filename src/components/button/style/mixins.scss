@@ -8,12 +8,12 @@
     touch-action: manipulation;
     cursor: pointer;
     background-image: none;
-    border: none;
     white-space: nowrap;
     user-select: none;
     transition: all .3s $ease-in-out;
-    background-color: $bg-color;
-    color: $text-color;
+    border: 1px solid $btn-border-color;
+    background-color: $btn-bg-color;
+    color: $btn-text-color;
     border-radius: $btn-border-radius;
 
     &,
@@ -24,15 +24,18 @@
     }
 
     &:not([disabled]){
-        &:hover,&.active,&:focus{
-            background-color: $bg-color-2;
-        }
-        &:hover {
+        &:hover, &:focus, &.active {
             text-decoration: none;
+            border-color: $btn-border-focus-color;
+            background-color: $btn-bg-focus-color;
+            color: $btn-text-focus-color;
         }
         &:active {
             outline: 0;
             transition: none;
+            border-color:$btn-border-active-color;
+            background-color: $btn-bg-active-color;
+            color: $btn-text-active-color;
         }
     }
 
@@ -44,60 +47,5 @@
         }
         background-color: $disabled-bg;
         color: $disabled-color;
-    }
-}
-
-
-@mixin btn-color($colors) {
-    &:not([disabled]){
-        background-color: map-get($colors, base);
-        color: #fff;
-        &:hover{
-            background-color: map-get($colors, lighten-1);
-        }
-        &:active,&.active,&:focus{
-            background-color: map-get($colors, darken-1);
-        }
-    }
-
-    // under falt
-    &.v-button--type-flat{
-        background: none;
-        color: map-get($colors, base);
-        &:not([disabled]){
-            &:hover,&:active,&.active,&:focus{
-                background: none;
-            }
-            &:hover{
-                color: map-get($colors, lighten-1);
-            }
-            &:active,&.active,&:focus{
-                color: map-get($colors, darken-1);
-            }
-        }
-    }
-
-    // under outline
-    &.v-button--type-outline{
-        &:not([disabled]){
-            background: $bg-color;
-            color: map-get($colors, base);
-            border-color: map-get($colors, base);
-
-            &:hover,&:active,&.active,&:focus{
-                background-color: map-get($colors, lighten-5);
-                &.is-dark {
-                    background: $bg-color;
-                }
-            }
-            &:hover{
-                border-color: map-get($colors, lighten-1);
-                color: map-get($colors, lighten-1);
-            }
-            &:active,&.active,&:focus{
-                border-color: map-get($colors, lighten-1);
-                color: map-get($colors, darken-1);
-            }
-        }
     }
 }

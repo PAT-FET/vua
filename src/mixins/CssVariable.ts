@@ -7,8 +7,16 @@ import { Themeable, Colorable } from '../mixins'
 export default class CssVariable extends mixins(Themeable, Colorable) {
   @Prop() cssVariable!: Record<string, any>
 
+  get localCssVariable (): Record<string, any> | null {
+    return null
+  }
+
+  get actualCssVariable (): Record<string, any> {
+    return this.cssVariable || this.localCssVariable
+  }
+
   setCssVariable (el: HTMLElement, variable?: Record<string, any>) {
-    let cssVariable = variable !== undefined ? variable : this.cssVariable
+    let cssVariable = variable !== undefined ? variable : this.actualCssVariable
     if (!cssVariable) return
     Object.entries(cssVariable).forEach(([key, value]) => {
       let name = resolveName(key)
@@ -30,7 +38,7 @@ export default class CssVariable extends mixins(Themeable, Colorable) {
     })
   }
 
-  @Watch('cssVariable', { deep: true }) cssVariableChange () {
+  @Watch('actualCssVariable', { deep: true }) cssVariableChange () {
     this.setSelfCssVariable()
   }
 

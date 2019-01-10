@@ -35,7 +35,7 @@
        </v-sider>
        <v-layout>
           <v-header class="bg-secondary">
-             <v-button color="primary" :icon="icon" @click="collapse = !collapse"></v-button>
+             <v-button type="primary" :icon="icon" @click="collapse = !collapse"></v-button>
           </v-header>
           <v-content style="height: 180px;" class="bg-2"><div class="text-center">content</div></v-content>
           <v-footer class="bg-secondary"><div class="text-center">footer</div></v-footer>

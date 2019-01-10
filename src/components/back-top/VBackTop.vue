@@ -1,7 +1,7 @@
 <template>
 <div :class="[b()]">
   <transition name="zoom-transition">
-    <v-button shape="circle" color="error" size="lg" icon="to-top" @click="toTop" v-if="visible"></v-button>
+    <v-button shape="circle" color="error" type="primary" float size="lg" icon="to-top" @click="toTop" v-if="visible"></v-button>
   </transition>
 </div>
 </template>

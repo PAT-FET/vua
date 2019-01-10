@@ -36,7 +36,7 @@
         <div class="my-3">
             <v-input-group>
               <v-input :size="size" placeholder="Search..." clearable></v-input>
-              <v-button :size="size" color="primary" type="outline" icon="search"></v-button>
+              <v-button :size="size" icon="search"></v-button>
             </v-input-group>
         </div>
       </div>
