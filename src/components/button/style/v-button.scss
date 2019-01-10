@@ -9,138 +9,77 @@
 @include b(v-button) {
     @include btn();
 
-    @include e(loader) {
+    &.is-loading {
+        pointer-events: none;
+        &::before {
+            display: block;
+        }
+    }
+
+    &.is-circle {
+        border-radius: 10rem;
+        padding: 0;
+    }
+
+    &:before {
         position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: rgba(255, 255, 255, .6);
+        top: -1px;
+        left: -1px;
+        bottom: -1px;
+        right: -1px;
+        background: #fff;
+        opacity: .35;
+        content: '';
         border-radius: inherit;
+        z-index: 8;
+        transition: opacity .2s;
+        pointer-events: none;
+        display: none;
     }
 
-    // Type
-    @include m(type-bulge) {
-        @include elevation(2);
-
-        &:hover, &:active, &.active, &:focus{
-            &:not([disabled]){
-                @include elevation(6);
-            }
+    @include e(content) {
+        margin-left: 0;
+        transition: margin-left 0.3s $ease-in-out;
+        &.has-icon {
+            margin-left: .5rem;
         }
-    }
-
-    @include m(type-flat) {
-        background: none !important;
-        &[disabled]{
-            background: none;
-        }
-    }
-
-    @include m(type-depressed) {
-        background: $bg-color-2;
-        border-radius: $btn-border-radius;
-    }
-
-    @include m(type-outline) {
-        border-width: 1px;
-        border-style: solid;
-        border-color: $border-color-base;
     }
 
     // Size
-    @include m(size-lg) {
-        line-height: $btn-height-lg;
+    @include m(lg) {
         padding: 0 $padding-lg;
-
-        &.v-button--type-outline {
-            line-height: calc(#{$btn-height-lg} - 2px);
-        }
-
-        &.v-button--shape-round{
+        height: $btn-height-lg;
+        &.is-round {
             border-radius: $btn-height-lg/2;
         }
-
-        &.v-button--shape-circle{
+        &.is-circle {
             @include square($btn-height-lg);
         }
     }
 
-    @include m(size-md) {
-        line-height: $btn-height-md;
+    @include m(md) {
         padding: 0 $padding-md;
+        height: $btn-height-md;
 
-        &.v-button--type-outline {
-            line-height: calc(#{$btn-height-md} - 2px);
-        }
-
-        &.v-button--shape-round{
+        &.is-round {
             border-radius: $btn-height-md/2;
         }
-
-        &.v-button--shape-circle{
+        &.is-circle {
             @include square($btn-height-md);
         }
     }
 
-    @include m(size-sm) {
-        line-height: $btn-height-sm;
+    @include m(sm) {
         padding: 0 $padding-sm;
         font-size: $font-size-sm;
+        height: $btn-height-sm;
 
-        &.v-button--type-outline {
-            line-height: calc(#{$btn-height-sm} - 2px);
-        }
-
-        &.v-button--shape-round{
+        &.is-round {
             border-radius: $btn-height-sm/2;
         }
-
-        &.v-button--shape-circle{
+        &.is-circle {
             @include square($btn-height-sm);
         }
-    }
-
-    // Color
-    @include m(color-primary){
-        @include btn-color($primary-colors);
-    }
-
-    @include m(color-secondary){
-        @include btn-color($secondary-colors);
-    }
-
-    @include m(color-success){
-        @include btn-color($success-colors);
-    }
-
-    @include m(color-info){
-        @include btn-color($info-colors);
-    }
-
-    @include m(color-warning){
-        @include btn-color($warning-colors);
-    }
-
-    @include m(color-error){
-        @include btn-color($error-colors);
-    }
-
-    // Shape
-    @include m(shape-round) {
-        // border-radius: 50%;
-    }
-
-    @include m(shape-circle) {
-        border-radius: 200px;
-        padding: 0;
-        text-align: center;
-        overflow: hidden
-    }
-
-    // Loading
-    @include m(loading) {
-        pointer-events: none;
     }
 
     // Block
@@ -153,6 +92,24 @@
         padding: 0 0.25rem;
         &>i{
             transform: scale(.83);
+        }
+    }
+
+    // Type
+    @include m(dashed) {
+        border-style: dashed;
+    }
+
+    @include m(text) {
+        border-color: transparent;
+        background-color: transparent;
+    }
+
+    // float
+    @include m(float) {
+        @include elevation(4);
+        &:hover, &:focus {
+            @include elevation(8);
         }
     }
 }

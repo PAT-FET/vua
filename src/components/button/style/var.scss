@@ -4,3 +4,16 @@ $btn-height-sm: 1.5rem;
 $btn-height-md: 2rem;
 $btn-height-lg: 2.5rem;
 $btn-border-radius: $border-radius-base;
+
+$btn-focus-color: map-get($primary-colors, lighten-1);
+$btn-active-color: map-get($primary-colors, darken-1);
+
+$btn-bg-color: var(--btn-bg-color, #{$bg-color});
+$btn-bg-active-color: var(--btn-bg-active-color, #{$bg-color});
+$btn-bg-focus-color: var(--btn-bg-focus-color, #{$bg-color});
+$btn-text-color: var(--btn-text-color, #{$text-color});
+$btn-text-active-color: var(--btn-text-active-color, #{$btn-active-color});
+$btn-text-focus-color: var(--btn-text-focus-color, #{$btn-focus-color});
+$btn-border-color: var(--btn-border-color, #{$border-color-base});
+$btn-border-active-color: var(--btn-border-active-color, #{$btn-active-color});
+$btn-border-focus-color: var(--btn-border-focus-color, #{$btn-focus-color});

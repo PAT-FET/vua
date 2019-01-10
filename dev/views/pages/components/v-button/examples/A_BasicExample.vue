@@ -1,64 +1,38 @@
 <template>
 <div>
-
-   <div class="my-3">
-     <p class="subheading">常规</p>
-     <v-button>NORMAL</v-button>
+<div class="my-3">
+   <div class='flex'>
+      <v-button type="primary">确定</v-button>
+      <v-button class="ml-3">取消</v-button>
+      <v-button color="primary" class="ml-3">触及</v-button>
+      <v-button type="dashed" class="ml-3">虚线</v-button>
+      <v-button type="primary" disabled class="ml-3">禁用</v-button>
+      <v-button type="primary" color="success" class="ml-3">成功</v-button>
+      <v-button type="primary" color="warning" class="ml-3">警告</v-button>
+      <v-button type="primary" color="error" class="ml-3">错误</v-button>
    </div>
-
-<div class="my-3">
-  <p class="subheading">尺寸</p>
-  <div class="d-inline-block mx-3">
-     <v-button size="lg">Large</v-button>
-  </div>
-   <div class="d-inline-block mx-3">
-     <v-button>Middle</v-button>
-  </div>
-   <div class="d-inline-block mx-3">
-     <v-button size="sm">Small</v-button>
-  </div>
 </div>
 
 <div class="my-3">
-  <p class="subheading">颜色</p>
-  <div class="d-inline-block mx-3">
-     <v-button color="primary">Primary</v-button>
-  </div>
-  <div class="d-inline-block mx-3">
-     <v-button color="secondary">Secondary</v-button>
-  </div>
-  <div class="d-inline-block mx-3">
-     <v-button color="success">Success</v-button>
-  </div>
-  <div class="d-inline-block mx-3">
-     <v-button color="info">Info</v-button>
-  </div>
-  <div class="d-inline-block mx-3">
-     <v-button color="warning">Warning</v-button>
-  </div>
-  <div class="d-inline-block mx-3">
-     <v-button color="error">Error</v-button>
-  </div>
+   <div class='flex'>
+      <v-button type="primary" shape="round">确定</v-button>
+      <v-button shape="round" class="ml-3">取消</v-button>
+      <v-button shape="round" color="primary" class="ml-3">触及</v-button>
+      <v-button shape="round" type="dashed" class="ml-3">虚线</v-button>
+      <v-button shape="round" type="primary" disabled class="ml-3">禁用</v-button>
+      <v-button shape="round" type="primary" color="success" class="ml-3">成功</v-button>
+      <v-button shape="round" type="primary" color="warning" class="ml-3">警告</v-button>
+      <v-button shape="round" type="primary" color="error" class="ml-3">错误</v-button>
+   </div>
 </div>
-
-<div class="my-3">
-  <p class="subheading">禁用</p>
-  <div class="d-inline-block mx-3">
-     <v-button disabled>Normal</v-button>
-  </div>
-  <div class="d-inline-block mx-3">
-     <v-button color="primary" disabled>Primary</v-button>
-  </div>
-</div>
-
 </div>
 </template>
 <script lang="ts">
 import { Component, Vue, Watch } from 'vue-property-decorator'
 
 /**
- * @title   基本使用
- * @desc 有 lg、 md、 sm 三种尺寸以及 priamry、secondary、success、info、warning、error五种颜色
+ * @title   基本按钮
+ * @desc 按钮的样式包括宽高、圆角以及按钮字数，一般限制6个以内尽可能短（减少用户读取按钮功能成本）， 主按钮在同一个操作区最多出现一次。
  */
 @Component({
   components: {

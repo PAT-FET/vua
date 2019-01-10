@@ -2,9 +2,9 @@ export default {
   props: [
     {
       name: 'type',
-      default: 'bulge',
-      type: `'bulge' | 'depressed' | 'flat' | 'outline'`,
-      desc: '按钮类型， 分为 凸起（默认）、凹陷、扁平、轮廓'
+      default: `'solid'`,
+      type: `'dashed' | 'primary' | 'solid' | 'text'`,
+      desc: '按钮类型：实线按钮、虚线按钮、主按钮、文字按钮'
     },
     {
       name: 'size',
@@ -15,8 +15,8 @@ export default {
     {
       name: 'color',
       default: '',
-      type: `'primary' | 'secondary' | 'success' | 'info' | 'warning' | 'error'`,
-      desc: '按钮颜色，支持所以主题色'
+      type: `string`,
+      desc: '支持 主题色、内置色、#...'
     },
     {
       name: 'disable',
@@ -59,6 +59,18 @@ export default {
       default: '',
       type: 'boolean',
       desc: '紧凑模式， 该模式没有水平内部， 主要用于分裂按钮'
+    },
+    {
+      name: 'ghost',
+      default: '',
+      type: 'boolean',
+      desc: '幽灵模式'
+    },
+    {
+      name: 'float',
+      default: '',
+      type: 'boolean',
+      desc: '浮动按钮'
     }
   ],
   events: [
