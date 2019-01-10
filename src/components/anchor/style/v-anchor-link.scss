@@ -1,0 +1,52 @@
+@import "../../../style/mixins/bem.scss";
+@import "../../../style/mixins/elevation.scss";
+@import "../../../style/mixins/misc.scss";
+@import "../../../style/mixins/reset.scss";
+@import "../../../style/color/colors.scss";
+@import "../../../style/var.scss";
+@import "./mixins.scss";
+
+@include b(v-anchor-link) {
+    color:$text-color;
+
+    @include e(avatar) {
+        flex: 0 0 auto;
+        margin-right: 1rem;
+    }
+
+    @include e(content) {
+        flex: 1 1 auto;
+    }
+
+    @include e(title) {
+        display:block;
+        position:relative;
+        -webkit-transition:all .3s;
+        transition:all .3s;
+        white-space:nowrap;
+        overflow:hidden;
+        text-overflow:ellipsis;
+        margin-bottom:8px
+    }
+
+    @include e(active) {
+        color: $blue-base;
+    }
+
+    // Colored
+    @include m(colored) {
+        @include e(title) {
+            color: map-get($grey, lighten-5);
+        }
+
+        @include e(description) {
+            color: map-get($grey, lighten-2);
+        }
+    }
+}
+/* .ivu-anchor-link-title{
+    
+}
+.ivu-anchor-link-title:only-child{margin-bottom:0}
+.ivu-anchor-link-active>.ivu-anchor-link-title{color:#2d8cf0}
+.ivu-anchor-link .ivu-anchor-link{padding-top:6px;padding-bottom:6px} */
