@@ -186,6 +186,10 @@ const components: any = {
     title: 'Tag 标签',
     group: 'dataDisplay'
   },
+  VTimeline: {
+    title: 'Timeline 时间轴',
+    group: 'dataDisplay'
+  },
   VBadge: {
     title: 'Badge 徽标数',
     group: 'dataDisplay'
@@ -204,6 +208,10 @@ const components: any = {
   },
   VBackTop: {
     title: 'BackTop 回到顶部',
+    group: 'other'
+  },
+  VAnchor: {
+    title: 'Anchor 锚点',
     group: 'other'
   }
 }
