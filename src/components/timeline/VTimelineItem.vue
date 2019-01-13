@@ -3,8 +3,10 @@
       <div :class="[e('content-left')]">
           <slot name="left"></slot>
       </div>
-      <div :class="[e('tail')]"></div>
-      <div :class="[e('head'),headClasses]" :style="customColor" ref="dot"><slot name="dot"></slot></div>
+      <div :class="[e('line')]">
+        <div :class="[e('tail')]"></div>
+        <div :class="[e('head'),headClasses]" :style="customColor" ref="dot"><slot name="dot"></slot></div>
+      </div>
       <div :class="[e('content-right')]">
           <slot name="right"></slot><slot></slot>
       </div>
