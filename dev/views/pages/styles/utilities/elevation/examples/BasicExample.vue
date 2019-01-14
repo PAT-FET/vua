@@ -1,10 +1,9 @@
 <template>
  <div class="my-5 p-4 border rounded d-flex">
         <div>
-            <input type="number" max="24" min="0" step="1" v-model.number="level" style="width: 220px;">
+             <v-slider v-model="value" class="w-16" :min="0" :max="24" :step="1"></v-slider> {{value}}
         </div>
-        <div style="width: 240px; height: 80px; background:" :class="[elevationCls]" class="bg-primary text-primary ml-5">
-            Elevation-{{level}}
+        <div class="w-16 h-8 bg-2 ml-5" :class="[elevationCls]">
         </div>
     </div>
 </template>
@@ -20,10 +19,10 @@ import { Component, Vue, Watch } from 'vue-property-decorator'
   },
   })
 export default class BasicExample extends Vue {
-    level: number = 0
+    value: number = 4
 
     get elevationCls () {
-      return `elevation-${this.level}`
+      return `elevation-${this.value}`
     }
 }
 </script>
