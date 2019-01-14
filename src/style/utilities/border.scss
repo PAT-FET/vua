@@ -123,3 +123,7 @@ $border-width: 1px;
 .border-split {
     border-color: $border-color-split !important;
 }
+
+.border-dashed {
+    border-style: dashed !important; 
+}

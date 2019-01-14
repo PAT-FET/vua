@@ -37,6 +37,14 @@
     background-color: $bg-color-2 !important;
 }
 
+.bg-disabled {
+    background-color: $disabled-bg !important;
+}
+
+.bg-active {
+    background-color: $bg-color-active !important;
+}
+
 .bg-blue {
     background-color: $blue-base !important;
 }

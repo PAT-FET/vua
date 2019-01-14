@@ -1,48 +1,23 @@
 <template>
    <div>
-    <h3>提供了一系列 mixins 帮助快速设置边框</h3>
-    <p>颜色</p>
-    <div>
-        <div :class="[$style.box]" class="border border-primary">Primary</div>
-        <div :class="[$style.box]" class="border border-secondary">Secondary</div>
-        <div :class="[$style.box]" class="border border-success">Success</div>
-        <div :class="[$style.box]" class="border border-info">Info</div>
-        <div :class="[$style.box]" class="border border-warning">Warning</div>
-        <div :class="[$style.box]" class="border border-error">Error</div>
-        <div :class="[$style.box]" class="border border-base">Base</div>
-        <div :class="[$style.box]" class="border border-split">Split</div>
+    <div class="subheading">指定边</div>
+    <div class="m-3 d-flex flex-nowrap">
+        <div class="w-8 h-4 m-2 bg-1 text-center" style="line-height: 4rem;" :class="[add]" v-for="add in adds" :key="add">{{add}}</div>
     </div>
 
-    <p>指定边</p>
-    <div>
-        <div :class="[$style.box]" class="border-top">Top</div>
-        <div :class="[$style.box]" class="border-bottom">Bottom</div>
-        <div :class="[$style.box]" class="border-left">Left</div>
-        <div :class="[$style.box]" class="border-right">Right</div>
+    <div class="subheading">颜色</div>
+   <div class="m-3 d-flex flex-wrap">
+        <div class="w-12 h-4 m-2 bg-1 text-center" style="line-height: 4rem;" :class="[color]" v-for="color in colors" :key="color">{{color}}</div>
     </div>
 
-    <p>去除指定边</p>
-    <div>
-        <div :class="[$style.box]" class="border border-top-0">Top-0</div>
-        <div :class="[$style.box]" class="border border-bottom-0">Bottom-0</div>
-        <div :class="[$style.box]" class="border border-left-0">Left-0</div>
-        <div :class="[$style.box]" class="border border-right-0">Right-0</div>
+   <div class="subheading">去除指定边</div>
+   <div class="m-3 d-flex flex-wrap">
+        <div class="w-12 h-4 m-2 bg-1 text-center" style="line-height: 4rem;" :class="[sub]" v-for="sub in subs" :key="sub">{{sub}}</div>
     </div>
 
-    <p>圆角</p>
-    <div>
-        <div :class="[$style.box]" class="border rounded">Rouned</div>
-        <div :class="[$style.box]" class="border rounded-top">Top</div>
-        <div :class="[$style.box]" class="border rounded-bottom">Bottom</div>
-        <div :class="[$style.box]" class="border rounded-left">Left</div>
-        <div :class="[$style.box]" class="border rounded-right">Right</div>
-
-        <div :class="[$style.box]" class="border rounded rounded-top-0">Top-0</div>
-        <div :class="[$style.box]" class="border rounded rounded-bottom-0">Bottom-0</div>
-        <div :class="[$style.box]" class="border rounded rounded-left-0">Left-0</div>
-        <div :class="[$style.box]" class="border rounded rounded-right-0">Right-0</div>
-
-        <div :class="[$style.box]" class="border circle">Circle</div>
+   <div class="subheading">圆角</div>
+   <div class="m-3 d-flex flex-wrap">
+        <div class="w-8 h-8 m-2 bg-disabled text-center" style="line-height: 8rem;" :class="[round]" v-for="round in rounds" :key="round">{{round}}</div>
     </div>
 </div>
 </template>
@@ -58,15 +33,45 @@ import { Component, Vue, Watch } from 'vue-property-decorator'
   },
   })
 export default class BasicExample extends Vue {
+    adds = [
+        'border',
+        'border-top',
+        'border-bottom',
+        'border-left',
+        'border-right',
+    ]
+
+    colors = [
+        'border border-primary',
+        'border border-secondary',
+        'border border-success',
+        'border border-info',
+        'border border-warning',
+        'border border-error',
+        'border border-base',
+        'border border-split'
+    ]
+
+    subs = [
+        'border border-0',
+        'border border-top-0',
+        'border border-bottom-0',
+        'border border-left-0',
+        'border border-right-0'
+    ]
+
+    rounds = [
+        'rounded',
+        'rounded-top',
+        'rounded-left',
+        'rounded-right',
+        'rounded-bottom',
+        'circle',
+        'rounded-0'
+    ]
 }
 </script>
 
 <style lang="scss" module>
-.box{
-    height: 80px;
-    width: 80px;
-    margin: 5px;
-    display: inline-block;
-}
 
 </style>
