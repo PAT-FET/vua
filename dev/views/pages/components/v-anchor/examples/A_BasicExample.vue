@@ -2,8 +2,8 @@
 <div>
    <div style="height:500px;overflow:auto;">
     <v-anchor style="fload:right;">
-        <v-anchor-link v-for="link in 300" :key="`link${link}`" :href="`#title-${link}`" :title="`title-${link}`">
-            <v-anchor-link  v-if="link === 61" href="#title-child-69" title="title-child-69"/>
+        <v-anchor-link v-for="link in 40" :key="`link${link}`" :href="`#title-${link}`" :title="`title-${link}`">
+           <!--  <v-anchor-link  v-if="link === 61" href="#title-child-69" title="title-child-69"/> -->
         </v-anchor-link>
         <v-anchor-link  href="#lishi" title="李氏专跳"/>
         <v-anchor-link  href="#new-link" title="这是动态添加的连接"/>

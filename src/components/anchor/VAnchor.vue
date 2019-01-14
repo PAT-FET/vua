@@ -38,14 +38,25 @@ export default class VAnchor extends mixins(Themeable, Bemable) {
   scrollContainer:any = null
   scrollElement: any = null
   titlesOffsetArr:any[] = []
-  wrapperTop: number = 0
   upperFirstTitle: boolean = true
+
+  @Watch('$route') routeChange (route: string) {
+    console.log('route change')
+    this.handleHashChange()
+    this.$nextTick(() => {
+      this.handleScrollTo()
+    })
+  }
+
+  @Watch('currentLink') currentLinkChange (newHref: string, oldHref:string) {
+    this.$emit('on-change', newHref, oldHref)
+  }
 
   handleScroll () {
     // this.upperFirstTitle = e.target.scrollTop < this.titlesOffsetArr[0].offset;
     if (this.animating) return
     this.updateTitleOffset()
-    const scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+    const scrollTop = this.localTarget.scrollTop
     this.getCurrentScrollAtTitleId(scrollTop)
   }
   handleHashChange () {
@@ -58,20 +69,14 @@ export default class VAnchor extends mixins(Themeable, Bemable) {
   handleScrollTo () {
     const anchor = document.getElementById(this.currentId)
     const currentLinkElementA = document.querySelector(`a[data-href="${this.currentLink}"]`)
-    let offset = 0 // this.scrollOffset;
-    if (currentLinkElementA) {
-      // offset = parseFloat(currentLinkElementA.getAttribute('data-scroll-offset'));
-    }
-
     if (!anchor) return
-    const offsetTop = anchor.offsetTop - this.wrapperTop - offset
+    const offsetTop = anchor.offsetTop - this.localTarget.offsetTop
     this.animating = true
-    this.scrollTop(() => {
+    this.scrollTop(offsetTop, () => {
       this.animating = false
     })
-    this.handleSetInkTop()
   }
-  scrollTop (callback:Function) {
+  scrollTop (offsetTop:number, callback:Function) {
     if (this.localTarget) {
       const target = this.localTarget
       const scrollTop = target.scrollTop
@@ -79,23 +84,16 @@ export default class VAnchor extends mixins(Themeable, Bemable) {
       const frameFunc = () => {
         const timestamp = Date.now()
         const time = timestamp - startTime
-        target.scrollTop = easeInOutCubic(time, scrollTop, 0, 450)
+        target.scrollTop = easeInOutCubic(time, scrollTop, offsetTop, 450)
         if (time < 450) {
           requestAnimationFrame(frameFunc)
         } else {
-          target.scrollTop = 0
+          target.scrollTop = offsetTop
         }
       }
       requestAnimationFrame(frameFunc)
     }
     callback()
-  }
-  handleSetInkTop () {
-    /* const currentLinkElementA = document.querySelector(`a[data-href="${this.currentLink}"]`);
-      if (!currentLinkElementA) return;
-      const elementATop = currentLinkElementA.offsetTop;
-      const top = (elementATop < 0 ? 0 : elementATop); */
-    this.inkTop = 0
   }
   findComponentsDownward (context:any, componentName:string) {
     return context.$children.reduce((components:any, child:any) => {
@@ -105,7 +103,7 @@ export default class VAnchor extends mixins(Themeable, Bemable) {
     }, [])
   }
   updateTitleOffset () {
-    const links = this.findComponentsDownward(this, 'AnchorLink').map((link:any) => {
+    const links = this.findComponentsDownward(this, 'v-anchor-link').map((link:any) => {
       return link.href
     })
     const idArr = links.map((link:string) => {
@@ -124,23 +122,20 @@ export default class VAnchor extends mixins(Themeable, Bemable) {
     this.titlesOffsetArr = offsetArr
   }
   getCurrentScrollAtTitleId (scrollTop:number) {
-    let i = -1
     let len = this.titlesOffsetArr.length
     let titleItem = {
       link: '#',
       offset: 0
     }
-    scrollTop += 5
-    while (++i < len) {
+    for (let i = 0; i < len; i++) {
       let currentEle = this.titlesOffsetArr[i]
       let nextEle = this.titlesOffsetArr[i + 1]
       if (scrollTop >= currentEle.offset && scrollTop < ((nextEle && nextEle.offset) || Infinity)) {
         titleItem = this.titlesOffsetArr[i]
-        break
+        this.currentLink = titleItem.link
+        return
       }
     }
-    this.currentLink = titleItem.link
-    this.handleSetInkTop()
   }
 
   resolveTarget (): HTMLElement {
@@ -151,17 +146,14 @@ export default class VAnchor extends mixins(Themeable, Bemable) {
   init () {
     this.handleHashChange()
     this.$nextTick(() => {
-      this.wrapperTop = 0
       this.handleScrollTo()
-      this.handleSetInkTop()
       this.updateTitleOffset()
-      this.upperFirstTitle = this.localTarget.scrollTop < this.titlesOffsetArr[0].offset
+      // this.upperFirstTitle = this.localTarget.scrollTop < this.titlesOffsetArr[0].offset
     })
   }
 
   mounted () {
     this.localTarget = this.resolveTarget()
-    console.log(this.localTarget)
     if (!this.localTarget) return
     this.localTarget.addEventListener('scroll', this.onScrollDelay)
   }
