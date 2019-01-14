@@ -1,10 +1,7 @@
 <template>
 <v-button
 :class="[activeCls]"
-:style="[activeColorStyle, activeFillStyle]"
-:color="color"
-:type="type"
-:disabled="disabled"
+v-bind="$attrs"
 @click="onClick" >
   <slot></slot>
 </v-button>
@@ -20,17 +17,11 @@ import { getDefaultColor } from '../../utils'
   components: {
   },
   name: 'v-radio-button'
-  })
+})
 export default class VRadioButton extends mixins(Themeable, Bemable) {
-  @Prop({type: [String, Number, Boolean]}) @Model('input') value!: string| number| boolean
+  @Prop({ type: [String, Number, Boolean] }) @Model('input') value!: string| number| boolean
 
   @Prop([String, Boolean, Number]) label!: string | number | boolean
-
-  @Prop(Boolean) disabled!: boolean
-
-  @Prop(String) activeFill!: string
-
-  @Prop(String) activeColor!: string
 
   @Emit()input (value: string | number | boolean) {}
 
@@ -43,29 +34,29 @@ export default class VRadioButton extends mixins(Themeable, Bemable) {
     return this.value !== undefined && this.label === this.value
   }
 
-  get color () {
-    if (this.checked) return 'primary'
-    return ''
-  }
+  // get color () {
+  //   if (this.checked) return 'primary'
+  //   return ''
+  // }
 
-  get type () {
-    // if (this.checked) return  'outline'
-    return 'outline'
-  }
+  // get type () {
+  //   // if (this.checked) return  'outline'
+  //   return 'outline'
+  // }
 
-  get activeFillStyle () {
-    if (!this.activeFill || !this.checked) return {}
-    return {
-      backgroundColor: (getDefaultColor() as any)[this.activeFill] || this.activeFill
-    }
-  }
+  // get activeFillStyle () {
+  //   if (!this.activeFill || !this.checked) return {}
+  //   return {
+  //     backgroundColor: (getDefaultColor() as any)[this.activeFill] || this.activeFill
+  //   }
+  // }
 
-  get activeColorStyle () {
-    if (!this.activeColor || !this.checked) return {}
-    return {
-      color: (getDefaultColor() as any)[this.activeColor] || this.activeColor
-    }
-  }
+  // get activeColorStyle () {
+  //   if (!this.activeColor || !this.checked) return {}
+  //   return {
+  //     color: (getDefaultColor() as any)[this.activeColor] || this.activeColor
+  //   }
+  // }
 
   get activeCls () {
     return this.checked ? 'active' : ''

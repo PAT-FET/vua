@@ -44,3 +44,4 @@ export * from './list'
 export * from './drawer'
 /* export * from './anchor' */
 export * from './timeline'
+export * from './upload'

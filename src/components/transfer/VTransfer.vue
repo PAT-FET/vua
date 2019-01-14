@@ -7,10 +7,10 @@
       <template slot="footer"><slot name="source-footer"></slot></template>
     </v-transfer-panel>
   <div :class="[e('operation')]">
-    <v-button type="outline" color="primary" size="sm" :disabled="disabledToTarget" @click="transferSource" class="d-block">
+    <v-button type="primary" size="sm" :disabled="disabledToTarget" @click="transferSource" class="d-block">
       <i class="anticon anticon-right"></i>
     </v-button>
-    <v-button type="outline" color="primary" size="sm" :disabled="disabledToSource" @click="transferTarget" class="d-block mt-2">
+    <v-button type="primary" size="sm" :disabled="disabledToSource" @click="transferTarget" class="d-block mt-2">
       <i class="anticon anticon-left"></i>
     </v-button>
   </div>
@@ -32,11 +32,11 @@ import VTransferPanel from './widget/VTransferPanel.vue'
 
 @Component({
   components: {
-  VButton,
-  VTransferPanel
+    VButton,
+    VTransferPanel
   },
   name: 'v-transfer'
-  })
+})
 export default class VTransfer extends mixins(Themeable, Bemable) {
   @Prop(Array) value!: Array<string | number>
 
@@ -48,7 +48,7 @@ export default class VTransfer extends mixins(Themeable, Bemable) {
 
   @Prop(Boolean) disabled!: boolean
 
-  @Prop({type: Array, default: () => ['Source', 'Target']}) title!: [string, string]
+  @Prop({ type: Array, default: () => ['Source', 'Target'] }) title!: [string, string]
 
   localTargetKeys: Array<number | string> = []
 

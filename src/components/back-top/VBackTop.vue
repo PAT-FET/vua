@@ -1,7 +1,7 @@
 <template>
 <div :class="[b()]">
   <transition name="zoom-transition">
-    <v-button shape="circle" color="error" size="lg" icon="to-top" @click="toTop" v-if="visible"></v-button>
+    <v-button shape="circle" color="error" type="primary" float size="lg" icon="to-top" @click="toTop" v-if="visible"></v-button>
   </transition>
 </div>
 </template>
@@ -15,14 +15,14 @@ import { VButton } from '../button'
 
 @Component({
   components: {
-  VButton
+    VButton
   },
   name: 'v-back-top'
-  })
+})
 export default class VBackTop extends mixins(Themeable, Bemable) {
   @Prop(Function) target!: BackTopTargetFn
 
-  @Prop({type: Number, default: 200}) offset!: number
+  @Prop({ type: Number, default: 200 }) offset!: number
 
   visible: boolean = false
 

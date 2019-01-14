@@ -1,8 +1,16 @@
 @for $z from 0 through 24 {
   .w-#{$z}{
-      width: #{$z}rem;
+      width: #{$z}rem !important;
   }
   .h-#{$z}{
-      height: #{$z}rem;
+      height: #{$z}rem !important;
   }
+}
+
+.w-block {
+    width: 100% !important;
+}
+
+.h-block {
+    height: 100% !important;
 }

@@ -36,7 +36,7 @@
         <div class="my-3">
             <v-input-group>
               <v-input :size="size" placeholder="Search..." clearable></v-input>
-              <v-button :size="size" color="primary" type="outline" icon="search"></v-button>
+              <v-button :size="size" icon="search"></v-button>
             </v-input-group>
         </div>
       </div>
@@ -130,8 +130,8 @@ import { Component, Vue, Watch } from 'vue-property-decorator'
  */
 @Component({
   components: {
-  },
-  })
+  }
+})
 export default class InputGroupExample extends Vue {
   size: string = 'md'
 
@@ -158,11 +158,11 @@ export default class InputGroupExample extends Vue {
       children: [
         {
           key: '1-1',
-          label: '采矿业',
+          label: '采矿业'
         },
         {
           key: '1-2',
-          label: '制造业',
+          label: '制造业'
         }
       ]
     },
@@ -172,11 +172,11 @@ export default class InputGroupExample extends Vue {
       children: [
         {
           key: '2-1',
-          label: '批发零售',
+          label: '批发零售'
         },
         {
           key: '2-2',
-          label: '汽车销售',
+          label: '汽车销售'
         }
       ]
     }
