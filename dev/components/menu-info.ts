@@ -98,6 +98,10 @@ const components: any = {
     title: 'Menu 导航菜单',
     group: 'navigate'
   },
+  VBreadcrumb: {
+    title: 'Breadcrumb 面包屑',
+    group: 'navigate'
+  },
   VPagination: {
     title: 'Pagination 分页',
     group: 'navigate'

@@ -1,0 +1,55 @@
+@import "../../../style/mixins/bem.scss";
+@import "../../../style/mixins/elevation.scss";
+@import "../../../style/mixins/misc.scss";
+@import "../../../style/var.scss";
+@import "./mixins.scss";
+@import "./var.scss";
+
+@include b(v-breadcrumb) {
+  font-size: $font-size-base;
+  line-height: 1;
+  // @include utils-clearfix;
+
+  @include e(separator) {
+    margin: 0 0.5rem;
+    font-weight: bold;
+    color: $text-color;
+
+    &[class*=icon] {
+      margin-right:0.5rem;
+      font-weight: normal;
+    }
+  }
+
+  @include e(item) {
+    float: left;
+    @include e(inner) {
+      color: $text-color;
+      &.is-link, & a {
+        font-weight: bold;
+        text-decoration: none;
+        transition: $text-color;
+        color: $text-color;
+        &:hover {
+          color: $primary-color;
+          cursor: pointer;
+        }
+      }
+    }
+
+    &:last-child {
+      .v-breadcrumb__inner,
+      .v-breadcrumb__inner a {
+        &, &:hover {
+          font-weight: normal;
+          color: $text-color;
+          cursor: text;
+        }
+      }
+
+      .v-breadcrumb__separator {
+        display: none;
+      }
+    }
+  }
+}
