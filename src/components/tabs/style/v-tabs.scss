@@ -6,6 +6,7 @@
 
 @include b(v-tabs) {
     display: flex;
+    overflow: hidden;
 
     @include e(bar) {
         border-color: $primary-color;
