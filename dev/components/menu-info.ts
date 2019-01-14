@@ -160,7 +160,7 @@ const components: any = {
   },
   VCascader: {
     title: 'Cascader 级联选择',
-    group: 'dataDisplay'
+    group: 'dataEntry'
   },
   VCollapse: {
     title: 'Collapse 折叠面板',

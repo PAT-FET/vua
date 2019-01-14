@@ -1,7 +1,7 @@
 <template>
 <div :class="[b()]">
     <transition-group name="move-up-transition" tag="ul" :class="[e('list')]">
-      <li :class="[e('item')]" v-for="(item) in messageList" :key="item.message">
+      <li :class="[e('item')]" v-for="(item, i) in messageList" :key="i + item.message">
           <i class="anticon mr-2" :class="[`anticon-${iconName(item.type)}`, spin(item.type), `text-${item.type}`]"></i>
           <span>{{item.message}}</span>
       </li>

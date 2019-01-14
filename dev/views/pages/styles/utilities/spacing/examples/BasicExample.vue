@@ -17,54 +17,47 @@
         </div>
 
         <div>
-            <span>
+            <div>
                 <span>Property : </span>
-                <select v-model="property">
-                    <option value="">请选择</option>
-                    <option value="m">m</option>
-                    <option value="p">p</option>
-                </select>
-                &nbsp;
-            </span>
-            <span>
+                <v-radio-group v-model="property">
+                    <v-radio label="m">m</v-radio>
+                    <v-radio label="p">p</v-radio>
+                </v-radio-group>
+            </div>
+            <div>
                 <span>Side : </span>
-                <select v-model="side">
-                    <option value="">请选择</option>
-                    <option value="t">t</option>
-                    <option value="b">b</option>
-                    <option value="l">l</option>
-                    <option value="r">r</option>
-                    <option value="x">x</option>
-                    <option value="y">y</option>
-                    <option value="blank">blank</option>
-                </select>
-                &nbsp;
-            </span>
-            <span>
+                <v-radio-group v-model="side">
+                    <v-radio label="">none</v-radio>
+                    <v-radio label="t">t</v-radio>
+                    <v-radio label="b">b</v-radio>
+                    <v-radio label="l">l</v-radio>
+                    <v-radio label="r">r</v-radio>
+                    <v-radio label="x">x</v-radio>
+                    <v-radio label="y">y</v-radio>
+                </v-radio-group>
+            </div>
+            <div>
                 <span>Breakpoint : </span>
-                <select v-model="breakpoint">
-                    <option value="">请选择</option>
-                    <option value="sm">sm</option>
-                    <option value="md">md</option>
-                    <option value="lg">lg</option>
-                    <option value="xl">xl</option>
-                </select>
-                &nbsp;
-            </span>
-            <span>
+                <v-radio-group v-model="breakpoint">
+                    <v-radio label="">none</v-radio>
+                    <v-radio label="sm">sm</v-radio>
+                    <v-radio label="md">md</v-radio>
+                    <v-radio label="lg">lg</v-radio>
+                    <v-radio label="xl">xl</v-radio>
+                </v-radio-group>
+            </div>
+            <div>
                 <span>Size : </span>
-                <select v-model="size">
-                    <option value="">请选择</option>
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="auto">auto</option>
-                </select>
-                &nbsp;
-            </span>
+                 <v-radio-group v-model="size">
+                    <v-radio label="0">0</v-radio>
+                    <v-radio label="1">1</v-radio>
+                    <v-radio label="2">2</v-radio>
+                    <v-radio label="3">3</v-radio>
+                    <v-radio label="4">4</v-radio>
+                    <v-radio label="5">5</v-radio>
+                    <v-radio label="auto">auto</v-radio>
+                </v-radio-group>
+            </div>
         </div>
     </div>
 </div>
@@ -81,7 +74,7 @@ import { Component, Vue, Watch } from 'vue-property-decorator'
   },
   })
 export default class BasicExample extends Vue {
-  property: string = ''
+    property: string = ''
     side: string = ''
     breakpoint: string = ''
     size: string = ''

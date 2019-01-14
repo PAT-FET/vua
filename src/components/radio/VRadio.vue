@@ -8,7 +8,7 @@
 </label>
 </template>
 <script lang="ts">
-import { Component, Vue, Prop, Emit, Watch, Model } from 'vue-property-decorator'
+import { Component, Vue, Prop, Emit, Watch, Model, Inject } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
 import { Bemable, Themeable, Rippleable } from '../../mixins'
 import { VRadioGroup } from '../..'
@@ -27,7 +27,13 @@ export default class VRadio extends mixins(Themeable, Bemable, Rippleable) {
 
   @Emit()input (value: string | number | boolean) {}
 
-  radioGroup: VRadioGroup | null = null
+  @Inject({default: () => () => null}) getRadioGroup!: () => VRadioGroup | null
+
+  get radioGroup (): VRadioGroup | null {
+    let group = this.getRadioGroup()
+    if (group && group.$options.name === 'v-radio-group') return group
+    return null
+  }
 
   get checked () {
     if (this.radioGroup) {
@@ -53,10 +59,10 @@ export default class VRadio extends mixins(Themeable, Bemable, Rippleable) {
   }
 
   created () {
-    const $parent = this.$parent
-    if ($parent && $parent.$options.name === 'v-radio-group') {
-      this.radioGroup = $parent as VRadioGroup
-    }
+    // const $parent = this.$parent
+    // if ($parent && $parent.$options.name === 'v-radio-group') {
+    //   this.radioGroup = $parent as VRadioGroup
+    // }
   }
 }
 </script>

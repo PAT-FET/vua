@@ -1,5 +1,5 @@
 <template>
-<div :class="[b()]">
+<div :class="[b(), layoutCls]">
   <slot></slot>
 </div>
 </template>
@@ -15,7 +15,9 @@ import FormProvider from './mixins/FormProvider'
   name: 'v-form'
   })
 export default class VForm extends mixins(Themeable, Bemable, FormProvider) {
-
+  get layoutCls () {
+    return this.m(this.layout)
+  }
 }
 </script>
 

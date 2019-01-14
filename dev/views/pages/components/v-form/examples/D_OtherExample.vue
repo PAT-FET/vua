@@ -79,7 +79,7 @@ import { VForm } from 'src'
   components: {
   },
   })
-export default class ValidExample extends Vue {
+export default class OtherExample extends Vue {
   form = {
     username: 'Alison',
     password: '',

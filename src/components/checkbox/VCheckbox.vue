@@ -8,7 +8,7 @@
 </label>
 </template>
 <script lang="ts">
-import { Component, Vue, Prop, Emit, Watch, Model } from 'vue-property-decorator'
+import { Component, Vue, Prop, Emit, Watch, Model, Inject } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
 import { Bemable, Themeable, Rippleable } from '../../mixins'
 import { CheckboxValue, CheckboxLabel } from './type'
@@ -30,7 +30,15 @@ export default class VCheckbox extends mixins(Themeable, Bemable, Rippleable) {
 
   @Emit()input (value: CheckboxValue) {}
 
-  checkboxGroup: VCheckboxGroup | null = null
+  @Inject({default: () => () => null}) getCheckboxGroup!: () => VCheckboxGroup | null
+
+  get checkboxGroup (): VCheckboxGroup | null {
+    let group = this.getCheckboxGroup()
+    if (group && group.$options.name === 'v-checkbox-group') {
+      return group
+    }
+    return null
+  }
 
   get model (): CheckboxValue {
     if (this.checkboxGroup) {
@@ -69,10 +77,10 @@ export default class VCheckbox extends mixins(Themeable, Bemable, Rippleable) {
   }
 
   created () {
-    const $parent = this.$parent
-    if ($parent && $parent.$options.name === 'v-checkbox-group') {
-      this.checkboxGroup = $parent as VCheckboxGroup
-    }
+    // const $parent = this.$parent
+    // if ($parent && $parent.$options.name === 'v-checkbox-group') {
+    //   this.checkboxGroup = $parent as VCheckboxGroup
+    // }
   }
 }
 </script>

@@ -1,16 +1,8 @@
 <template>
-   <div>
-        <div>
-            <div :class="[$style.box]" class="bg-primary"></div>
-            <div :class="[$style.box]" class="bg-secondary"></div>
-            <div :class="[$style.box]" class="bg-success"></div>
-            <div :class="[$style.box]" class="bg-info"></div>
-            <div :class="[$style.box]" class="bg-warning"></div>
-            <div :class="[$style.box]" class="bg-error"></div>
-            <div :class="[$style.box]" class="bg-base"></div>
-            <div :class="[$style.box]" class="bg-1"></div>
-            <div :class="[$style.box]" class="bg-2"></div>
-        </div>
+   <div class="m-3">
+       <div class="my-2" v-for="bg in list" :key="bg">
+           <span class="d-inline-block w-6">{{bg}}</span> <div class=" w-4 h-1 mr-3 ml-2 d-inline-block align-middle" :class=[bg]></div>
+       </div>
     </div>
 </template>
 <script lang="ts">
@@ -25,6 +17,32 @@ import { Component, Vue, Watch } from 'vue-property-decorator'
   },
   })
 export default class BasicExample extends Vue {
+    list = [
+        'bg-primary',
+        'bg-secondary',
+        'bg-success',
+        'bg-info',
+        'bg-warning',
+        'bg-error',
+        'bg-base',
+        'bg-1',
+        'bg-2',
+        'bg-disabled',
+        'bg-active',
+        'bg-blue',
+        'bg-purple',
+        'bg-cyan',
+        'bg-green',
+        'bg-pink',
+        'bg-red',
+        'bg-orange',
+        'bg-yellow',
+        'bg-volcano',
+        'bg-geekblue',
+        'bg-lime',
+        'bg-gold',
+        'bg-grey'
+    ]
 }
 </script>
 

@@ -41,15 +41,15 @@
 
     &:not(.disabled) {
         &:hover{
-            color: $menu-item-hover-text-color;
+            color: $menu-sub-title-hover-text-color;
         }
 
         &:active{
-            color: $menu-item-active-text-color;
-            background-color: $menu-item-active-bg-color;
+            color: $menu-sub-title-active-text-color;
+            // background-color: $menu-item-active-bg-color;
         }
         &.active{
-            color: $menu-item-active-text-color;
+            color: $menu-sub-title-active-text-color;
         }
     }
 

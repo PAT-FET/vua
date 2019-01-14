@@ -46,18 +46,6 @@ const checkboxButton = {
       default: '',
       type: 'boolean',
       desc: '禁用'
-    },
-    {
-      name: 'activeFill',
-      default: '',
-      type: `string`,
-      desc: '激活时按钮填充色'
-    },
-    {
-      name: 'activeColor',
-      default: '',
-      type: `string`,
-      desc: '激活时按钮文字色'
     }
   ]
 }

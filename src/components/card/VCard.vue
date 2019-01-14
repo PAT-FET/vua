@@ -1,5 +1,5 @@
 <template>
-<div :class="[b(), sizeCls]">
+<div :class="[b(), sizeCls, shadowCls]">
   <div :class="[e('header'), headerCls]" v-if="hasHeader">
     <div :class="[e('title')]">
       <slot name="title">{{title}}</slot>
@@ -19,7 +19,7 @@
 import { Component, Vue, Prop, Emit, Watch, Model, Provide } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
 import { Bemable, Themeable } from '../../mixins'
-import { CardSize } from './type'
+import { CardSize, CardShadow } from './type'
 
 @Component({
   components: {
@@ -37,12 +37,18 @@ export default class VCard extends mixins(Themeable, Bemable) {
 
   @Prop(String) footerCls!: string
 
+  @Prop({type: String, default: 'always'}) shadow!: CardShadow
+
   get hasHeader (): boolean {
     return !!this.title || !!this.$slots.title || !!this.$slots.extra
   }
 
   get sizeCls () {
     return this.m(`size-${this.size}`)
+  }
+
+  get shadowCls () {
+    return this.m(`shadow-${this.shadow}`)
   }
 }
 </script>

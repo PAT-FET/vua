@@ -36,7 +36,7 @@ export default class VPopper extends mixins(Bemable, Themeable) {
 
   @Prop({type: Number, default: 5}) gutter!: number
 
-  @Prop({type: Number, default: 1000}) zIndex!: number
+  @Prop({type: Number, default: 1050}) zIndex!: number
 
   @Prop({type: Boolean, default: true}) arrow!: boolean
 

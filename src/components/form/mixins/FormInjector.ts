@@ -82,10 +82,11 @@ export default class FormInjector extends mixins(Groupable) {
   }
 
   get value () {
-    return this.model[this.prop]
+    return this.model && this.model[this.prop]
   }
 
   set value (value: any) {
+    if (!this.model) return
     this.model[this.prop] = value
   }
 
@@ -94,21 +95,30 @@ export default class FormInjector extends mixins(Groupable) {
   }
 
   async validate (trigger?: 'change' | 'blur'): Promise<FormFieldValidateResult> {
-    this.validating()
     let result: FormFieldValidateResult = {
       valid: false,
       prop: this.prop,
       errors: []
     }
+    if (this.localValidateStatus === 'validating') {
+      result.valid = true
+      return Promise.resolve(result)
+    }
+
     let filterRules = this.actualRules
     if (trigger) {
       filterRules = this.actualRules.filter(v => (v.trigger || 'change') === trigger)
+      if (filterRules.length < 1) { // do not trigger validate
+        result.valid = true
+        return Promise.resolve(result)
+      }
     }
-    if (filterRules.length < 1) {
+    if (filterRules.length < 1 || !this.model || !this.prop) {
       result.valid = true
       this.clearValidate()
       return Promise.resolve(result)
     }
+    this.validating()
     let all = filterRules.map(v => {
       let rule = Object.assign({ prop: this.prop }, v)
       return this.normalizeValidatorResult(this.resolveValidator(v.validator)(rule, this.value))

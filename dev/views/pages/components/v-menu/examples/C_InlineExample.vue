@@ -4,6 +4,14 @@
       <v-button @click="collapse = !collapse">Toggle</v-button>
 
       <v-menu mode="inline" :collapse="collapse" unique-opened default-active="Mac Book" style="width: 256px;">
+         <v-menu-item index="lianxiang">
+            <i slot="icon" class="anticon anticon-ie"></i>
+            联想
+         </v-menu-item>
+         <v-menu-item index="huashuo">
+            <i slot="icon" class="anticon anticon-ie"></i>
+            华硕
+         </v-menu-item>
          <v-sub-menu>
             <div slot="title">通讯设备</div>
             <i slot="icon" class="anticon anticon-apple"></i>

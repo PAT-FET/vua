@@ -9,9 +9,9 @@
    :disabled="disabled"
    :options="options"
    :trigger="trigger">
-    <div :class="[e('input-container')]" slot="reference">
+    <div :class="[e('input-container')]" slot="reference" @input="onInput">
       <slot>
-        <v-input :class="[e('input')]" v-bind="$attrs" :disabled="disabled" :value="value" @input="input"></v-input>
+        <v-input :class="[e('input')]" v-bind="$attrs" :disabled="disabled" :value="value"></v-input>
       </slot>
     </div>
     <div :class="[e('content')]">
@@ -93,6 +93,13 @@ export default class VAutoComplete extends mixins(Themeable, Bemable) {
     this.select(item)
   }
 
+  onInput (e: Event) {
+    let value = (e as any).target.value
+    this.input(value)
+    this.delaySearch()
+    this.visible = true
+  }
+
   isGroup (item: AutoCompleteItem): boolean {
     return !!item.children && item.children.length > 0
   }
@@ -124,7 +131,7 @@ export default class VAutoComplete extends mixins(Themeable, Bemable) {
   }
 
   @Watch('value') valueChange (value: string) {
-    this.delaySearch()
+
   }
 }
 </script>

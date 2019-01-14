@@ -9,12 +9,16 @@
         position: sticky;
         z-index: 1;
         left: 0;
-        box-shadow: 2px 0 8px $border-color-split;
+        &.is-left {
+            box-shadow: 2px 0 8px $border-color-split;
+        }
     }
     &.fixed-right {
         position: sticky;
         z-index: 1;
         right: 0;
-        box-shadow: -2px 0 8px $border-color-split;
+        &.is-right {
+            box-shadow: -2px 0 8px $border-color-split;
+        }
     }
 }
