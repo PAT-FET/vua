@@ -1,6 +1,6 @@
 <template>
 <div :class="[b(), labelPositionCls, layoutCls, validateStatusCls]" @change="onChange" @focusout="onBlur">
-  <div :class="[e('label')]" :style="labelWidthStyle">
+  <div :class="[e('label'), requiredCls]" :style="labelWidthStyle">
     <label>{{label}}</label>
   </div>
   <div :class="[e('content')]">
@@ -29,6 +29,8 @@ import FormInjector from './mixins/FormInjector'
   })
 export default class VFormItem extends mixins(Themeable, Bemable, FormInjector) {
   @Prop(String) label!: string
+
+  @Prop(Boolean) required!: boolean
 
   get labelPositionCls () {
     return this.m(`label-${this.actualLabelPosition}`)
@@ -64,12 +66,22 @@ export default class VFormItem extends mixins(Themeable, Bemable, FormInjector) 
     return this.actualValidateStatus
   }
 
+  get requiredCls () {
+    return this.required ? 'is-required' : ''
+  }
+
   onChange () {
-    this.validate('change')
+    // wait untill value actually changed
+    this.$nextTick().then(() => {
+      this.validate('change')
+    })
   }
 
   onBlur () {
-    this.validate('blur')
+    // wait untill value actually changed
+    this.$nextTick().then(() => {
+      this.validate('blur')
+    })
   }
 }
 </script>

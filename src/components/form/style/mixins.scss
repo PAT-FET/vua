@@ -5,9 +5,10 @@
 
 
 @mixin label-horizontal ($left: false) {
+    display: flex;
     @include e(label) {
-        display: inline-block;
         vertical-align: top;
+        flex: 0 0 auto;
 
         @if $left {
             text-align: left;
@@ -17,7 +18,8 @@
     }
 
     @include e(content) {
-        display: inline-block;
+        flex: 1 1 auto;
+        width: 100%;
         vertical-align: top;
     }
 }

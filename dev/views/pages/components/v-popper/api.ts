@@ -44,7 +44,7 @@ export default {
     },
     {
       name: 'zIndex',
-      default: '1000',
+      default: '1050',
       type: 'number',
       desc: 'popper元素的z-index值'
     },

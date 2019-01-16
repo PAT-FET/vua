@@ -102,6 +102,12 @@ const formItem = {
       default: ``,
       type: `object`,
       desc: '表单域校验提示消息，主要用于自定义消息'
+    },
+    {
+      name: 'required',
+      default: ``,
+      type: `boolean`,
+      desc: '必填标志，指定将会生成一个红色星号标记，不会根据校验规则自动生成'
     }
   ],
   methods: [

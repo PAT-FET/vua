@@ -1,7 +1,11 @@
 <template>
-<li :class="[b(), modeCls, selectedCls, collapseCls, topCls, disabledCls, darkCls]" :style="[paddingStyle]" @click="onClick">
-    <span v-if="$slots.icon" :class="[e('icon')]"><slot name="icon"></slot></span>
-    <span :class="[e('text'), collapseCls]"><slot></slot></span>
+<li>
+<v-tooltip placement="right" :disabled="!isCollapsed" :content="text" style="display: block;">
+<div :class="[b(), modeCls, selectedCls, collapseCls, topCls, disabledCls, darkCls]" :style="[paddingStyle]" @click="onClick">
+  <span v-if="$slots.icon" :class="[e('icon')]"><slot name="icon"></slot></span>
+  <span :class="[e('text'), collapseCls]"><slot></slot></span>
+</div>
+</v-tooltip>
 </li>
 </template>
 <script lang="ts">
@@ -28,6 +32,11 @@ export default class VMenuItem extends mixins(Themeable, Bemable, MenuInjector, 
 
   get isTop (): boolean {
     return this.groupNestedLevel === 0
+  }
+
+  get text (): string {
+    let $e = this.$slots.default[0]
+    return $e.text || ''
   }
 
   get modeCls () {
