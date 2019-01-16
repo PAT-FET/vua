@@ -22,6 +22,19 @@
                 top: -0.5px;
             }
         }
+
+        &:before {
+            display: none;
+            margin-right: 4px;
+            content: '*';
+            font-family: SimSun;
+            line-height: 1;
+            font-size: $font-size-base;
+            color: $error-color;
+        }
+        &.is-required::before {
+            display: inline-block;
+        }
     }
 
     @include e(message) {
@@ -58,8 +71,8 @@
     }
 
     @include m(layout-horizontal) {
-        display: inline-block;
-        vertical-align: bottom;
+        // display: flex;
+        // vertical-align: bottom;
         margin-right: 1rem;
     }
 

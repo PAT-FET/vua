@@ -1,9 +1,7 @@
 <template>
 <v-button
 :class="[activeCls]"
-:style="[activeColorStyle, activeFillStyle]"
-:color="color"
-:type="type"
+v-bind="$attrs"
 :disabled="disabled"
 @click="onClick" >
   <slot></slot>
@@ -28,10 +26,6 @@ export default class VCheckboxButton extends mixins(Themeable, Bemable) {
   @Prop([String, Boolean, Number]) label!: CheckboxLabel
 
   @Prop(Boolean) disabled!: boolean
-
-  @Prop(String) activeFill!: string
-
-  @Prop(String) activeColor!: string
 
   @Emit()input (value: CheckboxValue) {}
 
@@ -61,30 +55,6 @@ export default class VCheckboxButton extends mixins(Themeable, Bemable) {
     }
   }
 
-  get color () {
-    if (this.checked) return 'primary'
-    return 'secondary'
-  }
-
-  get type () {
-    // if (this.checked) return  'outline'
-    return 'outline'
-  }
-
-  get activeFillStyle () {
-    if (!this.activeFill || !this.checked) return {}
-    return {
-      backgroundColor: (getDefaultColor() as any)[this.activeFill] || this.activeFill
-    }
-  }
-
-  get activeColorStyle () {
-    if (!this.activeColor || !this.checked) return {}
-    return {
-      color: (getDefaultColor() as any)[this.activeColor] || this.activeColor
-    }
-  }
-
   get activeCls () {
     return this.checked ? 'active' : ''
   }
@@ -99,6 +69,9 @@ export default class VCheckboxButton extends mixins(Themeable, Bemable) {
     } else {
       // do nothing
     }
+    this.$nextTick().then(() => {
+      this.$el.blur()
+    })
   }
 
   created () {

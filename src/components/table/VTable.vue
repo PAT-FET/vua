@@ -3,7 +3,7 @@
   <div :class="[e('header')]">
 
   </div>
-  <div :class="[e('body')]" :style="[heightStyle]">
+  <div :class="[e('body')]" ref="body" @scroll="onScorll" :style="[heightStyle]">
     <table :class="[e('table')]">
       <colgroup ref="colgroup">
         <col v-bind="props" v-for="(props, i) in colsProps" :key="i"/>
@@ -15,7 +15,7 @@
           <td :key="column.columnIndex"
            v-bind="span({row, column, rowIndex: i, columnIndex: j})"
            v-if="hasSpan({row, column, rowIndex: i, columnIndex: j})"
-           :class="[fixedColumnCls(column)]">
+           :class="[fixedColumnCls(column), isLeftCls, isRightCls]">
             <v-table-cell v-bind="cellProps(row, column, i)" v-on="cellEvents"></v-table-cell>
           </td>
           </template>
@@ -27,7 +27,7 @@
          <tr v-for="(row, i) in renderedHeaderColumns" :key="i">
             <template  v-for="col in row">
             <th :key="col.column.columnIndex"
-                :class="[fixedColumnCls(col.column)]"
+                :class="[fixedColumnCls(col.column), isLeftCls, isRightCls]"
                 :style="[resizableHeaderStyle(col.column)]"
                 v-bind="span({undefined, column: col.column, rowIndex: -1, columnIndex: -1, headerColumn: col})"
                 v-if="hasSpan({undefined, column: col.column, rowIndex: -1, columnIndex: -1, headerColumn: col})">
@@ -59,7 +59,7 @@ import VTableExpandRow from './widget/VTableExpandRow.vue'
 import { TableSize, TableHeaderColumn, TableColumnSelectionCb, TableSpanFn, TableCellCbParam } from './type'
 import { VPagination } from '../pagination'
 import { Loading } from '../../directives'
-import { ReactiveSet } from '../../utils'
+import { ReactiveSet, throttle } from '../../utils'
 
 @Component({
   components: {
@@ -109,6 +109,12 @@ export default class VTable extends mixins(Themeable, Bemable, Localeable, Group
     sort: this.onSort,
     filter: this.setFilterValues
   }
+
+  isLeft: boolean = false
+
+  isRight: boolean = false
+
+  computeScrollDelay = throttle(this.computeScroll, 300)
 
   get columns (): VTableColumn[] {
     return this.groupItems as VTableColumn[]
@@ -198,6 +204,14 @@ export default class VTable extends mixins(Themeable, Bemable, Localeable, Group
 
   get borderedCls () {
     return this.bordered ? this.m(`bordered`) : ''
+  }
+
+  get isLeftCls () {
+    return this.isLeft ? 'is-left' : ''
+  }
+
+  get isRightCls () {
+    return this.isRight ? 'is-right' : ''
   }
 
   get heightStyle () {
@@ -325,8 +339,25 @@ export default class VTable extends mixins(Themeable, Bemable, Localeable, Group
     }
   }
 
-  $refs!: {
+  computeScroll () {
+    let $e = this.$refs.body
+    if ($e.scrollLeft > 0) this.isLeft = true
+    else this.isLeft = false
+    let right = $e.scrollWidth - $e.scrollLeft - $e.clientWidth
+    if (right > 0) this.isRight = true
+    else this.isRight = false
+  }
 
+  onScorll () {
+    this.computeScrollDelay()
+  }
+
+  mounted () {
+    this.computeScroll()
+  }
+
+  $refs!: {
+    body: HTMLElement
   }
 }
 </script>

@@ -1,66 +1,71 @@
 <template>
 <div>
   <div class="my-3">
-    <div class="my-3">
-      <v-radio-group v-model="labelPosition">
-        <v-radio-button label="top">top</v-radio-button>
-        <v-radio-button label="left">left</v-radio-button>
-        <v-radio-button label="right">right</v-radio-button>
-      </v-radio-group>
+    <v-form ref="form" style="width: 320px;">
+      <v-form-item label="活动名称" prop="name">
+        <v-input v-model="form.name" placeholder="请输入" clearable class="w-block"></v-input>
+      </v-form-item>
 
-      <v-radio-group v-model="layout" class="mx-2">
-        <v-radio-button label="vertical">vertical</v-radio-button>
-        <v-radio-button label="horizontal">horizontal</v-radio-button>
-      </v-radio-group>
-    </div>
-
-    <v-form :model="form" :rules="rules" label-width="80px" :labelPosition="labelPosition" :layout="layout" ref="form">
-      <v-form-item label="用户名" prop="username">
-        <v-input v-model="form.username" placeholder="用户名"></v-input>
-      </v-form-item>
-      <v-form-item label="密码" prop="password">
-        <v-input v-model="form.password" type="password" placeholder="密码"></v-input>
-      </v-form-item>
-      <v-form-item label="性别" prop="sex">
-        <v-radio-group v-model="form.sex">
-          <v-radio label="M">男</v-radio>
-          <v-radio label="F">女</v-radio>
-        </v-radio-group>
-      </v-form-item>
-       <v-form-item label="技能" prop="skill">
-        <v-checkbox-group v-model="form.skill">
-          <v-checkbox label="Java">Java</v-checkbox>
-          <v-checkbox label="Js">Js</v-checkbox>
-          <v-checkbox lable="Python">Python</v-checkbox>
-        </v-checkbox-group>
-      </v-form-item>
-      <v-form-item label="城市" prop="city">
-        <v-select v-model="form.city" placeholder="选择城市" clearable>
-          <v-option label="上海" value="shanghai"></v-option>
-          <v-option label="北京" value="beijing"></v-option>
-          <v-option label="武汉" value="武汉"></v-option>
+      <v-form-item label="活动区域">
+        <v-select v-model="form.area" clearable class="w-block">
+          <v-option label="区域一" value="a1"></v-option>
+          <v-option label="区域二" value="a2"></v-option>
         </v-select>
       </v-form-item>
-      <v-form-item label="生日" prop="birthday">
-         <v-date-picker v-model="form.birthday" placeholder="生日" clearable></v-date-picker>
-      </v-form-item>
-       <v-form-item label="电话" prop="tel">
-         <v-input-group>
-           <v-select v-model="form.tel[0]" style="width: 80px;" placeholder="区号">
-              <v-option label="0817" value="0817"></v-option>
-              <v-option label="021" value="021"></v-option>
-            </v-select>
-           <v-input v-model="form.tel[1]" placeholder="电话"></v-input>
-         </v-input-group>
+
+      <v-form-item label="活动时间">
+        <v-date-picker v-model="form.datetime" clearable show-time class="w-block"></v-date-picker>
       </v-form-item>
 
-       <v-form-item label="行业" prop="profession">
-         <v-cascader v-model="form.profession" clearable :data-source="professions"></v-cascader>
+       <v-form-item label="即时配送">
+        <v-switch v-model="form.dispatch"></v-switch>
+      </v-form-item>
+
+       <v-form-item label="活动性质">
+        <v-checkbox-group v-model="form.type">
+          <v-row :gutter="16">
+            <v-col :span="12">
+              <v-checkbox label="online">线上活动</v-checkbox>
+            </v-col>
+            <v-col :span="12">
+              <v-checkbox label="offline">线下活动</v-checkbox>
+            </v-col>
+            <v-col :span="12">
+              <v-checkbox label="brand">品牌曝光</v-checkbox>
+            </v-col>
+            <v-col :span="12">
+              <v-checkbox label="display">产品展览</v-checkbox>
+            </v-col>
+          </v-row>
+        </v-checkbox-group>
+      </v-form-item>
+
+      <v-form-item label="特殊资源">
+        <v-radio-group v-model="form.resource">
+          <v-row :gutter="16">
+            <v-col :span="12">
+              <v-radio label="phone">手机</v-radio>
+            </v-col>
+            <v-col :span="12">
+              <v-radio label="computer">电脑</v-radio>
+            </v-col>
+            <v-col :span="12">
+              <v-radio label="tv">电视</v-radio>
+            </v-col>
+            <v-col :span="12">
+              <v-radio label="audio">音响</v-radio>
+            </v-col>
+          </v-row>
+        </v-radio-group>
+      </v-form-item>
+
+      <v-form-item label="活动形式">
+        <v-textarea v-model="form.desc"></v-textarea>
       </v-form-item>
 
       <div class="pl-5">
         <v-button class="mr-2" @click="reset">重置</v-button>
-        <v-button color="primary" @click="submit">提交</v-button>
+        <v-button type="primary" @click="submit">提交</v-button>
       </div>
     </v-form>
   </div>
@@ -80,93 +85,22 @@ import { VForm } from 'src'
   })
 export default class BasicExample extends Vue {
   form = {
-    username: 'Alison',
-    password: '',
-    sex: 'M',
-    skill: ['Js'],
-    city: 'shanghai',
-    birthday: '1992/08/29',
-    tel: ['', ''],
-    profession: []
+    name: '',
+    area: '',
+    datetime: '',
+    resource: '',
+    dispatch: false,
+    type: [],
+    desc: ''
   }
-
-  rules = {
-    username: [
-      {validator: 'required', message: '用户名必填', trigger: 'blur'}
-    ],
-    password: [
-      {validator: 'required'},
-      {validator: 'length', min: 6, max: 8},
-    ],
-    skill: [
-      {validator: 'required'},
-      {validator: 'length', min: 1},
-    ],
-    city: [
-       {validator: 'required'},
-    ],
-    birthday: [
-       {validator: 'required'},
-    ],
-    tel: [
-       {validator: (rule: any, value: any) => {
-         return new Promise((resolve, reject) => {
-           setTimeout(() => {
-             if (value && value[0] && value[1]) {
-               return resolve()
-             }
-             return reject(new Error('区号、电话必填'))
-           }, 2000)
-         })
-       }},
-    ],
-    profession: [
-      {validator: 'length', min: 1, message: '请选择行业'},
-    ]
-  }
-
-  labelPosition: string = 'right'
-
-  layout: string = 'vertical'
-
-  professions = [
-    {
-      key: '1',
-      label: '工业',
-      children: [
-        {
-          key: '1-1',
-          label: '采矿业',
-        },
-        {
-          key: '1-2',
-          label: '制造业',
-        }
-      ]
-    },
-    {
-      key: '2',
-      label: '商业',
-      children: [
-        {
-          key: '2-1',
-          label: '批发零售',
-        },
-        {
-          key: '2-2',
-          label: '汽车销售',
-        }
-      ]
-    }
-  ]
 
   submit () {
     this.$refs.form.validate().then(({ valid, errors }) => {
       if (valid) {
-        this.$vua.$message.success('验证成功')
+        console.log(this.form)
       } else {
-        this.$vua.$message.error('验证失败')
-        console.log('errors: ', errors)
+        // this.$vua.$message.error('验证失败')
+        // console.log('errors: ', errors)
       }
     })
   }

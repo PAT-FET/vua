@@ -29,6 +29,12 @@ const card = {
       default: '',
       type: `string`,
       desc: '自定义页脚样式'
+    },
+    {
+      name: 'shadow',
+      default: 'always',
+      type: `'always' | 'hover' | 'never'`,
+      desc: '阴影'
     }
   ],
   slots: [

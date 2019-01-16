@@ -13,6 +13,7 @@
       @keyup.down.stop.prevent="onPressDown"
       @keyup.up.stop.prevent="onPressUp"
       @keyup.enter.stop.prevent="onPressEnter"
+      ref="container"
       slot="reference">
       <input :class="[e('tab')]" ref="tab"/>
       <v-input
@@ -37,7 +38,7 @@
         <input :value="inputValue" :class="[e('tag-input')]" type="text" v-if="searchable" ref="tagInput" @input="onTagInput">
       </div>
     </div>
-    <div :class="[e('menu')]">
+    <div :class="[e('menu')]" ref="menu">
       <div :class="[e('menu-group')]" v-for="(group, i) in groupedRenderedSelectItem" :key="i">
         <div :class="[e('menu-group-title')]" v-if="group.group">{{group.group}}</div>
         <div :class="[e('menu-item'), itemDisabledCls(item), selectedCls(item), itemActiveCls(item)]"
@@ -402,12 +403,20 @@ export default class VSelect extends mixins(Themeable, Bemable, Group, Localeabl
     }
   }
 
+  setPopperWidth () {
+    let width = this.$refs.container.offsetWidth || 0
+    if (width) {
+      this.$refs.menu.style.width = width + 'px'
+    }
+  }
+
   @Watch ('visible') visibleChange (visible: boolean) {
     if (!visible) {
       setTimeout(() => {
         this.inputValue = ''
       }, 350)
     } else {
+      this.setPopperWidth()
       if (this.searchFn && this.searchable) {
         // consider fisrt time
         if (this.romoteSelectItems.length < 1) this.doSearch()
@@ -443,7 +452,9 @@ export default class VSelect extends mixins(Themeable, Bemable, Group, Localeabl
     tagWrap: HTMLElement,
     tagInput: HTMLElement,
     input: HTMLElement,
-    tab: HTMLElement
+    tab: HTMLElement,
+    container: HTMLElement,
+    menu: HTMLElement
   }
 }
 </script>

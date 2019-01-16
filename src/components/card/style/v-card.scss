@@ -7,7 +7,8 @@
 
 @include b(v-card) {
     @include reset-component();
-    @include elevation(2);
+    // @include elevation(4);
+
     border-radius: $border-radius-sm;
     overflow: hidden; // simple way to remain border radius
 
@@ -75,6 +76,16 @@
         }
         @include e(footer) {
             padding: .5rem .75rem;
+        }
+    }
+
+    // Shadow
+    @include m(shadow-always) {
+        box-shadow: 0 .125rem .75rem 0 rgba(0,0,0,.1);
+    }
+    @include m(shadow-hover) {
+        &:hover {
+            box-shadow: 0 .125rem .75rem 0 rgba(0,0,0,.1);
         }
     }
 }

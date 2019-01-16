@@ -97,15 +97,22 @@ export default class ThemeExample extends Vue {
    trigger: string = 'hover'
 
    cssVariable: MenuCssVariable = {
-      menuBgColor: 'info',
-      menuBorderColor: 'purple',
-      menuItemTextColor: 'grey-lighten-2',
-      menuItemDisabledTextColor: 'grey',
-      menuItemHoverTextColor: 'grey-lighten-3',
-      menuItemActiveTextColor: 'grey-lighten-5',
-      menuItemActiveBgColor: 'warning',
-      menuItemActiveBorderColor: 'warning-darken-1',
-      menuGroupTextColor: 'orange'
+      menuBgColor: 'rgb(0, 21, 41)',
+      menuBorderColor: 'rgb(0, 21, 41)',
+      // group
+      menuGroupTextColor: '#999',
+      // sub
+      menuSubTitleTextColor: 'rgba(255, 255, 255, 0.65)',
+      menuSubTitleHoverTextColor: '#fff',
+      menuSubTitleActiveTextColor: '#fff',
+      // item
+      menuItemTextColor: 'rgba(255, 255, 255, 0.65)',
+      menuItemDisabledTextColor: '#aaa',
+      menuItemHoverTextColor: '#fff',
+      menuItemActiveTextColor: '#fff',
+      menuItemBgColor: 'rgb(0, 12, 23)',
+      menuItemActiveBgColor: 'primary',
+      menuItemActiveBorderColor: 'primary'
    }
 
    get widthStyle () {

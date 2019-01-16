@@ -88,6 +88,9 @@
     // Type line
     @include m(type-line) { 
         &.v-tabs--top {
+            @include e(bar) {
+                // border-bottom: solid 1px $border-color-split;
+            }
             @include e(nav) {
             }
             @include e(tab) {
@@ -101,6 +104,7 @@
 
         &.v-tabs--bottom {
             @include e(nav) {
+                
             }
             @include e(tab) {
                 @include line-tab-position(bottom);
@@ -133,12 +137,6 @@
     // Type card
     @include m(type-card) { 
         &.v-tabs--top {
-            @include e(bar) {
-                border-bottom: solid 1px $border-color-base;
-            }
-            @include e(nav) {
-                margin-bottom: -1px;
-            }
             @include e(tab) {
                 @include card-tab-position(top);
             }
@@ -148,12 +146,6 @@
         }
 
         &.v-tabs--bottom {
-            @include e(bar) {
-                border-top: solid 1px $border-color-base;
-            }
-            @include e(nav) {
-                margin-top: -1px;
-            }
             @include e(tab) {
                 @include card-tab-position(bottom);
             }
@@ -166,6 +158,13 @@
     // Position
     @include m (top) {
         flex-direction: column;
+
+        @include e(bar) {
+            border-bottom: solid 1px $border-color-base;
+        }
+        @include e(nav-scroll) {
+            margin-bottom: -1px;
+        }
         @include e(extra) {
             padding-left: .5rem;
         }
@@ -177,6 +176,13 @@
     @include m (bottom) {
         flex-direction: column;
         flex-direction: column-reverse;
+
+        @include e(bar) {
+            border-top: solid 1px $border-color-base;
+        }
+        @include e(nav-scroll) {
+            margin-top: -1px;
+        }
         @include e(extra) {
             padding-left: .5rem;
         }
@@ -187,6 +193,12 @@
 
     @include m (left) {
         flex-direction: row;
+        @include e(bar) {
+            border-right: solid 1px $border-color-base;
+        }
+        @include e(nav-scroll) {
+            margin-right: -1px;
+        }
         @include e(content) {
             padding-left: 1.5rem;
         }
@@ -200,6 +212,12 @@
 
     @include m (right) {
         flex-direction: row-reverse;
+        @include e(bar) {
+            border-left: solid 1px $border-color-base;
+        }
+        @include e(nav-scroll) {
+            margin-left: -1px;
+        }
         @include e(content) {
             padding-right: 1.5rem;
         }

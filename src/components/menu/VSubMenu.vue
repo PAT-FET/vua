@@ -1,5 +1,5 @@
 <template>
-<v-expand-transition>
+<!-- <v-expand-transition> -->
 <li :class="[b(), modeCls, activeCls, topCls, disabledCls]">
   <template v-if="this.parsedMode === 'inline'">
     <div :class="[e('title'), activeCls, disabledCls]" :style="[paddingStyle]" @click="onTitleClick">
@@ -27,7 +27,7 @@
     </ul>
   </v-popper>
 </li>
-</v-expand-transition>
+<!-- </v-expand-transition> -->
 </template>
 <script lang="ts">
 import { Component, Watch, Vue, Provide, Inject, Prop } from 'vue-property-decorator'

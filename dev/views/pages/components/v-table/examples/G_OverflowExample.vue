@@ -26,7 +26,7 @@
        <v-table-column prop="remark" :overflow="overflow" label="备注" width="120px"></v-table-column>
        <v-table-column column-key="opt" label="操作">
          <template slot-scope="{}">
-           <v-button type="flat" color="warning">编辑</v-button> | <v-button type="flat" color="error">删除</v-button>
+           <v-button type="text">编辑</v-button> | <v-button type="text">删除</v-button>
          </template>
        </v-table-column>
      </v-table>

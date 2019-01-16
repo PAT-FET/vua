@@ -4,6 +4,9 @@
 @import "../../../style/var.scss";
 @import "./mixins.scss";
 
-@include b(v-form) {
-    
+@include b(v-form) {    
+    @include m(horizontal) {
+        display: flex;
+        flex-wrap: wrap;
+    }
 }

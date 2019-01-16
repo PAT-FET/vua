@@ -26,7 +26,7 @@
        <v-table-column prop="address" :overflow="overflow" resizable label="地址" width="1200px"></v-table-column>
        <v-table-column column-key="opt" label="操作" fixed="right" width="180px">
          <template slot-scope="{}">
-           <v-button type="flat" color="warning">编辑</v-button> | <v-button type="flat" color="error">删除</v-button>
+           <v-button type="text">编辑</v-button> | <v-button type="text">删除</v-button>
          </template>
        </v-table-column>
      </v-table>

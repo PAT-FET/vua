@@ -3,8 +3,8 @@
     <v-input :value="actualValue"
      :size="size"
      :disabled="disabled"
-     @keyup.native.up="add"
-     @keyup.native.down="subtract"
+     @keydown.up.native.prevent="add"
+     @keydown.down.native.prevent="subtract"
      style="width: 100%;"
      @change="onChange"></v-input>
 

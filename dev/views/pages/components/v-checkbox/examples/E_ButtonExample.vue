@@ -11,10 +11,19 @@
 
   <div class="my-3">
     <v-checkbox-group v-model="value1">
-      <v-checkbox-button label="Jack" active-fill="primary" active-color="#fff">Jack</v-checkbox-button>
-      <v-checkbox-button label="Alex" active-fill="primary" active-color="#fff">Alex</v-checkbox-button>
-      <v-checkbox-button label="Molly" active-fill="primary" active-color="#fff">Molly</v-checkbox-button>
-      <v-checkbox-button label="Anna" active-fill="primary" active-color="#fff">Anna</v-checkbox-button>
+      <v-checkbox-button label="Jack" color="primary">Jack</v-checkbox-button>
+      <v-checkbox-button label="Alex" color="primary">Alex</v-checkbox-button>
+      <v-checkbox-button label="Molly" color="primary">Molly</v-checkbox-button>
+      <v-checkbox-button label="Anna" color="primary">Anna</v-checkbox-button>
+    </v-checkbox-group>
+  </div>
+
+   <div class="my-3">
+    <v-checkbox-group v-model="value2">
+      <v-checkbox-button label="Jack" color="error">Jack</v-checkbox-button>
+      <v-checkbox-button label="Alex" color="error">Alex</v-checkbox-button>
+      <v-checkbox-button label="Molly" color="error">Molly</v-checkbox-button>
+      <v-checkbox-button label="Anna" color="error">Anna</v-checkbox-button>
     </v-checkbox-group>
   </div>
 </div>
@@ -34,5 +43,7 @@ export default class ButtonExample extends Vue {
   value: string[] = ['Jack']
 
   value1: string[] = ['Alex']
+
+  value2: string[] = ['Alex']
 }
 </script>
