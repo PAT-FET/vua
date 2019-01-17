@@ -8,7 +8,7 @@
        <v-sider>
         <app-aside style="height: calc(100vh - 4.25rem);"></app-aside>
       </v-sider>
-       <v-content style="max-height: calc(100vh - 4.25rem); overflow: auto;" v-loading="loading">
+       <v-content style="max-height: calc(100vh - 4.25rem); overflow: auto;" v-loading="loading" id="content">
          <v-back-top></v-back-top>
         <div class="p-4">
          <transition name="fade-transition" mode="out-in"><router-view/></transition>

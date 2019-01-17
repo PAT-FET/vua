@@ -7,4 +7,12 @@
 
 @include b(v-scrollspy-item) {
     @include reset-component();
+
+    @include e(title) {
+        transition: all .3s;
+        cursor: pointer;
+        &:hover, &.active {
+            color: $primary-color;
+        }
+    }
 }
