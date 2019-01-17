@@ -218,8 +218,8 @@ const components: any = {
     title: 'Divider 分割线',
     group: 'other'
   },
-  VScrollSpy: {
-    title: 'ScrollSpy 滚动监听',
+  VScrollspy: {
+    title: 'Scrollspy 滚动监听',
     group: 'other'
   }
 }

@@ -61,17 +61,21 @@ export default class VScrollspy extends mixins(Themeable, Bemable, Group) {
     let target = this.actualTarget
     if (!target) return
     let scrollTop = target.scrollTop
-    let items = this.items.slice(0).reverse()
-    items.some((v, i) => {
+    let items = this.items
+    let min = -1
+    items.forEach(v => {
       let $e = document.querySelector(v.href) as HTMLElement
       if (!$e) return false
       let offsetTop = $e.offsetTop
       // let offsetHeight = $e.offsetHeight
-      if (Math.abs(scrollTop - offsetTop) < this.offset) {
+      let diff = Math.abs(offsetTop - scrollTop)
+      if (min === -1) {
+        min = diff
         this.currentHref = v.href
-        return true
+      } else if (diff < min) {
+        min = diff
+        this.currentHref = v.href
       }
-      return false
     })
   }
 
