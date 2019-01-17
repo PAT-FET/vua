@@ -209,6 +209,10 @@ const components: any = {
   VBackTop: {
     title: 'BackTop 回到顶部',
     group: 'other'
+  },
+  VDivider: {
+    title: 'Divider 分割线',
+    group: 'other'
   }
 }
 

@@ -1,12 +1,12 @@
 <template>
   <div id="app">
    <v-layout>
-     <v-header class="shadow-1-down" style="padding: 0;">
+     <v-header class="shadow-1-down" style="padding: 0; margin-bottom: .25rem;">
         <app-header></app-header>
       </v-header>
      <v-layout>
        <v-sider>
-        <app-aside></app-aside>
+        <app-aside style="height: calc(100vh - 4.25rem);"></app-aside>
       </v-sider>
        <v-content style="max-height: calc(100vh - 4.25rem); overflow: auto;" v-loading="loading">
          <v-back-top></v-back-top>
