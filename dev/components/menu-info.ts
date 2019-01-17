@@ -102,6 +102,10 @@ const components: any = {
     title: 'Pagination 分页',
     group: 'navigate'
   },
+  VBreadcrumb: {
+    title: 'Breadcrumb 面包屑',
+    group: 'navigate'
+  },
   VCheckbox: {
     title: 'Checkbox 多选框',
     group: 'dataEntry'
