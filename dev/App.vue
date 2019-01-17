@@ -1,14 +1,14 @@
 <template>
   <div id="app">
    <v-layout>
-     <v-sider>
-       <app-aside></app-aside>
-     </v-sider>
+     <v-header class="shadow-1-down" style="padding: 0;">
+        <app-header></app-header>
+      </v-header>
      <v-layout>
-       <v-header class="bg-primary">
-         <app-header></app-header>
-       </v-header>
-       <v-content style="max-height: calc(100vh - 64px); overflow: auto;" v-loading="loading">
+       <v-sider>
+        <app-aside></app-aside>
+      </v-sider>
+       <v-content style="max-height: calc(100vh - 4.25rem); overflow: auto;" v-loading="loading">
          <v-back-top></v-back-top>
         <div class="p-4">
          <transition name="fade-transition" mode="out-in"><router-view/></transition>
@@ -53,7 +53,7 @@ export default class App extends Vue {
 .content{
   flex-grow: 1;
   flex-shrink: 1;
-  height: 100vh;
+  // height: 100vh;
   overflow: auto;
 }
 
