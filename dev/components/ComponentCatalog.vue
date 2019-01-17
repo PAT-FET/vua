@@ -17,7 +17,7 @@ export default class ComponentCatalog extends Vue {
       if (anchor.level < 2) return
       let data = {
         'class': [this.$style.anchor],
-        style: [this.offsetStyle(anchor.level)],
+        style: [this.offsetStyle(anchor.level), this.levelStyle(anchor.level)],
         on: { click: () => { this.link(anchor.id) } }
       }
       let item = h('li', {}, [h('a', data, [anchor.$slots.default])])
@@ -32,6 +32,15 @@ export default class ComponentCatalog extends Vue {
     return {
       paddingLeft: offset
     }
+  }
+
+  levelStyle (level: number) {
+    if (level === 2) {
+      return {
+        fontWeight: 'bold'
+      }
+    }
+    return {}
   }
 
   link (id: string) {

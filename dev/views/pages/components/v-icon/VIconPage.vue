@@ -11,11 +11,38 @@
         <anchored-heading :level="2">图标的设计规范</anchored-heading>
         <div v-html="design"></div>
         <div>
-          <img class="ml-4 mt-3" src="../../../../assets/images/1.jpg" alt="&times;">
-          <img class="ml-4 mt-3" src="../../../../assets/images/2.jpg" alt="&times;">
-          <img class="ml-4 mt-3" src="../../../../assets/images/3.jpg" alt="&times;">
-          <img class="ml-4 mt-3" src="../../../../assets/images/4.jpg" alt="&times;">
-          <img class="ml-4 mt-3" src="../../../../assets/images/5.jpg" alt="&times;">
+          <v-row :gutter="16" justify="space-around">
+            <v-col :span="4">
+              <div>
+                <img class="w-block" src="../../../../assets/images/1.jpg" alt="&times;">
+                <p class="body-secondary mt-2 text-center">在1024×1024画板中制作 </p>
+              </div>
+            </v-col>
+            <v-col :span="4">
+              <div>
+                <img class="w-block" src="../../../../assets/images/2.jpg" alt="&times;">
+                <p class="body-secondary mt-2 text-center"> 笔画权重统一  </p>
+              </div>
+            </v-col>
+            <v-col :span="4">
+              <div>
+                <img class="w-block" src="../../../../assets/images/3.jpg" alt="&times;">
+                <p class="body-secondary mt-2 text-center">角度半径统一 </p>
+              </div>
+            </v-col>
+            <v-col :span="4">
+              <div>
+                <img class="w-block" src="../../../../assets/images/4.jpg" alt="&times;">
+                <p class="body-secondary mt-2 text-center">保持风格的简洁、平面、单维度 </p>
+              </div>
+            </v-col>
+            <v-col :span="4">
+              <div>
+                <img class="w-block" src="../../../../assets/images/5.jpg" alt="&times;">
+                <p class="body-secondary mt-2 text-center">搭配文字时与字体的尺寸保持一致 </p>
+              </div>
+            </v-col>
+          </v-row>
         </div>
 
         <div class="mt-5"></div>

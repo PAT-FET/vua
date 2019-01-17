@@ -18,7 +18,7 @@
       <v-form-item label="用户名" prop="username" required>
         <v-input v-model="form.username" placeholder="用户名"></v-input>
       </v-form-item>
-      <v-form-item label="密码" prop="password">
+      <v-form-item label="" prop="password">
         <v-input v-model="form.password" type="password" placeholder="密码"></v-input>
       </v-form-item>
       <v-form-item label="性别" prop="sex">

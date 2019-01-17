@@ -1,7 +1,7 @@
 <template>
 <div :class="[b(), labelPositionCls, layoutCls, validateStatusCls]" @change="onChange" @focusout="onBlur">
   <div :class="[e('label'), requiredCls]" :style="labelWidthStyle">
-    <label>{{label}}</label>
+    <label v-if="label">{{label}}</label>
   </div>
   <div :class="[e('content')]">
     <div :class="[e('control')]">
