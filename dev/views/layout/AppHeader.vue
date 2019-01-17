@@ -6,11 +6,11 @@
     </div>
 
     <div class="d-flex align-items-center">
-        <v-menu mode="horizontal" default-active="components">
-            <v-menu-item index="home">首页</v-menu-item>
-            <v-menu-item index="components">组件</v-menu-item>
-            <v-menu-item index="principle">原则</v-menu-item>
-            <v-menu-item index="resource">设计资源</v-menu-item>
+        <v-menu mode="horizontal" default-active="components" size="lg">
+            <v-menu-item index="home" style="line-height: 4rem;">首页</v-menu-item>
+            <v-menu-item index="components" style="line-height: 4rem;">组件</v-menu-item>
+            <v-menu-item index="principle" style="line-height: 4rem;">原则</v-menu-item>
+            <v-menu-item index="resource" style="line-height: 4rem;">设计资源</v-menu-item>
         </v-menu>
 
         <v-select class="align-middle w-6 ml-4" v-model="lang" >
@@ -20,7 +20,8 @@
 
         <div class="ml-3">
             <v-popover trigger="click" placement="bottom-end">
-                <div class="bg-primary rounded" style="height: 1.5rem; width: 1.5rem; cursor: pointer;" slot="reference"></div>
+                <div class="border rounded bg-primary" :class="[$style.themeBtn]" slot="reference">
+                </div>
                 <div class="py-2">
                     <div><v-switch v-model="dark"></v-switch> 明/暗模式</div>
                    <div class="mt-3">
@@ -135,5 +136,12 @@ export default class AppHeader extends Vue {
     &:hover{
         transform: scale(1.1);
     }
+}
+
+.themeBtn {
+    height: 1.5rem;
+    width: 1.5rem;
+    cursor: pointer;
+    border-width: 2px !important;
 }
 </style>

@@ -22,7 +22,6 @@ export default class AppAside extends Vue {
 
 <style lang="scss" module>
 .container{
-    height: calc(100vh - 4.25rem);
     overflow: auto;
 
     &>*{

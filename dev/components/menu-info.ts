@@ -102,6 +102,10 @@ const components: any = {
     title: 'Pagination 分页',
     group: 'navigate'
   },
+  VBreadcrumb: {
+    title: 'Breadcrumb 面包屑',
+    group: 'navigate'
+  },
   VCheckbox: {
     title: 'Checkbox 多选框',
     group: 'dataEntry'
@@ -208,6 +212,14 @@ const components: any = {
   },
   VBackTop: {
     title: 'BackTop 回到顶部',
+    group: 'other'
+  },
+  VDivider: {
+    title: 'Divider 分割线',
+    group: 'other'
+  },
+  VScrollspy: {
+    title: 'Scrollspy 滚动监听',
     group: 'other'
   }
 }

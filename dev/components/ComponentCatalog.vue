@@ -16,14 +16,16 @@ export default class ComponentCatalog extends Vue {
     anchors.forEach(anchor => {
       if (anchor.level < 2) return
       let data = {
-        'class': [this.$style.anchor],
-        style: [this.offsetStyle(anchor.level), this.levelStyle(anchor.level)],
-        on: { click: () => { this.link(anchor.id) } }
+        props: {
+          href: `#${anchor.id}`,
+          title: anchor.$slots.default[0].text
+        },
+        'class': [this.$style[`item${anchor.level}`]]
       }
-      let item = h('li', {}, [h('a', data, [anchor.$slots.default])])
+      let item = h('v-scrollspy-item', data)
       list.push(item)
     })
-    let current = h('ul', { 'class': [this.$style.box] }, list)
+    let current = h('v-scrollspy', { 'class': [this.$style.box], props: { target: '#content', offset: 30 } }, list)
     return current
   }
 
@@ -55,12 +57,23 @@ export default class ComponentCatalog extends Vue {
         position: sticky;
         top: 80px;
         margin: 0;
-        padding: 0;
+        padding: 0 0 0 1.5rem;
         list-style: none;
         font-size: .75rem;
     }
 
     .anchor {
       color: var(--text-color);
+    }
+
+    .item2 {
+      color: var(--text-color);
+      font-size: .75rem;
+      font-weight: bold;
+    }
+    .item3 {
+      color: var(--text-color-secondary);
+      font-size: .75rem;
+      padding: .125rem .5rem;
     }
 </style>
