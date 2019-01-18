@@ -2,80 +2,42 @@
 @import "../../../style/mixins/elevation.scss";
 @import "../../../style/mixins/misc.scss";
 @import "../../../style/mixins/reset.scss";
+@import "../../../style/color/colors.scss";
 @import "../../../style/var.scss";
 @import "./mixins.scss";
 
-@include b(v-anchor) {
-    @include reset-component();
-    @include elevation(2);
-    float: right;
-    border-radius: $border-radius-sm;
-    overflow: hidden; // simple way to remain border radius
-
-    @include e(header) {
-        border-bottom: solid 1px $border-color-split;
-        padding: 0 1.5rem;
-        border-radius: $border-radius-sm $border-radius-sm 0 0;
-        display: flex;
+@include b(v-anchor) {   
+    @include e(wrapper) {
+        overflow: auto;
+            padding-left: 4px;
+            margin-left: -4px;
     }
 
-    @include e(title) {
-        padding: 1rem 0;
-        flex: 1;
-        color: $heading-color;
-    }
-
-    @include e(extra) {
-    }
-
-    @include e(cover) {
-        &>img {
-            width: 100%;
-            height: 100%;
-        }
-    }
-
-    @include e(footer) {
-        border-top: solid 1px $border-color-split;
-        border-radius: 0 0 $border-radius-sm $border-radius-sm;
-    }
-
-    // Size 
-    @include m(size-md) {
-        @include e(header) {
-            padding: 0 1.5rem;
-            font-size: $font-size-lg;
-        }
-        @include e(title) {
-            padding: 1rem 0;
-        }
-        @include e(extra) {
-            padding: 1rem 0;
-        }
-        @include e(body) {
-            padding: 1.5rem;
-        }
-        @include e(footer) {
-            padding: 1rem 1.5rem;
-        }
-    }
-
-    @include m(size-sm) {
-         @include e(header) {
-            padding: 0 .75rem;
-            font-size: $font-size-base;
-        }
-        @include e(title) {
-            padding: .5rem 0;
-        }
-        @include e(extra) {
-            padding: .5rem 0;
-        }
-        @include e(body) {
-            padding: 0.75rem;
-        }
-        @include e(footer) {
-            padding: .5rem .75rem;
-        }
+    @include e(ink) {
+        position: absolute;
+                height: 100%;
+                left: 0;
+                top: 0;
+                &:before {
+                    content: ' ';
+                    position: relative;
+                    width: 1px;
+                    height: 100%;
+                    display: block;
+                    background-color: gray;
+                    margin: 0 auto;
+                }
+                @include e(ball){
+                    display: inline-block;
+                    position: absolute;
+                    width: 8px;
+                    height: 8px;
+                    border-radius: 50%;
+                    border: 2px solid $blue-base;
+                    background-color: red;
+                    left: 50%;
+                    transition: top .3s ease-in-out;
+                    transform: translate(-50%, 2px);
+                }
     }
 }

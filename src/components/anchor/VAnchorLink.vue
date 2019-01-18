@@ -1,5 +1,5 @@
 <template>
-<div :class="[b()]">
+<div :class="[b(),anchorLinkClasses]">
   <a :class="linkTitleClasses" :href="href" :data-href="href" @click.prevent="goAnchor" :title="title">{{ title }}</a>
   <slot name="link"></slot>
 </div>
@@ -31,10 +31,14 @@ export default class VAnchorLink extends mixins(Themeable, Bemable) {
   get anchorCom () {
     return this.getAnchorCom()
   }
+
+  get anchorLinkClasses () {
+    // return ''
+    return (this.anchorCom as any).currentLink === this.href ? `v-anchor-link_active` : ''
+  }
+
   goAnchor () {
     this.currentLink = this.href
-    /* this.anchorCom.handleHashChange()
-    this.anchorCom.handleScrollTo() */
     this.anchorCom.$emit('on-select', this.href)
     const isRoute = this.$router
     if (isRoute) {

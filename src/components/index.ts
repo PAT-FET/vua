@@ -42,6 +42,6 @@ export * from './back-top'
 export * from './card'
 export * from './list'
 export * from './drawer'
-/* export * from './anchor' */
+export * from './anchor'
 export * from './timeline'
 export * from './upload'

@@ -1,7 +1,7 @@
 <template>
 <div :class="[b()]">
   <div :class="[e('ink')]">
-      <span v-show="showInk" :class="[e('ink-ball')]" :style="{top: `${inkTop}px`}"></span>
+      <span v-show="true" :class="[e('ink__ball')]" :style="{top: `${inkTop}px`}"></span>
   </div>
   <slot></slot>
 </div>
@@ -32,9 +32,9 @@ export default class VAnchor extends mixins(Themeable, Bemable) {
   currentLink: String = ''
 
   currentId: string = ''
-  showInk:boolean = false // current affixed state
-  inkTop: number = 0
+
   animating: boolean = false // if is scrolling now
+
   scrollContainer:any = null
   scrollElement: any = null
   titlesOffsetArr:any[] = []
@@ -53,7 +53,6 @@ export default class VAnchor extends mixins(Themeable, Bemable) {
   }
 
   handleScroll () {
-    // this.upperFirstTitle = e.target.scrollTop < this.titlesOffsetArr[0].offset;
     if (this.animating) return
     this.updateTitleOffset()
     const scrollTop = this.localTarget.scrollTop
@@ -148,7 +147,6 @@ export default class VAnchor extends mixins(Themeable, Bemable) {
     this.$nextTick(() => {
       this.handleScrollTo()
       this.updateTitleOffset()
-      // this.upperFirstTitle = this.localTarget.scrollTop < this.titlesOffsetArr[0].offset
     })
   }
 

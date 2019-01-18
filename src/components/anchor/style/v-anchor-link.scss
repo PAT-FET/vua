@@ -7,46 +7,28 @@
 @import "./mixins.scss";
 
 @include b(v-anchor-link) {
-    color:$text-color;
+    padding: 8px 0 8px 16px;
+    line-height: 1;
 
-    @include e(avatar) {
-        flex: 0 0 auto;
-        margin-right: 1rem;
-    }
-
-    @include e(content) {
-        flex: 1 1 auto;
-    }
-
-    @include e(title) {
-        display:block;
-        position:relative;
-        -webkit-transition:all .3s;
-        transition:all .3s;
-        white-space:nowrap;
-        overflow:hidden;
-        text-overflow:ellipsis;
-        margin-bottom:8px
-    }
-
-    @include e(active) {
+    &-active > &-title {
         color: $blue-base;
     }
 
-    // Colored
-    @include m(colored) {
-        @include e(title) {
-            color: map-get($grey, lighten-5);
-        }
+    &-link &-link {
+        padding-top: 6px;
+        padding-bottom: 6px;
+    }
 
-        @include e(description) {
-            color: map-get($grey, lighten-2);
+    @include e(title) {
+        display: block;
+        position: relative;
+        transition: all .3s;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-bottom: 8px;
+        &:only-child {
+            margin-bottom: 0;
         }
     }
 }
-/* .ivu-anchor-link-title{
-    
-}
-.ivu-anchor-link-title:only-child{margin-bottom:0}
-.ivu-anchor-link-active>.ivu-anchor-link-title{color:#2d8cf0}
-.ivu-anchor-link .ivu-anchor-link{padding-top:6px;padding-bottom:6px} */
