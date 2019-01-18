@@ -20,7 +20,8 @@
 
         <div class="ml-3">
             <v-popover trigger="click" placement="bottom-end">
-                <div class="border rounded bg-primary" :class="[$style.themeBtn]" slot="reference">
+                <div class="border rounded" :class="[$style.themeBtn]" slot="reference">
+                    <div class="bg-primary"></div>
                 </div>
                 <div class="py-2">
                     <div><v-switch v-model="dark"></v-switch> 明/暗模式</div>
@@ -142,6 +143,14 @@ export default class AppHeader extends Vue {
     height: 1.5rem;
     width: 1.5rem;
     cursor: pointer;
-    border-width: 2px !important;
+    position: relative;
+    &>* {
+        position: absolute;
+        top: 2px;
+        bottom: 2px;
+        left: 2px;
+        right: 2px;
+        border-radius: 2px;
+    }
 }
 </style>

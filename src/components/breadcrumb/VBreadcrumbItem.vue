@@ -45,8 +45,9 @@ export default class VBreadcrumbItem extends mixins(Themeable, Bemable) {
 
   link () {
     if (!this.to) return
-    if (this.$router) {
-      this.$router.push(this.to)
+    let router = (this as any).$router
+    if (router) {
+      router.push(this.to)
     } else {
       if (typeof this.to === 'string') { window.location.assign(this.to) }
     }
