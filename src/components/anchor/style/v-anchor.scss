@@ -2,42 +2,45 @@
 @import "../../../style/mixins/elevation.scss";
 @import "../../../style/mixins/misc.scss";
 @import "../../../style/mixins/reset.scss";
-@import "../../../style/color/colors.scss";
 @import "../../../style/var.scss";
 @import "./mixins.scss";
 
-@include b(v-anchor) {   
+@include b(v-anchor) {
+    position: absolute;
     @include e(wrapper) {
         overflow: auto;
-            padding-left: 4px;
-            margin-left: -4px;
+        padding-left: 4px;
+        margin-left: -4px;
     }
 
     @include e(ink) {
         position: absolute;
-                height: 100%;
-                left: 0;
-                top: 0;
-                &:before {
-                    content: ' ';
-                    position: relative;
-                    width: 1px;
-                    height: 100%;
-                    display: block;
-                    background-color: gray;
-                    margin: 0 auto;
-                }
-                @include e(ball){
-                    display: inline-block;
-                    position: absolute;
-                    width: 8px;
-                    height: 8px;
-                    border-radius: 50%;
-                    border: 2px solid $blue-base;
-                    background-color: red;
-                    left: 50%;
-                    transition: top .3s ease-in-out;
-                    transform: translate(-50%, 2px);
-                }
+        height: 100%;
+        left: 0;
+        top: 0;
+        &:before {
+            content: ' ';
+            position: relative;
+            width: 1px;
+            height: 100%;
+            display: block;
+            background-color: $text-color-secondary;
+            margin: 0 auto;
+        }
+        
+        @include m(custom){
+            display: none;
+        }
+    }
+    @include e(ink__ball){
+        display: inline-block;
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        border: 2px solid $primary-color;
+        background-color: white;
+        transition: top .3s ease-in-out;
+        transform: translate(-50%, 2px);
     }
 }

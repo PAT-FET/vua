@@ -13,7 +13,7 @@
     
     @include e(pending){
         .v-timeline-item:nth-last-of-type(2) .v-timeline-item__tail{
-            border-left:1px dotted #e8eaec
+            border-left:1px dotted $border-color-base;
         }
     }
 }

@@ -1,6 +1,6 @@
 <template>
 <div :class="[b()]">
-  <div :class="[e('ink')]">
+  <div :class="[e('ink')]" :style="showInk? '':'display:none'">
       <span v-show="true" :class="[e('ink__ball')]" :style="{top: `${inkTop}px`}"></span>
   </div>
   <slot></slot>
@@ -21,6 +21,10 @@ import { throttle, easeInOutCubic } from '@/utils'
 export default class VAnchor extends mixins(Themeable, Bemable) {
   @Prop(Function) target!: AnchorTargetFn
 
+  @Prop({ type: Number, default: 5 }) bounds!: number
+
+  @Prop({ type: Boolean, default: true }) showInk!: boolean
+
   @Provide() getAnchorCom () {
     return this
   }
@@ -35,13 +39,18 @@ export default class VAnchor extends mixins(Themeable, Bemable) {
 
   animating: boolean = false // if is scrolling now
 
+  inkTop:number = 50
+
   scrollContainer:any = null
   scrollElement: any = null
   titlesOffsetArr:any[] = []
   upperFirstTitle: boolean = true
 
+  get inkClass () {
+    return { [`v-anchor__ink--custom`]: this.showInk }
+  }
+
   @Watch('$route') routeChange (route: string) {
-    console.log('route change')
     this.handleHashChange()
     this.$nextTick(() => {
       this.handleScrollTo()
@@ -49,7 +58,7 @@ export default class VAnchor extends mixins(Themeable, Bemable) {
   }
 
   @Watch('currentLink') currentLinkChange (newHref: string, oldHref:string) {
-    this.$emit('on-change', newHref, oldHref)
+    this.$emit('change', newHref, oldHref)
   }
 
   handleScroll () {
@@ -65,15 +74,24 @@ export default class VAnchor extends mixins(Themeable, Bemable) {
     this.currentLink = sharpLinkMatch[0]
     this.currentId = sharpLinkMatch[1]
   }
+
+  handleSetInkTop () {
+    const currentLinkElementA = document.querySelector(`a[data-href="${this.currentLink}"]`)
+    if (!currentLinkElementA) return
+    const elementATop = (currentLinkElementA as any).offsetTop
+    const top = (elementATop < 0 ? 0 : elementATop)
+    this.inkTop = top
+  }
+
   handleScrollTo () {
     const anchor = document.getElementById(this.currentId)
-    const currentLinkElementA = document.querySelector(`a[data-href="${this.currentLink}"]`)
     if (!anchor) return
     const offsetTop = anchor.offsetTop - this.localTarget.offsetTop
     this.animating = true
     this.scrollTop(offsetTop, () => {
       this.animating = false
     })
+    this.handleSetInkTop()
   }
   scrollTop (offsetTop:number, callback:Function) {
     if (this.localTarget) {
@@ -126,12 +144,14 @@ export default class VAnchor extends mixins(Themeable, Bemable) {
       link: '#',
       offset: 0
     }
+    scrollTop += this.bounds
     for (let i = 0; i < len; i++) {
       let currentEle = this.titlesOffsetArr[i]
       let nextEle = this.titlesOffsetArr[i + 1]
       if (scrollTop >= currentEle.offset && scrollTop < ((nextEle && nextEle.offset) || Infinity)) {
         titleItem = this.titlesOffsetArr[i]
         this.currentLink = titleItem.link
+        this.handleSetInkTop()
         return
       }
     }
@@ -147,6 +167,7 @@ export default class VAnchor extends mixins(Themeable, Bemable) {
     this.$nextTick(() => {
       this.handleScrollTo()
       this.updateTitleOffset()
+      this.handleSetInkTop()
     })
   }
 

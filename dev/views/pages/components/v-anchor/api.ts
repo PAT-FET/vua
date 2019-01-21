@@ -1,17 +1,50 @@
-
-export default {
+const anchor = {
   props: [
     {
-      name: 'target',
-      default: '',
-      type: `BackTopTargetFn`,
-      desc: '监听滚动元素，默认为 parentElement 或 body'
+      name: 'showInk',
+      default: 'true',
+      type: `boolean`,
+      desc: '指定是否显示左侧线条'
     },
     {
-      name: 'offset',
-      default: `200`,
+      name: 'bounds',
+      default: '5',
       type: `number`,
-      desc: '滚动高度达到此参数值才出现 BackTop'
+      desc: '锚点区域边界，单位：px'
+    }
+  ],
+  events: [
+    {
+      name: 'change',
+      value: `newHref, oldHref`,
+      desc: '链接改变时触发，返回新链接和旧链接'
     }
   ]
 }
+
+const anchorLink = {
+  props: [
+    {
+      name: 'href',
+      default: ``,
+      type: `string`,
+      desc: '锚点链接'
+    },
+    {
+      name: 'title',
+      default: ``,
+      type: `string`,
+      desc: '文字内容'
+    }
+  ]
+}
+
+export default [
+  {
+    name: 'Anchor API',
+    content: anchor
+  },
+  {
+    name: 'AnchorLink API',
+    content: anchorLink
+  }]

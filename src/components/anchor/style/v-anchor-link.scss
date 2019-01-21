@@ -9,26 +9,27 @@
 @include b(v-anchor-link) {
     padding: 8px 0 8px 16px;
     line-height: 1;
+    cursor: pointer;
+    color: $text-color;
 
-    &-active > &-title {
-        color: $blue-base;
-    }
-
-    &-link &-link {
-        padding-top: 6px;
-        padding-bottom: 6px;
+    @include m(active) {
+        color: $primary-color;
     }
 
     @include e(title) {
         display: block;
         position: relative;
+        color: inherit;
         transition: all .3s;
-        white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
         margin-bottom: 8px;
         &:only-child {
             margin-bottom: 0;
         }
+    }
+
+    a{
+        text-decoration: none;
     }
 }

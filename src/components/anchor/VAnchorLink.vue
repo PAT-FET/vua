@@ -1,7 +1,7 @@
 <template>
 <div :class="[b(),anchorLinkClasses]">
-  <a :class="linkTitleClasses" :href="href" :data-href="href" @click.prevent="goAnchor" :title="title">{{ title }}</a>
-  <slot name="link"></slot>
+    <a :class="[e('title')]" :href="href" :data-href="href" @click.prevent="goAnchor" :title="title">{{ title }}</a>
+    <slot></slot>
 </div>
 </template>
 <script lang="ts">
@@ -24,22 +24,16 @@ export default class VAnchorLink extends mixins(Themeable, Bemable) {
 
   currentLink:string = ''
 
-  get linkTitleClasses () {
-    // return this.getAnchorCom.currentLink === this.href ? `v-anchor-link_active` : ''
-    return ''
+  get anchorLinkClasses () {
+    return (this.anchorCom as any).currentLink === this.href ? `v-anchor-link--active` : ''
   }
   get anchorCom () {
     return this.getAnchorCom()
   }
 
-  get anchorLinkClasses () {
-    // return ''
-    return (this.anchorCom as any).currentLink === this.href ? `v-anchor-link_active` : ''
-  }
-
   goAnchor () {
     this.currentLink = this.href
-    this.anchorCom.$emit('on-select', this.href)
+    this.anchorCom.$emit('select', this.href)
     const isRoute = this.$router
     if (isRoute) {
       this.$router.push(this.href)
