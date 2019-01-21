@@ -16,7 +16,6 @@
 import { Component, Vue, Prop, Emit, Watch, Model, Provide } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
 import { Bemable, Themeable } from '../../mixins'
-import { AnchorTargetFn } from './type'
 import { throttle, easeInOutCubic } from '@/utils'
 
 @Component({

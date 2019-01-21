@@ -213,10 +213,6 @@ const components: any = {
   VBackTop: {
     title: 'BackTop 回到顶部',
     group: 'other'
-  },
-  VAnchor: {
-    title: 'Anchor 锚点',
-    group: 'other'
   }
 }
 
