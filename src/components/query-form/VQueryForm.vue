@@ -11,7 +11,7 @@
     </div>
   </div>
   <div :class="[e('body')]">
-    <v-form ref="form" :model="form">
+    <v-form ref="form" :model="form" v-bind="formProps">
       <slot></slot>
     </v-form>
   </div>
@@ -34,6 +34,8 @@ import { VForm } from '../form/index'
   })
 export default class VQueryForm extends mixins(Themeable, Bemable, Colorable) {
   @Prop() form!: any
+
+  @Prop() formProps!: any
 
   items: VQueryFormItem[] = []
 

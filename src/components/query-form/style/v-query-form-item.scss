@@ -9,6 +9,6 @@
 
 @include b(v-query-form-item) {
     @include reset-component();
-    border-top: solid 1px $border-color-split;
-    padding-top: 1rem;
+    // border-top: solid 1px $border-color-split;
+    // padding-top: 1rem;
 }
