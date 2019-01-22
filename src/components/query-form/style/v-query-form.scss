@@ -10,6 +10,24 @@
 @include b(v-query-form) {
     @include reset-component();
 
+    @include e(header) {
+        margin: .5rem 0;
+        border-top: 1px solid $border-color-split;
+        border-bottom: 1px solid $border-color-split;
+        padding: .5rem 1rem;
+        height: 5rem;;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    @include e(header-wrap) {
+        
+    }
+
+    @include e(header-extra) {
+        align-self: center;
+    }
+
     @include e(body) {
         position: relative;
     }

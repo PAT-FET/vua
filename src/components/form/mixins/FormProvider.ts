@@ -5,9 +5,7 @@ import FormInjector from './FormInjector'
 import { FormLayout, FormLabelPosition, FormValidateResult } from '../type'
 
 @Component
-export default class FormProvider extends mixins(Group) {
-  groupNames: string[] = ['v-form-item']
-
+export default class FormProvider extends Vue {
   @Prop() model!: any
 
   @Prop({type: String, default: 'right'}) labelPosition!: FormLabelPosition
@@ -21,6 +19,18 @@ export default class FormProvider extends mixins(Group) {
   @Prop({type: Boolean, default: false}) inlineMessage!: boolean
 
   @Prop() rules!: Record<string, any>
+
+  items: FormInjector[] = []
+
+  @Provide() addFormItem (item: FormInjector) {
+    let has = this.items.some(v => v === item)
+    if (!has) this.items.push(item)
+  }
+
+  @Provide() removeFormItem (item: FormInjector) {
+    let idx = this.items.findIndex(v => v === item)
+    if (idx >= 0) this.items.splice(idx, 1)
+  }
 
   @Provide() getModel () {
     return this.model
@@ -55,7 +65,7 @@ export default class FormProvider extends mixins(Group) {
   }
 
   get fields (): FormInjector[] {
-    return this.groupItems as FormInjector[]
+    return this.items as FormInjector[]
   }
 
   async validate (): Promise<FormValidateResult> {

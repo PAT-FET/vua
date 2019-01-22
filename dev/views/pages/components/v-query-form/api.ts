@@ -1,23 +1,43 @@
-
-export default {
+const queryForm = {
   props: [
     {
-      name: 'dashed',
+      name: 'form',
       default: '',
-      type: `boolean`,
-      desc: '是否虚线'
-    },
-    {
-      name: 'orientation',
-      default: `'center'`,
-      type: `'left' | 'center' | 'right'`,
-      desc: '分割线标题的位置'
-    },
-    {
-      name: 'type',
-      default: `'horizontal'`,
-      type: `'horizontal' | 'vertical'`,
-      desc: '水平还是垂直类型'
+      type: `any`,
+      desc: '表单， 需使用sync'
     }
   ]
 }
+
+const queryFormItem = {
+  props: [
+    {
+      name: 'title',
+      default: '',
+      type: `string`,
+      desc: '标题 (暂时不用)'
+    },
+    {
+      name: 'name',
+      default: ``,
+      type: `string`,
+      desc: '域字段名  (暂时不用)'
+    },
+    {
+      name: 'tagFn',
+      default: '',
+      type: 'QueryFormTagFn',
+      desc: '生成标签函数'
+    }
+  ]
+}
+
+export default [
+  {
+    name: 'QueryForm API',
+    content: queryForm
+  },
+  {
+    name: 'QueryFormItem API',
+    content: queryFormItem
+  }]

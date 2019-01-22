@@ -221,6 +221,14 @@ const components: any = {
   VScrollspy: {
     title: 'Scrollspy 滚动监听',
     group: 'other'
+  },
+  VPulldown: {
+    title: 'Pulldown 下拉面板',
+    group: 'other'
+  }, 
+  VQueryForm: {
+    title: 'QueryForm 查询表单',
+    group: 'other'
   }
 }
 
