@@ -5,7 +5,7 @@ import Groupable from '../../../mixins/Groupable'
 import { buildinValidatorMap } from '../validators'
 
 @Component
-export default class FormInjector extends mixins(Groupable) {
+export default class FormInjector extends Vue {
   @Prop (String) prop!: string
 
   @Prop (String) labelPosition!: FormLabelPosition
@@ -37,6 +37,10 @@ export default class FormInjector extends mixins(Groupable) {
   @Inject() getInlineMessage!: () => boolean
 
   @Inject() getRules!: (prop: string) => any[]
+
+  @Inject() addFormItem!: (item: FormInjector) => void
+
+  @Inject() removeFormItem!: (item: FormInjector) => void
 
   localValidateStatus: FormValidateStatus = 'unvalid'
 
@@ -176,5 +180,10 @@ export default class FormInjector extends mixins(Groupable) {
     } else {
       this.initialValue = this.value
     }
+    this.addFormItem(this)
+  }
+
+  beforeDestroy () {
+    this.removeFormItem(this)
   }
 }
