@@ -25,7 +25,7 @@ import { isImageUrl } from '../util'
   components: {
   },
   name: 'v-upload-picture-item'
-  })
+})
 export default class VUploadPictureItem extends mixins(Themeable, Bemable, UploadItem) {
   get progressProps () {
     return {

@@ -33,7 +33,7 @@ import { isImageUrl } from '../util'
   components: {
   },
   name: 'v-upload-card-item'
-  })
+})
 export default class VUploadCardItem extends mixins(Themeable, Bemable, UploadItem) {
   get progressProps () {
     return {

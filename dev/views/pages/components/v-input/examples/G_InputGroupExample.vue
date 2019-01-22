@@ -130,8 +130,8 @@ import { Component, Vue, Watch } from 'vue-property-decorator'
  */
 @Component({
   components: {
-  },
-  })
+  }
+})
 export default class InputGroupExample extends Vue {
   size: string = 'md'
 
@@ -158,11 +158,11 @@ export default class InputGroupExample extends Vue {
       children: [
         {
           key: '1-1',
-          label: '采矿业',
+          label: '采矿业'
         },
         {
           key: '1-2',
-          label: '制造业',
+          label: '制造业'
         }
       ]
     },
@@ -172,11 +172,11 @@ export default class InputGroupExample extends Vue {
       children: [
         {
           key: '2-1',
-          label: '批发零售',
+          label: '批发零售'
         },
         {
           key: '2-2',
-          label: '汽车销售',
+          label: '汽车销售'
         }
       ]
     }

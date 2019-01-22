@@ -23,8 +23,8 @@ import { UploadFile, UploadChangeParam } from 'src/index'
  */
 @Component({
   components: {
-  },
-  })
+  }
+})
 export default class AvatarExample extends Vue {
   loading: boolean = false
 

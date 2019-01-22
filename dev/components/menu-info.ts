@@ -194,6 +194,10 @@ const components: any = {
     title: 'Tag 标签',
     group: 'dataDisplay'
   },
+  VTimeline: {
+    title: 'Timeline 时间轴',
+    group: 'dataDisplay'
+  },
   VBadge: {
     title: 'Badge 徽标数',
     group: 'dataDisplay'

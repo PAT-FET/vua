@@ -32,11 +32,11 @@ import VTransferPanel from './widget/VTransferPanel.vue'
 
 @Component({
   components: {
-  VButton,
-  VTransferPanel
+    VButton,
+    VTransferPanel
   },
   name: 'v-transfer'
-  })
+})
 export default class VTransfer extends mixins(Themeable, Bemable) {
   @Prop(Array) value!: Array<string | number>
 
@@ -48,7 +48,7 @@ export default class VTransfer extends mixins(Themeable, Bemable) {
 
   @Prop(Boolean) disabled!: boolean
 
-  @Prop({type: Array, default: () => ['Source', 'Target']}) title!: [string, string]
+  @Prop({ type: Array, default: () => ['Source', 'Target'] }) title!: [string, string]
 
   localTargetKeys: Array<number | string> = []
 

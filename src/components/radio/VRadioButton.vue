@@ -17,9 +17,9 @@ import { getDefaultColor } from '../../utils'
   components: {
   },
   name: 'v-radio-button'
-  })
+})
 export default class VRadioButton extends mixins(Themeable, Bemable) {
-  @Prop({type: [String, Number, Boolean]}) @Model('input') value!: string| number| boolean
+  @Prop({ type: [String, Number, Boolean] }) @Model('input') value!: string| number| boolean
 
   @Prop([String, Boolean, Number]) label!: string | number | boolean
 

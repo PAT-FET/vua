@@ -19,11 +19,11 @@ import VUploadList from './widget/VUploadList.vue'
 
 @Component({
   components: {
-  VUploadControl,
-  VUploadList
+    VUploadControl,
+    VUploadList
   },
   name: 'v-upload'
-  })
+})
 export default class VUpload extends mixins(Themeable, Bemable) {
   @Prop(String) accept!: string
 
@@ -39,15 +39,15 @@ export default class VUpload extends mixins(Themeable, Bemable) {
 
   @Prop(Boolean) disabled!: boolean
 
-  @Prop({type: String, default: 'text'}) listType!: UploadListType
+  @Prop({ type: String, default: 'text' }) listType!: UploadListType
 
   @Prop(Boolean) multiple!: boolean
 
-  @Prop({type: String, default: 'file'}) name!: string
+  @Prop({ type: String, default: 'file' }) name!: string
 
   @Prop(Number) limit!: number
 
-  @Prop({type: Boolean, default: true}) showUploadList!: boolean
+  @Prop({ type: Boolean, default: true }) showUploadList!: boolean
 
   @Prop(Function) progressFn!: UploadProgressFn
 

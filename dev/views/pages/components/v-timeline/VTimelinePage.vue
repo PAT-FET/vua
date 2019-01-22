@@ -38,8 +38,8 @@ importSourceAll(require.context('!raw-loader!./examples/', true, /\.vue$/))
   components: {
   }
 })
-export default class VUploadPage extends Vue {
-    title: string = 'Upload 上传'
+export default class VTimeline extends Vue {
+    title: string = 'Timeline 时间轴'
 
     summary: any = summary
 

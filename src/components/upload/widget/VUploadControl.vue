@@ -21,9 +21,9 @@ import { request } from '../request'
   components: {
   },
   name: 'v-upload-control'
-  })
+})
 export default class VUploadControl extends mixins(Themeable, Bemable) {
-  @Prop({type: String, default: 'text'}) listType!: UploadListType
+  @Prop({ type: String, default: 'text' }) listType!: UploadListType
 
   @Prop(String) accept!: string
 

@@ -21,11 +21,11 @@ import { debounce } from '../../utils'
   components: {
   },
   name: 'v-button' // it's required for production version
-  })
+})
 export default class VButton extends mixins(CssVariable, Bemable, Rippleable, Colorable) {
-    @Prop({type: String, default: 'solid'}) type!: ButtonType
+    @Prop({ type: String, default: 'solid' }) type!: ButtonType
 
-    @Prop({type: String, default: 'md'}) size !: ButtonSize
+    @Prop({ type: String, default: 'md' }) size !: ButtonSize
 
     @Prop(String) color!: string
 
@@ -70,7 +70,7 @@ export default class VButton extends mixins(CssVariable, Bemable, Rippleable, Co
       if (this.disabled) color = undefined
       let baseColor = color && this.parseColor(color)
       let activeColor = color && this.parseColor(color + '-darken-1')
-      let focusColor = color &&this.parseColor(color + '-lighten-1')
+      let focusColor = color && this.parseColor(color + '-lighten-1')
       let ext: ButtonCssVariable = {}
       if (this.type === 'primary') {
         ext = {

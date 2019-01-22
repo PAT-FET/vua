@@ -17,8 +17,8 @@ import { UploadFile, UploadChangeParam } from 'src/index'
  */
 @Component({
   components: {
-  },
-  })
+  }
+})
 export default class ThumbExample extends Vue {
   fileList = [{
     uid: '1',

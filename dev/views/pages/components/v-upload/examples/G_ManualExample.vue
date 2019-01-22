@@ -19,8 +19,8 @@ import { UploadFile } from 'src'
  */
 @Component({
   components: {
-  },
-  })
+  }
+})
 export default class ManualExample extends Vue {
   fileList: UploadFile[] = []
 

@@ -15,14 +15,14 @@ import { VButton } from '../button'
 
 @Component({
   components: {
-  VButton
+    VButton
   },
   name: 'v-back-top'
-  })
+})
 export default class VBackTop extends mixins(Themeable, Bemable) {
   @Prop(Function) target!: BackTopTargetFn
 
-  @Prop({type: Number, default: 200}) offset!: number
+  @Prop({ type: Number, default: 200 }) offset!: number
 
   visible: boolean = false
 

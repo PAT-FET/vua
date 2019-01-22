@@ -24,8 +24,8 @@ import { UploadFile, UploadChangeParam } from 'src/index'
  */
 @Component({
   components: {
-  },
-  })
+  }
+})
 export default class CardExample extends Vue {
   fileList = [{
     uid: '1',

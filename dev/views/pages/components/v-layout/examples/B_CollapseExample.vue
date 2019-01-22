@@ -93,8 +93,8 @@ import { Component, Vue, Watch } from 'vue-property-decorator'
  */
 @Component({
   components: {
-  },
-  })
+  }
+})
 export default class CollapseExample extends Vue {
   collapse: boolean = false
 

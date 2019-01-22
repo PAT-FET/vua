@@ -26,7 +26,7 @@ import UploadItem from '../mixins/UploadItem'
   components: {
   },
   name: 'v-upload-text-item'
-  })
+})
 export default class VUploadTextItem extends mixins(Themeable, Bemable, UploadItem) {
   get progressProps () {
     return {

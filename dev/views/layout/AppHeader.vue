@@ -93,10 +93,10 @@ import { Component, Vue, Watch } from 'vue-property-decorator'
 
 @Component({
   components: {
-  },
-  })
+  }
+})
 export default class AppHeader extends Vue {
-  lang: string = "en"
+  lang: string = 'en'
 
   get dark () {
     return !!this.$vua.dark

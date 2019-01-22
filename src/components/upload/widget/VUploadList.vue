@@ -17,16 +17,16 @@ import VUploadPictureItem from './VUploadPictureItem.vue'
 import VUploadCardItem from './VUploadCardItem.vue'
 @Component({
   components: {
-  VUploadTextItem,
-  VUploadPictureItem,
-  VUploadCardItem
+    VUploadTextItem,
+    VUploadPictureItem,
+    VUploadCardItem
   },
   name: 'v-upload-list'
-  })
+})
 export default class VUploadList extends mixins(Themeable, Bemable) {
   @Prop(Array) files!: UploadFile[]
 
-  @Prop({type: String, default: 'text'}) listType!: UploadListType
+  @Prop({ type: String, default: 'text' }) listType!: UploadListType
 
   progressProps = {
     showInfo: false,
