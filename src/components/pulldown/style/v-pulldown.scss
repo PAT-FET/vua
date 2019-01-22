@@ -1,0 +1,13 @@
+@import "../../../style/mixins/bem.scss";
+@import "../../../style/mixins/elevation.scss";
+@import "../../../style/mixins/misc.scss";
+@import "../../../style/mixins/reset.scss";
+@import "../../../style/var.scss";
+@import "./mixins.scss";
+@import "./var.scss";
+
+
+@include b(v-pulldown) {
+    @include reset-component();
+    position: relative;
+}
