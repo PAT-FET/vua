@@ -5,6 +5,12 @@ const queryForm = {
       default: '',
       type: `any`,
       desc: '表单， 需使用sync'
+    },
+    {
+      name: 'formProps',
+      default: '',
+      type: `any`,
+      desc: '自定义v-form的props'
     }
   ]
 }

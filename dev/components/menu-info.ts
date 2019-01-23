@@ -225,7 +225,7 @@ const components: any = {
   VPulldown: {
     title: 'Pulldown 下拉面板',
     group: 'other'
-  }, 
+  },
   VQueryForm: {
     title: 'QueryForm 查询表单',
     group: 'other'

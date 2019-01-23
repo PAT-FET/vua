@@ -1,7 +1,7 @@
 <template>
 <div>
   <div class="m-3">
-    <v-query-form :form.sync="form" ref="form">
+    <v-query-form :form.sync="form" ref="form" :form-props="formProps">
       <div slot="extra">
         <v-button type="text" @click="onClear">清空</v-button>
       </div>
@@ -11,9 +11,11 @@
             <v-collapse :bordered="false" v-model="value">
               <v-collapse-item name="1" title="基本信息">
                 <v-query-form-item title="年龄" name="age" :tag-fn="ageTagFn">
-                  <v-checkbox-group v-model="form.age">
-                    <v-checkbox :label="age.value" v-for="age in ages" :key="age.value">{{age.label}}</v-checkbox>
-                  </v-checkbox-group>
+                  <v-form-item prop="age" label="年龄">
+                    <v-checkbox-group v-model="form.age">
+                      <v-checkbox :label="age.value" v-for="age in ages" :key="age.value">{{age.label}}</v-checkbox>
+                    </v-checkbox-group>
+                  </v-form-item>
                 </v-query-form-item>
               </v-collapse-item>
               <v-collapse-item name="2" title="业绩信息">
@@ -62,6 +64,11 @@ import { Component, Vue, Watch } from 'vue-property-decorator'
   })
 export default class BasicExample extends Vue {
   value = "1"
+
+  formProps = {
+    labelWidth: '120px',
+    labelPosition: 'left'
+  }
 
   form = {
     age: [],
