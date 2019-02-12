@@ -31,9 +31,12 @@
         <i :class="[e('arrow'), arrowOpenCls]" slot="suffix" class="anticon anticon-down"></i>
       </v-input>
       <div :class="e('tag-wrap')" v-if="showTagWrap" ref="tagWrap">
-        <span :class="[e('tag')]" v-for="item in multipleSelectedItem" :key="item.value">
+        <span :class="[e('tag')]" v-for="item in renderedMultipleSelectedItem" :key="item.value">
           <span>{{item.label}}</span>
           <span :class="[e('tag-close')]" @click.stop="toggle(item.value)"><i class="anticon anticon-close"></i></span>
+        </span>
+        <span :class="[e('tag')]" v-if="collapseTags && multipleSelectedItem.length > 1">
+          <span> + {{multipleSelectedItem.length - 1}} </span>
         </span>
         <input :value="inputValue" :class="[e('tag-input')]" type="text" v-if="searchable" ref="tagInput" @input="onTagInput">
       </div>
@@ -95,6 +98,8 @@ export default class VSelect extends mixins(Themeable, Bemable, Group, Localeabl
 
   @Prop(Boolean) multiple!: boolean
 
+  @Prop(Boolean) collapseTags!: boolean
+
   appendToBody: boolean = true
 
   trigger: string = 'click'
@@ -142,6 +147,13 @@ export default class VSelect extends mixins(Themeable, Bemable, Group, Localeabl
     return (this.value as string[]).map(v => {
       return this.selectItems.find(w => w.value === v)
     }).filter(v => !!v) as SelectItem[]
+  }
+
+  get renderedMultipleSelectedItem (): SelectItem[] {
+    if (!this.collapseTags) return this.multipleSelectedItem
+    let len = this.multipleSelectedItem.length
+    if (len > 0) return [this.multipleSelectedItem[len - 1]]
+    return []
   }
 
   // placeholder

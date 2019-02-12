@@ -50,6 +50,19 @@
       <v-option value="suzhou" label="苏州"></v-option>
     </v-select>
   </div>
+
+  <div class="my-4">
+    <p>可折叠标签</p>
+    <v-select addable searchable style="width: 320px;" multiple v-model="value4" placeholder="请选择" collapse-tags clearable>
+      <v-option value="shanghai" label="上海"></v-option>
+      <v-option value="guangzhou" label="广州"></v-option>
+      <v-option value="beijing" label="北京" disabled></v-option>
+      <v-option value="wuhan" label="武汉"></v-option>
+      <v-option value="chengdu" label="成都"></v-option>
+      <v-option value="hangzhou" label="杭州"></v-option>
+      <v-option value="suzhou" label="苏州"></v-option>
+    </v-select>
+  </div>
 </div>
 </template>
 <script lang="ts">
@@ -73,6 +86,8 @@ export default class GroupExample extends Vue {
   value2: string[] = []
 
   value3: string[] = []
+
+  value4: string[] = []
 
   clob: string[] = [
     'a', 'a1', 'a2', 'a3', 'a4',
