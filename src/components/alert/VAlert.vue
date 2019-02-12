@@ -5,8 +5,12 @@
       <i class="anticon" :class="[`anticon-${iconName}`, `text-${type}`]"></i>
     </div>
     <div :class="[e('content')]">
-      <div :class="[e('title')]" v-if="title">{{title}}</div>
-      <div :class="[e('description')]" v-if="description+''">{{description}}</div>
+      <div :class="[e('title')]" v-if="title || $slots.title">
+        <slot name="title">{{title}}</slot>
+      </div>
+      <div :class="[e('description')]" v-if="(description+'') || $slots.description">
+        <slot name="description">{{description}}</slot>
+      </div>
     </div>
     <div :class="[e('close')]" v-if="closable" @click="onClose">
       <slot name="close"><i class="anticon anticon-close"></i></slot>

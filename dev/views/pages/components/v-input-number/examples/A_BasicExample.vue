@@ -17,6 +17,6 @@ import { Component, Vue, Watch } from 'vue-property-decorator'
   },
   })
 export default class BasicExample extends Vue {
-  value: number = 0
+  value: number| null = null
 }
 </script>

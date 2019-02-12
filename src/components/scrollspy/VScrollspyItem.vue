@@ -1,5 +1,5 @@
 <template>
-  <div :class="[b()]">
+  <div :class="[b(), activeCls]">
     <div :class="[e('title'), activeCls]" @click="link"><slot name="title">{{title}}</slot></div>
     <div>
       <slot></slot>

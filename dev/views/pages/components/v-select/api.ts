@@ -59,6 +59,12 @@ const select = {
       default: '',
       type: `boolean`,
       desc: '多选'
+    },
+    {
+      name: 'collapse-tags',
+      default: '',
+      type: `boolean`,
+      desc: '是否折叠标签'
     }
   ]
 }

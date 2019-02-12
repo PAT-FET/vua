@@ -1,7 +1,7 @@
 <template>
 <div :class="[b(), sizeCls, borderedCls]" v-loading="loading">
   <div :class="[e('header')]">
-
+    <slot name="header"></slot>
   </div>
   <div :class="[e('body')]" ref="body" @scroll="onScorll" :style="[heightStyle]">
     <table :class="[e('table')]">
@@ -40,7 +40,9 @@
     <div :class="[e('placeholder')]" v-show="!total">{{t('noData')}}</div>
   </div>
   <div :class="[e('footer')]" v-if="pageable" v-show="total > 0">
-    <v-pagination v-bind="actualPaginationOption" v-if="pageable" :total="total" :current-page.sync="actualCurrentPage" :page-size.sync="actualPageSize"></v-pagination>
+    <div class="d-inline-block">
+      <v-pagination v-bind="actualPaginationOption" v-if="pageable" :total="total" :current-page.sync="actualCurrentPage" :page-size.sync="actualPageSize"></v-pagination>
+    </div>
   </div>
   <!-- slot -->
   <div hidden>
@@ -56,7 +58,7 @@ import { VTableColumn } from './index'
 import VTableCell from './widget/VTableCell.vue'
 import VTableHeaderCell from './widget/VTableHeaderCell.vue'
 import VTableExpandRow from './widget/VTableExpandRow.vue'
-import { TableSize, TableHeaderColumn, TableColumnSelectionCb, TableSpanFn, TableCellCbParam } from './type'
+import { TableSize, TableHeaderColumn, TableColumnSelectionCb, TableSpanFn, TableCellCbParam, TableColumnExcludeFn } from './type'
 import { VPagination } from '../pagination'
 import { Loading } from '../../directives'
 import { ReactiveSet, throttle } from '../../utils'
@@ -88,6 +90,8 @@ export default class VTable extends mixins(Themeable, Bemable, Localeable, Group
 
   @Prop([Function]) spanFn!: TableSpanFn
 
+  @Prop(Function) columnExcludeFn!: TableColumnExcludeFn
+
   // overwrite
   groupNames: string[] = ['v-table-column']
 
@@ -117,7 +121,13 @@ export default class VTable extends mixins(Themeable, Bemable, Localeable, Group
   computeScrollDelay = throttle(this.computeScroll, 300)
 
   get columns (): VTableColumn[] {
-    return this.groupItems as VTableColumn[]
+    let ret = this.groupItems as VTableColumn[]
+    if (this.columnExcludeFn) {
+      ret = ret.filter(v => {
+        return !this.columnExcludeFn(v.prop)
+      })
+    }
+    return ret
   }
 
   get renderedColumns (): VTableColumn [] {

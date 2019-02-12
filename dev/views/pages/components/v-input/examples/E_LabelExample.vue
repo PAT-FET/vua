@@ -12,6 +12,7 @@
          <v-input block size="sm" prepend="http://" append=".com" placeholder="请输入内容" v-model="value2" clearable></v-input>
        </v-col>
      </v-row>
+     <v-input block prepend="http://" append=".com" placeholder="请输入内容" v-model="value1" clearable class="mt-2"></v-input>
    </div>
 </div>
 </template>

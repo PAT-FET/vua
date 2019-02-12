@@ -41,6 +41,14 @@ export default {
     {
       name: 'close',
       desc: '自定义关闭文案'
+    },
+    {
+      name: 'title',
+      desc: '自定义标题'
+    },
+    {
+      name: 'description',
+      desc: '自定义描述'
     }
   ]
 }

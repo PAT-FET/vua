@@ -49,3 +49,7 @@ export interface TableCellCbParam {
 export interface TableSpanFn {
     (param: TableCellCbParam): { rowspan: number, colspan: number } | undefined
 }
+
+export interface TableColumnExcludeFn {
+    (prop: string): boolean
+}
