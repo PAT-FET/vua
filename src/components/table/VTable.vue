@@ -40,7 +40,9 @@
     <div :class="[e('placeholder')]" v-show="!total">{{t('noData')}}</div>
   </div>
   <div :class="[e('footer')]" v-if="pageable" v-show="total > 0">
-    <v-pagination v-bind="actualPaginationOption" v-if="pageable" :total="total" :current-page.sync="actualCurrentPage" :page-size.sync="actualPageSize"></v-pagination>
+    <div class="d-inline-block">
+      <v-pagination v-bind="actualPaginationOption" v-if="pageable" :total="total" :current-page.sync="actualCurrentPage" :page-size.sync="actualPageSize"></v-pagination>
+    </div>
   </div>
   <!-- slot -->
   <div hidden>

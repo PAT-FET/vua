@@ -231,6 +231,7 @@ export default class DataIterable extends Vue {
     }
 
     get allSelected () {
+      if (this.renderedData.length < 1) return false
       return this.renderedData.every(v => this.selectionKeySet.has(this.resolveRowKey(v)))
     }
 
