@@ -1,6 +1,6 @@
 <template>
   <div :class="[b()]">
-    <v-input :value="actualValue"
+    <v-input :value="renderValue"
      :size="size"
      :disabled="disabled"
      @keydown.up.native.prevent="add"
@@ -28,7 +28,7 @@ import { InputNumberSize } from './type'
   name: 'v-input-number'
   })
 export default class VInputNumber extends mixins(Themeable, Bemable) {
-  @Prop([ Number]) value!: number
+  @Prop() value!: number | null
 
   @Prop([ Number]) max!: number
 
@@ -44,16 +44,21 @@ export default class VInputNumber extends mixins(Themeable, Bemable) {
 
   @Prop(Boolean) disabled!: boolean
 
-  @Emit() input (value: number) {
+  @Emit() input (value: number | null) {
     this.change(value)
   }
 
-  @Emit() change (value: number) {}
+  @Emit() change (value: number | null) {}
 
   get actualValue (): number {
     let num: number = (this.value !== 0 && !this.value) ? 0 : +this.value
     if (this.precision !== undefined) num = +num.toFixed(this.precision)
     return num
+  }
+
+  get renderValue (): string {
+    if (this.value === null) return ''
+    return this.actualValue + ''
   }
 
   get addDisabled (): boolean {
@@ -77,6 +82,9 @@ export default class VInputNumber extends mixins(Themeable, Bemable) {
       this.input(this.actualValue)
       this.$forceUpdate()
       return
+    }
+    if (!value) {
+      this.input(null)
     }
     let num = +value
     if (this.max !== undefined && num > this.max) num = this.max
