@@ -1,12 +1,12 @@
 <template>
 <div :class="[b(), placementCls, openCls]" :style="[indexStyle]">
   <transition name="fade-transition">
-    <div :class="[e('mask')]" v-if="visible" @click="onMaskClose"></div>
+    <div :class="[e('mask')]" v-show="visible" @click="onMaskClose"></div>
   </transition>
    <transition :name="placementTransition">
     <div :class="[e('wrap')]" :style="[sizeStyle, offsetStyle]" v-if="visible">
       <div :class="[e('content')]">
-        <div :class="[e('header')]" v-if="title || $slots.header">
+        <div :class="[e('header')]" v-show="title || $slots.header">
           <slot name="header"><div :class="[e('title')]">{{title}}</div></slot>
         </div>
         <div :class="[e('body')]"><slot></slot></div>
