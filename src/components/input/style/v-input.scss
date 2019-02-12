@@ -34,6 +34,7 @@
 
     @include e(input-wrap) {
         position: relative;
+        display: table-cell;
         width: 100%;
         &:focus, &:hover {
             @include e(clear) {
