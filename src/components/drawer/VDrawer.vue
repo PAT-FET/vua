@@ -124,7 +124,7 @@ export default class VDrawer extends mixins(Themeable, Bemable) {
     document.body.appendChild(this.$el)
   }
 
-  beforeDestory () {
+  beforeDestroy () {
     document.body.removeChild(this.$el)
     this.popStack()
   }
