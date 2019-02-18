@@ -3,61 +3,61 @@
    <div class="m-3">
      <p>水平对齐</p>
      <v-row justify="flex-start">
-       <v-col :span="4"><div :class="[$style.cell]" class="h-2">col-4</div></v-col>
-       <v-col :span="4"><div :class="[$style.cell, $style.light]" class="h-2">col-4</div></v-col>
-       <v-col :span="4"><div :class="[$style.cell]" class="h-2">col-4</div></v-col>
-       <v-col :span="4"><div :class="[$style.cell, $style.light]" class="h-2">col-4</div></v-col>
+       <v-col :span="5"><div :class="[$style.cell]" class="h-2">col-5</div></v-col>
+       <v-col :span="5"><div :class="[$style.cell, $style.light]" class="h-2">col-5</div></v-col>
+       <v-col :span="5"><div :class="[$style.cell]" class="h-2">col-5</div></v-col>
+       <v-col :span="5"><div :class="[$style.cell, $style.light]" class="h-2">col-6</div></v-col>
      </v-row>
 
      <v-row class="my-2" justify="center">
-       <v-col :span="4"><div :class="[$style.cell]" class="h-2">col-4</div></v-col>
-       <v-col :span="4"><div :class="[$style.cell, $style.light]" class="h-2">col-4</div></v-col>
-       <v-col :span="4"><div :class="[$style.cell]" class="h-2">col-4</div></v-col>
-       <v-col :span="4"><div :class="[$style.cell, $style.light]" class="h-2">col-4</div></v-col>
+       <v-col :span="5"><div :class="[$style.cell]" class="h-2">col-6</div></v-col>
+       <v-col :span="5"><div :class="[$style.cell, $style.light]" class="h-2">col-5</div></v-col>
+       <v-col :span="5"><div :class="[$style.cell]" class="h-2">col-5</div></v-col>
+       <v-col :span="5"><div :class="[$style.cell, $style.light]" class="h-2">col-5</div></v-col>
      </v-row>
 
      <v-row class="my-2" justify="flex-end">
-       <v-col :span="4"><div :class="[$style.cell]" class="h-2">col-4</div></v-col>
-       <v-col :span="4"><div :class="[$style.cell, $style.light]" class="h-2">col-4</div></v-col>
-       <v-col :span="4"><div :class="[$style.cell]" class="h-2">col-4</div></v-col>
-       <v-col :span="4"><div :class="[$style.cell, $style.light]" class="h-2">col-4</div></v-col>
+       <v-col :span="5"><div :class="[$style.cell]" class="h-2">col-5</div></v-col>
+       <v-col :span="5"><div :class="[$style.cell, $style.light]" class="h-2">col-5</div></v-col>
+       <v-col :span="5"><div :class="[$style.cell]" class="h-2">col-5</div></v-col>
+       <v-col :span="5"><div :class="[$style.cell, $style.light]" class="h-2">col-5</div></v-col>
      </v-row>
 
     <v-row class="my-2" justify="space-around">
-       <v-col :span="4"><div :class="[$style.cell]" class="h-2">col-4</div></v-col>
-       <v-col :span="4"><div :class="[$style.cell, $style.light]" class="h-2">col-4</div></v-col>
-       <v-col :span="4"><div :class="[$style.cell]" class="h-2">col-4</div></v-col>
-       <v-col :span="4"><div :class="[$style.cell, $style.light]" class="h-2">col-4</div></v-col>
+       <v-col :span="5"><div :class="[$style.cell]" class="h-2">col-5</div></v-col>
+       <v-col :span="5"><div :class="[$style.cell, $style.light]" class="h-2">col-5</div></v-col>
+       <v-col :span="5"><div :class="[$style.cell]" class="h-2">col-5</div></v-col>
+       <v-col :span="5"><div :class="[$style.cell, $style.light]" class="h-2">col-5</div></v-col>
      </v-row>
 
       <v-row class="my-2" justify="space-between">
-       <v-col :span="4"><div :class="[$style.cell]" class="h-2">col-4</div></v-col>
-       <v-col :span="4"><div :class="[$style.cell, $style.light]" class="h-2">col-4</div></v-col>
-       <v-col :span="4"><div :class="[$style.cell]" class="h-2">col-4</div></v-col>
-       <v-col :span="4"><div :class="[$style.cell, $style.light]" class="h-2">col-4</div></v-col>
+       <v-col :span="5"><div :class="[$style.cell]" class="h-2">col-5</div></v-col>
+       <v-col :span="5"><div :class="[$style.cell, $style.light]" class="h-2">col-5</div></v-col>
+       <v-col :span="5"><div :class="[$style.cell]" class="h-2">col-5</div></v-col>
+       <v-col :span="5"><div :class="[$style.cell, $style.light]" class="h-2">col-5</div></v-col>
      </v-row>
    </div>
 
    <p>垂直对齐</p>
     <v-row class="my-2" align="flex-start">
-       <v-col :span="4"><div :class="[$style.cell]" class="h-2">col-4</div></v-col>
-       <v-col :span="4"><div :class="[$style.cell, $style.light]" class="h-3">col-4</div></v-col>
-       <v-col :span="4"><div :class="[$style.cell]" class="h-4">col-4</div></v-col>
-       <v-col :span="4"><div :class="[$style.cell, $style.light]" class="h-5">col-4</div></v-col>
+       <v-col :span="6"><div :class="[$style.cell]" class="h-2">col-6</div></v-col>
+       <v-col :span="6"><div :class="[$style.cell, $style.light]" class="h-3">col-6</div></v-col>
+       <v-col :span="6"><div :class="[$style.cell]" class="h-5">col-6</div></v-col>
+       <v-col :span="6"><div :class="[$style.cell, $style.light]" class="h-5">col-6</div></v-col>
      </v-row>
 
      <v-row class="my-2" align="center">
-       <v-col :span="4"><div :class="[$style.cell]" class="h-2">col-4</div></v-col>
-       <v-col :span="4"><div :class="[$style.cell, $style.light]" class="h-3">col-4</div></v-col>
-       <v-col :span="4"><div :class="[$style.cell]" class="h-4">col-4</div></v-col>
-       <v-col :span="4"><div :class="[$style.cell, $style.light]" class="h-5">col-4</div></v-col>
+       <v-col :span="6"><div :class="[$style.cell]" class="h-2">col-6</div></v-col>
+       <v-col :span="6"><div :class="[$style.cell, $style.light]" class="h-3">col-6</div></v-col>
+       <v-col :span="6"><div :class="[$style.cell]" class="h-5">col-6</div></v-col>
+       <v-col :span="6"><div :class="[$style.cell, $style.light]" class="h-5">col-6</div></v-col>
      </v-row>
 
       <v-row class="my-2" align="flex-end">
-       <v-col :span="4"><div :class="[$style.cell]" class="h-2">col-4</div></v-col>
-       <v-col :span="4"><div :class="[$style.cell, $style.light]" class="h-3">col-4</div></v-col>
-       <v-col :span="4"><div :class="[$style.cell]" class="h-4">col-4</div></v-col>
-       <v-col :span="4"><div :class="[$style.cell, $style.light]" class="h-5">col-4</div></v-col>
+       <v-col :span="6"><div :class="[$style.cell]" class="h-2">col-6</div></v-col>
+       <v-col :span="6"><div :class="[$style.cell, $style.light]" class="h-3">col-6</div></v-col>
+       <v-col :span="6"><div :class="[$style.cell]" class="h-5">col-6</div></v-col>
+       <v-col :span="6"><div :class="[$style.cell, $style.light]" class="h-5">col-6</div></v-col>
      </v-row>
 </div>
 </template>
