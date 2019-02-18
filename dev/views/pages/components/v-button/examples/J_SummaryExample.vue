@@ -1,12 +1,12 @@
 <template>
 <div>
  <div class="my-3">
-   <v-radio-group v-model="type">
+   <v-radio-group v-model="type" class="ml-3 mb-2">
       <v-radio-button label="solid">Solid</v-radio-button>
       <v-radio-button label="dashed">Dashed</v-radio-button>
       <v-radio-button label="primary">Primary</v-radio-button>
     </v-radio-group>
-    <v-radio-group v-model="color" class="ml-3">
+    <v-radio-group v-model="color" class="ml-3  mb-2">
       <v-radio-button label="">无</v-radio-button>
       <v-radio-button label="primary">Primary</v-radio-button>
       <v-radio-button label="seconday">Secondary</v-radio-button>
@@ -17,17 +17,17 @@
     </v-radio-group>
 </div>
 <div class="my-3">
-   <v-radio-group v-model="icon">
+   <v-radio-group v-model="icon" class="ml-3 mb-2">
       <v-radio-button label="">无</v-radio-button>
       <v-radio-button label="edit">Edit图标</v-radio-button>
       <v-radio-button label="delete">Delete图标</v-radio-button>
     </v-radio-group>
-    <v-radio-group v-model="shape" class="ml-3">
+    <v-radio-group v-model="shape" class="ml-3 mb-2">
       <v-radio-button label="">无</v-radio-button>
       <v-radio-button label="round">圆角</v-radio-button>
       <v-radio-button label="circle">圆形</v-radio-button>
     </v-radio-group>
-     <v-radio-group v-model="size" class="ml-3">
+     <v-radio-group v-model="size" class="ml-3 mb-2">
       <v-radio-button label="lg">大</v-radio-button>
       <v-radio-button label="md">中</v-radio-button>
       <v-radio-button label="sm">小</v-radio-button>

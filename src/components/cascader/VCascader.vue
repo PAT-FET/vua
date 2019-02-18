@@ -95,6 +95,8 @@ export default class VCascader extends mixins(Themeable, Bemable, Localeable, Tr
 
   loadingNodeSet = new ReactiveSet<string | number>()
 
+  mountedFlag: boolean = false
+
   @Emit() input (value: Array<string | number>) {
     this.change(value)
   }
@@ -142,7 +144,11 @@ export default class VCascader extends mixins(Themeable, Bemable, Localeable, Tr
 
   get renderedValue (): string {
     if (!this.actualValue) return ''
-    return this.value && this.value.join(' / ')
+    let a = this.mountedFlag // only dependencies
+    return (this.value || []).map(v => {
+      let item = this.nodeMap.get(v)
+      return (item && item.data.label) || v
+    }).join(' / ')
   }
 
   get inputText () {
@@ -295,6 +301,7 @@ export default class VCascader extends mixins(Themeable, Bemable, Localeable, Tr
 
   mounted () {
     this.refreshCurrentNodeKey()
+    this.mountedFlag = true
   }
 
   $refs!: {

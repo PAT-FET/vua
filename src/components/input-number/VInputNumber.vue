@@ -85,6 +85,7 @@ export default class VInputNumber extends mixins(Themeable, Bemable) {
     }
     if (!value) {
       this.input(null)
+      return
     }
     let num = +value
     if (this.max !== undefined && num > this.max) num = this.max

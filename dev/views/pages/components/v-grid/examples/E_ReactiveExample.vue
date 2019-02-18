@@ -1,19 +1,14 @@
 <template>
 <div>
-   <div class="m-3 display-4 text-center"> {{$vua.breakpoint.name}}</div>
+   <div class="m-3 display-4 text-center"> 当前断点： {{$vua.breakpoint.name}}</div>
    <div class="m-3">
-     <p>xs: span-24 gutter-0</p>
-     <p>sm: span-12 gutter-4</p>
-     <p>md: span-8 gutter-8</p>
-     <p>lg: span-6 gutter-16</p>
-     <p>xl: span-4 gutter-32</p>
       <v-row :gutter="gutter">
-       <v-col :xs="xs" :sm="sm" :md="md" :lg="lg" :xl="xl"><div :class="[$style.cell]"></div></v-col>
-       <v-col :xs="xs" :sm="sm" :md="md" :lg="lg" :xl="xl"><div :class="[$style.cell]"></div></v-col>
-       <v-col :xs="xs" :sm="sm" :md="md" :lg="lg" :xl="xl"><div :class="[$style.cell]"></div></v-col>
-       <v-col :xs="xs" :sm="sm" :md="md" :lg="lg" :xl="xl"><div :class="[$style.cell]"></div></v-col>
-       <v-col :xs="xs" :sm="sm" :md="md" :lg="lg" :xl="xl"><div :class="[$style.cell]"></div></v-col>
-       <v-col :xs="xs" :sm="sm" :md="md" :lg="lg" :xl="xl"><div :class="[$style.cell]"></div></v-col>
+       <v-col :xs="xs" :sm="sm" :md="md" :lg="lg" :xl="xl"><div :class="[$style.cell]">col-24,12,8,6,4</div></v-col>
+       <v-col :xs="xs" :sm="sm" :md="md" :lg="lg" :xl="xl"><div :class="[$style.cell]">col-24,12,8,6,4</div></v-col>
+       <v-col :xs="xs" :sm="sm" :md="md" :lg="lg" :xl="xl"><div :class="[$style.cell]">col-24,12,8,6,4</div></v-col>
+       <v-col :xs="xs" :sm="sm" :md="md" :lg="lg" :xl="xl"><div :class="[$style.cell]">col-24,12,8,6,4</div></v-col>
+       <v-col :xs="xs" :sm="sm" :md="md" :lg="lg" :xl="xl"><div :class="[$style.cell]">col-24,12,8,6,4</div></v-col>
+       <v-col :xs="xs" :sm="sm" :md="md" :lg="lg" :xl="xl"><div :class="[$style.cell]">col-24,12,8,6,4</div></v-col>
      </v-row>
    </div>
 </div>

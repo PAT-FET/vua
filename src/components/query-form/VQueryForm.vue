@@ -45,6 +45,8 @@ export default class VQueryForm extends mixins(Themeable, Bemable, Colorable) {
 
   @Emit() submit (form: any) {}
 
+  @Emit() close (tag: QueryFormTag) {}
+
   get tags (): QueryFormTag[] {
     let ret: QueryFormTag[] = []
     this.items.forEach(v => {
@@ -104,6 +106,7 @@ export default class VQueryForm extends mixins(Themeable, Bemable, Colorable) {
 
   onTagClose (tag: QueryFormTag) {
     tag.removeFn && tag.removeFn(this.form, tag.name)
+    this.close(tag)
   }
 
   mounted () {

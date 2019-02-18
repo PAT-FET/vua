@@ -3,7 +3,7 @@
   <div class="my-3">
     <v-alert :description="valueText"></v-alert> <br>
     <v-checkbox-group v-model="value">
-      <v-checkbox label="Jack">Jack</v-checkbox>
+      <v-checkbox label="Jack" @change="onChange">Jack</v-checkbox>
       <v-checkbox label="Lily">Lily</v-checkbox>
       <v-checkbox label="Alison">Alison</v-checkbox>
       <v-checkbox label="Jane" disabled>Jane</v-checkbox>
@@ -27,6 +27,10 @@ export default class GroupExample extends Vue {
 
   get valueText () {
     return JSON.stringify(this.value)
+  }
+
+  onChange (value: string) {
+    console.log(value)
   }
 }
 </script>

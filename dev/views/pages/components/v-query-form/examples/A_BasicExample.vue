@@ -1,7 +1,7 @@
 <template>
 <div>
   <div class="m-3">
-    <v-query-form :form.sync="form" ref="form" :form-props="formProps">
+    <v-query-form :form.sync="form" ref="form" :form-props="formProps" @close="onClose">
       <div slot="extra">
         <v-button type="text" @click="onClear">清空</v-button>
       </div>
@@ -53,6 +53,7 @@
 </template>
 <script lang="ts">
 import { Component, Vue, Watch } from 'vue-property-decorator'
+import { QueryFormTag } from 'src'
 
 /**
  * @title  基本
@@ -170,6 +171,10 @@ export default class BasicExample extends Vue {
 
   onClear () {
     (this.$refs.form as any).clearForm()
+  }
+
+  onClose (tag: QueryFormTag) {
+    console.log('close : ' + tag)
   }
 }
 </script>
