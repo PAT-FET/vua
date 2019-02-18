@@ -1,7 +1,7 @@
 <template>
 <div>
   <div class="my-3">
-    <v-checkbox v-model="value">Checkbox</v-checkbox>
+    <v-checkbox v-model="value" @change="onChange">Checkbox</v-checkbox>
   </div>
 </div>
 </template>
@@ -18,5 +18,9 @@ import { Component, Vue, Watch } from 'vue-property-decorator'
   })
 export default class BasicExample extends Vue {
   value: boolean = false
+
+  onChange (value: string) {
+    console.log(value)
+  }
 }
 </script>

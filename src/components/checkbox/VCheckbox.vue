@@ -1,7 +1,7 @@
 <template>
 <label :class="[b(), checkedCls, disabledCls, indeterminateCls]" tabindex="0">
   <span :class="[e('inner')]">
-    <input v-model="model" type="checkbox" :class="[e('checkbox')]" :disabled="disabled" :value="label">
+    <input v-model="model" type="checkbox" :class="[e('checkbox')]" :disabled="disabled" :value="label" @change="onChange">
     <div :class="[e('dot')]" v-ripple="ripple"></div>
   </span>
   <span :class="[e('text')]" v-if="$slots.default"><slot></slot></span>
@@ -29,6 +29,8 @@ export default class VCheckbox extends mixins(Themeable, Bemable, Rippleable) {
   @Prop(Boolean) indeterminate!: boolean
 
   @Emit()input (value: CheckboxValue) {}
+
+  @Emit() change (value: string) {}
 
   @Inject({default: () => () => null}) getCheckboxGroup!: () => VCheckboxGroup | null
 
@@ -74,6 +76,10 @@ export default class VCheckbox extends mixins(Themeable, Bemable, Rippleable) {
 
   get indeterminateCls () {
     return this.indeterminate ? this.m('indeterminate') : ''
+  }
+
+  onChange (e: any) {
+    this.change(e && e.target.value)
   }
 
   created () {

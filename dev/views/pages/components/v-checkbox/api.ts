@@ -24,7 +24,14 @@ const checkbox = {
       type: 'boolean',
       desc: '半选状态'
     }
-  ]
+  ],
+  events: [
+    {
+      name: 'change',
+      value: `string | boolean`,
+      desc: '原生checkbox 的change事件'
+    }
+  ],
 }
 
 const checkboxButton = {
