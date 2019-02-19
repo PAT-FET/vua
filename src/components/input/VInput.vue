@@ -143,6 +143,7 @@ export default class VInput extends mixins(Themeable, Bemable) {
 
   onClear () {
     this.model = ''
+    this.change('')
     this.clear()
   }
 
