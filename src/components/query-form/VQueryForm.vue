@@ -73,11 +73,14 @@ export default class VQueryForm extends mixins(Themeable, Bemable, Colorable) {
     return this.form
   }
 
-  submitForm () {
-    (this.$refs.form as VForm).validate().then(({ valid }) => {
+  submitForm (): Promise<any> {
+    return (this.$refs.form as VForm).validate().then(({ valid }) => {
       if (valid) {
         this.saveForm()
         this.submit(this.form)
+        return Promise.resolve(null)
+      } else {
+        return Promise.reject(new Error('valid fail'))
       }
     })
   }
