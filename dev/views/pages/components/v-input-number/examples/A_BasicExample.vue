@@ -1,7 +1,8 @@
 <template>
 <div>
    <div class="m-3">
-     <v-input-number v-model="value"></v-input-number>
+     <v-alert class="my-2"><template slot="description">{{value || '-'}}</template></v-alert>
+     <v-input-number v-model="value" maxlength="5" :max="10" :min="2" :precision="1"></v-input-number>
    </div>
 </div>
 </template>
