@@ -81,7 +81,7 @@ const dataIterable = {
     },
     {
       name: 'remoteChange',
-      value: `param: DataRemoteChangeParam`,
+      value: `param: DataRemoteChangeParam, type: 'currentPage' | 'pageSize' | 'sorter' | 'filter'`,
       desc: '当前页、当前每页条数、排序条件、过滤条件任意一项发生变化时， 提供该事件只要是便于远程加载数据的事件监听处理'
     }
   ],

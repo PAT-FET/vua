@@ -43,7 +43,7 @@
 </template>
 <script lang="ts">
 import { Component, Vue, Watch } from 'vue-property-decorator'
-import { TableColumnSelectionCbParam, DataRemoteChangeParam } from '@/index'
+import { TableColumnSelectionCbParam, DataRemoteChangeParam, DataRemoteChangeType } from '@/index'
 
 /**
  * @title 远程加载数据
@@ -205,7 +205,8 @@ export default class RemoteExample extends Vue {
     this.count = keys.length
   }
 
-  onRemoteChange (param: DataRemoteChangeParam) {
+  onRemoteChange (param: DataRemoteChangeParam, type: DataRemoteChangeType) {
+    console.log(type)
     this.mockQuery(param)
   }
 

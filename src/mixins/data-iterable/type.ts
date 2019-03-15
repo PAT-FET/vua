@@ -23,3 +23,5 @@ export interface DataRemoteChangeParam {
     sorter: DataSorter| null
     filters: DataFilter[]
 }
+
+export type DataRemoteChangeType = 'currentPage' | 'pageSize' | 'sorter' | 'filter'
