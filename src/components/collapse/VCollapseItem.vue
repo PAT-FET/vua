@@ -2,7 +2,7 @@
 <div :class="[b(), disabledCls, borderedCls]">
   <div :class="[e('header'), disabledCls]" @click="onClick">
     <span :class="[e('icon'), activeCls]"><i class="anticon anticon-right"></i></span>
-    <span>{{title}}</span>
+    <span><slot name="title">{{title}}</slot></span>
   </div>
   <v-expand-transition>
     <div :class="[e('content')]" v-show="active">
