@@ -140,7 +140,7 @@ export default class DataIterable extends Vue {
     }
 
     // whole set of above 4, it's more convenient for remote
-  @Emit() remoteChange(param: DataRemoteChangeParam, type: DataRemoteChangeType) {}
+    @Emit() remoteChange (param: DataRemoteChangeParam, type: DataRemoteChangeType) {}
 
     @Emit() selectionChange (keys: any[]) {}
 

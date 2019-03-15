@@ -10,7 +10,7 @@
       </colgroup>
       <tbody>
         <template v-for="(row, i) in renderedData">
-        <tr :key="i" :class="[selectedRowCls(row)]">
+        <tr :key="i" :class="[selectedRowCls(row), currentRowCls(row)]" @click="onRowClick(row)">
           <template v-for="(column, j) in renderedColumns">
           <td :key="column.columnIndex"
            v-bind="span({row, column, rowIndex: i, columnIndex: j})"
@@ -92,6 +92,10 @@ export default class VTable extends mixins(Themeable, Bemable, Localeable, Group
 
   @Prop(Function) columnExcludeFn!: TableColumnExcludeFn
 
+  @Prop(Boolean) highlightCurrentRow!: boolean
+
+  @Emit() rowClick (row: any) {}
+
   // overwrite
   groupNames: string[] = ['v-table-column']
 
@@ -119,6 +123,8 @@ export default class VTable extends mixins(Themeable, Bemable, Localeable, Group
   isRight: boolean = false
 
   computeScrollDelay = throttle(this.computeScroll, 300)
+
+  currentRow: any = null
 
   get columns (): VTableColumn[] {
     let ret = this.groupItems as VTableColumn[]
@@ -316,6 +322,13 @@ export default class VTable extends mixins(Themeable, Bemable, Localeable, Group
     return this.hasSelection(row) ? 'selected' : ''
   }
 
+  currentRowCls (row: any) {
+    if (!this.highlightCurrentRow) return ''
+    let key = this.resolveRowKey(row)
+    let currentKey = this.resolveRowKey(this.currentRow)
+    return key === currentKey ? 'is-current-row' : ''
+  }
+
   resizableHeaderStyle (column: VTableColumn) {
     if (!column.resizable) return {}
     return {
@@ -347,6 +360,11 @@ export default class VTable extends mixins(Themeable, Bemable, Localeable, Group
       if (expand) this.expandRowSet.add(key)
       else this.expandRowSet.delete(key)
     }
+  }
+
+  onRowClick (row: any) {
+    this.currentRow = row
+    this.rowClick(row)
   }
 
   computeScroll () {
