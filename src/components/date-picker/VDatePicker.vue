@@ -107,6 +107,7 @@ export default class VDatePicker extends mixins(Themeable, Bemable, DatePicker) 
 
   // overwrite DateHelper
   get actucalFormat () {
+    if (this.format) return this.format
     if (this.showTime) return 'YYYY/MM/DD HH:mm:ss'
     return 'YYYY/MM/DD'
   }

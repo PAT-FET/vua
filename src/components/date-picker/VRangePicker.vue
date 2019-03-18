@@ -180,6 +180,7 @@ export default class VRangePicker extends mixins(Themeable, Bemable, RangePicker
 
   // overwrite DateHelper
   get actucalFormat () {
+    if (this.format) return this.format
     if (this.showTime) return 'YYYY/MM/DD HH:mm:ss'
     return 'YYYY/MM/DD'
   }
