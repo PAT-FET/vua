@@ -25,7 +25,7 @@ export default class DatePicker extends mixins(Picker) {
   timeSelecting: boolean = false
 
   get model (): string[] {
-    return [0, 1].map(v => this.value && this.value[v]).map(v => this.parseDate(v) ? v : '')
+    return [0, 1].map(v => (this.value && this.value[v]) || '').map(v => this.parseDate(v) ? v : '')
   }
 
   set model (model: string[]) {

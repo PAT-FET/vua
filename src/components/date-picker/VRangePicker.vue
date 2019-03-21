@@ -162,7 +162,7 @@ import { addMonth, isSameMonth } from '../../utils'
   name: 'v-range-picker'
   })
 export default class VRangePicker extends mixins(Themeable, Bemable, RangePicker) {
-  @Prop({ type: String, default: 'YYYY/MM/DD' }) format!: string
+  @Prop({ type: String }) format!: string
 
   @Prop(String) startPlaceholder!: string
 
@@ -180,6 +180,7 @@ export default class VRangePicker extends mixins(Themeable, Bemable, RangePicker
 
   // overwrite DateHelper
   get actucalFormat () {
+    if (this.format) return this.format
     if (this.showTime) return 'YYYY/MM/DD HH:mm:ss'
     return 'YYYY/MM/DD'
   }
@@ -305,6 +306,7 @@ export default class VRangePicker extends mixins(Themeable, Bemable, RangePicker
       setTimeout(() => {
         this.currentPanel1 = 'date'
         this.currentPanel2 = 'date'
+        this.timeSelecting = false
       }, 300)
     } else {
       this.updateCurrentDate()

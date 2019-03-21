@@ -41,6 +41,12 @@ const collapseItem = {
       type: 'boolean',
       desc: '禁用'
     }
+  ],
+  slots: [
+    {
+      name: 'title',
+      desc: '自定义标题'
+    }
   ]
 }
 

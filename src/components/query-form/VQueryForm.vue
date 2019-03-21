@@ -2,7 +2,7 @@
 <div :class="[b()]">
   <div :class="[e('header')]">
     <div :class="[e('header-tags')]">
-      <v-tag shape="round" color="primary" v-for="(tag, i) in tags" :key="tag.title+i" closable @close="onTagClose(tag)">
+      <v-tag shape="round" color="primary" v-for="(tag, i) in tags" :key="tag.title+i" closable @close="onTagClose(tag)" class="mt-2">
         <span class="caption">{{tag.title}} : </span> <span class="text-primary mr-2">{{tag.text}}</span>
       </v-tag>
     </div>
@@ -73,11 +73,14 @@ export default class VQueryForm extends mixins(Themeable, Bemable, Colorable) {
     return this.form
   }
 
-  submitForm () {
-    (this.$refs.form as VForm).validate().then(({ valid }) => {
+  submitForm (): Promise<any> {
+    return (this.$refs.form as VForm).validate().then(({ valid }) => {
       if (valid) {
         this.saveForm()
         this.submit(this.form)
+        return Promise.resolve(null)
+      } else {
+        return Promise.reject(new Error('valid fail'))
       }
     })
   }

@@ -31,7 +31,7 @@ const checkbox = {
       value: `string | boolean`,
       desc: '原生checkbox 的change事件'
     }
-  ],
+  ]
 }
 
 const checkboxButton = {

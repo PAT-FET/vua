@@ -51,6 +51,12 @@ const dataIterable = {
       default: ``,
       type: `boolean`,
       desc: '是否是远程获取数据，该模式下， 不再将获取来的数据进行分页、排序以及过滤，而是直接展示'
+    },
+    {
+      name: 'highlightCurrentRow',
+      default: ``,
+      type: `boolean`,
+      desc: '是否高亮当前行'
     }
   ],
   events: [
@@ -81,8 +87,13 @@ const dataIterable = {
     },
     {
       name: 'remoteChange',
-      value: `param: DataRemoteChangeParam`,
+      value: `param: DataRemoteChangeParam, type: 'currentPage' | 'pageSize' | 'sorter' | 'filter'`,
       desc: '当前页、当前每页条数、排序条件、过滤条件任意一项发生变化时， 提供该事件只要是便于远程加载数据的事件监听处理'
+    },
+    {
+      name: 'rowClick',
+      value: `row`,
+      desc: '表格行点击事件'
     }
   ],
   methods: [

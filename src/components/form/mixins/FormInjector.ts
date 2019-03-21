@@ -3,6 +3,7 @@ import { mixins } from 'vue-class-component'
 import { FormLabelPosition, FormValidateStatus, FormValidateError, FormRule, FormRuleValidator, FormLayout, FormFieldValidateResult } from '../type'
 import Groupable from '../../../mixins/Groupable'
 import { buildinValidatorMap } from '../validators'
+import { getPropByPath } from '@/utils'
 
 @Component
 export default class FormInjector extends Vue {
@@ -86,12 +87,16 @@ export default class FormInjector extends Vue {
   }
 
   get value () {
-    return this.model && this.model[this.prop]
+    if (!this.model || !this.prop) return null
+    let prop = getPropByPath(this.model, this.prop)
+    return prop && prop.v[prop.k]
   }
 
   set value (value: any) {
-    if (!this.model) return
-    this.model[this.prop] = value
+    if (!this.model || !this.prop) return
+    let prop = getPropByPath(this.model, this.prop)
+    if (!prop) return
+    prop.o[prop.v] = value
   }
 
   get validatingMessage (): string {

@@ -54,10 +54,16 @@
                     background: $bg-color-active;
                 }
             }
-            &.selected {
+            &.selected{
                 background-color: $table-selected-row-bg;
                 &>td {
                     background-color: $table-selected-row-bg;
+                }
+            }
+            &.is-current-row {
+                background-color: $bg-color-active;
+                &>td {
+                    background-color: $bg-color-active;
                 }
             }
         }

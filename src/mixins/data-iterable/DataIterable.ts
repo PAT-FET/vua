@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Component from 'vue-class-component'
 import { Prop, Emit, Watch } from 'vue-property-decorator'
-import { DataPagination, DataSorter, DataFilter, DataRowKeyFunc, DataRemoteChangeParam } from './type'
+import { DataPagination, DataSorter, DataFilter, DataRowKeyFunc, DataRemoteChangeParam, DataRemoteChangeType } from './type'
 import { ReactiveSet } from '../../utils/collection'
 
 @Component
@@ -100,7 +100,7 @@ export default class DataIterable extends Vue {
         },
         sorter: this.actualSorter,
         filters: this.actualFilters
-      })
+      }, 'currentPage')
     }
 
     @Emit() pageSizeChange (pageSize: number) {
@@ -112,7 +112,7 @@ export default class DataIterable extends Vue {
         },
         sorter: this.actualSorter,
         filters: this.actualFilters
-      })
+      }, 'pageSize')
     }
 
     @Emit() sorterChange (sorter: DataSorter | null) {
@@ -124,7 +124,7 @@ export default class DataIterable extends Vue {
         },
         sorter,
         filters: this.actualFilters
-      })
+      }, 'sorter')
     }
 
     @Emit() filtersChange (filters: DataFilter[]) {
@@ -136,11 +136,11 @@ export default class DataIterable extends Vue {
         },
         sorter: this.actualSorter,
         filters
-      })
+      }, 'filter')
     }
 
     // whole set of above 4, it's more convenient for remote
-    @Emit() remoteChange (param: DataRemoteChangeParam) {}
+    @Emit() remoteChange (param: DataRemoteChangeParam, type: DataRemoteChangeType) {}
 
     @Emit() selectionChange (keys: any[]) {}
 

@@ -5,6 +5,7 @@
      :disabled="disabled"
      @keydown.up.native.prevent="add"
      @keydown.down.native.prevent="subtract"
+     v-bind="$attrs"
      style="width: 100%;"
      @change="onChange"></v-input>
 
@@ -85,12 +86,15 @@ export default class VInputNumber extends mixins(Themeable, Bemable) {
     }
     if (!value) {
       this.input(null)
+      this.$forceUpdate()
       return
     }
     let num = +value
     if (this.max !== undefined && num > this.max) num = this.max
     if (this.min !== undefined && num < this.min) num = this.min
+    if (this.precision !== undefined) num = +num.toFixed(this.precision)
     this.input(num)
+    this.$forceUpdate()
   }
 
   add () {
