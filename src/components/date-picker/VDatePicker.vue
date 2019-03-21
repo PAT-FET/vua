@@ -160,7 +160,7 @@ export default class VDatePicker extends mixins(Themeable, Bemable, DatePicker) 
   }
 
   onSelectToday () {
-    this.onSelectDate(new Date())
+    this.model = this.formatDate(new Date())
     this.visible = false
   }
 
