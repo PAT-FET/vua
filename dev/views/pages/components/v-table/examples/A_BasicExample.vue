@@ -8,8 +8,8 @@
    <div class="m-3">
      <v-table :size="size" :data-source="dataSource" highlight-current-row @row-click="onRowClick">
        <v-table-column type="index" label="#"></v-table-column>
-       <v-table-column prop="name" label="姓名"></v-table-column>
-       <v-table-column prop="age" label="年龄"></v-table-column>
+       <v-table-column prop="name" label="姓名" :order="3"></v-table-column>
+       <v-table-column prop="age" label="年龄" :order="2"></v-table-column>
        <v-table-column prop="address" label="地址">
          <template slot-scope="{row}">{{row.address}}</template>
        </v-table-column>

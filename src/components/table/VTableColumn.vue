@@ -39,6 +39,8 @@ export default class VTableColumn extends mixins(Themeable, Bemable, Localeable,
 
     @Prop(Boolean) resizable!: boolean
 
+    @Prop({type: Number, default: 0}) order!: number
+
     // overwrite from group
     groupNames: string[] = ['v-table-column']
 
