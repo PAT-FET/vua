@@ -133,7 +133,10 @@ export default class VTable extends mixins(Themeable, Bemable, Localeable, Group
         return !this.columnExcludeFn(v.prop)
       })
     }
-    return ret.sort((a, b) => a.order - b.order)
+    return ret.sort((a, b) => {
+      let r = a.order > b.order
+      return r as any
+    })
   }
 
   get renderedColumns (): VTableColumn [] {
