@@ -70,9 +70,9 @@ export default class DataIterable extends Vue {
 
     set actualPageSize (pageSize: number) {
       this.localPageSize = pageSize
-      this.localCurrentPage = 1
+      // this.localCurrentPage = 1
       this.pageSizeChange(pageSize)
-      this.currentPageChange(1)
+      // this.currentPageChange(1)
     }
 
     get actualSorter (): DataSorter| null {
@@ -106,9 +106,10 @@ export default class DataIterable extends Vue {
     }
 
     @Emit() pageSizeChange (pageSize: number) {
+      this.localCurrentPage = 1
       this.remoteChange({
         pagination: {
-          currentPage: this.actualCurrentPage,
+          currentPage: 1,
           pageSize,
           total: 0 // no use, just eliminate type error
         },
