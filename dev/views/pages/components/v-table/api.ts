@@ -242,6 +242,12 @@ const tableColumn = {
       default: ``,
       type: `boolean`,
       desc: '表格列是否可resize'
+    },
+    {
+      name: 'order',
+      default: `0`,
+      type: `number`,
+      desc: '确定表格列的顺序'
     }
   ]
 }

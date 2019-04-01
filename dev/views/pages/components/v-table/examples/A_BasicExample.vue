@@ -10,7 +10,7 @@
        <v-table-column type="index" label="#"></v-table-column>
        <v-table-column prop="name" label="姓名"></v-table-column>
        <v-table-column prop="age" label="年龄"></v-table-column>
-       <v-table-column prop="address" label="地址">
+       <v-table-column prop="address" label="地址" :order="1">
          <template slot-scope="{row}">{{row.address}}</template>
        </v-table-column>
        <v-table-column column-key="opt" label="操作">

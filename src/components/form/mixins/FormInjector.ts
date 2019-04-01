@@ -89,14 +89,14 @@ export default class FormInjector extends Vue {
   get value () {
     if (!this.model || !this.prop) return null
     let prop = getPropByPath(this.model, this.prop)
-    return prop && prop.v[prop.k]
+    return prop && prop.o[prop.k]
   }
 
   set value (value: any) {
     if (!this.model || !this.prop) return
     let prop = getPropByPath(this.model, this.prop)
     if (!prop) return
-    prop.o[prop.v] = value
+    prop.o[prop.k] = value
   }
 
   get validatingMessage (): string {
