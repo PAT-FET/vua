@@ -18,7 +18,7 @@
         <tbody>
         <tr v-for="(row, i) in rows" :key="i" :class="[e('row')]">
             <td v-for="(cell, j) in row" :key="j" >
-                <div :class="[e('cell'), cellCls, currentMonthCls(cell), selectedDateCls(cell), isTodayCls(cell)]"
+                <div :class="[e('cell'), cellCls, currentMonthCls(cell), selectedDateCls(cell), isTodayCls(cell), disabledDateCls(cell)]"
                   @click="onSelectDate(cell)">
                     <slot name="cell" :date="cell">{{dayText(cell)}}</slot>
                 </div>
@@ -52,7 +52,11 @@ export default class VCalendar extends mixins(Themeable, Bemable, DateHelper) {
 
   @Prop(String) cellCls!: string
 
+  @Prop(Function) disabledDate!: (date: Date) => boolean
+
   @Emit() input (input: string) {}
+
+  @Emit() cellClick (date: Date) {}
 
   localValue: string = ''
 
@@ -138,7 +142,17 @@ export default class VCalendar extends mixins(Themeable, Bemable, DateHelper) {
   }
 
   onSelectDate (date: Date) {
+    if (this.actualDisabledDate(date)) return
+    this.cellClick(date)
     this.selectedDate = date
+  }
+
+  actualDisabledDate (date: Date) {
+    return this.disabledDate && this.disabledDate(date)
+  }
+
+  disabledDateCls (date: Date) {
+    return this.actualDisabledDate(date) ? 'disabled' : ''
   }
 
   currentMonthCls (date: Date) {

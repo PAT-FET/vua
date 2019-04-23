@@ -82,5 +82,10 @@
             background-color: $calendar-hover-color;
             color: #fff;
         }
+
+        &.disabled {
+            cursor: not-allowed;
+            color: $disabled-color;
+        }
     }
 }
