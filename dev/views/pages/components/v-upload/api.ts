@@ -90,6 +90,12 @@ export default {
       default: ``,
       type: 'UploadErrorFn',
       desc: '上传失败钩子'
+    },
+    {
+      name: 'removeFn',
+      default: ``,
+      type: 'UploadRemoveFn',
+      desc: '移除文件钩子， 返回false或Promise拒绝将阻止默认行为'
     }
   ],
   events: [

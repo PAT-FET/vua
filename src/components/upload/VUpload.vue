@@ -11,7 +11,7 @@
 import { Component, Vue, Prop, Emit, Watch, Model, Provide } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
 import { Bemable, Themeable } from '../../mixins'
-import { UploadBeforeFn, UploadRequest, UploadFile, UploadType, UploadListType, UploadRequestParam, UploadRequestResult, UploadChangeParam, UploadProgressFn, UploadSuccessFn, UploadErrorFn } from './type'
+import { UploadBeforeFn, UploadRequest, UploadFile, UploadType, UploadListType, UploadRequestParam, UploadRequestResult, UploadChangeParam, UploadProgressFn, UploadSuccessFn, UploadErrorFn, UploadRemoveFn } from './type'
 import { generateUploadFile } from './util'
 import { request } from './request'
 import VUploadControl from './widget/VUploadControl.vue'
@@ -54,6 +54,8 @@ export default class VUpload extends mixins(Themeable, Bemable) {
   @Prop(Function) succcessFn!: UploadSuccessFn
 
   @Prop(Function) errorFn!: UploadErrorFn
+
+  @Prop(Function) removeFn!: UploadRemoveFn
 
   localFileList: UploadFile[] = []
 
@@ -119,12 +121,28 @@ export default class VUpload extends mixins(Themeable, Bemable) {
   }
 
   onRemoveFile (file: UploadFile) {
+    const vm = this
     let ret = this.requestMap.get(file.uid)
     if (ret) {
       ret.abort()
       this.requestMap.delete(file.uid)
     }
-    this.actualFileList = this.actualFileList.filter(v => v !== file && v.uid !== file.uid)
+    if (this.removeFn) {
+      let res = this.removeFn(file, this.actualFileList)
+      if (res instanceof Promise) {
+        res.then(() => {
+          remove()
+        })
+      } else {
+        if (res) remove()
+      }
+    } else {
+      remove()
+    }
+
+    function remove () {
+      vm.actualFileList = vm.actualFileList.filter(v => v !== file && v.uid !== file.uid)
+    }
   }
 
   upload () {
