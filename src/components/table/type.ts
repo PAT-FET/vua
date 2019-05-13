@@ -53,3 +53,7 @@ export interface TableSpanFn {
 export interface TableColumnExcludeFn {
     (prop: string): boolean
 }
+
+export interface TableRowClassFn {
+    (param: {row: any, rowIndex: number}): string
+}

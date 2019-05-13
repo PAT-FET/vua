@@ -10,7 +10,7 @@
       </colgroup>
       <tbody>
         <template v-for="(row, i) in renderedData">
-        <tr :key="i" :class="[selectedRowCls(row), currentRowCls(row)]" @click="onRowClick(row)">
+        <tr :key="i" :class="[selectedRowCls(row), currentRowCls(row), resolveRowClass({row, rowIndex: i})]" @click="onRowClick(row)">
           <template v-for="(column, j) in renderedColumns">
           <td :key="column.columnIndex"
            v-bind="span({row, column, rowIndex: i, columnIndex: j})"
@@ -58,7 +58,7 @@ import { VTableColumn } from './index'
 import VTableCell from './widget/VTableCell.vue'
 import VTableHeaderCell from './widget/VTableHeaderCell.vue'
 import VTableExpandRow from './widget/VTableExpandRow.vue'
-import { TableSize, TableHeaderColumn, TableColumnSelectionCb, TableSpanFn, TableCellCbParam, TableColumnExcludeFn } from './type'
+import { TableSize, TableHeaderColumn, TableColumnSelectionCb, TableSpanFn, TableCellCbParam, TableColumnExcludeFn, TableRowClassFn } from './type'
 import { VPagination } from '../pagination'
 import { Loading } from '../../directives'
 import { ReactiveSet, throttle } from '../../utils'
@@ -93,6 +93,8 @@ export default class VTable extends mixins(Themeable, Bemable, Localeable, Group
   @Prop(Function) columnExcludeFn!: TableColumnExcludeFn
 
   @Prop(Boolean) highlightCurrentRow!: boolean
+
+  @Prop([Function, String]) rowClass!: TableRowClassFn | string
 
   @Emit() rowClick (row: any) {}
 
@@ -336,6 +338,13 @@ export default class VTable extends mixins(Themeable, Bemable, Localeable, Group
     let key = this.resolveRowKey(row)
     let currentKey = this.resolveRowKey(this.currentRow)
     return key === currentKey ? 'is-current-row' : ''
+  }
+
+  resolveRowClass ({ row, rowIndex }: any) {
+    if (!this.rowClass) return ''
+    if (typeof this.rowClass === 'string') return this.rowClass
+    if (typeof this.rowClass === 'function') this.rowClass({ row, rowIndex })
+    return ''
   }
 
   resizableHeaderStyle (column: VTableColumn) {
