@@ -1,6 +1,6 @@
 {
   "name": "vua",
-  "version": "0.7.2",
+  "version": "0.7.3",
   "main": "dist/vua.common.js",
   "types": "types/index.d.ts",
   "scripts": {
