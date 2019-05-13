@@ -343,7 +343,7 @@ export default class VTable extends mixins(Themeable, Bemable, Localeable, Group
   resolveRowClass ({ row, rowIndex }: any) {
     if (!this.rowClass) return ''
     if (typeof this.rowClass === 'string') return this.rowClass
-    if (typeof this.rowClass === 'function') this.rowClass({ row, rowIndex })
+    if (typeof this.rowClass === 'function') return this.rowClass({ row, rowIndex })
     return ''
   }
 
