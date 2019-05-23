@@ -187,13 +187,19 @@ const tableColumn = {
       name: 'prop',
       default: ``,
       type: `string`,
-      desc: '标格列所代表的数据字段'
+      desc: '表格列所代表的数据字段'
     },
     {
       name: 'label',
       default: ``,
       type: `string`,
-      desc: '标格列标题'
+      desc: '表格列标题'
+    },
+    {
+      name: 'title',
+      default: ``,
+      type: `string`,
+      desc: '表格列标题title'
     },
     {
       name: 'fixed',

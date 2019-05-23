@@ -1,5 +1,5 @@
 <template>
-<div :class="[b(), sizeCls]">
+<div :class="[b(), sizeCls]" :title="column.title">
   <div v-if="column.type === 'selection'">
    <v-checkbox v-model="selected" :indeterminate="hasSelected && !selected"></v-checkbox>
    <v-dropdown :class="[e('selection-menu')]">
