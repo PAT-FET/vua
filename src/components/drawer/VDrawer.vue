@@ -4,7 +4,7 @@
     <div :class="[e('mask')]" v-show="visible" @click="onMaskClose"></div>
   </transition>
    <transition :name="placementTransition">
-    <div :class="[e('wrap')]" :style="[sizeStyle, offsetStyle]" v-if="visible">
+    <div :class="[e('wrap')]" :style="[sizeStyle, offsetStyle]" v-show="visible">
       <div :class="[e('content')]">
         <div :class="[e('header')]" v-show="title || $slots.header">
           <slot name="header"><div :class="[e('title')]">{{title}}</div></slot>
