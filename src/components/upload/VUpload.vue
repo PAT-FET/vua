@@ -166,7 +166,8 @@ export default class VUpload extends mixins(Themeable, Bemable) {
   }
 
   doUploadFile (file: UploadFile) {
-    let ret = request(this.getRequestParam(file))
+    const req = this.customRequest || request
+    let ret = req(this.getRequestParam(file))
     file.status = 'uploading'
     this.requestMap.set(file.uid, ret)
     this.change({ file, fileList: this.actualFileList })
