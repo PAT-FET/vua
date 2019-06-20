@@ -51,7 +51,7 @@ export default class VUpload extends mixins(Themeable, Bemable) {
 
   @Prop(Function) progressFn!: UploadProgressFn
 
-  @Prop(Function) succcessFn!: UploadSuccessFn
+  @Prop(Function) successFn!: UploadSuccessFn
 
   @Prop(Function) errorFn!: UploadErrorFn
 
@@ -195,7 +195,7 @@ export default class VUpload extends mixins(Themeable, Bemable) {
     this.requestMap.delete(file.uid)
     file.status = 'success'
     file.response = res
-    if (this.succcessFn) this.succcessFn(res, file, this.actualFileList)
+    if (this.successFn) this.successFn(res, file, this.actualFileList)
     this.change({ file, fileList: this.actualFileList })
   }
 

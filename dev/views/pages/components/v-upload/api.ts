@@ -80,7 +80,7 @@ export default {
       desc: '上传进度钩子'
     },
     {
-      name: 'succcessFn',
+      name: 'successFn',
       default: ``,
       type: 'UploadSuccessFn',
       desc: '上传成功钩子'
