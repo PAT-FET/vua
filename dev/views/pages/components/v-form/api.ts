@@ -135,7 +135,7 @@ const formItem = {
       name: 'label',
       desc: '自定义标题'
     }
-  ],
+  ]
 }
 
 export default [

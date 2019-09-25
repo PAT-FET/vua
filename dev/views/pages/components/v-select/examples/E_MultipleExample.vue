@@ -83,7 +83,7 @@ export default class GroupExample extends Vue {
 
   value1: string[] = []
 
-  value2: string[] = []
+  value2: string[] = ['上海']
 
   value3: string[] = []
 
