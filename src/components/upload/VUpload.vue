@@ -122,11 +122,6 @@ export default class VUpload extends mixins(Themeable, Bemable) {
 
   onRemoveFile (file: UploadFile) {
     const vm = this
-    let ret = this.requestMap.get(file.uid)
-    if (ret) {
-      ret.abort()
-      this.requestMap.delete(file.uid)
-    }
     if (this.removeFn) {
       let res = this.removeFn(file, this.actualFileList)
       if (res instanceof Promise) {
@@ -141,6 +136,11 @@ export default class VUpload extends mixins(Themeable, Bemable) {
     }
 
     function remove () {
+      let ret = vm.requestMap.get(file.uid)
+      if (ret) {
+        ret.abort()
+        vm.requestMap.delete(file.uid)
+      }
       vm.actualFileList = vm.actualFileList.filter(v => v !== file && v.uid !== file.uid)
     }
   }
