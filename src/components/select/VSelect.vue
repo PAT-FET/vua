@@ -144,6 +144,15 @@ export default class VSelect extends mixins(Themeable, Bemable, Group, Localeabl
 
   get multipleSelectedItem (): SelectItem[] {
     if (!this.multiple) return []
+    if (this.multiple && this.searchFn) {
+      return (this.value as any || []).map((v: any) => {
+        return {
+          value: v,
+          label: v,
+          disabled: false
+        }
+      })
+    }
     return (this.value as string[]).map(v => {
       return this.selectItems.find(w => w.value === v)
     }).filter(v => !!v) as SelectItem[]

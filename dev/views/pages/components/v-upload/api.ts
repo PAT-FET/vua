@@ -80,7 +80,7 @@ export default {
       desc: '上传进度钩子'
     },
     {
-      name: 'succcessFn',
+      name: 'successFn',
       default: ``,
       type: 'UploadSuccessFn',
       desc: '上传成功钩子'
@@ -90,6 +90,12 @@ export default {
       default: ``,
       type: 'UploadErrorFn',
       desc: '上传失败钩子'
+    },
+    {
+      name: 'removeFn',
+      default: ``,
+      type: 'UploadRemoveFn',
+      desc: '移除文件钩子， 返回false或Promise拒绝将阻止默认行为'
     }
   ],
   events: [

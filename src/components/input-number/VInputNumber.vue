@@ -21,6 +21,7 @@ import { mixins } from 'vue-class-component'
 import { Bemable, Themeable } from '../../mixins'
 import { VInput } from '../input'
 import { InputNumberSize } from './type'
+import { fireEvent } from '../../utils/dom'
 
 @Component({
   components: {
@@ -49,7 +50,9 @@ export default class VInputNumber extends mixins(Themeable, Bemable) {
     this.change(value)
   }
 
-  @Emit() change (value: number | null) {}
+  @Emit() change (value: number | null) {
+    fireEvent(this.$el, 'change')
+  }
 
   get actualValue (): number {
     let num: number = (this.value !== 0 && !this.value) ? 0 : +this.value

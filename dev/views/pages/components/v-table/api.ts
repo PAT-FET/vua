@@ -57,6 +57,12 @@ const dataIterable = {
       default: ``,
       type: `boolean`,
       desc: '是否高亮当前行'
+    },
+    {
+      name: 'row-class',
+      default: ``,
+      type: `string | ({row, rowIndex} => string)`,
+      desc: '行的 className 的回调方法,也可以使用字符串为所有行设置一个固定的 className'
     }
   ],
   events: [
@@ -181,13 +187,19 @@ const tableColumn = {
       name: 'prop',
       default: ``,
       type: `string`,
-      desc: '标格列所代表的数据字段'
+      desc: '表格列所代表的数据字段'
     },
     {
       name: 'label',
       default: ``,
       type: `string`,
-      desc: '标格列标题'
+      desc: '表格列标题'
+    },
+    {
+      name: 'title',
+      default: ``,
+      type: `string`,
+      desc: '表格列标题title'
     },
     {
       name: 'fixed',

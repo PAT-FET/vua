@@ -210,6 +210,10 @@ const components: any = {
     title: 'List 列表',
     group: 'dataDisplay'
   },
+  VCalendar: {
+    title: 'Calendar 日历',
+    group: 'dataDisplay'
+  },
   VBackTop: {
     title: 'BackTop 回到顶部',
     group: 'other'

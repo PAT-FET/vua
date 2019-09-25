@@ -58,3 +58,7 @@ export interface UploadSuccessFn {
 export interface UploadErrorFn {
     (err: Error, file: UploadFile, fileList: UploadFile[]): void
 }
+
+export interface UploadRemoveFn {
+    (file: UploadFile, fileList: UploadFile[]): Promise<any> | boolean
+}

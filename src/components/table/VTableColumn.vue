@@ -41,6 +41,8 @@ export default class VTableColumn extends mixins(Themeable, Bemable, Localeable,
 
     @Prop({type: Number, default: 0}) order!: number
 
+    @Prop(String) title!: string
+
     // overwrite from group
     groupNames: string[] = ['v-table-column']
 

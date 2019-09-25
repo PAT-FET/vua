@@ -129,6 +129,12 @@ const formItem = {
       returnVal: ``,
       desc: '重置表单域'
     }
+  ],
+  slots: [
+    {
+      name: 'label',
+      desc: '自定义标题'
+    }
   ]
 }
 

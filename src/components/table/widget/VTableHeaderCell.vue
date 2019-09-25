@@ -1,8 +1,8 @@
 <template>
-<div :class="[b(), sizeCls]">
+<div :class="[b(), sizeCls]" :title="column.title">
   <div v-if="column.type === 'selection'">
    <v-checkbox v-model="selected" :indeterminate="hasSelected && !selected"></v-checkbox>
-   <v-dropdown :class="[e('selection-menu')]">
+   <v-dropdown :class="[e('selection-menu')]" v-if="column.selections">
       <span :class="[e('selection-menu-icon')]"><i class="anticon anticon-down"></i></span>
       <v-dropdown-menu slot="dropdown">
         <v-dropdown-item v-for="sel in column.selections" :key="sel.key"

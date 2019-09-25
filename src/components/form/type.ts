@@ -22,7 +22,7 @@ export interface FormRuleValidator {
 export interface FormRule {
     message: string
     trigger: 'change' | 'blur'
-    validator: 'string' | FormRuleValidator
+    validator: string | FormRuleValidator
 }
 
 export type FormLayout = 'horizontal' | 'vertical'
