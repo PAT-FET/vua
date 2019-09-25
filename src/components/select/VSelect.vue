@@ -116,9 +116,6 @@ export default class VSelect extends mixins(Themeable, Bemable, Group, Localeabl
 
   activeValue: string = ''
 
-  // 远程搜索选中保留项
-  remoteCheckedItems: SelectItem[] = []
-
   @Emit() input (value: SelectValue) {
     this.change(value)
   }
@@ -148,7 +145,13 @@ export default class VSelect extends mixins(Themeable, Bemable, Group, Localeabl
   get multipleSelectedItem (): SelectItem[] {
     if (!this.multiple) return []
     if (this.multiple && this.searchFn) {
-      return this.remoteCheckedItems
+      return (this.value as any || []).map((v: any) => {
+        return {
+          value: v,
+          label: v,
+          disabled: false
+        }
+      })
     }
     return (this.value as string[]).map(v => {
       return this.selectItems.find(w => w.value === v)
@@ -459,15 +462,6 @@ export default class VSelect extends mixins(Themeable, Bemable, Group, Localeabl
     }
     if (this.showAddableItem) {
       this.activeValue = this.inputValue
-    }
-  }
-
-  @Watch('value') valueChange () {
-    if (this.searchFn && this.multiple) {
-      let ret = (this.value as string[]).map(v => {
-        return [...this.selectItems, ...this.remoteCheckedItems].find(w => w.value === v)
-      }).filter(v => !!v) as SelectItem[]
-      this.remoteCheckedItems = ret
     }
   }
 
