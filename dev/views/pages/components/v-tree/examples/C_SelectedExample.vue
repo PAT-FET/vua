@@ -6,7 +6,7 @@
     <v-button color="primary" @click="select">选中 1-1、2-1</v-button>
   </div>
   <div class="my-3">
-    <v-tree node-key="key" :checkStrictly="checkStrictly" checkable :data-source="dataSource" ref="tree"></v-tree>
+    <v-tree node-key="key" :checkStrictly="checkStrictly" checkable :data-source="dataSource" ref="tree" @check="onCheck"></v-tree>
   </div>
 </div>
 </template>
@@ -78,6 +78,10 @@ export default class BasicExample extends Vue {
 
   select () {
     this.$refs.tree.setCheckedKeys(['1-1', '2-1'])
+  }
+
+  onCheck (node: any) {
+    console.log('event [check]', node)
   }
 
   $refs!: {

@@ -105,6 +105,13 @@ const tree = {
     },
     ...treeIterable.props
   ],
+  events: [
+    {
+      name: 'check',
+      value: `node: Node`,
+      desc: '复选框点击触发'
+    }
+  ],
   methods: [
     ...treeIterable.methods
   ],

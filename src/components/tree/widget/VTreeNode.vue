@@ -110,6 +110,7 @@ export default class VTreeNode extends mixins(Themeable, Bemable) {
 
   onSelect (selected: boolean) {
     this.node.selectNode(selected)
+    this.getTree().check(this.node)
   }
 
   onTextClick () {
