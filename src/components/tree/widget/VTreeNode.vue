@@ -177,7 +177,7 @@ export default class VTreeNode extends mixins(Themeable, Bemable) {
       props: {
         value: this.selected,
         indeterminate: this.indeterminate,
-        disabled: this.node.disabled
+        disabled: this.node.disabled || this.getTree().disabled
       },
       on: {
         input: this.onSelect

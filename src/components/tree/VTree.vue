@@ -14,6 +14,8 @@ import VTreeNode from './widget/VTreeNode.vue'
 export default class VTree extends mixins(Themeable, Bemable, TreeIterable) {
   @Prop(Boolean) defaultExpandAll!: boolean
 
+  @Prop(Boolean) disabled!: boolean
+
   @Emit() check (node: Node) {}
 
   @Provide() getTree (): VTree {

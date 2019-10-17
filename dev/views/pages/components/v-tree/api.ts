@@ -103,6 +103,12 @@ const tree = {
       type: `boolean`,
       desc: '是否默认展开'
     },
+    {
+      name: 'disabled',
+      default: ``,
+      type: `boolean`,
+      desc: '禁用'
+    },
     ...treeIterable.props
   ],
   events: [
