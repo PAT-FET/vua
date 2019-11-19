@@ -4,9 +4,10 @@
     <v-alert class="mb-3" type="warning" description="默认关联选中， 即选择父节点， 其子节点也相应选上；所有子节点选中， 父节点也相应选中"></v-alert>
     <v-checkbox v-model="checkStrictly" class="mr-2">是否取消关联选中</v-checkbox>
     <v-button color="primary" @click="select">选中 1-1、2-1</v-button>
+    <v-checkbox v-model="disabled" class="ml-3">禁用</v-checkbox>
   </div>
   <div class="my-3">
-    <v-tree node-key="key" :checkStrictly="checkStrictly" checkable :data-source="dataSource" ref="tree"></v-tree>
+    <v-tree node-key="key" :disabled="disabled" :checkStrictly="checkStrictly" checkable :data-source="dataSource" ref="tree" @check="onCheck"></v-tree>
   </div>
 </div>
 </template>
@@ -24,6 +25,8 @@ import { VForm, VTree } from 'src'
   })
 export default class BasicExample extends Vue {
   checkStrictly: boolean = false
+
+  disabled: boolean = false
 
   dataSource = [{
     key: '1',
@@ -78,6 +81,10 @@ export default class BasicExample extends Vue {
 
   select () {
     this.$refs.tree.setCheckedKeys(['1-1', '2-1'])
+  }
+
+  onCheck (node: any) {
+    console.log('event [check]', node)
   }
 
   $refs!: {
