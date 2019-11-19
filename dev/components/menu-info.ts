@@ -214,6 +214,10 @@ const components: any = {
     title: 'Calendar 日历',
     group: 'dataDisplay'
   },
+  VEmpty: {
+    title: 'Empty 空状态',
+    group: 'dataDisplay'
+  },
   VBackTop: {
     title: 'BackTop 回到顶部',
     group: 'other'
