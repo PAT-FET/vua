@@ -218,6 +218,10 @@ const components: any = {
     title: 'Empty 空状态',
     group: 'dataDisplay'
   },
+  VCarousel: {
+    title: 'Carousel 走马灯',
+    group: 'dataDisplay'
+  },
   VBackTop: {
     title: 'BackTop 回到顶部',
     group: 'other'

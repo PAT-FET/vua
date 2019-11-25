@@ -21,7 +21,7 @@ export default {
     {
       name: 'image',
       desc: '自定义图片'
-    },
+    }
 
   ]
 }
