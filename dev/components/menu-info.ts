@@ -226,6 +226,10 @@ const components: any = {
     title: 'Statistic 统计数值',
     group: 'dataDisplay'
   },
+  VTimeline: {
+    title: 'Timeline 时间轴',
+    group: 'dataDisplay'
+  },
   VBackTop: {
     title: 'BackTop 回到顶部',
     group: 'other'

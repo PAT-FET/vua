@@ -1,0 +1,98 @@
+@import "../../../style/mixins/bem.scss";
+@import "../../../style/mixins/elevation.scss";
+@import "../../../style/mixins/misc.scss";
+@import "../../../style/mixins/reset.scss";
+@import "../../../style/var.scss";
+@import "./mixins.scss";
+
+@include b(v-timeline-item) {
+    @include reset-component;
+    position: relative;
+    padding: 0 0 1.25rem;
+
+    @include e(head) {
+        position: absolute;
+        height: .625rem;
+        width: .625rem;
+        top: .375rem;
+        background: var(--bg-color);
+    }
+
+    @include e(head-inner) {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    @include e(tail) {
+        position: absolute;
+        height: calc(100% - .25rem);
+        border-left: solid .125rem var(--border-color-split);
+        top: .5rem;
+    }
+
+    @include e(icon) {
+        height: .625rem;
+        width: .625rem;
+        border-radius: 10rem;
+        border-width: .125rem;
+        border-style: solid;
+    }
+
+    @include e(timestamp) {
+        font-size: .75rem;
+        color: var(--text-color-secondary);
+    }
+
+    @include m(left) {
+        @include e(tail) {
+            left: .25rem;
+        }
+
+        @include e(body) {
+            margin-left: 1.125rem;
+        }
+    }
+
+    @include m(left) {
+        @include e(tail) {
+            left: .25rem;
+        }
+
+        @include e(body) {
+            margin-left: 1.125rem;
+        }
+    }
+
+    @include m(right) {
+        @include e(head) {
+            right: 0;
+        }
+
+        @include e(tail) {
+            right: .25rem;
+        }
+
+        @include e(body) {
+            text-align: right;
+            margin-right: 1.125rem;
+        }
+    }
+
+    @include m(placement-top) {
+        @include e(body) {
+            display: flex;
+            flex-direction: column-reverse;
+        }
+        @include e(timestamp) {
+            margin-bottom: .5rem;
+        }
+        
+    }
+
+    @include m(placement-bottom) {
+        @include e(timestamp) {
+            margin-top: .5rem;
+        }
+    }
+}
