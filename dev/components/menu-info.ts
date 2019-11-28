@@ -222,6 +222,10 @@ const components: any = {
     title: 'Carousel 走马灯',
     group: 'dataDisplay'
   },
+  VStatistic: {
+    title: 'Statistic 统计数值',
+    group: 'dataDisplay'
+  },
   VBackTop: {
     title: 'BackTop 回到顶部',
     group: 'other'
