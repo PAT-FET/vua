@@ -82,6 +82,10 @@ const components: any = {
     title: 'Drawer 抽屉',
     group: 'feedback'
   },
+  VResult: {
+    title: 'Result 结果',
+    group: 'feedback'
+  },
   VLayout: {
     title: 'Layout 布局',
     group: 'layout'
@@ -212,6 +216,22 @@ const components: any = {
   },
   VCalendar: {
     title: 'Calendar 日历',
+    group: 'dataDisplay'
+  },
+  VEmpty: {
+    title: 'Empty 空状态',
+    group: 'dataDisplay'
+  },
+  VCarousel: {
+    title: 'Carousel 走马灯',
+    group: 'dataDisplay'
+  },
+  VStatistic: {
+    title: 'Statistic 统计数值',
+    group: 'dataDisplay'
+  },
+  VTimeline: {
+    title: 'Timeline 时间轴',
     group: 'dataDisplay'
   },
   VBackTop: {
