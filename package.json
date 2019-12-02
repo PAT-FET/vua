@@ -1,6 +1,6 @@
 {
   "name": "vua",
-  "version": "0.7.15",
+  "version": "0.8.0",
   "main": "dist/vua.common.js",
   "types": "types/index.d.ts",
   "scripts": {
@@ -62,5 +62,8 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/PAT-FET/vua.git"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
   }
 }
