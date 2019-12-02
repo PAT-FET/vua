@@ -82,6 +82,10 @@ const components: any = {
     title: 'Drawer 抽屉',
     group: 'feedback'
   },
+  VResult: {
+    title: 'Result 结果',
+    group: 'feedback'
+  },
   VLayout: {
     title: 'Layout 布局',
     group: 'layout'

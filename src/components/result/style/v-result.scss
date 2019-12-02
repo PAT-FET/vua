@@ -1,0 +1,43 @@
+@import "../../../style/mixins/bem.scss";
+@import "../../../style/mixins/elevation.scss";
+@import "../../../style/mixins/misc.scss";
+@import "../../../style/mixins/reset.scss";
+@import "../../../style/mixins/float.scss";
+@import "../../../style/var.scss";
+@import "./mixins.scss";
+@import "./var.scss";
+
+@include b(v-result) {
+    @include reset-component();
+
+    @include e(icon) {
+      margin-bottom: 1.5rem;
+      text-align: center;
+      font-size: 4.5rem;
+    }
+
+    @include e(title) {
+      color: var(--heading-color);
+      font-size: 1.5rem;
+      line-height: 1.8;
+      text-align: center;
+    }
+
+    @include e(subtitle) {
+      color: var(--text-color-secondary);
+      font-size: .875rem;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    @include e(extra) {
+      margin-top: 2rem;
+      text-align: center;
+    }
+
+    @include e(content) {
+      margin-top: 1.5rem;
+      padding: 1.5rem 2.25rem;
+      background-color: var(--bg-color-2);
+    }
+}
