@@ -163,6 +163,20 @@
          <div class="p-2">this is a message, more detail</div>
       </v-popper>
    </div>
+
+   <div class="my-4">
+      <v-popper :visible.sync="visible12" trigger="contextMenu" class="d-block">
+         <div slot="reference" class="h-4 bg-2"></div>
+         <ul>
+            <li>first line</li>
+            <li>second line</li>
+            <li>third line</li>
+            <li>4th line</li>
+            <li>5th line</li>
+            <li>6line</li>
+         </ul>
+      </v-popper>
+   </div>
 </div>
 </template>
 <script lang="ts">
@@ -200,5 +214,7 @@ export default class BasicExample extends Vue {
    visible10: boolean = false
 
    visible11: boolean = false
+
+   visible12: boolean = false
 }
 </script>

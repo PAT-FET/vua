@@ -4,7 +4,7 @@
     <transition :name="transitionName">
       <div :class="[e('popper'), popperClass]" :style="[gutterStyle, zIndexStyle]" ref="popper" v-show="actualVisible && !disabled">
         <slot></slot>
-        <div :class="[e('arrow'), arrowPlacementCls]" v-if="arrow"></div>
+        <div :class="[e('arrow'), arrowPlacementCls]" v-if="arrow && this.trigger !== 'contextMenu'"></div>
       </div>
     </transition>
 </div>
@@ -22,7 +22,7 @@ import { Bemable, Themeable } from '../../mixins'
   name: 'v-popper'
   })
 export default class VPopper extends mixins(Bemable, Themeable) {
-  @Prop({type: String, default: 'hover'}) trigger!: 'hover' | 'click' | 'focus'
+  @Prop({type: String, default: 'hover'}) trigger!: 'hover' | 'click' | 'focus' | 'contextMenu'
 
   @Prop(Boolean) visible!: boolean
 
@@ -189,7 +189,10 @@ export default class VPopper extends mixins(Bemable, Themeable) {
     if (this.appendToBody) {
       document.body.appendChild(this.$refs.popper)
     }
-    let option = Object.assign(this.defaultOptions, this.options || {})
+    let option: any = Object.assign(this.defaultOptions, this.options || {})
+    if (this.trigger === 'contextMenu') {
+      option.placement = 'left-start'
+    }
     this.popper = new Popper(refEle, this.$refs.popper, option)
     this.registerEvents()
 
@@ -213,7 +216,26 @@ export default class VPopper extends mixins(Bemable, Themeable) {
   }
 
   registerEvents () {
-    const show = () => {
+    const show = (e: any) => {
+      if (this.trigger === 'contextMenu') {
+        e.preventDefault()
+        if (this.popper) {
+          let item = (this as any).popper.modifiers.find((v: any) => v.name === 'offset')
+          if (item) {
+            let px = e.clientX
+            let py = e.clientY
+            let rect = (this as any).popper.reference.getBoundingClientRect()
+            let { x, y, width, height } = rect
+            let top = py - y
+            let left = px - x - width
+            item.offset = `${top}px, ${left}px`
+          }
+        }
+        if (this.visible) {
+          ;(this.popper as any).scheduleUpdate()
+          return
+        }
+      }
       this.callbacks.push(() => this.updateVisible(true))
       this.scheduleCallback()
     }
@@ -271,8 +293,17 @@ export default class VPopper extends mixins(Bemable, Themeable) {
       document.addEventListener('click', clickOutSide)
       this.unRegisterEvents = () => {
         $refEle.removeEventListener('focus', show)
-        $refEle.addEventListener('blur', hide)
+        $refEle.removeEventListener('blur', hide)
         document.removeEventListener('click', clickOutSide)
+      }
+    } else if (this.trigger === 'contextMenu') {
+      $refEle.addEventListener('contextmenu', show)
+      document.addEventListener('click', hide)
+      document.addEventListener('contextmenu', clickOutSide)
+      this.unRegisterEvents = () => {
+        $refEle.removeEventListener('contextmenu', show)
+        document.removeEventListener('click', hide)
+        document.removeEventListener('contextmenu', clickOutSide)
       }
     }
   }
