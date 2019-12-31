@@ -10,7 +10,7 @@
       </colgroup>
       <tbody>
         <template v-for="(row, i) in renderedData">
-        <tr :key="i" :class="[selectedRowCls(row), currentRowCls(row), resolveRowClass({row, rowIndex: i})]" @click="onRowClick(row)">
+        <tr :key="i" :class="[selectedRowCls(row), currentRowCls(row), resolveRowClass({row, rowIndex: i})]" @click="onRowClick(row)" @contextmenu="(e) => onRowMenu(e, row)">
           <template v-for="(column, j) in renderedColumns">
           <td :key="column.columnIndex"
            v-bind="span({row, column, rowIndex: i, columnIndex: j})"
@@ -47,6 +47,15 @@
   <!-- slot -->
   <div hidden>
     <slot></slot>
+  </div>
+  <!-- context menu -->
+  <div v-if="$scopedSlots.menu" :style="[menuStyle]">
+    <v-dropdown trigger="click" ref="menu">
+      <span></span>
+      <v-dropdown-menu slot="dropdown">
+        <slot name="menu" :row="menuProps.row"></slot>
+      </v-dropdown-menu>
+    </v-dropdown>
   </div>
 </div>
 </template>
@@ -127,6 +136,12 @@ export default class VTable extends mixins(Themeable, Bemable, Localeable, Group
   computeScrollDelay = throttle(this.computeScroll, 300)
 
   currentRow: any = null
+
+  menuProps: any = {
+    top: 0,
+    left: 0,
+    row: null
+  }
 
   get columns (): VTableColumn[] {
     let ret = this.groupItems as VTableColumn[]
@@ -245,6 +260,15 @@ export default class VTable extends mixins(Themeable, Bemable, Localeable, Group
     return {
       height: this.height,
       maxHeight: this.maxHeight
+    }
+  }
+
+  get menuStyle () {
+    return {
+      position: 'fixed',
+      zIndex: 3000,
+      top: `${this.menuProps.top}px`,
+      left: `${this.menuProps.left}px`
     }
   }
 
@@ -378,6 +402,26 @@ export default class VTable extends mixins(Themeable, Bemable, Localeable, Group
       if (expand) this.expandRowSet.add(key)
       else this.expandRowSet.delete(key)
     }
+  }
+
+  onRowMenu (e: Event, row: any) {
+    if (!this.$scopedSlots.menu) return
+    e.preventDefault()
+    const { x, y }: any = e as any
+    this.menuProps.top = y - 20
+    this.menuProps.left = x
+    this.menuProps.row = row
+    this.$nextTick(() => {
+      const $e = (this.$refs as any).menu as any
+      if (!$e) return
+      if (!$e.visible) $e.visible = true
+      else {
+        $e.visible = false
+        this.$nextTick(() => {
+          $e.visible = true
+        })
+      }
+    })
   }
 
   onRowClick (row: any) {
