@@ -3,7 +3,7 @@ export default {
     {
       name: 'trigger',
       default: 'hover',
-      type: `'hover' | 'click'`,
+      type: `'hover' | 'click' | 'contextMenu'`,
       desc: '触发popper方式，可置为空'
     },
     {
