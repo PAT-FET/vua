@@ -2,7 +2,7 @@
   <div :class="[b(), listTypeCls, disabledCls]" tabindex="0" v-show="$slots.default"
     @click="onControlClick" @drag="onDrop" @dragover="onDragover">
     <input type="file" :class="[e('input'), draggingCls]" ref="file" :disabled="disabled"
-    :multiple="multiple" :accept="accept" :directory="directory"
+    :multiple="multiple" :accept="accept" :webkitdirectory="directory" :mozdirectory="directory"
     @click.stop="onInputClick"
     @dragleave="onDragout"
     @change="onFileChange">
