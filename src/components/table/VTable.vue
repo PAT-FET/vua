@@ -107,6 +107,8 @@ export default class VTable extends mixins(Themeable, Bemable, Localeable, Group
 
   @Emit() rowClick (row: any) {}
 
+  @Emit() rowMenu (row: any) {}
+
   // overwrite
   groupNames: string[] = ['v-table-column']
 
@@ -405,6 +407,7 @@ export default class VTable extends mixins(Themeable, Bemable, Localeable, Group
   }
 
   onRowMenu (e: Event, row: any) {
+    this.rowMenu(row)
     if (!this.$scopedSlots.menu) return
     e.preventDefault()
     const { x, y }: any = e as any
