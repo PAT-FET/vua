@@ -10,7 +10,9 @@
       </colgroup>
       <tbody>
         <template v-for="(row, i) in renderedData">
-        <tr :key="i" :class="[selectedRowCls(row), currentRowCls(row), resolveRowClass({row, rowIndex: i})]" @click="onRowClick(row)" @contextmenu="(e) => onRowMenu(e, row)">
+        <tr :key="i" :class="[selectedRowCls(row), currentRowCls(row), resolveRowClass({row, rowIndex: i})]"
+          @dblclick="onRowDbclick(row)"
+          @click="onRowClick(row)" @contextmenu="(e) => onRowMenu(e, row)">
           <template v-for="(column, j) in renderedColumns">
           <td :key="column.columnIndex"
            v-bind="span({row, column, rowIndex: i, columnIndex: j})"
@@ -106,6 +108,8 @@ export default class VTable extends mixins(Themeable, Bemable, Localeable, Group
   @Prop([Function, String]) rowClass!: TableRowClassFn | string
 
   @Emit() rowClick (row: any) {}
+
+  @Emit() rowDbclick (row: any) {}
 
   @Emit() rowMenu (row: any) {}
 
@@ -430,6 +434,10 @@ export default class VTable extends mixins(Themeable, Bemable, Localeable, Group
   onRowClick (row: any) {
     this.currentRow = row
     this.rowClick(row)
+  }
+
+  onRowDbclick (row: any) {
+    this.rowDbclick(row)
   }
 
   computeScroll () {
