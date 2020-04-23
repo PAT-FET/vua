@@ -6,7 +6,7 @@
     <v-radio-button label="sm">小</v-radio-button>
   </v-radio-group>
    <div class="m-3">
-     <v-table :size="size" :data-source="dataSource" highlight-current-row @row-click="onRowClick">
+     <v-table :size="size" :data-source="dataSource" highlight-current-row @row-click="onRowClick" @row-dbclick="onRowDbclick">
        <v-table-column type="index" label="#"></v-table-column>
        <v-table-column prop="name" label="姓名" title="中文名称"></v-table-column>
        <v-table-column prop="age" label="年龄"></v-table-column>
@@ -48,8 +48,12 @@ export default class BasicExample extends Vue {
 
   size: string = 'lg'
 
-  onRowClick (row: any) {
-    console.log(row)
+  onRowClick (row: any, event: any) {
+    console.log('row-click', row, event)
+  }
+
+  onRowDbclick (row: any) {
+    console.log('row-db-click', row)
   }
 }
 </script>

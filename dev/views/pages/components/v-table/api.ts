@@ -98,8 +98,13 @@ const dataIterable = {
     },
     {
       name: 'rowClick',
-      value: `row`,
+      value: `row, $event`,
       desc: '表格行点击事件'
+    },
+    {
+      name: 'rowMenu',
+      value: `row`,
+      desc: '表格行右键菜单'
     }
   ],
   methods: [

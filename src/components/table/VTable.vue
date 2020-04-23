@@ -10,7 +10,9 @@
       </colgroup>
       <tbody>
         <template v-for="(row, i) in renderedData">
-        <tr :key="i" :class="[selectedRowCls(row), currentRowCls(row), resolveRowClass({row, rowIndex: i})]" @click="onRowClick(row)" @contextmenu="(e) => onRowMenu(e, row)">
+        <tr :key="i" :class="[selectedRowCls(row), currentRowCls(row), resolveRowClass({row, rowIndex: i})]"
+          @dblclick="onRowDbclick(row)"
+          @click="onRowClick(row, $event)" @contextmenu="(e) => onRowMenu(e, row)">
           <template v-for="(column, j) in renderedColumns">
           <td :key="column.columnIndex"
            v-bind="span({row, column, rowIndex: i, columnIndex: j})"
@@ -105,7 +107,11 @@ export default class VTable extends mixins(Themeable, Bemable, Localeable, Group
 
   @Prop([Function, String]) rowClass!: TableRowClassFn | string
 
-  @Emit() rowClick (row: any) {}
+  @Emit() rowClick (row: any, event: any) {}
+
+  @Emit() rowDbclick (row: any) {}
+
+  @Emit() rowMenu (row: any) {}
 
   // overwrite
   groupNames: string[] = ['v-table-column']
@@ -405,6 +411,7 @@ export default class VTable extends mixins(Themeable, Bemable, Localeable, Group
   }
 
   onRowMenu (e: Event, row: any) {
+    this.rowMenu(row)
     if (!this.$scopedSlots.menu) return
     e.preventDefault()
     const { x, y }: any = e as any
@@ -424,9 +431,13 @@ export default class VTable extends mixins(Themeable, Bemable, Localeable, Group
     })
   }
 
-  onRowClick (row: any) {
+  onRowClick (row: any, event: any) {
     this.currentRow = row
-    this.rowClick(row)
+    this.rowClick(row, event)
+  }
+
+  onRowDbclick (row: any) {
+    this.rowDbclick(row)
   }
 
   computeScroll () {
