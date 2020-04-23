@@ -48,8 +48,8 @@ export default class BasicExample extends Vue {
 
   size: string = 'lg'
 
-  onRowClick (row: any) {
-    console.log('row-click', row)
+  onRowClick (row: any, event: any) {
+    console.log('row-click', row, event)
   }
 
   onRowDbclick (row: any) {

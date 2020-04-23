@@ -98,7 +98,7 @@ const dataIterable = {
     },
     {
       name: 'rowClick',
-      value: `row`,
+      value: `row, $event`,
       desc: '表格行点击事件'
     },
     {
