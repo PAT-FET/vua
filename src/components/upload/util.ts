@@ -19,7 +19,9 @@ export function generateUploadFile (file: File, url?: string): UploadFile {
     response: null,
     error: null
   }
-  generateDataUrl(file, (url) => { ret.thumbUrl = url })
+  if (isImageUrl(ret) && (ret.size || 0) < 1024 * 1024 * 10) {
+    generateDataUrl(file, (url) => { ret.thumbUrl = url })
+  }
   return ret
 }
 
